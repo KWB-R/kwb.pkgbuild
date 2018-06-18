@@ -1,0 +1,66 @@
+---
+title: "Tutorial"
+author: "Michael Rustler"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# 1 Install R package
+
+```{r, eval = FALSE}
+installed_packages <- rownames(installed.packages())
+
+if(!"devtools" %in% installed_packages) {
+  install.packages("devtools", repos = "https://cloud.r-project.org")
+}
+if(!"kwb.pkgbuild" %in% installed_packages) {
+  devtools::install_github("KWB-R/kwb.pkgbuild")
+}
+
+```
+
+# 2 How to 
+
+## 2.1 Create empty R package
+
+```{r}
+temp_pkg <- file.path(tempdir(), "kwb.newpackage")
+usethis::create_package(path = temp_pkg,open = FALSE)
+fs::file_delete(path = file.path(temp_pkg, "DESCRIPTION"))
+
+```
+
+## 2.2 Parameterise your R package
+
+```{r}
+author <- list(name = "Michael Rustler", 
+               orcid = "0000-0003-0647-7726",
+               url = "http://mrustl.de")
+
+pkg <- list(name = "kwb.newpackage", 
+  title = "My new KWB R package", 
+  desc  = "My super cool new R package in KWB default styling.")
+
+```
+
+## 2.3 Use KWB style for your R package structure 
+
+```{r eval = FALSE}
+setwd(temp_pkg)
+kwb.pkgbuild::use_pkg(author, 
+                      pkg, 
+                      version = "0.1.0.9000",
+                      stage = "experimental")
+```
