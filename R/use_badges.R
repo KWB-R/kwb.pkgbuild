@@ -8,10 +8,10 @@
 #' @export
 use_badge_appveyor <- function(repo, user = "KWB-R", domain = "github") {
 
-  sprintf(paste0("[![Appveyor build Status](https://ci.appveyor.com",
+  sprintf(paste0("[![Appveyor build Status](https://ci.appveyor.com/",
                  "api/projects/status/%s/",
                  "%s/%s?branch=master&svg=true)]",
-                 "(https://ci.appveyor.com/project/%s/%s/branch/master))"),
+                 "(https://ci.appveyor.com/project/%s/%s/branch/master)"),
           domain,
           user,
           repo,
@@ -29,7 +29,7 @@ use_badge_appveyor <- function(repo, user = "KWB-R", domain = "github") {
 use_badge_travis <- function(repo, user = "KWB-R") {
 
   sprintf(paste0("[![Travis build Status](https://travis-ci.org/",
-                 "%s/%s.svg?branch=master)](https://travis-ci.org/%s/%s))"),
+                 "%s/%s.svg?branch=master)](https://travis-ci.org/%s/%s)"),
           user,
           repo,
           user,
@@ -45,7 +45,7 @@ use_badge_travis <- function(repo, user = "KWB-R") {
 #' @export
 use_badge_codecov <- function(repo, user = "KWB-R", domain = "github") {
 
-  sprintf(paste0("[![codecov](https://codecov.io/%s/%s/%s/branch",
+  sprintf(paste0("[![codecov](https://codecov.io/%s/%s/%s/branch/",
                  "master/graphs/badge.svg)](https://codecov.io/%s/%s/%s)"),
                  domain,
                  user,
@@ -71,7 +71,7 @@ use_badge_lifecycle <- function(stage = "experimental") {
   src <- paste0("https://img.shields.io/badge/lifecycle-",
                 stage, "-", colour, ".svg")
   href <- paste0("https://www.tidyverse.org/lifecycle/#", stage)
-  sprintf("[![lifecycle](%s)](%s)", href, src)
+  sprintf("[![lifecycle](%s)](%s)", src, href)
 }
 
 #' Badge CRAN
