@@ -76,13 +76,22 @@ use_badge_lifecycle <- function(stage = "experimental") {
 
 #' Badge CRAN
 #' @param pkgname name of R package
+#' @importFrom httr GET status_code
 #' @return generates CRAN badge link
 #' @export
 use_badge_cran <- function(pkgname) {
 
-  sprintf(paste0("[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/",
-  "%s)](http://cran.r-project.org/package=%s)"),
+  cran_link <- sprintf("https://cran.r-project.org/package=%s", pkgname)
+
+  pkg_on_cran <- httr::status_code(x = httr::GET(cran_link)) == 200
+
+  href <- "()"
+  if (pkg_on_cran) href <- sprintf("(%s)",cran_link)
+
+
+  sprintf(paste0("[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/",
+  "%s)]%s"),
   pkgname,
-  pkgname)
+  href)
 }
 

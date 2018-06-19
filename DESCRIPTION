@@ -10,7 +10,8 @@ Imports:
    stringr,
    usethis,
    yaml,
-   fs
+   fs,
+   httr
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
