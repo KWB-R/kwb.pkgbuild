@@ -77,7 +77,7 @@ model output")),
 
   readme_rmd <- use_readme_rmd(pkg, user, domain, stage)
 
-  docu_release <- sprintf("https:://%s.%s.io/%s",
+  docu_release <- sprintf("https://%s.%s.io/%s",
                           tolower(user),
                           tolower(domain),
                           tolower(pkg$name))
