@@ -4,10 +4,7 @@
 \alias{use_travis}
 \title{Adds default .travis.yml}
 \usage{
-use_travis(cache_pkg = TRUE)
-}
-\arguments{
-\item{cache_pkg}{should packages be cached? TRUE/FALSE (default: TRUE)}
+use_travis()
 }
 \value{
 writes .travis.yml and adds it .Rbuildignore

@@ -6,8 +6,8 @@
 #' track changes to the package.")
 #' @param style_guide_url refer to tidyverse style website documenting how to
 #' write a good "NEWS.md"(default: "http://style.tidyverse.org/news.html")
-#'
-#' @return writes "NEWS.md"
+#' @return writes "NEWS.md" (in case it is not existing)
+#' @importFrom fs file_exists
 #' @export
 #'
 #' @examples
@@ -31,5 +31,12 @@ style_guide_url = "http://style.tidyverse.org/news.html") {
           style_guide_txt
           )
 
+  news_md <- "NEWS.md"
+  if (fs::file_exists(news_md)) {
+warn_msg <- paste("No 'NEWS.md' created by kwb.pkgbuild::use_news_md(),
+because 'NEWS.md' is aleady existing. Please delete it first!")
+    warning(warn_msg)
+  } else {
   writeLines(news_txt, con = "NEWS.md")
+}
 }

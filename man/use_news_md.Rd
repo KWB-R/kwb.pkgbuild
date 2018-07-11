@@ -20,7 +20,7 @@ track changes to the package.")}
 write a good "NEWS.md"(default: "http://style.tidyverse.org/news.html")}
 }
 \value{
-writes "NEWS.md"
+writes "NEWS.md" (in case it is not existing)
 }
 \description{
 Create KWB-styled "NEWS.md"
