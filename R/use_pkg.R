@@ -7,8 +7,9 @@
 #' title = "R package supporting UMERTO LCA at KWB",\cr
 #' desc = "Helper functions for data aggregation and visualisation of\cr
 #' UMBERTO (https://www.ifu.com/umberto) model output"))
-#' @param version user defined version number (e.g. 0.1.0) or default version
-#' number 0.0.0.9000 in case (version = NULL) of first release
+#' @param version user defined version number (e.g. 0.1.0) or default
+#' "0.1.0.9000" version number for initial development version (default:
+#' "0.1.0.9000")
 #' @param license license (default: "MIT + file LICENSE")
 #' @param copyright_holder list with name of copyright holder and additional
 #' start_year (e.g. "2017") of copyright protection. If not specified
@@ -36,7 +37,7 @@ pkg = list(name = "kwb.lca",
 title = "R package supporting UMERTO LCA at KWB",
 desc = paste0("Helper functions for data aggregation and visualisation",
 " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
-version = NULL,
+version = "0.1.0.9000",
 license = "MIT + file LICENSE",
 copyright_holder = list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
                         start_year = NULL),
@@ -81,5 +82,8 @@ use_codecov()
 
 ### 8) Use README
 use_readme(pkg,user,domain, stage)
+
+### 8) Use NEWS.md
+use_news_md(pkg$name, version)
 }
 

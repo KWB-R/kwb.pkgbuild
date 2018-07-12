@@ -9,7 +9,7 @@ use_pkg(author = list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
   "R package supporting UMERTO LCA at KWB", desc =
   paste0("Helper functions for data aggregation and visualisation",
   " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
-  version = NULL, license = "MIT + file LICENSE",
+  version = "0.1.0.9000", license = "MIT + file LICENSE",
   copyright_holder = list(name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
   start_year = NULL), funder = NULL, user = "KWB-R", domain = "github",
   stage = "experimental")
@@ -25,8 +25,9 @@ title = "R package supporting UMERTO LCA at KWB",\cr
 desc = "Helper functions for data aggregation and visualisation of\cr
 UMBERTO (https://www.ifu.com/umberto) model output"))}
 
-\item{version}{user defined version number (e.g. 0.1.0) or default version
-number 0.0.0.9000 in case (version = NULL) of first release}
+\item{version}{user defined version number (e.g. 0.1.0) or default
+"0.1.0.9000" version number for initial development version (default:
+"0.1.0.9000")}
 
 \item{license}{license (default: "MIT + file LICENSE")}
 
