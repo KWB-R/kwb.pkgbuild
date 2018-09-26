@@ -10,7 +10,6 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-
 knitr::opts_chunk$set(
   collapse = TRUE,
   fig_caption = FALSE,
@@ -22,34 +21,33 @@ This tutorial explains how you can develop an R package within a few hours, that
 already follows a pre-defined default KWB package style (e.g. automatically 
 adding KWB as copyright holder).
 
-
-# 1 Install R packages
+# 1 Install required R packages
 
 First you need to install the following required R packages:
 
 ```{r, eval = FALSE}
+# Get the names of already installed packages
 installed_packages <- rownames(installed.packages())
 
-### For installing an R package from Github
-if(!"devtools" %in% installed_packages) {
-  install.packages("devtools", repos = "https://cloud.r-project.org")
+# Install missing packages from "https://cloud.r-project.org"
+# - devtools: functions for installing an R package from Github
+# - pkgdown: functions for creating a package website
+for (package in setdiff(c("devtools", "pkgdown"), installed_packages)) {
+  
+  install.packages(package, repos = "https://cloud.r-project.org")
 }
-### For building an R package according to default KWB styling 
-if(!"kwb.pkgbuild" %in% installed_packages) {
+
+# Install this package from our GitHub account
+if (! "kwb.pkgbuild" %in% installed_packages) {
+  
   devtools::install_github("KWB-R/kwb.pkgbuild")
 }
-### Adding a documentation website for your R package
-if(!"pkgdown" %in% installed_packages) {
-  install.packages("pkgdown", repos = "https://cloud.r-project.org")
-}
-
-
 ```
 
-# 2 Personalise it
+# 2 Configure and create your package
 
-Secondly you need to personalise your R package, but using a default KWB package 
-build template that is wrapped into the R package `kwb.pkgbuild`.
+Secondly you need to personalise your R package by adapting a default template 
+that we provide for KWB packages. This template is contained in the R package `kwb.pkgbuild`.
 
 ## 2.1 Create empty R package
 
@@ -57,11 +55,9 @@ build template that is wrapped into the R package `kwb.pkgbuild`.
 temp_pkg <- file.path(tempdir(), "kwb.newpackage")
 usethis::create_package(path = temp_pkg,open = FALSE)
 fs::file_delete(path = file.path(temp_pkg, "DESCRIPTION"))
-
 ```
 
 ## 2.2 Parameterise your R package
-
 
 ## 2.2.1 Author
 
@@ -69,44 +65,40 @@ Minimum requirement: the author at least needs to geht an name attribute as
 shown below.
 
 ```{r}
-
 author <- list(name = "Max Mustermann")
-
 ```
 
-However, it is also possible to additionally specify a personal website and an 
-[ORCID](https://orcid.org/), for tracking your work as shown below:
-
+You can add further information such as a personal website or the [ORCID](https://orcid.org/) of the author:
 
 ```{r}
-
-author <- list(name = "Michael Rustler", 
-               orcid = "0000-0003-0647-7726",
-               url = "http://mrustl.de")
-
+author <- list(
+  name = "Michael Rustler", 
+  orcid = "0000-0003-0647-7726",
+  url = "http://mrustl.de"
+)
 ```
 
-
+The ORCID uniquely identifies the author of a web ressource and thus allows to 
+find different works of one and the same author on the web.
 
 ## 2.2.2 Package description
 
 The package description needs three entries
 
-- **name**: the name of the package
+- **name**: name of the package
 
-- **title**: title of your R package in TitleCase (you can use the website 
-https://titlecase.com/ for converting your non- title case conform title to a 
-valid one)
+- **title**: title of your R package in Title Case (you can use the website 
+https://titlecase.com/ to generate titles in valid Title Case)
 
-- **desc:** is the package description. Should be at least one sentence long and 
-needs to end with a point!
-
+- **desc:** package description. Should be at least one sentence long and 
+needs to end with a period!
 
 ```{r}
-pkg <- list(name = "kwb.newpackage", 
+description <- list(
+  name = "kwb.newpackage", 
   title = "My new KWB R package", 
-  desc  = "My super cool new R package in KWB default styling.")
-
+  desc  = "My super cool new R package in KWB default styling."
+)
 ```
 
 ## 2.3 Create R package structure in KWB-R style 
@@ -116,13 +108,13 @@ some KWB-R specfic styling, e.g.:
 
 - Adding configution files for: 
     
-     + Continous integration on windows (https://appveyor.com) and linux 
-     (https://travis-ci.org/KWB-R)
-
-     + Code coverage in R package using the servive [codecov.io](codecov.io)
-     
-     + Backup of Github repositories on our mirrored KWB-R group on 
-     [Gitlab](https://gitlab.com/KWB-R)
+    + Continous integration on windows (https://appveyor.com) and linux
+    (https://travis-ci.org/KWB-R)
+    
+    + Code coverage in R package using the servive [codecov.io](codecov.io)
+    
+    + Backup of Github repositories on our mirrored KWB-R group on
+    [Gitlab](https://gitlab.com/KWB-R)
 
 - Indicates the current lifecycle of the R package according to https://www.tidyverse.org/lifecycle/
 
@@ -130,7 +122,8 @@ some KWB-R specfic styling, e.g.:
 for all public R packages currently hosted on Github (see: http://kwb-r.github.io/status/) and 
 lists KWB as copyright holder (see e.g. [here](https://kwb-r.github.io/kwb.pkgbuild/dev/authors.html))
 
-- Creates READMEs (.md, .Rmd) for the above mentioned topics and
+- Creates `README` files (`README.Rmd` and `README.md`) for the above mentioned
+topics and
 
 - Prepares a KWB-R flavored documentation website template named `_packagedown.yml` 
 needed by http://pkgdown.r-lib.org/
@@ -140,10 +133,13 @@ Running the following R function will create the R package with the `version` =
 
 ```{r eval = FALSE}
 setwd(temp_pkg)
-kwb.pkgbuild::use_pkg(author, 
-                      pkg, 
-                      version = "0.1.0.9000",
-                      stage = "experimental")
+
+kwb.pkgbuild::use_pkg(
+  author, 
+  description, 
+  version = "0.1.0.9000", 
+  stage = "experimental"
+)
 ```
 
 ## 2.4 Add your R functions
@@ -159,7 +155,6 @@ usethis::use_r("function")
 For writing your R code/functions please follow the tidyverse coding style 
 (https://style.tidyverse.org/), which serves as our default KWB-R style.
 
-
 Now you just need to fill it with content (i.e. your functions) and document it 
 using [roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html). 
 If you have already defined a function you can add a [roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html)
@@ -171,20 +166,17 @@ as shown below.
 More information on documentation in R is provided here: 
 [http://r-pkgs.had.co.nz/man.html](http://r-pkgs.had.co.nz/man.html)
 
-# 3 Check it
+# 3 Check your package
 
 Once you completed all the steps above go to the upper right panel in RStudio 
 and click on `Build` -> `More` -> `Configure build tools` as shown below. 
 
 ![](images/build_check_01.jpg)
 
-
-
 Then click on `Configure` and a new window opens. Here you select everything 
 as shown below:
 
 ![](images/build_check_02.jpg)
-
 
 After doing so accept the settings by two times clicking `Ok`. 
 
@@ -229,7 +221,7 @@ sapply(pkg_dependencies, usethis::use_package)
 ```
 
 Subsequently you should re-click on the `Check` button again and it should finish
-without ERRORS. 
+without errors. 
 
 ```{r eval = FALSE}
 R CMD check results
@@ -238,11 +230,11 @@ R CMD check results
 R CMD check succeeded
 ```
 
-# 4 Build it
+# 4 Build your package
 
-
-Now you are ready for building your R package by clicking on the `Install and Restart`
-button. A successful installation should finish with `Done` as shown below:
+Now you are ready for building your R package by clicking on the `Install and
+Restart` button. A successful installation should finish with `Done` as shown
+below:
 
 ```{r eval = FALSE}
 ** building package indices
@@ -252,7 +244,7 @@ button. A successful installation should finish with `Done` as shown below:
 In R CMD INSTALL
 ```
 
-# 5 Document it
+# 5 Document your package
 
 Finally you should run `pkgdown::build_site()` in order to create an documentation 
 website for your R package. Running this command will store the website in the 
@@ -269,4 +261,3 @@ at:
 https://github.com/KWB-R/  `kwb.mycoolrpackage`  /settings
 
 ![](images/package_documentation.jpg)
-
