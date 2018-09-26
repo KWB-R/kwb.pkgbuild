@@ -83,7 +83,7 @@
       <h1>KWB-R package from scratch</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2018-07-12</h4>
+            <h4 class="date">2018-09-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/master/vignettes/tutorial.Rmd"><code>vignettes/tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>tutorial.Rmd</code></div>
@@ -93,40 +93,42 @@
     
     
 <p>This tutorial explains how you can develop an R package within a few hours, that already follows a pre-defined default KWB package style (e.g. automatically adding KWB as copyright holder).</p>
-<div id="install-r-packages" class="section level1">
+<div id="install-required-r-packages" class="section level1">
 <h1 class="hasAnchor">
-<a href="#install-r-packages" class="anchor"></a>1 Install R packages</h1>
+<a href="#install-required-r-packages" class="anchor"></a>1 Install required R packages</h1>
 <p>First you need to install the following required R packages:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">installed_packages &lt;-<span class="st"> </span><span class="kw">rownames</span>(<span class="kw">installed.packages</span>())</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">### For installing an R package from Github</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="cf">if</span>(<span class="op">!</span><span class="st">"devtools"</span> <span class="op">%in%</span><span class="st"> </span>installed_packages) {</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">### For building an R package according to default KWB styling </a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="cf">if</span>(<span class="op">!</span><span class="st">"kwb.pkgbuild"</span> <span class="op">%in%</span><span class="st"> </span>installed_packages) {</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">  devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"KWB-R/kwb.pkgbuild"</span>)</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">}</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">### Adding a documentation website for your R package</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="cf">if</span>(<span class="op">!</span><span class="st">"pkgdown"</span> <span class="op">%in%</span><span class="st"> </span>installed_packages) {</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">  <span class="kw">install.packages</span>(<span class="st">"pkgdown"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the names of already installed packages</span>
+installed_packages &lt;-<span class="st"> </span><span class="kw">rownames</span>(<span class="kw">installed.packages</span>())
+
+<span class="co"># Install missing packages from "https://cloud.r-project.org"</span>
+<span class="co"># - devtools: functions for installing an R package from Github</span>
+<span class="co"># - pkgdown: functions for creating a package website</span>
+<span class="cf">for</span> (package <span class="cf">in</span> <span class="kw">setdiff</span>(<span class="kw">c</span>(<span class="st">"devtools"</span>, <span class="st">"pkgdown"</span>), installed_packages)) {
+  
+  <span class="kw">install.packages</span>(package, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)
+}
+
+<span class="co"># Install this package from our GitHub account</span>
+<span class="cf">if</span> (<span class="op">!</span><span class="st"> "kwb.pkgbuild"</span> <span class="op">%in%</span><span class="st"> </span>installed_packages) {
+  
+  devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"KWB-R/kwb.pkgbuild"</span>)
+}</code></pre></div>
 </div>
-<div id="personalise-it" class="section level1">
+<div id="configure-and-create-your-package" class="section level1">
 <h1 class="hasAnchor">
-<a href="#personalise-it" class="anchor"></a>2 Personalise it</h1>
-<p>Secondly you need to personalise your R package, but using a default KWB package build template that is wrapped into the R package <code>kwb.pkgbuild</code>.</p>
+<a href="#configure-and-create-your-package" class="anchor"></a>2 Configure and create your package</h1>
+<p>Secondly you need to personalise your R package by adapting a default template that we provide for KWB packages. This template is contained in the R package <code>kwb.pkgbuild</code>.</p>
 <div id="create-empty-r-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-empty-r-package" class="anchor"></a>2.1 Create empty R package</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">temp_pkg &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">"kwb.newpackage"</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">usethis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/usethis/topics/create_package">create_package</a></span>(<span class="dt">path =</span> temp_pkg,<span class="dt">open =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; Changing active project to kwb.newpackage</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; &lt;U+2714&gt; Creating 'R/'</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; &lt;U+2714&gt; Creating 'man/'</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; &lt;U+2714&gt; Writing 'DESCRIPTION'</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; &lt;U+2714&gt; Writing 'NAMESPACE'</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">fs<span class="op">::</span><span class="kw"><a href="http://fs.r-lib.org/reference/delete.html">file_delete</a></span>(<span class="dt">path =</span> <span class="kw">file.path</span>(temp_pkg, <span class="st">"DESCRIPTION"</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temp_pkg &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">"kwb.newpackage"</span>)
+usethis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/usethis/topics/create_package">create_package</a></span>(<span class="dt">path =</span> temp_pkg,<span class="dt">open =</span> <span class="ot">FALSE</span>)
+<span class="co">#&gt; ✔ Setting active project to '/tmp/Rtmp2qdO1m/kwb.newpackage'</span>
+<span class="co">#&gt; ✔ Creating 'R/'</span>
+<span class="co">#&gt; ✔ Creating 'man/'</span>
+<span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span>
+<span class="co">#&gt; ✔ Writing 'NAMESPACE'</span>
+fs<span class="op">::</span><span class="kw"><a href="http://fs.r-lib.org/reference/delete.html">file_delete</a></span>(<span class="dt">path =</span> <span class="kw">file.path</span>(temp_pkg, <span class="st">"DESCRIPTION"</span>))</code></pre></div>
 </div>
 <div id="parameterise-your-r-package" class="section level2">
 <h2 class="hasAnchor">
@@ -136,26 +138,29 @@
 <h2 class="hasAnchor">
 <a href="#author" class="anchor"></a>2.2.1 Author</h2>
 <p>Minimum requirement: the author at least needs to geht an name attribute as shown below.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">author &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name =</span> <span class="st">"Max Mustermann"</span>)</a></code></pre></div>
-<p>However, it is also possible to additionally specify a personal website and an <a href="https://orcid.org/">ORCID</a>, for tracking your work as shown below:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">author &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name =</span> <span class="st">"Michael Rustler"</span>, </a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">               <span class="dt">orcid =</span> <span class="st">"0000-0003-0647-7726"</span>,</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">               <span class="dt">url =</span> <span class="st">"http://mrustl.de"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">author &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name =</span> <span class="st">"Max Mustermann"</span>)</code></pre></div>
+<p>You can add further information such as a personal website or the <a href="https://orcid.org/">ORCID</a> of the author:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">author &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">name =</span> <span class="st">"Michael Rustler"</span>, 
+  <span class="dt">orcid =</span> <span class="st">"0000-0003-0647-7726"</span>,
+  <span class="dt">url =</span> <span class="st">"http://mrustl.de"</span>
+)</code></pre></div>
+<p>The ORCID uniquely identifies the author of a web ressource and thus allows to find different works of one and the same author on the web.</p>
 </div>
 <div id="package-description" class="section level2">
 <h2 class="hasAnchor">
 <a href="#package-description" class="anchor"></a>2.2.2 Package description</h2>
 <p>The package description needs three entries</p>
 <ul>
-<li><p><strong>name</strong>: the name of the package</p></li>
-<li><p><strong>title</strong>: title of your R package in TitleCase (you can use the website <a href="https://titlecase.com/" class="uri">https://titlecase.com/</a> for converting your non- title case conform title to a valid one)</p></li>
-<li><p><strong>desc:</strong> is the package description. Should be at least one sentence long and needs to end with a point!</p></li>
+<li><p><strong>name</strong>: name of the package</p></li>
+<li><p><strong>title</strong>: title of your R package in Title Case (you can use the website <a href="https://titlecase.com/" class="uri">https://titlecase.com/</a> to generate titles in valid Title Case)</p></li>
+<li><p><strong>desc:</strong> package description. Should be at least one sentence long and needs to end with a period!</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">pkg &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name =</span> <span class="st">"kwb.newpackage"</span>, </a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">title =</span> <span class="st">"My new KWB R package"</span>, </a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">desc  =</span> <span class="st">"My super cool new R package in KWB default styling."</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">description &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">name =</span> <span class="st">"kwb.newpackage"</span>, 
+  <span class="dt">title =</span> <span class="st">"My new KWB R package"</span>, 
+  <span class="dt">desc  =</span> <span class="st">"My super cool new R package in KWB default styling."</span>
+)</code></pre></div>
 </div>
 <div id="create-r-package-structure-in-kwb-r-style" class="section level2">
 <h2 class="hasAnchor">
@@ -172,88 +177,99 @@
 </li>
 <li><p>Indicates the current lifecycle of the R package according to <a href="https://www.tidyverse.org/lifecycle/" class="uri">https://www.tidyverse.org/lifecycle/</a></p></li>
 <li><p>Uses by default the permissive <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT"></a> for all public R packages currently hosted on Github (see: <a href="http://kwb-r.github.io/status/" class="uri">http://kwb-r.github.io/status/</a>) and lists KWB as copyright holder (see e.g. <a href="https://kwb-r.github.io/kwb.pkgbuild/dev/authors.html">here</a>)</p></li>
-<li><p>Creates READMEs (.md, .Rmd) for the above mentioned topics and</p></li>
+<li><p>Creates <code>README</code> files (<code>README.Rmd</code> and <code>README.md</code>) for the above mentioned topics and</p></li>
 <li><p>Prepares a KWB-R flavored documentation website template named <code>_packagedown.yml</code> needed by <a href="http://pkgdown.r-lib.org/" class="uri">http://pkgdown.r-lib.org/</a></p></li>
 </ul>
 <p>Running the following R function will create the R package with the <code>version</code> = <code>0.1.0.9000</code> and development stage <code>experimental</code> (defined <a href="https://www.tidyverse.org/lifecycle/#experimental">here</a>).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">setwd</span>(temp_pkg)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">kwb.pkgbuild<span class="op">::</span><span class="kw">use_pkg</span>(author, </a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">                      pkg, </a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">                      <span class="dt">version =</span> <span class="st">"0.1.0.9000"</span>,</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">                      <span class="dt">stage =</span> <span class="st">"experimental"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(temp_pkg)
+
+kwb.pkgbuild<span class="op">::</span><span class="kw">use_pkg</span>(
+  author, 
+  description, 
+  <span class="dt">version =</span> <span class="st">"0.1.0.9000"</span>, 
+  <span class="dt">stage =</span> <span class="st">"experimental"</span>
+)</code></pre></div>
 </div>
 <div id="add-your-r-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#add-your-r-functions" class="anchor"></a>2.4 Add your R functions</h2>
 <p>Add your R functions in the folder <code>R</code>/. By using <code><a href="http://www.rdocumentation.org/packages/usethis/topics/use_r">usethis::use_r</a></code> with the parameter <code>name</code> = <code>function</code> an empty R script is already stored in the right folder <code>R/</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">usethis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/usethis/topics/use_r">use_r</a></span>(<span class="st">"function"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/usethis/topics/use_r">use_r</a></span>(<span class="st">"function"</span>)</code></pre></div>
 <p>For writing your R code/functions please follow the tidyverse coding style (<a href="https://style.tidyverse.org/" class="uri">https://style.tidyverse.org/</a>), which serves as our default KWB-R style.</p>
 <p>Now you just need to fill it with content (i.e. your functions) and document it using <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html">roxygen2</a>. If you have already defined a function you can add a <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html">roxygen2</a> skeleton by using clicking on the <code>Insert Roxygen Skeleton</code> button in RStudio as shown below.</p>
-<p><img src="images/add_roxygen.jpg"></p>
+<div class="figure">
+<img src="images/add_roxygen.jpg">
+</div>
 <p>More information on documentation in R is provided here: <a href="http://r-pkgs.had.co.nz/man.html" class="uri">http://r-pkgs.had.co.nz/man.html</a></p>
 </div>
 </div>
-<div id="check-it" class="section level1">
+<div id="check-your-package" class="section level1">
 <h1 class="hasAnchor">
-<a href="#check-it" class="anchor"></a>3 Check it</h1>
+<a href="#check-your-package" class="anchor"></a>3 Check your package</h1>
 <p>Once you completed all the steps above go to the upper right panel in RStudio and click on <code>Build</code> -&gt; <code>More</code> -&gt; <code>Configure build tools</code> as shown below.</p>
-<p><img src="images/build_check_01.jpg"></p>
+<div class="figure">
+<img src="images/build_check_01.jpg">
+</div>
 <p>Then click on <code>Configure</code> and a new window opens. Here you select everything as shown below:</p>
-<p><img src="images/build_check_02.jpg"></p>
+<div class="figure">
+<img src="images/build_check_02.jpg">
+</div>
 <p>After doing so accept the settings by two times clicking <code>Ok</code>.</p>
 <p>Subsequently click the <code>Check</code> button so that your package is cross-checked for possible problems (e.g. wrong documentation, missing package dependencies).</p>
 <p>In case of missing package dependencies as shown below these should be added to the DESCRIPTION file.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">Namespace dependencies not required<span class="op">:</span><span class="st"> 'fs'</span> <span class="st">'httr'</span> <span class="st">'stringr'</span> <span class="st">'usethis'</span> <span class="st">'yaml'</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">See section <span class="st">'The DESCRIPTION file'</span> <span class="cf">in</span> the <span class="st">'Writing R Extensions'</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">manual.</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="op">*</span><span class="st"> </span>DONE</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">Status<span class="op">:</span><span class="st"> </span><span class="dv">1</span> ERROR</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">See</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">  <span class="st">'C:/Users/myname/Documents/RProjects/kwb.pkgbuild.Rcheck/00check.log'</span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="cf">for</span> details.</a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11">checking package dependencies ... ERROR</a>
-<a class="sourceLine" id="cb8-12" data-line-number="12">Namespace dependencies not required<span class="op">:</span><span class="st"> 'fs'</span> <span class="st">'httr'</span> <span class="st">'stringr'</span> <span class="st">'usethis'</span> <span class="st">'yaml'</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Namespace dependencies not required<span class="op">:</span><span class="st"> 'fs'</span> <span class="st">'httr'</span> <span class="st">'stringr'</span> <span class="st">'usethis'</span> <span class="st">'yaml'</span>
+See section <span class="st">'The DESCRIPTION file'</span> <span class="cf">in</span> the <span class="st">'Writing R Extensions'</span>
+manual.
+<span class="op">*</span><span class="st"> </span>DONE
+Status<span class="op">:</span><span class="st"> </span><span class="dv">1</span> ERROR
+
+See
+  <span class="st">'C:/Users/myname/Documents/RProjects/kwb.pkgbuild.Rcheck/00check.log'</span>
+<span class="cf">for</span> details.
+
+checking package dependencies ... ERROR
+Namespace dependencies not required<span class="op">:</span><span class="st"> 'fs'</span> <span class="st">'httr'</span> <span class="st">'stringr'</span> <span class="st">'usethis'</span> <span class="st">'yaml'</span></code></pre></div>
 <p>This can be done using the function <code><a href="http://www.rdocumentation.org/packages/usethis/topics/use_package">usethis::use_package()</a></code> as shown below:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">pkg_dependencies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'fs'</span>, <span class="st">'httr'</span>, <span class="st">'stringr'</span>, <span class="st">'usethis'</span>, <span class="st">'yaml'</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">sapply</span>(pkg_dependencies, usethis<span class="op">::</span>use_package)</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">✔ Adding <span class="st">'fs'</span> to Imports field <span class="cf">in</span> DESCRIPTION</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">● Refer to functions with <span class="st">`</span><span class="dt">fs::fun()</span><span class="st">`</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7">✔ Adding <span class="st">'httr'</span> to Imports field <span class="cf">in</span> DESCRIPTION</a>
-<a class="sourceLine" id="cb9-8" data-line-number="8">● Refer to functions with <span class="st">`</span><span class="dt">httr::fun()</span><span class="st">`</span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9">✔ Adding <span class="st">'stringr'</span> to Imports field <span class="cf">in</span> DESCRIPTION</a>
-<a class="sourceLine" id="cb9-10" data-line-number="10">● Refer to functions with <span class="st">`</span><span class="dt">stringr::fun()</span><span class="st">`</span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11">✔ Adding <span class="st">'usethis'</span> to Imports field <span class="cf">in</span> DESCRIPTION</a>
-<a class="sourceLine" id="cb9-12" data-line-number="12">● Refer to functions with <span class="st">`</span><span class="dt">usethis::fun()</span><span class="st">`</span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13">✔ Adding <span class="st">'yaml'</span> to Imports field <span class="cf">in</span> DESCRIPTION</a>
-<a class="sourceLine" id="cb9-14" data-line-number="14">● Refer to functions with <span class="st">`</span><span class="dt">yaml::fun()</span><span class="st">`</span></a></code></pre></div>
-<p>Subsequently you should re-click on the <code>Check</code> button again and it should finish without ERRORS.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">R CMD check results</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="dv">0</span> errors <span class="op">|</span><span class="st"> </span><span class="dv">0</span> warning  <span class="op">|</span><span class="st"> </span><span class="dv">0</span> note </a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">R CMD check succeeded</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pkg_dependencies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'fs'</span>, <span class="st">'httr'</span>, <span class="st">'stringr'</span>, <span class="st">'usethis'</span>, <span class="st">'yaml'</span>)
+
+<span class="kw">sapply</span>(pkg_dependencies, usethis<span class="op">::</span>use_package)
+
+✔ Adding <span class="st">'fs'</span> to Imports field <span class="cf">in</span> DESCRIPTION
+● Refer to functions with <span class="st">`</span><span class="dt">fs::fun()</span><span class="st">`</span>
+✔ Adding <span class="st">'httr'</span> to Imports field <span class="cf">in</span> DESCRIPTION
+● Refer to functions with <span class="st">`</span><span class="dt">httr::fun()</span><span class="st">`</span>
+✔ Adding <span class="st">'stringr'</span> to Imports field <span class="cf">in</span> DESCRIPTION
+● Refer to functions with <span class="st">`</span><span class="dt">stringr::fun()</span><span class="st">`</span>
+✔ Adding <span class="st">'usethis'</span> to Imports field <span class="cf">in</span> DESCRIPTION
+● Refer to functions with <span class="st">`</span><span class="dt">usethis::fun()</span><span class="st">`</span>
+✔ Adding <span class="st">'yaml'</span> to Imports field <span class="cf">in</span> DESCRIPTION
+● Refer to functions with <span class="st">`</span><span class="dt">yaml::fun()</span><span class="st">`</span></code></pre></div>
+<p>Subsequently you should re-click on the <code>Check</code> button again and it should finish without errors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R CMD check results
+<span class="dv">0</span> errors <span class="op">|</span><span class="st"> </span><span class="dv">0</span> warning  <span class="op">|</span><span class="st"> </span><span class="dv">0</span> note 
+
+R CMD check succeeded</code></pre></div>
 </div>
-<div id="build-it" class="section level1">
+<div id="build-your-package" class="section level1">
 <h1 class="hasAnchor">
-<a href="#build-it" class="anchor"></a>4 Build it</h1>
+<a href="#build-your-package" class="anchor"></a>4 Build your package</h1>
 <p>Now you are ready for building your R package by clicking on the <code>Install and Restart</code> button. A successful installation should finish with <code>Done</code> as shown below:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="op">**</span><span class="st"> </span>building package indices</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="op">**</span><span class="st"> </span>installing vignettes</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="op">**</span><span class="st"> </span>testing <span class="cf">if</span> installed package can be loaded</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="op">*</span><span class="st"> </span><span class="kw">DONE</span> (kwb.pkgbuild)</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">In R CMD INSTALL</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">**</span><span class="st"> </span>building package indices
+<span class="op">**</span><span class="st"> </span>installing vignettes
+<span class="op">**</span><span class="st"> </span>testing <span class="cf">if</span> installed package can be loaded
+<span class="op">*</span><span class="st"> </span><span class="kw">DONE</span> (kwb.pkgbuild)
+In R CMD INSTALL</code></pre></div>
 </div>
-<div id="document-it" class="section level1">
+<div id="document-your-package" class="section level1">
 <h1 class="hasAnchor">
-<a href="#document-it" class="anchor"></a>5 Document it</h1>
+<a href="#document-your-package" class="anchor"></a>5 Document your package</h1>
 <p>Finally you should run <code><a href="http://pkgdown.r-lib.org/reference/build_site.html">pkgdown::build_site()</a></code> in order to create an documentation website for your R package. Running this command will store the website in the subfolder <code>docs</code> within your R package.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">pkgdown<span class="op">::</span><span class="kw"><a href="http://pkgdown.r-lib.org/reference/build_site.html">build_site</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pkgdown<span class="op">::</span><span class="kw"><a href="http://pkgdown.r-lib.org/reference/build_site.html">build_site</a></span>()</code></pre></div>
 <p>Once you upload your R package to Github this can be easily used as documentation page that you define in the settings page for your R package which is available at:</p>
 <p><a href="https://github.com/KWB-R/" class="uri">https://github.com/KWB-R/</a> <code>kwb.mycoolrpackage</code> /settings</p>
-<p><img src="images/package_documentation.jpg"></p>
+<div class="figure">
+<img src="images/package_documentation.jpg">
+</div>
 </div>
   </div>
 
@@ -262,9 +278,9 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#install-r-packages">1 Install R packages</a></li>
+<li><a href="#install-required-r-packages">1 Install required R packages</a></li>
       <li>
-<a href="#personalise-it">2 Personalise it</a><ul class="nav nav-pills nav-stacked">
+<a href="#configure-and-create-your-package">2 Configure and create your package</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#create-empty-r-package">2.1 Create empty R package</a></li>
       <li><a href="#parameterise-your-r-package">2.2 Parameterise your R package</a></li>
       <li><a href="#author">2.2.1 Author</a></li>
@@ -273,9 +289,9 @@
       <li><a href="#add-your-r-functions">2.4 Add your R functions</a></li>
       </ul>
 </li>
-      <li><a href="#check-it">3 Check it</a></li>
-      <li><a href="#build-it">4 Build it</a></li>
-      <li><a href="#document-it">5 Document it</a></li>
+      <li><a href="#check-your-package">3 Check your package</a></li>
+      <li><a href="#build-your-package">4 Build your package</a></li>
+      <li><a href="#document-your-package">5 Document your package</a></li>
       </ul>
 </div>
       </div>
