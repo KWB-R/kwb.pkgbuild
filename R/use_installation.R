@@ -7,7 +7,7 @@
 #' (default: "md")
 use_installation <- function(pkgname, user, domain, output = "md")
 {
-  c("# Installation",
+  c("## Installation",
     "",
     if (tolower(output) == "rmd") {
       "```{r echo = TRUE, eval = FALSE}"
