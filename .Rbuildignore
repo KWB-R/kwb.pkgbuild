@@ -5,7 +5,7 @@
 ^.travis\.yml$
 ^appveyor\.yml$
 ^codecov\.yml$
-^README\.Rmd$
+^index\.Rmd$
 ^README\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$

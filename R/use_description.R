@@ -4,12 +4,12 @@
 #' list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
 #' url = "http://mrustl.de"))
 #' @param pkg package description in list format (default:\cr
-#' pkg = list(name = "kwb.lca",\cr
+#' pkg = list(name = "kwb.umberto",\cr
 #' title = "R package supporting UMERTO LCA at KWB",\cr
 #' desc = "Helper functions for data aggregation and visualisation of\cr
 #' UMBERTO (https://www.ifu.com/umberto/) model output"))
 #' @param version user defined version number (e.g. 0.1.0) or default version
-#' number 0.0.0.9000 in case (version = NULL) of first release
+#' number 0.1.0.9000 in case (version = NULL) of first release
 #' @param license license (default: "MIT + file LICENSE")
 #' @param copyright_holder_name name of copyright holder
 #' (default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")
@@ -19,11 +19,12 @@
 #' style
 #' @importFrom usethis use_description
 #' @importFrom stringr str_split
+#' @importFrom tools toTitleCase
 #' @export
 use_description <- function(author = list(name = "Michael Rustler",
  orcid = "0000-0003-0647-7726",
  url = "http://mrustl.de"),
- pkg = list(name = "kwb.lca",
+ pkg = list(name = "kwb.umberto",
  title = "R package supporting UMERTO LCA at KWB",
  desc = paste0("Helper functions for data aggregation and visualisation",
  " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
@@ -33,9 +34,12 @@ copyright_holder_name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
                      funder = NULL) {
 
   if(is.null(version)) {
-    version <- "0.0.0.9000"
+    version <- "0.1.0.9000"
     cat(sprintf("No version specified. Using default initial version %s\n", version))
   }
+
+pkg$title <- tools::toTitleCase(pkg$title)
+
 firstname_surname <- stringr::str_split(string = author$name,pattern = "\\s+")[[1]]
 author_name <- firstname_surname[1]
 author_surname <- firstname_surname[2]

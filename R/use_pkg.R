@@ -3,7 +3,7 @@
 #' list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
 #' url = "http://mrustl.de"))
 #' @param pkg package description in list format (default:\cr
-#' pkg = list(name = "kwb.lca",\cr
+#' pkg = list(name = "kwb.umberto",\cr
 #' title = "R package supporting UMERTO LCA at KWB",\cr
 #' desc = "Helper functions for data aggregation and visualisation of\cr
 #' UMBERTO (https://www.ifu.com/umberto) model output"))
@@ -33,7 +33,7 @@
 use_pkg <- function(author = list(name = "Michael Rustler",
                                           orcid = "0000-0003-0647-7726",
                                           url = "http://mrustl.de"),
-pkg = list(name = "kwb.lca",
+pkg = list(name = "kwb.umberto",
 title = "R package supporting UMERTO LCA at KWB",
 desc = paste0("Helper functions for data aggregation and visualisation",
 " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
@@ -80,10 +80,14 @@ use_appveyor()
 ### 7) Use codecov
 use_codecov()
 
-### 8) Use README
-use_readme(pkg,user,domain, stage)
+### 8) Use index.Rmd (for pkgdown home:
+### see: http://pkgdown.r-lib.org/articles/pkgdown.html#home-page)
+use_index_rmd(pkg,user,domain, stage)
 
-### 8) Use NEWS.md
+### 9) Use README.md (for github page)
+use_readme_md(pkg,user,domain, stage)
+
+### 10) Use NEWS.md
 use_news_md(pkg$name, version)
 }
 

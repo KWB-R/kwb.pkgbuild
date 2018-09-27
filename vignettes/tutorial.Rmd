@@ -87,8 +87,8 @@ The package description needs three entries
 
 - **name**: name of the package
 
-- **title**: title of your R package in Title Case (you can use the website 
-https://titlecase.com/ to generate titles in valid Title Case)
+- **title**: title of your R package (which is automatically converted to title 
+case with the function `tools::toTitleCase()`)
 
 - **desc:** package description. Should be at least one sentence long and 
 needs to end with a period!

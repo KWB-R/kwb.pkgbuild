@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Authors • kwb.pkgbuild</title>
+<title>Use README — use_readme_md • kwb.pkgbuild</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,12 +25,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
-<meta property="og:title" content="Authors" />
+<meta property="og:title" content="Use README — use_readme_md" />
+
+<meta property="og:description" content="Use README" />
+<meta name="twitter:card" content="summary" />
 
 <meta name="robots" content="noindex">
 
@@ -46,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-authors">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -57,7 +60,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">kwb.pkgbuild</a>
+        <a class="navbar-link" href="../index.html">kwb.pkgbuild</a>
         <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development package">0.1.0.9000</span>
       </span>
     </div>
@@ -65,13 +68,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -81,12 +84,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/tutorial.html">KWB-R package from scratch</a>
+      <a href="../articles/tutorial.html">KWB-R package from scratch</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -107,26 +110,69 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Authors</h1>
+    <h1>Use README</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/use_readme_md.R'><code>R/use_readme_md.R</code></a></small>
+    <div class="hidden name"><code>use_readme_md.Rd</code></div>
     </div>
 
-    <ul class="list-unstyled">
-      <li>
-        <p><strong><a href='http://mrustl.de'>Michael Rustler</a></strong>. Author, maintainer. <a href='https://orcid.org/0000-0003-0647-7726' target='orcid.widget'><img src='https://members.orcid.org/sites/default/files/vector_iD_icon.svg' class='orcid' height='16'></a>
-        </p>
-      </li>
-      <li>
-        <p><strong><a href='http://www.kompetenz-wasser.de'><img src='http://www.kompetenz-wasser.de/wp-content/uploads/2017/08/cropped-logo-kwb_klein-new.png' height='24' /></a></strong>. Copyright holder. 
-        </p>
-      </li>
-    </ul>
+    <div class="ref-description">
+    
+    <p>Use README</p>
+    
+    </div>
+
+    <pre class="usage"><span class='fu'>use_readme_md</span>(<span class='kw'>pkg</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"kwb.lca"</span>, <span class='kw'>desc</span> <span class='kw'>=</span>
+  <span class='fu'>paste</span>(<span class='st'>"Helper functions for data aggregation and"</span>,
+  <span class='st'>"visualisation of UMBERTO (https://www.ifu.com/umberto)\nmodel output"</span>)),
+  <span class='kw'>user</span> <span class='kw'>=</span> <span class='st'>"KWB-R"</span>, <span class='kw'>domain</span> <span class='kw'>=</span> <span class='st'>"github"</span>, <span class='kw'>stage</span> <span class='kw'>=</span> <span class='st'>"experimental"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>pkg</th>
+      <td><p>package description in list format (default:<br />
+pkg = list(name = "kwb.umberto",<br />
+title = "R package supporting UMERTO LCA at KWB",<br />
+desc = "Helper functions for data aggregation and visualisation of<br />
+UMBERTO (https://www.ifu.com/umberto) model output"))<br /></p></td>
+    </tr>
+    <tr>
+      <th>user</th>
+      <td><p>user name or organisation under which repository defined in<br />
+parameter "repo" is hosted (default: "KWB-R")<br /></p></td>
+    </tr>
+    <tr>
+      <th>domain</th>
+      <td><p>under which repository is hosted (default: "github")</p></td>
+    </tr>
+    <tr>
+      <th>stage</th>
+      <td><p>badge declares the developmental stage of a package, according
+to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
+valid arguments are: "experimental", "maturing", "stable", "retired",
+"archived", "dormant", "questioning"), (default: "experiment")</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>generates travis badge link</p>
+    
 
   </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
+  </div>
 </div>
-
 
       <footer>
       <div class="copyright">
