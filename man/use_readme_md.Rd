@@ -4,18 +4,9 @@
 \alias{use_readme_md}
 \title{Use README}
 \usage{
-use_readme_md(pkg = list(name = "kwb.lca", desc =
-  paste("Helper functions for data aggregation and",
-  "visualisation of UMBERTO (https://www.ifu.com/umberto)\\nmodel output")),
-  user = "KWB-R", domain = "github", stage = "experimental")
+use_readme_md(user = "KWB-R", domain = "github", stage = "experimental")
 }
 \arguments{
-\item{pkg}{package description in list format (default:\cr
-pkg = list(name = "kwb.umberto",\cr
-title = "R package supporting UMERTO LCA at KWB",\cr
-desc = "Helper functions for data aggregation and visualisation of\cr
-UMBERTO (https://www.ifu.com/umberto) model output"))\cr}
-
 \item{user}{user name or organisation under which repository defined in\cr
 parameter "repo" is hosted (default: "KWB-R")\cr}
 

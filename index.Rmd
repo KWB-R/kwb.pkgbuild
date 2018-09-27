@@ -4,7 +4,8 @@
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/kwb.pkgbuild)]()
 
-Helper functions for automating R package development at KWB to a predefined style.
+Helper functions for automating R package development at KWB to a predefined 
+style.
 
 # Installation
 

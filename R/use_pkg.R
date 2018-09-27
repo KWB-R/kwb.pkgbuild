@@ -82,12 +82,12 @@ use_codecov()
 
 ### 8) Use index.Rmd (for pkgdown home:
 ### see: http://pkgdown.r-lib.org/articles/pkgdown.html#home-page)
-use_index_rmd(pkg,user,domain, stage)
+use_index_rmd(user,domain, stage)
 
 ### 9) Use README.md (for github page)
-use_readme_md(pkg,user,domain, stage)
+use_readme_md(user,domain, stage)
 
 ### 10) Use NEWS.md
-use_news_md(pkg$name, version)
+use_news_md()
 }
 

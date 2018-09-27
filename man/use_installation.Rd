@@ -4,7 +4,7 @@
 \alias{use_installation}
 \title{Helper function: describe pkg installation in index.Rmd / README.md}
 \usage{
-use_installation(pkgname, user, domain)
+use_installation(pkgname, user, domain, output = "md")
 }
 \arguments{
 \item{pkgname}{package name}
@@ -13,6 +13,9 @@ use_installation(pkgname, user, domain)
 parameter "repo" is hosted}
 
 \item{domain}{under which repository is hosted}
+
+\item{output}{if "rmd" (other code chunks are used); otherwise: "md" style!
+(default: "md")}
 }
 \description{
 Helper function: describe pkg installation in index.Rmd / README.md

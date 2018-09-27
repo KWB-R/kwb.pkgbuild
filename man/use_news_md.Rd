@@ -4,15 +4,11 @@
 \alias{use_news_md}
 \title{Create KWB-styled "NEWS.md"}
 \usage{
-use_news_md(pkg_name, pkg_version,
-  news_txt = "* Added a `NEWS.md` file to track changes to the package.",
+
+  use_news_md(news_txt = "* Added a `NEWS.md` file to track changes to the package.",
   style_guide_url = "http://style.tidyverse.org/news.html")
 }
 \arguments{
-\item{pkg_name}{name of the R package (e.g. kwb.pkgbuild)}
-
-\item{pkg_version}{version of the package}
-
 \item{news_txt}{text added to news (default: "* Added a 'NEWS.md' file to
 track changes to the package.")}
 
@@ -24,10 +20,4 @@ writes "NEWS.md" (in case it is not existing)
 }
 \description{
 Create KWB-styled "NEWS.md"
-}
-\examples{
-kwb.pkgbuild::use_news_md(
-pkg_name = "kwb.geosalz",
-pkg_version = "0.1.0.9000")
-
 }

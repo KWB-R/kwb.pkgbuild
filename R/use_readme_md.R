@@ -1,9 +1,4 @@
 #' Use README
-#' @param pkg package description in list format (default:\cr
-#' pkg = list(name = "kwb.umberto",\cr
-#' title = "R package supporting UMERTO LCA at KWB",\cr
-#' desc = "Helper functions for data aggregation and visualisation of\cr
-#' UMBERTO (https://www.ifu.com/umberto) model output"))\cr
 #' @param user user name or organisation under which repository defined in\cr
 #' parameter "repo" is hosted (default: "KWB-R")\cr
 #' @param domain under which repository is hosted (default: "github")
@@ -13,15 +8,15 @@
 #' "archived", "dormant", "questioning"), (default: "experiment")
 #' @return generates travis badge link
 #' @export
+#' @importFrom desc desc
+
 use_readme_md <- function(
-  pkg = list(name = "kwb.lca",
-desc = paste("Helper functions for data aggregation and",
-"visualisation of UMBERTO (https://www.ifu.com/umberto)
-model output")),
   user = "KWB-R",
   domain = "github",
   stage = "experimental") {
 
+
+  pkg <- read_description()
 
   docu_release <- sprintf("https://%s.%s.io/%s",
                           tolower(user),

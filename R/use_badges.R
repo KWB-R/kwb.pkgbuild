@@ -8,6 +8,15 @@
 #' @export
 use_badge_appveyor <- function(repo, user = "KWB-R", domain = "github") {
 
+  if(is.null(repo)) {
+
+    pkg <- read_description()
+    pkgname <- pkg$name
+
+  }
+
+  read_description(file = "DESCRIPTION")
+
   sprintf(paste0("[![Appveyor build Status](https://ci.appveyor.com/",
                  "api/projects/status/%s/",
                  "%s/%s?branch=master&svg=true)]",
@@ -28,6 +37,14 @@ use_badge_appveyor <- function(repo, user = "KWB-R", domain = "github") {
 #' @export
 use_badge_travis <- function(repo, user = "KWB-R") {
 
+  if(is.null(repo)) {
+
+    pkg <- read_description()
+    pkgname <- pkg$name
+
+  }
+
+
   sprintf(paste0("[![Travis build Status](https://travis-ci.org/",
                  "%s/%s.svg?branch=master)](https://travis-ci.org/%s/%s)"),
           user,
@@ -44,6 +61,13 @@ use_badge_travis <- function(repo, user = "KWB-R") {
 #' @return generates codecov badge link
 #' @export
 use_badge_codecov <- function(repo, user = "KWB-R", domain = "github") {
+
+  if(is.null(repo)) {
+
+    pkg <- read_description()
+    pkgname <- pkg$name
+
+  }
 
   sprintf(paste0("[![codecov](https://codecov.io/%s/%s/%s/branch/",
                  "master/graphs/badge.svg)](https://codecov.io/%s/%s/%s)"),
@@ -80,6 +104,13 @@ use_badge_lifecycle <- function(stage = "experimental") {
 #' @return generates CRAN badge link
 #' @export
 use_badge_cran <- function(pkgname) {
+
+  if(is.null(pkgname)) {
+
+    pkg <- read_description()
+    pkgname <- pkg$name
+
+  }
 
   cran_link <- sprintf("https://cran.r-project.org/package=%s", pkgname)
 
