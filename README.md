@@ -13,7 +13,7 @@ style.
 
 ```r
 #install.packages("devtools", repos = "https://cloud.r-project.org")
-devtools::install_github("KWB-R/kwb.pkgbuild)
+devtools::install_github("KWB-R/kwb.pkgbuild")
 ```
 
 ## Documentation
