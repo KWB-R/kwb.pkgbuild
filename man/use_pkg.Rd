@@ -4,14 +4,15 @@
 \alias{use_pkg}
 \title{Wrapper function for preparing R package with KWB styling}
 \usage{
-use_pkg(author = list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-  url = "http://mrustl.de"), pkg = list(name = "kwb.umberto", title =
-  "R package supporting UMERTO LCA at KWB", desc =
+use_pkg(author = list(name = "Michael Rustler", orcid =
+  "0000-0003-0647-7726", url = "http://mrustl.de"), pkg = list(name =
+  "kwb.umberto", title = "R package supporting UMERTO LCA at KWB", desc =
   paste0("Helper functions for data aggregation and visualisation",
   " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
   version = "0.1.0.9000", license = "MIT + file LICENSE",
-  copyright_holder = list(name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-  start_year = NULL), funder = NULL, user = "KWB-R", domain = "github",
+  copyright_holder = list(name =
+  "Kompetenzzentrum Wasser Berlin gGmbH (KWB)", start_year = NULL),
+  funder = NULL, user = "KWB-R", domain = "github",
   stage = "experimental")
 }
 \arguments{

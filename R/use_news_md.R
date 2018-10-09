@@ -10,7 +10,7 @@
 
 use_news_md <- function(
 news_txt = "* Added a `NEWS.md` file to track changes to the package.",
-style_guide_url = "http://style.tidyverse.org/news.html") {
+style_guide_url = "https://style.tidyverse.org/news.html") {
 
   pkg <- read_description(file = "DESCRIPTION")
 

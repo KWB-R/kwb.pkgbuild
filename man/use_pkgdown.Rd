@@ -4,7 +4,8 @@
 \alias{use_pkgdown}
 \title{pkgdown for KWB}
 \usage{
-use_pkgdown(author = list(name = "Michael Rustler", url = "http://mrustl.de"),
+use_pkgdown(author = list(name = "Michael Rustler", url =
+  "http://mrustl.de"),
   copyright_holder_name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")
 }
 \arguments{

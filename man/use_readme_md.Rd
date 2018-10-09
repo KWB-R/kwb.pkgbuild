@@ -4,7 +4,8 @@
 \alias{use_readme_md}
 \title{Use README}
 \usage{
-use_readme_md(user = "KWB-R", domain = "github", stage = "experimental")
+use_readme_md(user = "KWB-R", domain = "github",
+  stage = "experimental")
 }
 \arguments{
 \item{user}{user name or organisation under which repository defined in\cr
