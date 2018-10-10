@@ -95,7 +95,7 @@ use_badge_lifecycle <- function(stage = "experimental") {
   src <- paste0("https://img.shields.io/badge/lifecycle-",
                 stage, "-", colour, ".svg")
   href <- paste0("https://www.tidyverse.org/lifecycle/#", stage)
-  sprintf("[![lifecycle](%s)](%s)", src, href)
+  sprintf("[![Project Status](%s)](%s)", src, href)
 }
 
 #' Badge CRAN
