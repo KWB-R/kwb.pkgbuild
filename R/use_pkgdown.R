@@ -4,7 +4,7 @@
 #' url = "http://mrustl.de"))
 #' @param copyright_holder_name name of copyright holder
 #' (default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")
-#' @return  performs usethis::use_pkgdown() and additionally writes _pkgdown.yaml
+#' @return  performs usethis::use_pkgdown() and additionally writes _pkgdown.yml
 #' based on KWB styling
 #' @importFrom usethis use_pkgdown
 #' @export

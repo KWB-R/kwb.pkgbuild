@@ -2,13 +2,13 @@
 % Please edit documentation in R/use_appveyor.R
 \name{use_appveyor}
 \alias{use_appveyor}
-\title{Adds default .appyevor.yml}
+\title{Adds default .appveyor.yml}
 \usage{
 use_appveyor()
 }
 \value{
-writes .appyevor.yml and adds it .Rbuildignore
+writes .appveyor.yml and adds it .Rbuildignore
 }
 \description{
-Adds default .appyevor.yml
+Adds default .appveyor.yml
 }

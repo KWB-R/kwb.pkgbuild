@@ -6,7 +6,7 @@
 \usage{
 use_pkg(author = list(name = "Michael Rustler", orcid =
   "0000-0003-0647-7726", url = "http://mrustl.de"), pkg = list(name =
-  "kwb.umberto", title = "R package supporting UMERTO LCA at KWB", desc =
+  "kwb.umberto", title = "R package supporting UMBERTO LCA at KWB", desc =
   paste0("Helper functions for data aggregation and visualisation",
   " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
   version = "0.1.0.9000", license = "MIT + file LICENSE",
@@ -22,7 +22,7 @@ url = "http://mrustl.de"))}
 
 \item{pkg}{package description in list format (default:\cr
 pkg = list(name = "kwb.umberto",\cr
-title = "R package supporting UMERTO LCA at KWB",\cr
+title = "R package supporting UMBERTO LCA at KWB",\cr
 desc = "Helper functions for data aggregation and visualisation of\cr
 UMBERTO (https://www.ifu.com/umberto) model output"))}
 
@@ -38,7 +38,7 @@ start_year (e.g. "2017") of copyright protection. If not specified
 (default: "list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
 start_year = NULL)")}
 
-\item{funder}{funder/funding agengy of R package (default: NULL), e.g. project
+\item{funder}{funder/funding agency of R package (default: NULL), e.g. project
 name (e.g. AQUANES)}
 
 \item{user}{user name or organisation under which repository defined in

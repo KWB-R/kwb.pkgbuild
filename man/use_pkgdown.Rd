@@ -16,7 +16,7 @@ url = "http://mrustl.de"))}
 (default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")}
 }
 \value{
-performs usethis::use_pkgdown() and additionally writes _pkgdown.yaml
+performs usethis::use_pkgdown() and additionally writes _pkgdown.yml
 based on KWB styling
 }
 \description{

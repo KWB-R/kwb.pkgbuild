@@ -4,7 +4,7 @@
 #' url = "http://mrustl.de"))
 #' @param pkg package description in list format (default:\cr
 #' pkg = list(name = "kwb.umberto",\cr
-#' title = "R package supporting UMERTO LCA at KWB",\cr
+#' title = "R package supporting UMBERTO LCA at KWB",\cr
 #' desc = "Helper functions for data aggregation and visualisation of\cr
 #' UMBERTO (https://www.ifu.com/umberto) model output"))
 #' @param version user defined version number (e.g. 0.1.0) or default
@@ -16,7 +16,7 @@
 #' (start_year = NULL), the current year is used as year only!
 #' (default: "list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
 #' start_year = NULL)")
-#' @param funder funder/funding agengy of R package (default: NULL), e.g. project
+#' @param funder funder/funding agency of R package (default: NULL), e.g. project
 #' name (e.g. AQUANES)
 #' @param user user name or organisation under which repository defined in
 #' parameter "repo" is hosted (default: "KWB-R")
@@ -34,7 +34,7 @@ use_pkg <- function(author = list(name = "Michael Rustler",
                                           orcid = "0000-0003-0647-7726",
                                           url = "http://mrustl.de"),
 pkg = list(name = "kwb.umberto",
-title = "R package supporting UMERTO LCA at KWB",
+title = "R package supporting UMBERTO LCA at KWB",
 desc = paste0("Helper functions for data aggregation and visualisation",
 " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
 version = "0.1.0.9000",

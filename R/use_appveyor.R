@@ -1,7 +1,7 @@
 # use_appveyor with KWB default style
-#' Adds default .appyevor.yml
+#' Adds default .appveyor.yml
 #' @importFrom utils download.file
-#' @return writes .appyevor.yml and adds it .Rbuildignore
+#' @return writes .appveyor.yml and adds it .Rbuildignore
 #' @export
 
 use_appveyor <- function() {
