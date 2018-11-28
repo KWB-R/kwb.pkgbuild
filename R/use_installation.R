@@ -14,7 +14,7 @@ use_installation <- function(pkgname, user, domain, output = "md")
     } else {
       "```r"
     },
-    "#install.packages(\"devtools\", repos = \"https://cloud.r-project.org\")",
-    sprintf("devtools::install_%s(\"%s/%s\")", domain, user, pkgname),
+    "#install.packages(\"remotes\", repos = \"https://cloud.r-project.org\")",
+    sprintf("remotes::install_%s(\"%s/%s\")", domain, user, pkgname),
     "```")
 }

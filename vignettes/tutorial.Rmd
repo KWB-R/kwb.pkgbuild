@@ -30,9 +30,9 @@ First you need to install the following required R packages:
 installed_packages <- rownames(installed.packages())
 
 # Install missing packages from "https://cloud.r-project.org"
-# - devtools: functions for installing an R package from Github
+# - remotes: functions for installing an R package from Github
 # - pkgdown: functions for creating a package website
-for (package in setdiff(c("devtools", "pkgdown"), installed_packages)) {
+for (package in setdiff(c("remotes", "pkgdown"), installed_packages)) {
   
   install.packages(package, repos = "https://cloud.r-project.org")
 }
@@ -40,7 +40,7 @@ for (package in setdiff(c("devtools", "pkgdown"), installed_packages)) {
 # Install this package from our GitHub account
 if (! "kwb.pkgbuild" %in% installed_packages) {
   
-  devtools::install_github("KWB-R/kwb.pkgbuild")
+  remotes::install_github("KWB-R/kwb.pkgbuild")
 }
 ```
 
