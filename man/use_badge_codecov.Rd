@@ -4,10 +4,10 @@
 \alias{use_badge_codecov}
 \title{Badge codecov}
 \usage{
-use_badge_codecov(repo, user = "KWB-R", domain = "github")
+use_badge_codecov(repo = NULL, user = "KWB-R", domain = "github")
 }
 \arguments{
-\item{repo}{name of repository}
+\item{repo}{name of repository (default: NULL)}
 
 \item{user}{user name or organisation under which repository defined in
 parameter "repo" is hosted (default: KWB-R")}

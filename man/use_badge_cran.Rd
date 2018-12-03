@@ -4,10 +4,10 @@
 \alias{use_badge_cran}
 \title{Badge CRAN}
 \usage{
-use_badge_cran(pkgname)
+use_badge_cran(pkgname = NULL)
 }
 \arguments{
-\item{pkgname}{name of R package}
+\item{pkgname}{name of R package (default: NULL)}
 }
 \value{
 generates CRAN badge link

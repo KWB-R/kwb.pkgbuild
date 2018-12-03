@@ -1,21 +1,14 @@
 #' Badge appveyor
-#' @param repo name of repository
+#' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
 #' parameter "repo" is hosted (default: KWB-R")
 #' @param domain under which repository is hosted (default: "github")
 #'
 #' @return generates appveyor badge link
 #' @export
-use_badge_appveyor <- function(repo, user = "KWB-R", domain = "github") {
+use_badge_appveyor <- function(repo = NULL, user = "KWB-R", domain = "github") {
 
-  if(is.null(repo)) {
-
-    pkg <- read_description()
-    pkgname <- pkg$name
-
-  }
-
-  read_description(file = "DESCRIPTION")
+  pkgname <- get_pkgname(repo)
 
   sprintf(paste0("[![Appveyor build Status](https://ci.appveyor.com/",
                  "api/projects/status/%s/",
@@ -23,60 +16,49 @@ use_badge_appveyor <- function(repo, user = "KWB-R", domain = "github") {
                  "(https://ci.appveyor.com/project/%s/%s/branch/master)"),
           domain,
           user,
-          repo,
+          pkgname,
           user,
-          gsub(pattern = "\\.", replacement = "-", repo)
+          gsub(pattern = "\\.", replacement = "-", pkgname)
           )
 }
 
 #' Badge travis
-#' @param repo name of repository
+#' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
 #' parameter "repo" is hosted (default: KWB-R")
 #' @return generates travis badge link
 #' @export
-use_badge_travis <- function(repo, user = "KWB-R") {
+use_badge_travis <- function(repo = NULL, user = "KWB-R") {
 
-  if(is.null(repo)) {
-
-    pkg <- read_description()
-    pkgname <- pkg$name
-
-  }
-
+  pkgname <- get_pkgname(repo)
 
   sprintf(paste0("[![Travis build Status](https://travis-ci.org/",
                  "%s/%s.svg?branch=master)](https://travis-ci.org/%s/%s)"),
           user,
-          repo,
+          pkgname,
           user,
-          repo)
+          pkgname)
 }
 
 #' Badge codecov
-#' @param repo name of repository
+#' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
 #' parameter "repo" is hosted (default: KWB-R")
 #' @param domain under which repository is hosted (default: "github")
 #' @return generates codecov badge link
 #' @export
-use_badge_codecov <- function(repo, user = "KWB-R", domain = "github") {
+use_badge_codecov <- function(repo = NULL, user = "KWB-R", domain = "github") {
 
-  if(is.null(repo)) {
-
-    pkg <- read_description()
-    pkgname <- pkg$name
-
-  }
+  pkgname <- get_pkgname(repo)
 
   sprintf(paste0("[![codecov](https://codecov.io/%s/%s/%s/branch/",
                  "master/graphs/badge.svg)](https://codecov.io/%s/%s/%s)"),
                  domain,
                  user,
-                 repo,
+                 pkgname,
                  domain,
                  user,
-                 repo)
+                 pkgname)
 
 }
 
@@ -99,18 +81,13 @@ use_badge_lifecycle <- function(stage = "experimental") {
 }
 
 #' Badge CRAN
-#' @param pkgname name of R package
+#' @param pkgname name of R package (default: NULL)
 #' @importFrom httr GET status_code
 #' @return generates CRAN badge link
 #' @export
-use_badge_cran <- function(pkgname) {
+use_badge_cran <- function(pkgname = NULL) {
 
-  if(is.null(pkgname)) {
-
-    pkg <- read_description()
-    pkgname <- pkg$name
-
-  }
+  pkgname <- get_pkgname(pkgname)
 
   cran_link <- sprintf("https://cran.r-project.org/package=%s", pkgname)
 

@@ -3,11 +3,12 @@
 #
 
 test_that("use_badge_cran() works", {
-
-  expect_error(
+    old_wd <- create_pkg_temp()
     kwb.pkgbuild:::use_badge_cran()
-    # argument "pkgname" is missing, with no default
-  )
+    setwd(old_wd)
+
+    kwb.pkgbuild:::use_badge_cran("kwb.hantush")
+
 
 })
 

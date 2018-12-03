@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Badge CRAN — use_badge_cran • kwb.pkgbuild</title>
+<title>Helper Function: Get Package Name — get_pkgname • kwb.pkgbuild</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Badge CRAN — use_badge_cran" />
+<meta property="og:title" content="Helper Function: Get Package Name — get_pkgname" />
 
-<meta property="og:description" content="Badge CRAN" />
+<meta property="og:description" content="Helper Function: Get Package Name" />
 <meta name="twitter:card" content="summary" />
 
 <meta name="robots" content="noindex">
@@ -112,31 +112,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Badge CRAN</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/use_badges.R'><code>R/use_badges.R</code></a></small>
-    <div class="hidden name"><code>use_badge_cran.Rd</code></div>
+    <h1>Helper Function: Get Package Name</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/helper.R'><code>R/helper.R</code></a></small>
+    <div class="hidden name"><code>get_pkgname.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Badge CRAN</p>
+    <p>Helper Function: Get Package Name</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>use_badge_cran</span>(<span class='kw'>pkgname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>get_pkgname</span>(<span class='kw'>pkgname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>pkgname</th>
-      <td><p>name of R package (default: NULL)</p></td>
+      <td><p>either package name or NULL. In this
+case the DESCRIPTION file in the current working
+directory is read and is package name ues (default: NULL)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>generates CRAN badge link</p>
+    <p>package name</p>
     
 
   </div>

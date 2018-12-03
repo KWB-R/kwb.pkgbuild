@@ -4,10 +4,10 @@
 \alias{use_badge_travis}
 \title{Badge travis}
 \usage{
-use_badge_travis(repo, user = "KWB-R")
+use_badge_travis(repo = NULL, user = "KWB-R")
 }
 \arguments{
-\item{repo}{name of repository}
+\item{repo}{name of repository (default: NULL)}
 
 \item{user}{user name or organisation under which repository defined in
 parameter "repo" is hosted (default: KWB-R")}

@@ -25,3 +25,26 @@ write_to_rbuildignore <- function (ignore_pattern) {
   }
 }
 
+#' Helper Function: Get Package Name
+#'
+#' @param pkgname either package name or NULL. In this
+#' case the DESCRIPTION file in the current working
+#' directory is read and is package name ues (default: NULL)
+#'
+#' @return package name
+#' @export
+
+get_pkgname <- function(pkgname = NULL) {
+
+  if(is.null(pkgname)) {
+
+    if(file.exists("DESCRIPTION")) {
+      pkg <- read_description()
+      pkg$name } else {
+      stop("No pkgname defined and no 'DESCRIPTION' file for deriving
+          package name found")
+      }
+  } else {
+    pkgname
+  }
+}
