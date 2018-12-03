@@ -45,18 +45,6 @@ use_readme_md <- function(
 
   writeLines(readme_md, "README.md")
 
-  ignored_files <- readLines(".Rbuildignore")
-
-  readme_md_pat <- "^README\\.md$"
-
-  has_readme_md <- any(grepl(x = ignored_files, pattern = readme_md_pat,
-                              fixed = TRUE))
-
-  if (! has_readme_md) {
-    ignored_files <- append(x = ignored_files, values = "^README\\.md$")
-    writeLines(text = ignored_files,
-               con = ".Rbuildignore")
-  }
-
+  write_to_rbuildignore(ignore_pattern = "^README\\.md$")
 }
 

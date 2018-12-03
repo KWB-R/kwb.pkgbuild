@@ -39,4 +39,5 @@ pkgdown_yaml <- yaml::as.yaml(list(authors = pkgdown_authors_yaml,
 
 writeLines(pkgdown_yaml,con = "_pkgdown.yml")
 
+write_to_rbuildignore(ignore_pattern = "^_pkgdown\\.yml$")
 }

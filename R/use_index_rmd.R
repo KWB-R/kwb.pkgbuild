@@ -31,18 +31,7 @@ use_index_rmd <- function(
 
   writeLines(index_rmd, "index.Rmd")
 
-  ignored_files <- readLines(".Rbuildignore")
-
-  index_rmd_pat <- "^index\\.Rmd$"
-
-  has_index_rmd <- any(grepl(x = ignored_files, pattern = index_rmd_pat,
-                             fixed = TRUE))
-
-  if (! has_index_rmd) {
-    ignored_files <- append(x = ignored_files, values = "^index\\.Rmd$")
-    writeLines(text = ignored_files,
-               con = ".Rbuildignore")
-  }
+  write_to_rbuildignore(ignore_pattern = "^index\\.Rmd$")
 
   return(index_rmd)
 }

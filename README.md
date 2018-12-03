@@ -6,14 +6,14 @@
 
 # kwb.pkgbuild
 
-Helper functions for automating R package development at KWB to a predefined 
-style.
+Helper functions for automating R package development at KWB
+to a predefined style.
 
-# Installation
+## Installation
 
 ```r
-#install.packages("devtools", repos = "https://cloud.r-project.org")
-devtools::install_github("KWB-R/kwb.pkgbuild")
+#install.packages("remotes", repos = "https://cloud.r-project.org")
+remotes::install_github("KWB-R/kwb.pkgbuild")
 ```
 
 ## Documentation
