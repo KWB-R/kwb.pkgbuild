@@ -18,9 +18,10 @@ knitr::opts_chunk$set(
 ```
 
 This tutorial explains how you can develop an R package that already follows a
-predefined default KWB package style. For example, a [DESCRIPTION](http://r-pkgs.had.co.nz/description.html) file will be
-generated for you. This file already contains some information that we want to
-have in all our packages, such as KWB being the copyright holder of the package.
+predefined default KWB package style. For example, a
+[DESCRIPTION](http://r-pkgs.had.co.nz/description.html) file will be generated
+for you. This file already contains some information that we want to have in all
+our packages, such as KWB being the copyright holder of the package.
 
 # 1 Install required R packages
 
@@ -74,7 +75,8 @@ Minimum requirement: the author needs at least to have a (full) name:
 author <- list(name = "Max Mustermann")
 ```
 
-You can add further information such as a personal website or the [ORCID](https://orcid.org/) of the author:
+You can add further information such as a personal website or the
+[ORCID](https://orcid.org/) of the author:
 
 ```{r}
 author <- list(
@@ -122,17 +124,20 @@ some KWB-R specfic styling, e.g.:
     + Backup of Github repositories on our mirrored KWB-R group on
     [Gitlab](https://gitlab.com/KWB-R)
 
-- Indicates the current lifecycle of the R package according to https://www.tidyverse.org/lifecycle/
+- Indicates the current lifecycle of the R package according to
+https://www.tidyverse.org/lifecycle/
 
-- Uses by default the permissive [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
-for all public R packages currently hosted on Github (see: http://kwb-r.github.io/status/) and 
-lists KWB as copyright holder (see e.g. [here](https://kwb-r.github.io/kwb.pkgbuild/dev/authors.html))
+- Uses by default the permissive
+[![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+for all public R packages currently hosted on Github (see:
+http://kwb-r.github.io/status/) and lists KWB as copyright holder (see e.g.
+[here](https://kwb-r.github.io/kwb.pkgbuild/dev/authors.html))
 
 - Creates `README` files (`README.Rmd` and `README.md`) for the above mentioned
 topics and
 
-- Prepares a KWB-R flavored documentation website template named `_packagedown.yml` 
-needed by http://pkgdown.r-lib.org/
+- Prepares a KWB-R flavored documentation website template named
+`_packagedown.yml` needed by http://pkgdown.r-lib.org/
 
 Running the following R function will create the R package with the `version` = 
 `0.1.0.9000` and development stage `experimental` (defined [here](https://www.tidyverse.org/lifecycle/#experimental)).
@@ -226,8 +231,8 @@ sapply(pkg_dependencies, usethis::use_package)
 ● Refer to functions with `yaml::fun()`
 ```
 
-Subsequently you should re-click on the `Check` button again and it should finish
-without errors. 
+Subsequently you should re-click on the `Check` button again and it should
+finish without errors.
 
 ```{r eval = FALSE}
 R CMD check results
@@ -252,17 +257,17 @@ In R CMD INSTALL
 
 # 5 Document your package
 
-Finally you should run `pkgdown::build_site()` in order to create an documentation 
-website for your R package. Running this command will store the website in the 
-subfolder `docs` within your R package. 
+Finally you should run `pkgdown::build_site()` in order to create an
+documentation website for your R package. Running this command will store the
+website in the subfolder `docs` within your R package.
 
 ```{r eval = FALSE}
 pkgdown::build_site()
 ```
 
-Once you upload your R package to Github this can be easily used as documentation 
-page that you define in the settings page for your R package which is available 
-at: 
+Once you upload your R package to Github this can be easily used as
+documentation page that you define in the settings page for your R package which
+is available at:
 
 https://github.com/KWB-R/  `kwb.mycoolrpackage`  /settings
 
