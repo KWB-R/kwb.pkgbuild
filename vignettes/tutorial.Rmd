@@ -68,8 +68,8 @@ You can let RStudio do the cloning for you. Therefore,
 * select "File > New Project..." from the main menu,
 * select "Version Control > Git",
 * set "Repository URL" to your new repository, such as 
-`https://github.com/kwb-r/<your_package_name>`,
-* set "Project directory name" to your package name (this should be the 
+`https://github.com/kwb-r/<package_name>`,
+* set "Project directory name" to your `<package_name>` (this should be the 
 default),
 * set "Create project as subdirectory of" to the folder in which you want to
 store your local copies of your github repositories, e.g. to `~/github-repos`.
