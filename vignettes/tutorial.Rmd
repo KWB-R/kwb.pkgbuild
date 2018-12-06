@@ -96,11 +96,12 @@ fs::file_delete(path = file.path(temp_pkg, "DESCRIPTION"))
 
 ## 2.2 Parameterise your R package
 
-In the following, we present the commands required to setup and create your
-new package. We suggest that you write the corresponding code into a `.R` script 
-file. Once the package is created, we suggest to put the script file into the
-`inst/extdata` folder of your package. This makes the creation of the package
-reproducible and can be used as a template for the creation of further packages.
+In the following, we present the commands required to setup and create your new
+package. We suggest that you write the corresponding code into a `.R` script
+file (e.g. `setup_package.R`). Once the package is created, we suggest to put
+the script file into the `inst/extdata` folder of your package. This makes the
+creation of the package reproducible and can be used as a template for the
+creation of further packages.
 
 ## 2.2.1 Author
 
