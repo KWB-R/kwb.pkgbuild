@@ -18,8 +18,9 @@ knitr::opts_chunk$set(
 ```
 
 This tutorial explains how you can develop an R package that already follows a
-pre-defined default KWB package style (e.g. automatically adding KWB as
-copyright holder).
+predefined default KWB package style. For example, a DESCRIPTION file will be
+generated for you. This file already contains some information that we want to
+have in all our packages, such as KWB being the copyright holder of the package.
 
 # 1 Install required R packages
 
