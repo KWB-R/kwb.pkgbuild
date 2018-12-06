@@ -68,8 +68,7 @@ fs::file_delete(path = file.path(temp_pkg, "DESCRIPTION"))
 
 ## 2.2.1 Author
 
-Minimum requirement: the author at least needs to geht an name attribute as 
-shown below.
+Minimum requirement: the author needs at least to have a (full) name:
 
 ```{r}
 author <- list(name = "Max Mustermann")
