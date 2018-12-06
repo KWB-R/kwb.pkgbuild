@@ -47,14 +47,20 @@ if (! "kwb.pkgbuild" %in% installed_packages) {
 
 # 2 Configure and create your package
 
-Secondly you need to personalise your R package by adapting a default template 
-that we provide for KWB packages. This template is contained in the R package `kwb.pkgbuild`.
+Secondly you need to personalise your R package by adapting a default template
+that we provide for KWB packages. This template is contained in the R package
+`kwb.pkgbuild`.
 
 ## 2.1 Create empty R package
 
 ```{r}
+# Set the path to your new package
 temp_pkg <- file.path(tempdir(), "kwb.newpackage")
+
+# Create a default package structure
 usethis::create_package(path = temp_pkg,open = FALSE)
+
+# Delete the original DESCRIPTION file
 fs::file_delete(path = file.path(temp_pkg, "DESCRIPTION"))
 ```
 
