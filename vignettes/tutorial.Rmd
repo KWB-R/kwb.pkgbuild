@@ -89,6 +89,18 @@ author <- list(
 The ORCID uniquely identifies the author of a web ressource and thus allows to 
 find different works of one and the same author on the web.
 
+If you do not know your ORCID, have a look at our package 
+[kwb.orcid](https://github.com/kwb-r/kwb.orcid). It allows to search ORCIDs
+by name, once you have created an account at [orcid.org](https://orcid.org/).
+
+In addition, this package stores the ORCIDs of KWB researchers of whom we know 
+their ORCID. Once you have kwb.orcid installed, you can access these ORCIDs 
+with:
+
+```{r eval = FALSE}
+kwb.orcid::get_kwb_orcids()
+```
+
 ## 2.2.2 Package description
 
 The package description needs three entries
