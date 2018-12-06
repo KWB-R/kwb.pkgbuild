@@ -52,6 +52,19 @@ Secondly you need to personalise your R package by adapting a default template
 that we provide for KWB packages. This template is contained in the R package
 `kwb.pkgbuild`.
 
+## 2.0 Prepare a package directory
+
+In the best case, your package will be under version control. We encourage you 
+to create a GitHub repository on our [GitHub account](https://github.com/kwb-r)
+that represents the package. Having a package as a repository on GitHub has the
+advantage that it can be easily installed directly from there with no more than
+running `devtools::install_github("kwb-r/<package_name>")`. Once you have 
+created the GitHub repository, 
+[clone](https://help.github.com/articles/cloning-a-repository/) it to a folder
+on your local machine. For the steps described in the following, use this folder 
+instead of `temp_pkg` so that your package template will be created direcly in 
+the correct location.
+
 ## 2.1 Create empty R package
 
 ```{r}
