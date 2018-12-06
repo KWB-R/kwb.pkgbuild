@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 This tutorial explains how you can develop an R package that already follows a
-predefined default KWB package style. For example, a DESCRIPTION file will be
+predefined default KWB package style. For example, a [DESCRIPTION](http://r-pkgs.had.co.nz/description.html) file will be
 generated for you. This file already contains some information that we want to
 have in all our packages, such as KWB being the copyright holder of the package.
 
@@ -185,7 +185,7 @@ Subsequently click the `Check` button so that your package is cross-checked for
 possible problems (e.g. wrong documentation, missing package dependencies).
 
 In case of missing package dependencies as shown below these should be added to 
-the DESCRIPTION file.
+the [DESCRIPTION](http://r-pkgs.had.co.nz/description.html) file.
 
 ```{r eval = FALSE}
 Namespace dependencies not required: 'fs' 'httr' 'stringr' 'usethis' 'yaml'
