@@ -55,8 +55,11 @@ that we provide for KWB packages. This template is contained in the R package
 ## 2.1 Create empty R package
 
 ```{r}
+# Set the name for your new package
+package <- "kwb.newpackage"
+
 # Set the path to your new package
-temp_pkg <- file.path(tempdir(), "kwb.newpackage")
+temp_pkg <- file.path(tempdir(), package)
 
 # Create a default package structure
 usethis::create_package(path = temp_pkg,open = FALSE)
@@ -115,7 +118,7 @@ needs to end with a period!
 
 ```{r}
 description <- list(
-  name = "kwb.newpackage", 
+  name = package, 
   title = "My new KWB R package", 
   desc  = "My super cool new R package in KWB default styling."
 )
