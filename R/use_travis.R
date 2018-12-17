@@ -7,18 +7,17 @@
 use_travis <- function() {
   travis_yml <- yaml::as.yaml(list(
     language = "r",
-    r = list(
-      "oldrel",
-      "release"
-    ),
     sudo = "required",
     cache = "packages",
     r_packages = list(
       "remotes",
-      "covr"
-    ),
-    after_success = list("Rscript -e 'covr::codecov()'")
-  ),
+      "covr"),
+    "matrix" = list(
+      "include" = list(
+      "r: devel",
+      "r: release",
+      "after_success" = list("Rscript -e 'covr::codecov()'"), 
+      "r: oldrelease"))),
   indent = 3
   )
 
