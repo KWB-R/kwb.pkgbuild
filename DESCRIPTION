@@ -1,11 +1,21 @@
 Package: kwb.pkgbuild
-Version: 0.1.0.9000
+Version: 0.0.0.9000
 Title: R package for standardised development at KWB
 Description: Helper functions for automating R package development at KWB
    to a predefined style.
-Authors@R: c(person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de",
-           role = c("aut", "cre"), comment = c(ORCID = "0000-0003-0647-7726")),
-           person("Kompetenzzentrum Wasser Berlin gGmbH (KWB)", role = c("cph")))
+Authors@R: 
+    c(person(given = "Michael",
+             family = "Rustler",
+             role = c("aut", "cre"),
+             email = "michael.rustler@kompetenz-wasser.de",
+             comment = c(ORCID = "0000-0003-0647-7726")),
+      person(given = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
+             role = "cph"),
+      person(given = "Hauke",
+             family = "Sonnenberg",
+             role = "ctb",
+             email = "hauke.sonnenberg@kompetenz-wasser.de",
+             comment = c(comment = "0000-0001-9134-2871")))
 Imports: 
    stringr,
    usethis,
