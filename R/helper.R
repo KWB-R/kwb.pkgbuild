@@ -2,7 +2,8 @@
 #'
 #' @param ignore_pattern pattern that should be added to .Rbuildignore
 #' @param comment optional comment to write to file before the ignore pattern
-#' @param file path to file where to writen
+#' (default: NULL)
+#' @param file path to file where to write
 #' @keywords internal
 #' @noRd
 #' @importFrom fs file_exists
@@ -37,11 +38,12 @@ write_ignorepattern_to_file <- function(ignore_pattern, comment = NULL, file) {
 #'
 #' @param ignore_pattern pattern that should be added to .Rbuildignore
 #' @param comment optional comment to write to file before the ignore pattern
+#' (default: NULL)
 #' @return .Rbuildignore created/updated with pattern
 #' @export
 #' @importFrom fs file_exists
 #'
-write_to_rbuildignore <- function(ignore_pattern, comment) {
+write_to_rbuildignore <- function(ignore_pattern, comment = NULL) {
   write_ignorepattern_to_file(ignore_pattern,
     comment,
     file = ".Rbuildignore"
@@ -52,11 +54,12 @@ write_to_rbuildignore <- function(ignore_pattern, comment) {
 #'
 #' @param ignore_pattern pattern that should be added to .Rbuildignore
 #' @param comment optional comment to write to file before the ignore pattern
+#' #' (default: NULL)
 #' @return .gitignore created/updated with pattern
 #' @export
 #' @importFrom fs file_exists
 #'
-write_to_gitignore <- function(ignore_pattern, comment) {
+write_to_gitignore <- function(ignore_pattern, comment = NULL) {
   write_ignorepattern_to_file(ignore_pattern,
     comment,
     file = ".gitignore"

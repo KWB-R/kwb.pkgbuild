@@ -12,61 +12,6 @@ ignore_docs_folder <- function(ignore_pattern = "docs/.*", dbg = TRUE) {
   write_to_gitignore(ignore_pattern, msg)
 }
 
-#' Use Travis Auto Pkgdown Yml Template
-#' @return default yaml if Auto Pkgdown is used
-#' @export
-#' @examples
-#' cat(travis_autopkgdown_yml(), sep = '\n')
-#'
-travis_autopkgdown_yml <- function() {
-  c(
-    "language: r",
-    "sudo: required",
-    "cache: packages",
-    "r_packages:",
-    "- remotes",
-    "- covr",
-    "matrix:",
-    "  include:",
-    "  - r: devel",
-    "  - r: release",
-    "    after_success:",
-    "    - Rscript -e 'covr::codecov()'",
-    "    before_deploy:",
-    "    -  Rscript -e 'remotes::install_cran(\"pkgdown\")'",
-    "    deploy:",
-    "      provider: script",
-    "      script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'",
-    "      skip_cleanup: true",
-    "  - r: oldrel"
-  )
-}
-
-
-#' Create Travis Auto Pkgdown Yml
-#'
-#' @param travis_template default: travis_autopkgdown_yml()
-#' @param dbg (default: TRUE)
-#' @return ".travis.yml" with content specified in travis_autopkgdown_yml()
-#' @export
-#' @importFrom fs file_exists file_delete
-#'
-create_travis_autopkgdown_yml <- function(travis_template = travis_autopkgdown_yml(),
-                                          dbg = TRUE) {
-  travis_yml <- ".travis.yml"
-  if (fs::file_exists(travis_yml)) {
-    if (dbg) cat(sprintf("Deleting existing '%s'\n", travis_yml))
-    fs::file_delete(travis_yml)
-  }
-
-  if (dbg) {
-    cat("Writing '.travis.yml':\n")
-    cat(travis_template, sep = "\n")
-  }
-  writeLines(travis_template, ".travis.yml")
-}
-
-
 
 #' Use Auto Pkgdown
 #' @description automate pkgdown::build_site by running it on Travis and
@@ -104,5 +49,5 @@ use_autopkgdown <- function(repo = NULL,
   )
 
   # 4) Update .travis.yml
-  create_travis_autopkgdown_yml(dbg)
+  use_travis(auto_build_pkgdown = TRUE, dbg)
 }

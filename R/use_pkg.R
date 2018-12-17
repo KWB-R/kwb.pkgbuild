@@ -29,65 +29,84 @@
 #' style
 #' @importFrom stringr str_detect
 #' @importFrom fs dir_create
+#' @param auto_build_pkgdown  prepare Travis for pkgdown::build_site()
+#' (default: FALSE), only possible if GITHUB repo already existing
+#' @param dbg print debug messages (default: TRUE)
+#' @param ... additional arguments passed to use_autopkgdown() (only releveant
+#' if "auto_build_pkgdown" == TRUE)
 #' @export
-use_pkg <- function(author = list(name = "Michael Rustler",
-                                          orcid = "0000-0003-0647-7726",
-                                          url = "http://mrustl.de"),
-pkg = list(name = "kwb.umberto",
-title = "R package supporting UMBERTO LCA at KWB",
-desc = paste0("Helper functions for data aggregation and visualisation",
-" of UMBERTO (https://www.ifu.com/umberto/) model output.")),
-version = "0.1.0.9000",
-license = "MIT + file LICENSE",
-copyright_holder = list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-                        start_year = NULL),
-                            funder = NULL,
-user = "KWB-R",
-domain = "github",
-stage = "experimental") {
+use_pkg <- function(author = list(
+                      name = "Michael Rustler",
+                      orcid = "0000-0003-0647-7726",
+                      url = "http://mrustl.de"
+                    ),
+                    pkg = list(
+                      name = "kwb.umberto",
+                      title = "R package supporting UMBERTO LCA at KWB",
+                      desc = paste0(
+                        "Helper functions for data aggregation and visualisation",
+                        " of UMBERTO (https://www.ifu.com/umberto/) model output."
+                      )
+                    ),
+                    version = "0.1.0.9000",
+                    license = "MIT + file LICENSE",
+                    copyright_holder = list(
+                      name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
+                      start_year = NULL
+                    ),
+                    funder = NULL,
+                    user = "KWB-R",
+                    domain = "github",
+                    stage = "experimental",
+                    auto_build_pkgdown = FALSE) {
 
 
-### 1) Create DESCRIPTION file
-use_description(author,
-                pkg,
-                version,
-                license,
-                copyright_holder_name = copyright_holder$name)
+  ### 1) Create DESCRIPTION file
+  use_description(author,
+    pkg,
+    version,
+    license,
+    copyright_holder_name = copyright_holder$name
+  )
 
 
 
-### 2) Create MIT LICENSE file
-mit_licence <- stringr::str_detect(string = license, pattern = "MIT")
+  ### 2) Create MIT LICENSE file
+  mit_licence <- stringr::str_detect(string = license, pattern = "MIT")
 
-if(mit_licence) {
-use_mit_license(copyright_holder)
+  if (mit_licence) {
+    use_mit_license(copyright_holder)
+  }
+
+
+  ### 3) Create PKGDOWN YML
+  use_pkgdown(author, copyright_holder$name)
+
+
+  ### 4) Create .gitlab-ci.yml
+  fs::dir_create("docs")
+  use_gitlab_ci()
+
+  ### 5) Create .travis.yml
+
+  if (auto_build_pkgdown) {
+    use_autopkgdown(repo = pkg, org = user, dbg = dbg, ...)
+  } else {
+    use_travis()
+  }
+  ### 6) Create appveyor.yml
+  use_appveyor()
+
+  ### 7) Use codecov
+  use_codecov()
+
+  ### 8) Use index.Rmd (for pkgdown home:
+  ### see: http://pkgdown.r-lib.org/articles/pkgdown.html#home-page)
+  use_index_rmd(user, domain, stage)
+
+  ### 9) Use README.md (for github page)
+  use_readme_md(user, domain, stage)
+
+  ### 10) Use NEWS.md
+  use_news_md()
 }
-
-
-### 3) Create PKGDOWN YML
-use_pkgdown(author, copyright_holder$name)
-
-### 4) Create .gitlab-ci.yml
-fs::dir_create("docs")
-use_gitlab_ci()
-
-### 5) Create .travis.yml
-use_travis()
-
-### 6) Create appveyor.yml
-use_appveyor()
-
-### 7) Use codecov
-use_codecov()
-
-### 8) Use index.Rmd (for pkgdown home:
-### see: http://pkgdown.r-lib.org/articles/pkgdown.html#home-page)
-use_index_rmd(user,domain, stage)
-
-### 9) Use README.md (for github page)
-use_readme_md(user,domain, stage)
-
-### 10) Use NEWS.md
-use_news_md()
-}
-

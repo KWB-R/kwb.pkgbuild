@@ -13,7 +13,7 @@ use_pkg(author = list(name = "Michael Rustler", orcid =
   copyright_holder = list(name =
   "Kompetenzzentrum Wasser Berlin gGmbH (KWB)", start_year = NULL),
   funder = NULL, user = "KWB-R", domain = "github",
-  stage = "experimental")
+  stage = "experimental", auto_build_pkgdown = FALSE)
 }
 \arguments{
 \item{author}{author information in list format (default:
@@ -50,6 +50,14 @@ parameter "repo" is hosted (default: "KWB-R")}
 to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
 valid arguments are: "experimental", "maturing", "stable", "retired",
 "archived", "dormant", "questioning"), (default: "experiment")}
+
+\item{auto_build_pkgdown}{prepare Travis for pkgdown::build_site()
+(default: FALSE), only possible if GITHUB repo already existing}
+
+\item{dbg}{print debug messages (default: TRUE)}
+
+\item{...}{additional arguments passed to use_autopkgdown() (only releveant
+if "auto_build_pkgdown" == TRUE)}
 }
 \value{
 writes DESCRIPTION file using usethis::use_description() with KWB

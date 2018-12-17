@@ -4,12 +4,13 @@
 \alias{write_to_gitignore}
 \title{Write to .gitignore}
 \usage{
-write_to_gitignore(ignore_pattern, comment)
+write_to_gitignore(ignore_pattern, comment = NULL)
 }
 \arguments{
 \item{ignore_pattern}{pattern that should be added to .Rbuildignore}
 
-\item{comment}{optional comment to write to file before the ignore pattern}
+\item{comment}{optional comment to write to file before the ignore pattern
+#' (default: NULL)}
 }
 \value{
 .gitignore created/updated with pattern
