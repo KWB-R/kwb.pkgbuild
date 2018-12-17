@@ -327,8 +327,8 @@ https://github.com/KWB-R/  `kwb.mycoolrpackage`  /settings
 ## 5.2 Automatically
 
 In case you have already a Github repo defined for your R package you can 
-also automate the process of updating the pkgdown::build_site() by with the 
-wrapper function kwb.pkgbuild::use_autopkgdown(), which: 
+also automate the process of updating the `pkgdown::build_site()` by with the 
+wrapper function `kwb.pkgbuild::use_autopkgdown()`, which: 
 
 - creates a new branch "gh-pages" where the documentation site is deployed
 
