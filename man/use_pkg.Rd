@@ -13,7 +13,8 @@ use_pkg(author = list(name = "Michael Rustler", orcid =
   copyright_holder = list(name =
   "Kompetenzzentrum Wasser Berlin gGmbH (KWB)", start_year = NULL),
   funder = NULL, user = "KWB-R", domain = "github",
-  stage = "experimental", auto_build_pkgdown = FALSE)
+  stage = "experimental", auto_build_pkgdown = FALSE, dbg = TRUE,
+  ...)
 }
 \arguments{
 \item{author}{author information in list format (default:

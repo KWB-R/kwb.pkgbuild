@@ -305,6 +305,8 @@ In R CMD INSTALL
 
 # 5 Document your package
 
+## 5.1 Manually
+
 Finally you should run `pkgdown::build_site()` in order to create an
 documentation website for your R package. Running this command will store the
 website in the subfolder `docs` within your R package.
@@ -320,3 +322,34 @@ is available at:
 https://github.com/KWB-R/  `kwb.mycoolrpackage`  /settings
 
 ![](images/package_documentation.jpg)
+
+
+## 5.2 Automatically
+
+In case you have already a Github repo defined for your R package you can 
+also automate the process of updating the pkgdown::build_site() by with the 
+wrapper function kwb.pkgbuild::use_autopkgdown(), which: 
+
+- creates a new branch "gh-pages" where the documentation site is deployed
+
+- sets "docs" folder to ".gitignore" (as these files are now build on Travis)
+
+- prepares Travis-CI by: 
+
+   + adding secret key with `travis::use_travis_deploy()`
+
+   + creating ".travis.yml" with `kwb.pkgbuild::use_travis(auto_build_pkgdown = TRUE)`
+   
+   + creating an empty "gh-pages" branch with 
+   `kwb.pkgbuild::create_empty_branch_ghpages()`
+
+```{r eval = FALSE}
+kwb.pkgbuild::use_autopkgdown()
+```
+
+Finally to need to go to: 
+
+https://github.com/KWB-R/  `kwb.mycoolrpackage`  /settings
+
+and set the "source" for Github Pages to the branch "gh-pages". After each 
+successful Travis build the documentation website is now also updated!
