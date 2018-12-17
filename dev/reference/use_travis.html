@@ -125,8 +125,22 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>use_travis</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>use_travis</span>(<span class='kw'>auto_build_pkgdown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>auto_build_pkgdown</th>
+      <td><p>prepare Travis for pkgdown::build_site()
+(default: FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>dbg</th>
+      <td><p>print debug messages (default: TRUE)</p></td>
+    </tr>
+    </table>
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>writes .travis.yml and adds it .Rbuildignore</p>
@@ -136,6 +150,7 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
           </ul>

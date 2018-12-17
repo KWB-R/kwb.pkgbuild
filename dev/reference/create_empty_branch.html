@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Wrapper function for preparing R package with KWB styling — use_pkg • kwb.pkgbuild</title>
+<title>Create Empty Branch From Github — create_empty_branch • kwb.pkgbuild</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Wrapper function for preparing R package with KWB styling — use_pkg" />
+<meta property="og:title" content="Create Empty Branch From Github — create_empty_branch" />
 
-<meta property="og:description" content="Wrapper function for preparing R package with KWB styling" />
+<meta property="og:description" content="Create Empty Branch From Github" />
 <meta name="twitter:card" content="summary" />
 
 <meta name="robots" content="noindex">
@@ -114,89 +114,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Wrapper function for preparing R package with KWB styling</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/use_pkg.R'><code>R/use_pkg.R</code></a></small>
-    <div class="hidden name"><code>use_pkg.Rd</code></div>
+    <h1>Create Empty Branch From Github</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/helper.R'><code>R/helper.R</code></a></small>
+    <div class="hidden name"><code>create_empty_branch.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Wrapper function for preparing R package with KWB styling</p>
+    <p>Create Empty Branch From Github</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>use_pkg</span>(<span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Michael Rustler"</span>, <span class='kw'>orcid</span> <span class='kw'>=</span>
-  <span class='st'>"0000-0003-0647-7726"</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"http://mrustl.de"</span>), <span class='kw'>pkg</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
-  <span class='st'>"kwb.umberto"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"R package supporting UMBERTO LCA at KWB"</span>, <span class='kw'>desc</span> <span class='kw'>=</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"Helper functions for data aggregation and visualisation"</span>,
-  <span class='st'>" of UMBERTO (https://www.ifu.com/umberto/) model output."</span>)),
-  <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"0.1.0.9000"</span>, <span class='kw'>license</span> <span class='kw'>=</span> <span class='st'>"MIT + file LICENSE"</span>,
-  <span class='kw'>copyright_holder</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
-  <span class='st'>"Kompetenzzentrum Wasser Berlin gGmbH (KWB)"</span>, <span class='kw'>start_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
-  <span class='kw'>funder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>user</span> <span class='kw'>=</span> <span class='st'>"KWB-R"</span>, <span class='kw'>domain</span> <span class='kw'>=</span> <span class='st'>"github"</span>,
-  <span class='kw'>stage</span> <span class='kw'>=</span> <span class='st'>"experimental"</span>, <span class='kw'>auto_build_pkgdown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>create_empty_branch</span>(<span class='kw'>repo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>branch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>org</span> <span class='kw'>=</span> <span class='st'>"KWB-R"</span>,
+  <span class='kw'>set_githubuser</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>git_exe</span> <span class='kw'>=</span> <span class='st'>"C:/Program Files/Git/bin/git.exe"</span>,
+  <span class='kw'>dest_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='kw'>execute</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>author</th>
-      <td><p>author information in list format (default:
-list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-url = "http://mrustl.de"))</p></td>
+      <th>repo</th>
+      <td><p>name of existing Github repository (default: NULL)</p></td>
     </tr>
     <tr>
-      <th>pkg</th>
-      <td><p>package description in list format (default:<br />
-pkg = list(name = "kwb.umberto",<br />
-title = "R package supporting UMBERTO LCA at KWB",<br />
-desc = "Helper functions for data aggregation and visualisation of<br />
-UMBERTO (https://www.ifu.com/umberto) model output"))</p></td>
+      <th>branch</th>
+      <td><p>name of branch to be created (default: NULL)</p></td>
     </tr>
     <tr>
-      <th>version</th>
-      <td><p>user defined version number (e.g. 0.1.0) or default
-"0.1.0.9000" version number for initial development version (default:
-"0.1.0.9000")</p></td>
+      <th>org</th>
+      <td><p>repo owner (default: "KWB-R")</p></td>
     </tr>
     <tr>
-      <th>license</th>
-      <td><p>license (default: "MIT + file LICENSE")</p></td>
+      <th>set_githubuser</th>
+      <td><p>should the Github user be set before executing the
+branch creation (default: TRUE). In this case set_github_user() is run</p></td>
     </tr>
     <tr>
-      <th>copyright_holder</th>
-      <td><p>list with name of copyright holder and additional
-start_year (e.g. "2017") of copyright protection. If not specified
-(start_year = NULL), the current year is used as year only!
-(default: "list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-start_year = NULL)")</p></td>
+      <th>git_exe</th>
+      <td><p>path to GIT executable (default:
+"C:/Program Files/Git/bin/git.exe"), only required on "windows". On all other
+platforms it is assumed that "git" is sufficient!</p></td>
     </tr>
     <tr>
-      <th>funder</th>
-      <td><p>funder/funding agency of R package (default: NULL), e.g. project
-name (e.g. AQUANES)</p></td>
+      <th>dest_dir</th>
+      <td><p>directory where the the repo should be checked out (default:
+tempdir())</p></td>
     </tr>
     <tr>
-      <th>user</th>
-      <td><p>user name or organisation under which repository defined in
-parameter "repo" is hosted (default: "KWB-R")</p></td>
-    </tr>
-    <tr>
-      <th>domain</th>
-      <td><p>under which repository is hosted (default: "github")</p></td>
-    </tr>
-    <tr>
-      <th>stage</th>
-      <td><p>badge declares the developmental stage of a package, according
-to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
-valid arguments are: "experimental", "maturing", "stable", "retired",
-"archived", "dormant", "questioning"), (default: "experiment")</p></td>
-    </tr>
-    <tr>
-      <th>auto_build_pkgdown</th>
-      <td><p>prepare Travis for pkgdown::build_site()
-(default: FALSE), only possible if GITHUB repo already existing</p></td>
+      <th>execute</th>
+      <td><p>should a batch file be run?</p></td>
     </tr>
     <tr>
       <th>dbg</th>
@@ -204,15 +170,14 @@ valid arguments are: "experimental", "maturing", "stable", "retired",
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional arguments passed to use_autopkgdown() (only releveant
-if "auto_build_pkgdown" == TRUE)</p></td>
+      <td><p>additional arguments passed to set_github_user</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>writes DESCRIPTION file using usethis::use_description() with KWB
-style</p>
+    <p>create empty branch (defined in 'branch') and push to org/repo on
+Github</p>
     
 
   </div>

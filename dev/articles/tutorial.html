@@ -84,7 +84,7 @@
       <h1>KWB-R package from scratch</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2018-12-16</h4>
+            <h4 class="date">2018-12-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/master/vignettes/tutorial.Rmd"><code>vignettes/tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>tutorial.Rmd</code></div>
@@ -144,7 +144,7 @@
 <a class="sourceLine" id="cb2-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># Create a default package structure</span></a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">usethis<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/usethis/topics/create_package">create_package</a></span>(<span class="dt">path =</span> temp_pkg,<span class="dt">open =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpZsm0wd/kwb.newpackage'</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpPMzTt7/kwb.newpackage'</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; ✔ Creating 'R/'</span></a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; ✔ Creating 'man/'</span></a>
 <a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; ✔ Writing 'DESCRIPTION'</span></a>
@@ -284,11 +284,36 @@
 <div id="document-your-package" class="section level1">
 <h1 class="hasAnchor">
 <a href="#document-your-package" class="anchor"></a>5 Document your package</h1>
+<div id="manually" class="section level2">
+<h2 class="hasAnchor">
+<a href="#manually" class="anchor"></a>5.1 Manually</h2>
 <p>Finally you should run <code><a href="https://pkgdown.r-lib.org/reference/build_site.html">pkgdown::build_site()</a></code> in order to create an documentation website for your R package. Running this command will store the website in the subfolder <code>docs</code> within your R package.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">pkgdown<span class="op">::</span><span class="kw"><a href="https://pkgdown.r-lib.org/reference/build_site.html">build_site</a></span>()</a></code></pre></div>
 <p>Once you upload your R package to Github this can be easily used as documentation page that you define in the settings page for your R package which is available at:</p>
 <p><a href="https://github.com/KWB-R/" class="uri">https://github.com/KWB-R/</a> <code>kwb.mycoolrpackage</code> /settings</p>
 <p><img src="images/package_documentation.jpg"></p>
+</div>
+<div id="automatically" class="section level2">
+<h2 class="hasAnchor">
+<a href="#automatically" class="anchor"></a>5.2 Automatically</h2>
+<p>In case you have already a Github repo defined for your R package you can also automate the process of updating the pkgdown::build_site() by with the wrapper function kwb.pkgbuild::use_autopkgdown(), which:</p>
+<ul>
+<li><p>creates a new branch “gh-pages” where the documentation site is deployed</p></li>
+<li><p>sets “docs” folder to “.gitignore” (as these files are now build on Travis)</p></li>
+<li>
+<p>prepares Travis-CI by:</p>
+<ul>
+<li><p>adding secret key with <code><a href="https://www.rdocumentation.org/packages/travis/topics/use_travis_deploy">travis::use_travis_deploy()</a></code></p></li>
+<li><p>creating “.travis.yml” with <code><a href="../reference/use_travis.html">kwb.pkgbuild::use_travis(auto_build_pkgdown = TRUE)</a></code></p></li>
+<li><p>creating an empty “gh-pages” branch with <code><a href="../reference/create_empty_branch_ghpages.html">kwb.pkgbuild::create_empty_branch_ghpages()</a></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">kwb.pkgbuild<span class="op">::</span><span class="kw">use_autopkgdown</span>()</a></code></pre></div>
+<p>Finally to need to go to:</p>
+<p><a href="https://github.com/KWB-R/" class="uri">https://github.com/KWB-R/</a> <code>kwb.mycoolrpackage</code> /settings</p>
+<p>and set the “source” for Github Pages to the branch “gh-pages”. After each successful Travis build the documentation website is now also updated!</p>
+</div>
 </div>
   </div>
 
@@ -311,7 +336,12 @@
 </li>
       <li><a href="#check-your-package">3 Check your package</a></li>
       <li><a href="#build-your-package">4 Build your package</a></li>
-      <li><a href="#document-your-package">5 Document your package</a></li>
+      <li>
+<a href="#document-your-package">5 Document your package</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#manually">5.1 Manually</a></li>
+      <li><a href="#automatically">5.2 Automatically</a></li>
+      </ul>
+</li>
       </ul>
 </div>
       </div>
