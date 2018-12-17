@@ -25,7 +25,7 @@ desc = "Helper functions for data aggregation and visualisation of\cr
 UMBERTO (https://www.ifu.com/umberto/) model output"))}
 
 \item{version}{user defined version number (e.g. 0.1.0) or default version
-number 0.1.0.9000 in case (version = NULL) of first release}
+number 0.0.0.9000 in case (version = NULL) of first release}
 
 \item{license}{license (default: "MIT + file LICENSE")}
 
