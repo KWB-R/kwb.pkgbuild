@@ -58,7 +58,9 @@ use_pkg <- function(author = list(
                     user = "KWB-R",
                     domain = "github",
                     stage = "experimental",
-                    auto_build_pkgdown = FALSE) {
+                    auto_build_pkgdown = FALSE,
+                    dbg = TRUE,
+                    ...) {
 
 
   ### 1) Create DESCRIPTION file
