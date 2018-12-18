@@ -114,6 +114,7 @@ git_check_if_windows <- function(git_exe) {
 #' Set Github User For GIT
 #'
 #' @param git_username Github username (default: whoami::username())
+#' @param git_fullname Github fullname (default: whoami::fullname())
 #' @param git_email (default: NULL), is then internally derived by calling
 #' whoami::fullname() and assuming that Github "kompetenz-wasser.de" used as
 #' email on Github
@@ -129,6 +130,7 @@ git_check_if_windows <- function(git_exe) {
 #' @importFrom whoami username fullname
 #' @importFrom stringr str_replace
 set_github_user <- function(git_username = whoami::username(),
+                            git_fullname = whoami::fullname(),
                             git_email = NULL,
                             git_exe = "C:/Program Files/Git/bin/git.exe",
                             execute = FALSE,
@@ -138,7 +140,7 @@ set_github_user <- function(git_username = whoami::username(),
     git_email <- sprintf(
       "%s@kompetenz-wasser.de",
       tolower(stringr::str_replace(
-        whoami::fullname(),
+        git_fullname,
         "\\s+",
         "."
       ))

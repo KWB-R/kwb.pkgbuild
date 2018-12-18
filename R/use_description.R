@@ -9,7 +9,7 @@
 #' desc = "Helper functions for data aggregation and visualisation of\cr
 #' UMBERTO (https://www.ifu.com/umberto/) model output"))
 #' @param version user defined version number (e.g. 0.1.0) or default version
-#' number 0.1.0.9000 in case (version = NULL) of first release
+#' number 0.0.0.9000 in case (version = NULL) of first release
 #' @param license license (default: "MIT + file LICENSE")
 #' @param copyright_holder_name name of copyright holder
 #' (default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")
@@ -34,7 +34,7 @@ copyright_holder_name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
                      funder = NULL) {
 
   if(is.null(version)) {
-    version <- "0.1.0.9000"
+    version <- "0.0.0.9000"
     cat(sprintf("No version specified. Using default initial version %s\n", version))
   }
 

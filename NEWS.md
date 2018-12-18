@@ -1,4 +1,4 @@
-# kwb.pkgbuild 0.1.0.9000
+# kwb.pkgbuild 0.0.0.9000
 
 * improved use in case of an existing R package (by reading information from 
 DESCRIPTION file with function `kwb.pkgbuild::read_description`)

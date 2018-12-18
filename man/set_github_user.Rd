@@ -4,12 +4,15 @@
 \alias{set_github_user}
 \title{Set Github User For GIT}
 \usage{
-set_github_user(git_username = whoami::username(), git_email = NULL,
+set_github_user(git_username = whoami::username(),
+  git_fullname = whoami::fullname(), git_email = NULL,
   git_exe = "C:/Program Files/Git/bin/git.exe", execute = FALSE,
   execute_dir = tempdir(), dbg = TRUE)
 }
 \arguments{
 \item{git_username}{Github username (default: whoami::username())}
+
+\item{git_fullname}{Github fullname (default: whoami::fullname())}
 
 \item{git_email}{(default: NULL), is then internally derived by calling
 whoami::fullname() and assuming that Github "kompetenz-wasser.de" used as
