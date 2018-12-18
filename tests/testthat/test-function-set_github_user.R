@@ -6,7 +6,7 @@
 #
 
 test_that("set_github_user() works", {
-  skip_on_travis()
+
   kwb.pkgbuild:::set_github_user(git_username = "mrustl",
                                  git_fullname = "Michael Rustler")
 

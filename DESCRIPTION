@@ -24,7 +24,8 @@ Imports:
    httr,
    desc, 
    whoami,
-   travis
+   travis,
+   assertthat
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
