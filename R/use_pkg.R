@@ -1,7 +1,7 @@
 #' Wrapper function for preparing R package with KWB styling
 #' @param author author information in list format (default:
 #' list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-#' url = "http://mrustl.de"))
+#' url = "https://mrustl.de"))
 #' @param pkg package description in list format (default:\cr
 #' pkg = list(name = "kwb.umberto",\cr
 #' title = "R package supporting UMBERTO LCA at KWB",\cr
@@ -38,7 +38,7 @@
 use_pkg <- function(author = list(
                       name = "Michael Rustler",
                       orcid = "0000-0003-0647-7726",
-                      url = "http://mrustl.de"
+                      url = "https://mrustl.de"
                     ),
                     pkg = list(
                       name = "kwb.umberto",
@@ -102,7 +102,7 @@ use_pkg <- function(author = list(
   use_codecov()
 
   ### 8) Use index.Rmd (for pkgdown home:
-  ### see: http://pkgdown.r-lib.org/articles/pkgdown.html#home-page)
+  ### see: https://pkgdown.r-lib.org/articles/pkgdown.html#home-page)
   use_index_rmd(user, domain, stage)
 
   ### 9) Use README.md (for github page)

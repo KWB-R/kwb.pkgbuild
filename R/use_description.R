@@ -2,7 +2,7 @@
 #'
 #' @param author author information in list format (default:
 #' list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-#' url = "http://mrustl.de"))
+#' url = "https://mrustl.de"))
 #' @param pkg package description in list format (default:\cr
 #' pkg = list(name = "kwb.umberto",\cr
 #' title = "R package supporting UMBERTO LCA at KWB",\cr
@@ -23,7 +23,7 @@
 #' @export
 use_description <- function(author = list(name = "Michael Rustler",
  orcid = "0000-0003-0647-7726",
- url = "http://mrustl.de"),
+ url = "https://mrustl.de"),
  pkg = list(name = "kwb.umberto",
  title = "R package supporting UMBERTO LCA at KWB",
  desc = paste0("Helper functions for data aggregation and visualisation",
