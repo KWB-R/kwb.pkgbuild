@@ -24,9 +24,9 @@ gitlab_ci_template_ghpages <- function() {
 
 # use_gitlab_ci_docs -----------------------------------------------------------
 #' Adds .gitlab-ci.yml (if repo contains a "docs" subfolder)
-#' @param yml a valid yml list (default: gitlab_ci_template_docs())
 #' @param dest_dir directoy to write (default:
 #' getwd())
+#' @param yml_list a valid yml list (default: gitlab_ci_template_docs())
 #' @return writes .gitlab-ci.yml and adds it .Rbuildignore
 #' @importFrom yaml as.yaml
 #' @importFrom fs file_exists
@@ -49,9 +49,9 @@ write_to_rbuildignore(ignore_pattern = "^.gitlab-ci\\.yml$")
 
 # use_gitlab_ci_ghpages---------------------------------------------------------
 #' Adds .gitlab-ci.yml (if repo contains on root in a "gh-pages" branch)
-#' @param yml a valid yml list (default: gitlab_ci_template_ghpages())
 #' @param dest_dir directoy to write (default:
 #' getwd())
+#' @param yml_list a valid yml list (default: gitlab_ci_template_ghpages())
 #' @return writes .gitlab-ci.yml and adds it .Rbuildignore
 #' @importFrom yaml as.yaml
 #' @importFrom fs file_exists

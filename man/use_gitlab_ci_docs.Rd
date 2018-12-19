@@ -11,7 +11,7 @@ use_gitlab_ci_docs(dest_dir = getwd(),
 \item{dest_dir}{directoy to write (default:
 getwd())}
 
-\item{yml}{a valid yml list (default: gitlab_ci_template_docs())}
+\item{yml_list}{a valid yml list (default: gitlab_ci_template_docs())}
 }
 \value{
 writes .gitlab-ci.yml and adds it .Rbuildignore

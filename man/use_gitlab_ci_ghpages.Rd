@@ -11,7 +11,7 @@ use_gitlab_ci_ghpages(dest_dir = getwd(),
 \item{dest_dir}{directoy to write (default:
 getwd())}
 
-\item{yml}{a valid yml list (default: gitlab_ci_template_ghpages())}
+\item{yml_list}{a valid yml list (default: gitlab_ci_template_ghpages())}
 }
 \value{
 writes .gitlab-ci.yml and adds it .Rbuildignore
