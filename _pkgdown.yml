@@ -8,9 +8,9 @@ authors:
 template:
   params:
     bootswatch: cerulean
-      docsearch:
-        api_key: d4b9c9dfbdc8ade5fa34e912c545e4cd
-        index_name: kwb_pkgstatus
+    docsearch: 
+      api_key: d114e26fe8901b7b424d949906e60102
+      index_name: kwb_pkgbuild
 development:
   mode: auto
 
