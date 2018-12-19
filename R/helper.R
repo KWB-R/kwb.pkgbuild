@@ -337,8 +337,7 @@ add_gitlabci_to_ghpages <- function(repo = NULL,
     sprintf('cd "%s"', checkout_path),
     sprintf('"%s" add %s', git_exe, ".gitlab-ci.yml"),
     sprintf('"%s" commit -m "Add backup deploy config for GitLab"', git_exe),
-    sprintf('"%s" push origin %s', git_exe, branch),
-    sprintf())
+    sprintf('"%s" push origin %s', git_exe, branch))
 
   write_git_batch_and_execute(cmd_push, set_githubuser,
                               bat_name = sprintf("add_%s_branch.bat",
