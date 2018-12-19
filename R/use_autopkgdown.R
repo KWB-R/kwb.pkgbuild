@@ -47,6 +47,8 @@ use_autopkgdown <- function(repo = NULL,
     dbg,
     ...
   )
+  ### 4) Create .gitlab-ci.yml for "master" branch with "docs" folder
+  use_gitlab_ci_docs(dest_dir = file.path(dest_dir, repo))
 
   # 4) Update .travis.yml
   use_travis(auto_build_pkgdown = TRUE, dbg)

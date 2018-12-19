@@ -179,6 +179,37 @@ set_github_user <- function(git_username = whoami::username(),
   }
 }
 
+#' @noRd
+#' @keywords internal
+write_git_batch_and_execute <- function(cmd,
+                                        set_githubuser = TRUE,
+                                        bat_name = sprintf("%s.bat",
+                                                           basename(tempfile())),
+                                        dest_dir,
+                                        git_exe,
+                                        execute = TRUE,
+                                        dbg = TRUE, ...) {
+  if (set_githubuser) {
+    git_usermeta <- set_github_user(git_exe = git_exe, dbg = dbg, ...)
+
+    cmd <- c(git_usermeta,  cmd)
+  }
+
+
+  bat_path <- file.path(dest_dir, bat_name)
+
+  if(dbg) {
+    print(sprintf("Writing batch file: %s", bat_path))
+  }
+  writeLines(cmd, bat_path)
+  if(execute) {
+    if(dbg) {
+      print(sprintf("Running batch file: %s", bat_path))
+      system(bat_path)
+    }
+  }
+}
+
 #' Create Empty Branch From Github
 #'
 #' @param repo name of existing Github repository (default: NULL)
@@ -232,25 +263,94 @@ create_empty_branch <- function(repo = NULL,
     sprintf('"%s" checkout master', git_exe)
   )
 
-  if (set_githubuser) {
-    git_usermeta <- set_github_user(git_exe = git_exe, dbg = dbg, ...)
+  write_git_batch_and_execute(cmd, set_githubuser,
+                              bat_name = sprintf("create_empty_%s_branch.bat",
+                                                 branch),
+                              dest_dir,
+                              git_exe,
+                              execute,
+                              dbg,
+                              ...)
 
-    cmd <- c(git_usermeta, cmd)
+}
+
+#' Add Gitlabcito ghpages branch
+#'
+#' @param repo name of existing Github repository (default: NULL)
+#' @param branch name of branch to be created (default: "gh-pages)
+#' @param org repo owner (default: "KWB-R")
+#' @param set_githubuser should the Github user be set before executing the
+#' branch creation (default: TRUE). In this case set_github_user() is run
+#' @param git_exe path to GIT executable (default:
+#' "C:/Program Files/Git/bin/git.exe"), only required on "windows". On all other
+#' platforms it is assumed that "git" is sufficient!
+#' @param dest_dir directory where the the repo should be checked out (default:
+#' tempdir())
+#' @param execute should a batch file be run?
+#' @param dbg print debug messages (default: TRUE)
+#' @param ... additional arguments passed to set_github_user
+#' @return create empty branch (defined in 'branch') and push to org/repo on
+#' Github
+#' @export
+#' @importFrom  fs dir_create
+add_gitlabci_to_ghpages <- function(repo = NULL,
+                          branch = "gh-pages",
+                          org = "KWB-R",
+                          set_githubuser = TRUE,
+                          git_exe = "C:/Program Files/Git/bin/git.exe",
+                          dest_dir = tempdir(),
+                          execute = TRUE,
+                          dbg = TRUE,
+                          ...) {
+
+  if (is.null(repo)) {
+    stop("Specify the name of the repo to be checked out with parameter 'repo'")
   }
 
+  if (is.null(branch)) {
+    stop("Specify the name of the branch to be created in parameter 'branch'")
+  }
 
-  bat_name <- sprintf("create_empty_%s_branch.bat", branch)
-  bat_path <- file.path(dest_dir, bat_name)
-  if(dbg) {
-    print(sprintf("Writing batch file: %s", bat_path))
-  }
-  writeLines(cmd, bat_path)
-  if(execute) {
-    if(dbg) {
-      print(sprintf("Running batch file: %s", bat_path))
-      system(bat_path)
-    }
-  }
+  git_exe <- git_check_if_windows(git_exe)
+
+
+  fs::dir_create(dest_dir)
+
+
+  cmd_checkout <- c(
+    sprintf('cd "%s"', dest_dir),
+    sprintf('"%s" clone https://github.com/%s/%s', git_exe, org, repo))
+
+  write_git_batch_and_execute(cmd_checkout, set_githubuser,
+                              bat_name = sprintf("add_%s_branch.bat",
+                                                 branch),
+                              dest_dir,
+                              git_exe,
+                              execute,
+                              dbg,
+                              ...)
+
+  checkout_path <- file.path(dest_dir, repo)
+  use_gitlab_ci_ghpages(dest_dir = checkout_path)
+
+  cmd_push <- c(
+    sprintf('cd "%s"', checkout_path),
+    sprintf('"%s" add %s', git_exe, ".gitlab-ci.yml"),
+    sprintf('"%s" commit -m "Add backup deploy config for GitLab"', git_exe),
+    sprintf('"%s" push origin %s', git_exe, branch),
+    sprintf())
+
+  write_git_batch_and_execute(cmd_push, set_githubuser,
+                              bat_name = sprintf("add_%s_branch.bat",
+                                                 branch),
+                              dest_dir,
+                              git_exe,
+                              execute,
+                              dbg,
+                              ...)
+
+
+
 }
 
 

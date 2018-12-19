@@ -85,16 +85,15 @@ use_pkg <- function(author = list(
   use_pkgdown(author, copyright_holder$name)
 
 
-  ### 4) Create .gitlab-ci.yml
-  fs::dir_create("docs")
-  use_gitlab_ci()
-
-  ### 5) Create .travis.yml
 
   if (auto_build_pkgdown) {
     use_autopkgdown(repo = pkg, org = user, dbg = dbg, ...)
   } else {
+    ### 4) Create .travis.yml
     use_travis()
+    ### 5) Create .gitlab-ci.yml for "master" branch with "docs" folder
+    fs::dir_create("docs")
+    use_gitlab_ci_docs()
   }
   ### 6) Create appveyor.yml
   use_appveyor()
