@@ -85,13 +85,14 @@ correct location.
 package <- "kwb.newpackage"
 
 # Set the path to your new package
-temp_pkg <- file.path(tempdir(), package)
+pkg_dir <- file.path(tempdir(), package)
+
+# Create directory for R package
+kwb.pkgbuild::create_pkg_dir(pkg_dir)
+
 
 # Create a default package structure
-usethis::create_package(path = temp_pkg,open = FALSE)
-
-# Delete the original DESCRIPTION file
-fs::file_delete(path = file.path(temp_pkg, "DESCRIPTION"))
+withr::with_dir(pkg_dir, {kwb.pkgbuild::use_pkg_skeleton(package)})
 ```
 
 ## 2.2 Parameterise your R package
