@@ -1,7 +1,7 @@
 
 #' @keywords internal
 #' @noRd
-ignore_docs_folder <- function(ignore_pattern = "docs/.*", dbg = TRUE) {
+ignore_docs_folder <- function(ignore_pattern = "docs", dbg = TRUE) {
   # Put "docs" folder to .gitignore
   msg <- c(
     "",
