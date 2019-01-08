@@ -3,8 +3,7 @@
 #
 
 test_that("use_gitlab_ci_ghpages() works", {
-  old_wd <- create_pkg_temp()
-  kwb.pkgbuild:::use_gitlab_ci_ghpages()
-  setwd(old_wd)
+  withr::with_dir(create_pkg_temp(), {
+  kwb.pkgbuild:::use_gitlab_ci_ghpages()})
 })
 

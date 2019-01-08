@@ -3,10 +3,10 @@
 #
 
 test_that("use_news_md() works", {
-  old_wd <- create_pkg_temp()
-  kwb.pkgbuild:::use_news_md()
-  kwb.pkgbuild:::use_news_md() ## now no news should be created
-  setwd(old_wd)
+  withr::with_dir(create_pkg_temp(),{
+    usethis::proj_set(getwd())
+    kwb.pkgbuild::use_description()
+    kwb.pkgbuild:::use_news_md()})
 
 })
 

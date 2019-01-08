@@ -4,10 +4,7 @@
 
 test_that("use_badge_appveyor() works", {
 
-  expect_error(
-    kwb.pkgbuild:::use_badge_appveyor()
-    # argument "repo" is missing, with no default
-  )
+    kwb.pkgbuild:::use_badge_appveyor(repo = "kwb.umberto")
 
 })
 

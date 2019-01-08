@@ -5,7 +5,7 @@
 \title{Wrapper function for preparing R package with KWB styling}
 \usage{
 use_pkg(author = list(name = "Michael Rustler", orcid =
-  "0000-0003-0647-7726", url = "http://mrustl.de"), pkg = list(name =
+  "0000-0003-0647-7726", url = "https://mrustl.de"), pkg = list(name =
   "kwb.umberto", title = "R package supporting UMBERTO LCA at KWB", desc =
   paste0("Helper functions for data aggregation and visualisation",
   " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
@@ -19,7 +19,7 @@ use_pkg(author = list(name = "Michael Rustler", orcid =
 \arguments{
 \item{author}{author information in list format (default:
 list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-url = "http://mrustl.de"))}
+url = "https://mrustl.de"))}
 
 \item{pkg}{package description in list format (default:\cr
 pkg = list(name = "kwb.umberto",\cr

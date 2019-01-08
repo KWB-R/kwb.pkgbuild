@@ -3,8 +3,7 @@
 #
 
 test_that("use_gitlab_ci_docs() works", {
-  old_wd <- create_pkg_temp()
-  kwb.pkgbuild:::use_gitlab_ci_docs()
-  setwd(old_wd)
+  withr::with_dir(create_pkg_temp(), {
+  kwb.pkgbuild:::use_gitlab_ci_docs()})
 })
 

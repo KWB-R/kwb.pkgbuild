@@ -13,7 +13,7 @@
 track changes to the package.")}
 
 \item{style_guide_url}{refer to tidyverse style website documenting how to
-write a good "NEWS.md"(default: "http://style.tidyverse.org/news.html")}
+write a good "NEWS.md"(default: "https://style.tidyverse.org/news.html")}
 }
 \value{
 writes "NEWS.md" (in case it is not existing)

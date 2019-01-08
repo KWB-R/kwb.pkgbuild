@@ -5,12 +5,12 @@
 \title{pkgdown for KWB}
 \usage{
 use_pkgdown(author = list(name = "Michael Rustler", url =
-  "http://mrustl.de"),
+  "https://mrustl.de"),
   copyright_holder_name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")
 }
 \arguments{
 \item{author}{list of author attributes (default: list(name = "Michael Rustler",
-url = "http://mrustl.de"))}
+url = "https://mrustl.de"))}
 
 \item{copyright_holder_name}{name of copyright holder
 (default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")}

@@ -5,13 +5,12 @@
 test_that("read_description() works", {
 
   expect_error(
-    kwb.pkgbuild:::read_description()
+    withr::with_dir(tempdir(), {kwb.pkgbuild:::read_description()})
   )
 
-  old_wd <- create_pkg_temp()
-  kwb.pkgbuild:::read_description()
-  setwd(old_wd)
-
-
+  withr::with_dir(create_pkg_temp(), {
+    usethis::proj_set(getwd())
+    kwb.pkgbuild::use_description()
+    kwb.pkgbuild:::read_description()})
 })
 

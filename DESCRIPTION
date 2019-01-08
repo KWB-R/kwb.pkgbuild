@@ -1,6 +1,6 @@
 Package: kwb.pkgbuild
 Version: 0.0.0.9000
-Title: R package for standardised development at KWB
+Title: R Package for Standardised Development at KWB
 Description: Helper functions for automating R package development at KWB
    to a predefined style.
 Authors@R: 
@@ -36,7 +36,8 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    withr
 Remotes: 
     github::ropenscilabs/travis
 RoxygenNote: 6.1.1

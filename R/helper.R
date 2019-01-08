@@ -78,8 +78,7 @@ write_to_gitignore <- function(ignore_pattern, comment = NULL) {
 get_pkgname <- function(pkgname = NULL) {
   if (is.null(pkgname)) {
     if (file.exists("DESCRIPTION")) {
-      pkg <- read_description()
-      pkg$name
+      as.character(desc::desc_get("Package"))
     } else {
       stop("No pkgname defined and no 'DESCRIPTION' file for deriving
           package name found")
@@ -319,7 +318,8 @@ add_gitlabci_to_ghpages <- function(repo = NULL,
 
   cmd_checkout <- c(
     sprintf('cd "%s"', dest_dir),
-    sprintf('"%s" clone https://github.com/%s/%s', git_exe, org, repo))
+    sprintf('"%s" clone https://github.com/%s/%s', git_exe, org, repo),
+    sprintf('"%s" checkout -b %s', git_exe, branch))
 
   write_git_batch_and_execute(cmd_checkout, set_githubuser,
                               bat_name = sprintf("add_%s_branch.bat",
