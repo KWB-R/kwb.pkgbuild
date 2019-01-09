@@ -137,8 +137,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>set_github_user</span>(<span class='kw'>git_username</span> <span class='kw'>=</span> <span class='kw pkg'>whoami</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/whoami/topics/username'>username</a></span>(),
-  <span class='kw'>git_fullname</span> <span class='kw'>=</span> <span class='kw pkg'>whoami</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/whoami/topics/fullname'>fullname</a></span>(), <span class='kw'>git_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>set_github_user</span>(<span class='kw'>git_username</span> <span class='kw'>=</span> <span class='st'>"kwb.pkgbuild::use_autopkgdown()"</span>,
+  <span class='kw'>git_fullname</span> <span class='kw'>=</span> <span class='st'>"kwb.pkgbuild::use_autopkgdown()"</span>,
+  <span class='kw'>git_email</span> <span class='kw'>=</span> <span class='st'>"kwbr-bot@kompetenz-wasser.de"</span>,
   <span class='kw'>git_exe</span> <span class='kw'>=</span> <span class='st'>"C:/Program Files/Git/bin/git.exe"</span>, <span class='kw'>execute</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>execute_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -147,15 +148,15 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>git_username</th>
-      <td><p>Github username (default: whoami::username())</p></td>
+      <td><p>Github username (default: "kwb.pkgbuild::use_autopkgdown()")</p></td>
     </tr>
     <tr>
       <th>git_fullname</th>
-      <td><p>Github fullname (default: whoami::fullname())</p></td>
+      <td><p>Github fullname (default: "kwb.pkgbuild::use_autopkgdown()")</p></td>
     </tr>
     <tr>
       <th>git_email</th>
-      <td><p>(default: NULL), is then internally derived by calling
+      <td><p>(default: `kwbr-bot@kompetenz-wasser.de`), is then internally derived by calling
 whoami::fullname() and assuming that Github "kompetenz-wasser.de" used as
 email on Github</p></td>
     </tr>
