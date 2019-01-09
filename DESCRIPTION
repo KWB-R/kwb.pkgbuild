@@ -23,7 +23,6 @@ Imports:
    fs,
    httr,
    desc, 
-   whoami,
    travis,
    assertthat
 License: MIT + file LICENSE

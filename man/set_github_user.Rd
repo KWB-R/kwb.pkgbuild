@@ -4,17 +4,18 @@
 \alias{set_github_user}
 \title{Set Github User For GIT}
 \usage{
-set_github_user(git_username = whoami::username(),
-  git_fullname = whoami::fullname(), git_email = NULL,
+set_github_user(git_username = "kwb.pkgbuild::use_autopkgdown()",
+  git_fullname = "kwb.pkgbuild::use_autopkgdown()",
+  git_email = "kwbr-bot@kompetenz-wasser.de",
   git_exe = "C:/Program Files/Git/bin/git.exe", execute = FALSE,
   execute_dir = tempdir(), dbg = TRUE)
 }
 \arguments{
-\item{git_username}{Github username (default: whoami::username())}
+\item{git_username}{Github username (default: "kwb.pkgbuild::use_autopkgdown()")}
 
-\item{git_fullname}{Github fullname (default: whoami::fullname())}
+\item{git_fullname}{Github fullname (default: "kwb.pkgbuild::use_autopkgdown()")}
 
-\item{git_email}{(default: NULL), is then internally derived by calling
+\item{git_email}{(default: `kwbr-bot@kompetenz-wasser.de`), is then internally derived by calling
 whoami::fullname() and assuming that Github "kompetenz-wasser.de" used as
 email on Github}
 
