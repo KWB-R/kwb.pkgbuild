@@ -25,6 +25,8 @@ Imports:
    desc, 
    travis,
    assertthat
+Remotes:
+   github::ropenscilabs/travis
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
