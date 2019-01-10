@@ -27,7 +27,7 @@ Imports:
    assertthat,
    pkgdown
 Remotes:
-   github::ropenscilabs/travis@v0.2-11
+   github::ropenscilabs/travis@d9acc42ed88c22c200d750c15793f304815adc6d
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
