@@ -24,7 +24,8 @@ Imports:
    httr,
    desc, 
    travis,
-   assertthat
+   assertthat,
+   pkgdown
 Remotes:
    github::ropenscilabs/travis@v0.2-11
 License: MIT + file LICENSE
