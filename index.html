@@ -98,7 +98,9 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#install.packages("remotes", repos = "https://cloud.r-project.org")</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"KWB-R/kwb.pkgbuild"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># Workaround for issue https://github.com/KWB-R/kwb.pkgbuild/issues/21 </span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># Requires that R 64bit is used on Windoows</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"kwb-r/kwb.pkgbuild"</span>, <span class="dt">INSTALL_opts =</span>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'--no-multiarch'</span>))</a></code></pre></div>
 </div>
   </div>
 
