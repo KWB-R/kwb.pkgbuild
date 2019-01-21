@@ -17,15 +17,18 @@ Authors@R:
              email = "hauke.sonnenberg@kompetenz-wasser.de",
              comment = c(comment = "0000-0001-9134-2871")))
 Imports: 
-   stringr,
-   usethis,
-   yaml,
+   assertthat,
+   callr,
+   desc,
    fs,
    httr,
-   desc, 
+   openssl,
+   pkgdown,
+   rematch2, 
+   stringr,
    travis,
-   assertthat,
-   pkgdown
+   usethis,
+   yaml
 Remotes:
    github::ropenscilabs/travis@d9acc42ed88c22c200d750c15793f304815adc6d
 License: MIT + file LICENSE
