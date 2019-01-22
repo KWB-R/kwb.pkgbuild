@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Use Package Skeleton — use_pkg_skeleton • kwb.pkgbuild</title>
+<title>Adds .gitlab-ci.yml — use_gitlab_ci_pkgdown • kwb.pkgbuild</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,9 +36,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Use Package Skeleton — use_pkg_skeleton" />
+<meta property="og:title" content="Adds .gitlab-ci.yml — use_gitlab_ci_pkgdown" />
 
-<meta property="og:description" content="Use Package Skeleton" />
+<meta property="og:description" content="Adds .gitlab-ci.yml" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,40 +126,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Use Package Skeleton</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/use_pkg_skeleton.R'><code>R/use_pkg_skeleton.R</code></a></small>
-    <div class="hidden name"><code>use_pkg_skeleton.Rd</code></div>
+    <h1>Adds .gitlab-ci.yml</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/use_gitlab_ci.R'><code>R/use_gitlab_ci.R</code></a></small>
+    <div class="hidden name"><code>use_gitlab_ci_pkgdown.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Use Package Skeleton</p>
+    <p>Adds .gitlab-ci.yml</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>use_pkg_skeleton</span>(<span class='no'>pkg_name</span>)</pre>
+    <pre class="usage"><span class='fu'>use_gitlab_ci_pkgdown</span>(<span class='kw'>dest_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(),
+  <span class='kw'>yml_list</span> <span class='kw'>=</span> <span class='fu'>gitlab_ci_template_pkgdown</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pkg_name</th>
-      <td><p>name of R package</p></td>
+      <th>dest_dir</th>
+      <td><p>directoy to write (default:
+getwd())</p></td>
+    </tr>
+    <tr>
+      <th>yml_list</th>
+      <td><p>a valid yml list (default: gitlab_ci_template_pkgdown(),
+where "&lt;owner&gt;/&lt;repo&gt;" is replaced with value from DESCRIPTION specified in
+field URL, e.g. https://github.com/KWB-R/kwb.pkgbuild" sets
+"KWB-R/kwb.pkgbuild" as "&lt;owner&gt;/&lt;repo&gt;")</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>creates pkg skeleton in current working directory</p>
+    <p>writes .gitlab-ci.yml</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## valid pkg folder</span>
-<span class='no'>pkg_name</span> <span class='kw'>&lt;-</span> <span class='st'>"pkgname"</span>
-<span class='no'>pkg_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='no'>pkg_name</span>)
-<span class='no'>pkg_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_pkg_dir.html'>create_pkg_dir</a></span>(<span class='no'>pkg_dir</span>)</div><div class='output co'>#&gt; [1] "/tmp/RtmpVslrcp/pkgname is a valid 'root_dir' for pkg 'pkgname'"</div><div class='output co'>#&gt; <span class='warning'>Warning: /tmp/RtmpVslrcp/pkgname cannot be created. It exists but contains 0 files!</span></div><div class='input'><span class='kw pkg'>withr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/withr/topics/with_dir'>with_dir</a></span>(<span class='no'>pkg_dir</span>, {<span class='fu'>use_pkg_skeleton</span>(<span class='no'>pkg_name</span>)})</div><div class='output co'>#&gt; ✔ Setting active project to '/tmp/RtmpVslrcp/pkgname'
-#&gt; ✔ Writing 'pkgname.Rproj'
-#&gt; ✔ Adding '.Rproj.user' to '.gitignore'</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -167,9 +169,7 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
