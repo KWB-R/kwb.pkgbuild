@@ -2,7 +2,7 @@
 % Please edit documentation in R/use_gitlab_ci.R
 \name{use_gitlab_ci_ghpages}
 \alias{use_gitlab_ci_ghpages}
-\title{Adds .gitlab-ci.yml (if repo contains on root in a "gh-pages" branch)}
+\title{Adds .gitlab-ci.yml (which should be saved in root dir of "gh-pages" branch)}
 \usage{
 use_gitlab_ci_ghpages(dest_dir = getwd(),
   yml_list = gitlab_ci_template_ghpages())
@@ -14,8 +14,8 @@ getwd())}
 \item{yml_list}{a valid yml list (default: gitlab_ci_template_ghpages())}
 }
 \value{
-writes .gitlab-ci.yml and adds it .Rbuildignore
+writes .gitlab-ci.yml
 }
 \description{
-Adds .gitlab-ci.yml (if repo contains on root in a "gh-pages" branch)
+Adds .gitlab-ci.yml (which should be saved in root dir of "gh-pages" branch)
 }

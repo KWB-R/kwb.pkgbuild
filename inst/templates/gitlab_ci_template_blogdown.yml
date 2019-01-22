@@ -1,0 +1,18 @@
+### Copied template from https://bookdown.org/yihui/blogdown/gitlab-pages.html
+### https://raw.githubusercontent.com/rstudio/blogdown/88a05670a52c4f512c6ac9fbad0242a4d7ccde15/docs/03-deploy.Rmd
+image: debian:buster-slim
+
+before_script:
+  - apt-get update && apt-get -y install pandoc r-base
+  - R -e "install.packages('remotes',repos='http://cran.rstudio.com')"
+  - R -e "remotes::install_github('rstudio/blogdown')"
+  - R -e "blogdown::install_hugo()"
+
+pages:
+  script:
+    - R -e "blogdown::build_site()"
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
