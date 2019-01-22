@@ -5,13 +5,13 @@
 \title{Adds .gitlab-ci.yml (if repo contains a "docs" subfolder)}
 \usage{
 use_gitlab_ci_docs(dest_dir = getwd(),
-  yml_list = gitlab_ci_template_docs())
+  yml_vector = gitlab_ci_template_docs())
 }
 \arguments{
 \item{dest_dir}{directoy to write (default:
 getwd())}
 
-\item{yml_list}{a valid yml list (default: gitlab_ci_template_docs())}
+\item{yml_vector}{a yml imported as string vector (default: gitlab_ci_template_docs())}
 }
 \value{
 writes .gitlab-ci.yml and adds it .Rbuildignore

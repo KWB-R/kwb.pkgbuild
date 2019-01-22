@@ -5,13 +5,13 @@
 \title{Adds .gitlab-ci.yml}
 \usage{
 use_gitlab_ci_pkgdown(dest_dir = getwd(),
-  yml_list = gitlab_ci_template_pkgdown())
+  yml_vector = gitlab_ci_template_pkgdown())
 }
 \arguments{
 \item{dest_dir}{directoy to write (default:
 getwd())}
 
-\item{yml_list}{a valid yml list (default: gitlab_ci_template_pkgdown(),
+\item{yml_vector}{a yml imported as string vector (default: gitlab_ci_template_pkgdown(),
 where "<owner>/<repo>" is replaced with value from DESCRIPTION specified in
 field URL, e.g. https://github.com/KWB-R/kwb.pkgbuild" sets
 "KWB-R/kwb.pkgbuild" as "<owner>/<repo>")}

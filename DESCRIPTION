@@ -25,6 +25,7 @@ Imports:
    openssl,
    pkgdown,
    rematch2, 
+   sessioninfo,
    stringr,
    travis,
    usethis,
