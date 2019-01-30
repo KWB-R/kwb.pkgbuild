@@ -4,7 +4,7 @@
 image: debian:buster-slim
 
 before_script:
-  - apt-get update && apt-get -y install pandoc r-base libcurl4-openssl-dev libxml2-dev libssl-dev
+  - apt-get update && apt-get -y install pandoc r-base libcurl4-openssl-dev libxml2-dev libssl-dev libv8-dev libudunits2-dev libmagick++-dev
   - R -e "install.packages(c('pkgdown','remotes'), repos='http://cran.rstudio.com')"
   - R -e "remotes::install_github('<owner>/<repo>', dependencies = TRUE, upgrade = 'always')"
 
