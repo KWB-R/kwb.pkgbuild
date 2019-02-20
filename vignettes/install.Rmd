@@ -1,0 +1,119 @@
+---
+title: "How to Install KWB-R Packages From GitHub"
+author: "Michael Rustler"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to Install KWB-R Packages From GitHub}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig_caption = FALSE,
+  comment = "#>"
+)
+```
+
+## Create a GitHub Personal Access Token
+
+KWB-R researcher needs to create a GitHub Personal Access Token (PAT) for himself 
+or its students at: https://github.com/settings/tokens/new
+
+
+
+In case only access to public KWB-R packages (see [here](https://kwb-r.github.io/status) 
+is needed a token with access to **public** repos only is sufficient. 
+
+![github_pat_public](images/github_pat_public.jpg)
+
+If also access to **private** KWB repos a **private** token needs to be generated:
+
+![github_pat_private](images/github_pat_private.jpg)
+Subsequently copy the **token** into a text file together with its **token_name** 
+
+![github_pat_copy](images/github_pat_copy.jpg)
+
+If the student using the **token** does not need the key anymore it should be 
+deleted as shown in the steps below:
+
+![github_pat_delete1](images/github_pat_delete1.jpg)
+
+![github_pat_delete2](images/github_pat_delete2.jpg)
+ 
+
+
+## Installation 
+
+### Set your GITHUB PAT 
+
+If you have a GitHub Personal Access Token (PAT) (see [above](#create-a-GitHub-Personal-Access-Token))
+please set it in your R(Studio) session as described below:
+
+```{r github_pat, eval=FALSE}
+Sys.setenv(GITHUB_PAT = "mysecret_access_token")
+```
+
+### Dependency
+
+Install R Package `remotes`, which is required for downloading and installing 
+from GitHub: 
+
+```{r install_dependency, eval=FALSE}
+Sys.setenv(GITHUB_PAT = "mysecret_access_token")
+install.packages("remotes", repos = "https://cloud.r-project.org")
+remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")
+
+```
+
+### KWB-R packages
+
+Provide KWB-R packages to be installed:
+
+```{r install_kwb_github_packages, eval=FALSE}
+
+###############################################################################
+### Define Function for Installing KWB-R GitHub Packages
+###############################################################################
+
+install_kwb_github_packages <- function(pkgs_kwb, 
+                                        dependencies = TRUE,
+                                        ...) {
+  
+  pkgs_kwb_github <- sprintf("KWB-R/%s", pkgs_kwb) 
+  
+  sapply(pkgs_kwb_github, FUN = function(gh_repo) {
+  try(remotes::install_github(repo = gh_repo,
+                              dependencies = dependencies, 
+                              ...)
+      )
+    })
+}
+
+
+###############################################################################
+### Use the function
+###############################################################################
+### Example: BaSaR 
+
+#library(kwb.base)
+#library(kwb.monitoring) # for configure, pathDictionary, ...
+#library(lubridate)      # for interval
+#library(kwb.datetime)   # for hsToPosix
+#library(kwb.utils)
+#library(kwb.event)
+#library(kwb.ogre)
+#library(RCurl)
+
+
+pkgs_kwb <- c("kwb.ogre", "kwb.monitoring")
+
+
+
+install_kwb_github_packages(pkgs_kwb = pkgs_kwb)
+
+```
+
+
