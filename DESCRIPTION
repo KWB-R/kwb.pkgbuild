@@ -1,8 +1,6 @@
 Package: kwb.pkgbuild
-Version: 0.0.0.9000
 Title: R Package for Standardised Development at KWB
-Description: Helper functions for automating R package development at KWB
-   to a predefined style.
+Version: 0.0.0.9000
 Authors@R: 
     c(person(given = "Michael",
              family = "Rustler",
@@ -16,31 +14,25 @@ Authors@R:
              role = "ctb",
              email = "hauke.sonnenberg@kompetenz-wasser.de",
              comment = c(comment = "0000-0001-9134-2871")))
-Imports: 
-   assertthat,
-   callr,
-   desc,
-   fs,
-   httr,
-   openssl,
-   pkgdown,
-   rematch2, 
-   sessioninfo,
-   stringr,
-   travis,
-   usethis,
-   yaml
-Suggests:
-   kwb.orcid
-Remotes:
-   github::kwb-r/kwb.orcid,
-   github::ropenscilabs/travis@d9acc42ed88c22c200d750c15793f304815adc6d
+Description: Helper functions for automating R package
+    development at KWB to a predefined style.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-ByteCompile: true
 URL: https://github.com/KWB-R/kwb.pkgbuild
 BugReports: https://github.com/KWB-R/kwb.pkgbuild/issues
+Imports: 
+    assertthat,
+    callr,
+    desc,
+    fs,
+    httr,
+    openssl,
+    pkgdown,
+    rematch2,
+    sessioninfo,
+    stringr,
+    travis,
+    usethis,
+    yaml
 Suggests: 
     covr,
     kwb.orcid,
@@ -48,5 +40,12 @@ Suggests:
     rmarkdown,
     testthat,
     withr
+VignetteBuilder: 
+    knitr
+Remotes:
+    github::kwb-r/kwb.orcid,
+    github::ropenscilabs/travis@d9acc42ed88c22c200d750c15793f304815adc6d
+ByteCompile: true
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 6.1.1
-VignetteBuilder: knitr
