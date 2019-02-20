@@ -55,6 +55,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/install.html">How to Install KWB-R Packages From GitHub</a>
+    </li>
+    <li>
       <a href="../articles/tutorial.html">KWB-R package from scratch</a>
     </li>
   </ul>
@@ -91,7 +94,7 @@
       <h1>KWB-R package from scratch</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2019-01-31</h4>
+            <h4 class="date">2019-02-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/master/vignettes/tutorial.Rmd"><code>vignettes/tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>tutorial.Rmd</code></div>
@@ -116,11 +119,12 @@
 <a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(package, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
 <a class="sourceLine" id="cb1-10" data-line-number="10">}</a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co"># Install this package from our GitHub account</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="cf">if</span> (<span class="op">!</span><span class="st"> "kwb.pkgbuild"</span> <span class="op">%in%</span><span class="st"> </span>installed_packages) {</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">  </a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">  remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"KWB-R/kwb.pkgbuild"</span>)</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">}</a></code></pre></div>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#Sys.setenv(GITHUB_PAT = "mysecret_access_token")</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"remotes"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc"</span>)</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co"># Install latest version of this package from our GitHub account</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"KWB-R/kwb.pkgbuild"</span>)</a></code></pre></div>
 </div>
 <div id="configure-and-create-your-package" class="section level1">
 <h1 class="hasAnchor">
@@ -151,13 +155,13 @@
 <a class="sourceLine" id="cb2-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># Create directory for R package</span></a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">kwb.pkgbuild<span class="op">::</span><span class="kw">create_pkg_dir</span>(pkg_dir)</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; [1] "/tmp/Rtmpm5u14J/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'"</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; [1] "/tmp/Rtmpm5u14J/kwb.newpackage"</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; [1] "/tmp/RtmpwxmUz9/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'"</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; [1] "/tmp/RtmpwxmUz9/kwb.newpackage"</span></a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb2-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co"># Create a default package structure</span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14">withr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(pkg_dir, {kwb.pkgbuild<span class="op">::</span><span class="kw">use_pkg_skeleton</span>(package)})</a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; ✔ Setting active project to '/tmp/Rtmpm5u14J/kwb.newpackage'</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpwxmUz9/kwb.newpackage'</span></a>
 <a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; ✔ Writing 'kwb.newpackage.Rproj'</span></a>
 <a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; ✔ Adding '.Rproj.user' to '.gitignore'</span></a></code></pre></div>
 </div>
@@ -180,7 +184,11 @@
 <p>The ORCID uniquely identifies the author of a web ressource and thus allows to find different works of one and the same author on the web.</p>
 <p>If you do not know your ORCID, have a look at our package <a href="https://github.com/kwb-r/kwb.orcid">kwb.orcid</a>. It allows to search ORCIDs by name, once you have created an account at <a href="https://orcid.org/">orcid.org</a>.</p>
 <p>In addition, this package stores the ORCIDs of KWB researchers of whom we know their ORCID. Once you have kwb.orcid installed, you can access these ORCIDs with:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">kwb.orcid<span class="op">::</span><span class="kw">get_kwb_orcids</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">kwb.orcid<span class="op">::</span><span class="kw">get_kwb_orcids</span>()</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;     Andreas Matzinger      Hauke Sonnenberg         Wolfgang Seis </span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; "0000-0001-5483-4594" "0000-0001-9134-2871" "0000-0002-7436-8575" </span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;       Michael Rustler </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; "0000-0003-0647-7726"</span></a></code></pre></div>
 </div>
 <div id="package-description" class="section level2">
 <h2 class="hasAnchor">
