@@ -17,58 +17,102 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Create a GitHub Personal Access Token
+# GitHub Personal Access Token (GITHUB_PAT)
+
+## Create GITHUB_PAT
 
 KWB-R researcher needs to create a GitHub Personal Access Token (PAT) for himself 
-or its students at: https://github.com/settings/tokens/new
+or its students at: 
 
 
+https://github.com/settings/tokens/new
+
+
+### Public KWB-R packages
 
 In case only access to public KWB-R packages (see [here](https://kwb-r.github.io/status) 
-is needed a token with access to **public** repos only is sufficient. 
+is needed a token with access to **public** repos only is sufficient (see below).
 
-![github_pat_public](images/github_pat_public.jpg)
 
-If also access to **private** KWB repos a **private** token needs to be generated:
+![](images/github_pat_public.jpg)
 
-![github_pat_private](images/github_pat_private.jpg)
-Subsequently copy the **token** into a text file together with its **token_name** 
 
-![github_pat_copy](images/github_pat_copy.jpg)
+### Private and Public KWB-R Packages
 
-If the student using the **token** does not need the key anymore it should be 
-deleted as shown in the steps below:
+If also access to **private** KWB-R packages is required a **private** access token
+needs to be generated (see below).
 
-![github_pat_delete1](images/github_pat_delete1.jpg)
+![](images/github_pat_private.jpg)
 
-![github_pat_delete2](images/github_pat_delete2.jpg)
+
+## Copy GITHUB_PAT
+
+Subsequently copy the **token** into a text file together with its **token_name**.
+
+
+![](images/github_pat_copy.jpg)
+
+
+## Delete GITHUB_PAT
+
+If the student using the **token** does not need the it anymore it should be 
+deleted as shown in the two screenshots below:
+
+![](images/github_pat_delete1.jpg)
+
+
+![](images/github_pat_delete2.jpg)
  
 
 
-## Installation 
+# Installation 
 
-### Set your GITHUB PAT 
+## Set your GITHUB_PAT
 
-If you have a GitHub Personal Access Token (PAT) (see [above](#create-a-GitHub-Personal-Access-Token))
+If you have a GitHub Personal Access Token (GITHUB_PAT)
 please set it in your R(Studio) session as described below:
 
 ```{r github_pat, eval=FALSE}
 Sys.setenv(GITHUB_PAT = "mysecret_access_token")
 ```
 
-### Dependency
+As we have a static IP address and GitHub API requests without providing a 
+valid `GITHUB_PAT` are limited to **60 requests per hour per IP address**, 
+you might get a error message similar to the one below: 
 
-Install R Package `remotes`, which is required for downloading and installing 
+```{r api_error_message1, eval=FALSE}
+remotes::install_github("kwb-r/kwb.ogre")
+>Rate limit remaining: 0/60
+>Rate limit reset at: 2018-10-21 14:28:34 UTC
+>To increase your GitHub API rate limit
+>- Use `usethis::browse_github_pat()` to create a Personal Access Token.
+>- Add `GITHUB_PAT` to your travis settings as an encrypted variable.
+>Execution halted
+```
+In addition if you require **private and public** [see](#Private-and-Public-KWB-R-Packages) 
+KWB-R packages from GitHub but only provide a `GITHUB_PAT` with access to 
+**public** ([see](#Public-KWB-R-Packages)) KWB-R packages you might get a error 
+message similar to the one below: 
+
+```{r api_error_message2, eval=FALSE}
+remotes::install_github("kwb-r/kwb.ogre")
+> Error: HTTP error 404.
+>  Not Found
+```
+
+## Dependency
+
+Install the R Package `remotes`, which is required for downloading and installing 
 from GitHub: 
 
 ```{r install_dependency, eval=FALSE}
-Sys.setenv(GITHUB_PAT = "mysecret_access_token")
+#Sys.setenv(GITHUB_PAT = "mysecret_access_token")
 install.packages("remotes", repos = "https://cloud.r-project.org")
 remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")
 
 ```
 
-### KWB-R packages
+## KWB-R packages
 
 Provide KWB-R packages to be installed:
 
@@ -94,9 +138,11 @@ install_kwb_github_packages <- function(pkgs_kwb,
 
 
 ###############################################################################
-### Use the function
+### Use the Install Function For KWB-R Packages for Project BaSaR
 ###############################################################################
-### Example: BaSaR 
+
+
+#### These R package dependencies are needed by BaSaR project
 
 #library(kwb.base)
 #library(kwb.monitoring) # for configure, pathDictionary, ...
@@ -108,8 +154,10 @@ install_kwb_github_packages <- function(pkgs_kwb,
 #library(RCurl)
 
 
+### But only two R packages need to be specified (since these two have the 
+### missing KWB-R packages as dependencies, i.e. these will be installed 
+### automatically! 
 pkgs_kwb <- c("kwb.ogre", "kwb.monitoring")
-
 
 
 install_kwb_github_packages(pkgs_kwb = pkgs_kwb)
