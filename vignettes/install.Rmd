@@ -17,27 +17,27 @@ knitr::opts_chunk$set(
 )
 ```
 
-# GitHub Personal Access Token (GITHUB_PAT)
+# 1 GitHub Personal Access Token (GITHUB_PAT)
 
-## Create GITHUB_PAT
+## 1.1 Create GITHUB_PAT
 
-KWB-R researcher needs to create a GitHub Personal Access Token (PAT) for himself 
-or its students at: 
+KWB-R researchers need to create a GitHub Personal Access Token (PAT) for themselves
+or their students at: 
 
 
 https://github.com/settings/tokens/new
 
 
-### Public KWB-R packages
+### 1.1.1 Public KWB-R packages
 
-In case only access to public KWB-R packages (see [here](https://kwb-r.github.io/status) 
-is needed a token with access to **public** repos only is sufficient (see below).
+In case only access to public KWB-R packages (see [https://kwb-r.github.io/status](https://kwb-r.github.io/status)) 
+is needed a `GITHUB_PAT` token with access to **public** repos only is sufficient (see below).
 
 
 ![](images/github_pat_public.jpg)
 
 
-### Private and Public KWB-R Packages
+### 1.1.1 Private and Public KWB-R Packages
 
 If also access to **private** KWB-R packages is required a **private** access token
 needs to be generated (see below).
@@ -45,17 +45,17 @@ needs to be generated (see below).
 ![](images/github_pat_private.jpg)
 
 
-## Copy GITHUB_PAT
+## 1.2 Copy 
 
-Subsequently copy the **token** into a text file together with its **token_name**.
+Subsequently copy the `GITHUB_PAT` into a text file together with its **token_name**.
 
 
 ![](images/github_pat_copy.jpg)
 
 
-## Delete GITHUB_PAT
+## 1.3 Delete 
 
-If the student using the **token** does not need the it anymore it should be 
+If the student using the `GITHUB_PAT` does not need the it anymore it should be 
 deleted as shown in the two screenshots below:
 
 ![](images/github_pat_delete1.jpg)
@@ -65,9 +65,9 @@ deleted as shown in the two screenshots below:
  
 
 
-# Installation 
+# 2 Installation 
 
-## Set your GITHUB_PAT
+## 2.1 Set your GITHUB_PAT
 
 If you have a GitHub Personal Access Token (GITHUB_PAT)
 please set it in your R(Studio) session as described below:
@@ -89,9 +89,9 @@ remotes::install_github("kwb-r/kwb.ogre")
 >- Add `GITHUB_PAT` to your travis settings as an encrypted variable.
 >Execution halted
 ```
-In addition if you require **private and public** [see](#Private-and-Public-KWB-R-Packages) 
+In addition if you require **private and public** [see](#1.1.2-Private-and-Public-KWB-R-Packages) 
 KWB-R packages from GitHub but only provide a `GITHUB_PAT` with access to 
-**public** ([see](#Public-KWB-R-Packages)) KWB-R packages you might get a error 
+**public** ([see](#1.1.1-Public-KWB-R-Packages)) KWB-R packages you might get a error 
 message similar to the one below: 
 
 ```{r api_error_message2, eval=FALSE}
@@ -100,7 +100,7 @@ remotes::install_github("kwb-r/kwb.ogre")
 >  Not Found
 ```
 
-## Dependency
+## 2.2 Dependency
 
 Install the R Package `remotes`, which is required for downloading and installing 
 from GitHub: 
@@ -112,7 +112,7 @@ remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc"
 
 ```
 
-## KWB-R packages
+## 2.3 KWB-R packages
 
 Provide KWB-R packages to be installed:
 
