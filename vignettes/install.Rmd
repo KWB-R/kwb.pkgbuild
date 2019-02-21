@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 # 1 GitHub Personal Access Token (GITHUB_PAT)
 
-## 1.1 Create GITHUB_PAT
+## 1.1 Create
 
 KWB-R researchers need to create a GitHub Personal Access Token (PAT) for themselves
 or their students at: 
