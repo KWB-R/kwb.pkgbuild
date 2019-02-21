@@ -94,7 +94,7 @@
       <h1>How to Install KWB-R Packages From GitHub</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2019-02-20</h4>
+            <h4 class="date">2019-02-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/master/vignettes/install.Rmd"><code>vignettes/install.Rmd</code></a></small>
       <div class="hidden name"><code>install.Rmd</code></div>
@@ -105,45 +105,45 @@
     
 <div id="github-personal-access-token-github_pat" class="section level1">
 <h1 class="hasAnchor">
-<a href="#github-personal-access-token-github_pat" class="anchor"></a>GitHub Personal Access Token (GITHUB_PAT)</h1>
+<a href="#github-personal-access-token-github_pat" class="anchor"></a>1 GitHub Personal Access Token (GITHUB_PAT)</h1>
 <div id="create-github_pat" class="section level2">
 <h2 class="hasAnchor">
-<a href="#create-github_pat" class="anchor"></a>Create GITHUB_PAT</h2>
-<p>KWB-R researcher needs to create a GitHub Personal Access Token (PAT) for himself or its students at:</p>
+<a href="#create-github_pat" class="anchor"></a>1.1 Create GITHUB_PAT</h2>
+<p>KWB-R researchers need to create a GitHub Personal Access Token (PAT) for themselves or their students at:</p>
 <p><a href="https://github.com/settings/tokens/new" class="uri">https://github.com/settings/tokens/new</a></p>
 <div id="public-kwb-r-packages" class="section level3">
 <h3 class="hasAnchor">
-<a href="#public-kwb-r-packages" class="anchor"></a>Public KWB-R packages</h3>
-<p>In case only access to public KWB-R packages (see <a href="https://kwb-r.github.io/status">here</a> is needed a token with access to <strong>public</strong> repos only is sufficient (see below).</p>
+<a href="#public-kwb-r-packages" class="anchor"></a>1.1.1 Public KWB-R packages</h3>
+<p>In case only access to public KWB-R packages (see <a href="https://kwb-r.github.io/status" class="uri">https://kwb-r.github.io/status</a>) is needed a <code>GITHUB_PAT</code> token with access to <strong>public</strong> repos only is sufficient (see below).</p>
 <p><img src="images/github_pat_public.jpg"></p>
 </div>
 <div id="private-and-public-kwb-r-packages" class="section level3">
 <h3 class="hasAnchor">
-<a href="#private-and-public-kwb-r-packages" class="anchor"></a>Private and Public KWB-R Packages</h3>
+<a href="#private-and-public-kwb-r-packages" class="anchor"></a>1.1.1 Private and Public KWB-R Packages</h3>
 <p>If also access to <strong>private</strong> KWB-R packages is required a <strong>private</strong> access token needs to be generated (see below).</p>
 <p><img src="images/github_pat_private.jpg"></p>
 </div>
 </div>
-<div id="copy-github_pat" class="section level2">
+<div id="copy" class="section level2">
 <h2 class="hasAnchor">
-<a href="#copy-github_pat" class="anchor"></a>Copy GITHUB_PAT</h2>
-<p>Subsequently copy the <strong>token</strong> into a text file together with its <strong>token_name</strong>.</p>
+<a href="#copy" class="anchor"></a>1.2 Copy</h2>
+<p>Subsequently copy the <code>GITHUB_PAT</code> into a text file together with its <strong>token_name</strong>.</p>
 <p><img src="images/github_pat_copy.jpg"></p>
 </div>
-<div id="delete-github_pat" class="section level2">
+<div id="delete" class="section level2">
 <h2 class="hasAnchor">
-<a href="#delete-github_pat" class="anchor"></a>Delete GITHUB_PAT</h2>
-<p>If the student using the <strong>token</strong> does not need the it anymore it should be deleted as shown in the two screenshots below:</p>
+<a href="#delete" class="anchor"></a>1.3 Delete</h2>
+<p>If the student using the <code>GITHUB_PAT</code> does not need the it anymore it should be deleted as shown in the two screenshots below:</p>
 <p><img src="images/github_pat_delete1.jpg"></p>
 <p><img src="images/github_pat_delete2.jpg"></p>
 </div>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h1>
+<a href="#installation" class="anchor"></a>2 Installation</h1>
 <div id="set-your-github_pat" class="section level2">
 <h2 class="hasAnchor">
-<a href="#set-your-github_pat" class="anchor"></a>Set your GITHUB_PAT</h2>
+<a href="#set-your-github_pat" class="anchor"></a>2.1 Set your GITHUB_PAT</h2>
 <p>If you have a GitHub Personal Access Token (GITHUB_PAT) please set it in your R(Studio) session as described below:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.setenv">Sys.setenv</a></span>(<span class="dt">GITHUB_PAT =</span> <span class="st">"mysecret_access_token"</span>)</a></code></pre></div>
 <p>As we have a static IP address and GitHub API requests without providing a valid <code>GITHUB_PAT</code> are limited to <strong>60 requests per hour per IP address</strong>, you might get a error message similar to the one below:</p>
@@ -154,14 +154,14 @@
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="op">&gt;-</span><span class="st"> </span>Use <span class="st">`</span><span class="dt">usethis::browse_github_pat()</span><span class="st">`</span> to create a Personal Access Token.</a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="op">&gt;-</span><span class="st"> </span>Add <span class="st">`</span><span class="dt">GITHUB_PAT</span><span class="st">`</span> to your travis settings as an encrypted variable.</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="op">&gt;</span>Execution halted</a></code></pre></div>
-<p>In addition if you require <strong>private and public</strong> <a href="#Private-and-Public-KWB-R-Packages">see</a> KWB-R packages from GitHub but only provide a <code>GITHUB_PAT</code> with access to <strong>public</strong> (<a href="#Public-KWB-R-Packages">see</a>) KWB-R packages you might get a error message similar to the one below:</p>
+<p>In addition if you require <strong>private and public</strong> <a href="#1.1.2-Private-and-Public-KWB-R-Packages">see</a> KWB-R packages from GitHub but only provide a <code>GITHUB_PAT</code> with access to <strong>public</strong> (<a href="#1.1.1-Public-KWB-R-Packages">see</a>) KWB-R packages you might get a error message similar to the one below:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"kwb-r/kwb.ogre"</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>Error<span class="op">:</span><span class="st"> </span>HTTP error <span class="fl">404.</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="op">&gt;</span><span class="st">  </span>Not Found</a></code></pre></div>
 </div>
 <div id="dependency" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dependency" class="anchor"></a>Dependency</h2>
+<a href="#dependency" class="anchor"></a>2.2 Dependency</h2>
 <p>Install the R Package <code>remotes</code>, which is required for downloading and installing from GitHub:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">#Sys.setenv(GITHUB_PAT = "mysecret_access_token")</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"remotes"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
@@ -169,7 +169,7 @@
 </div>
 <div id="kwb-r-packages" class="section level2">
 <h2 class="hasAnchor">
-<a href="#kwb-r-packages" class="anchor"></a>KWB-R packages</h2>
+<a href="#kwb-r-packages" class="anchor"></a>2.3 KWB-R packages</h2>
 <p>Provide KWB-R packages to be installed:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">###############################################################################</a>
@@ -225,17 +225,17 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li>
-<a href="#github-personal-access-token-github_pat">GitHub Personal Access Token (GITHUB_PAT)</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#create-github_pat">Create GITHUB_PAT</a></li>
-      <li><a href="#copy-github_pat">Copy GITHUB_PAT</a></li>
-      <li><a href="#delete-github_pat">Delete GITHUB_PAT</a></li>
+<a href="#github-personal-access-token-github_pat">1 GitHub Personal Access Token (GITHUB_PAT)</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#create-github_pat">1.1 Create GITHUB_PAT</a></li>
+      <li><a href="#copy">1.2 Copy</a></li>
+      <li><a href="#delete">1.3 Delete</a></li>
       </ul>
 </li>
       <li>
-<a href="#installation">Installation</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#set-your-github_pat">Set your GITHUB_PAT</a></li>
-      <li><a href="#dependency">Dependency</a></li>
-      <li><a href="#kwb-r-packages">KWB-R packages</a></li>
+<a href="#installation">2 Installation</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#set-your-github_pat">2.1 Set your GITHUB_PAT</a></li>
+      <li><a href="#dependency">2.2 Dependency</a></li>
+      <li><a href="#kwb-r-packages">2.3 KWB-R packages</a></li>
       </ul>
 </li>
       </ul>
