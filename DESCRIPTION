@@ -39,7 +39,7 @@ Suggests:
     rmarkdown,
     testthat
 Remotes: 
-    github::kwb-r/kwb.utils
+    github::kwb-r/kwb.utils,
     github::ropenscilabs/travis
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
