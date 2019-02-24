@@ -129,24 +129,23 @@ git_check_if_windows <- function(git_exe) {
 #' @export
 #' @importFrom whoami username fullname
 #' @importFrom stringr str_replace
-set_github_user <- function(git_username = whoami::username(),
-                            git_fullname = whoami::fullname(),
-                            git_email = NULL,
-                            git_exe = "C:/Program Files/Git/bin/git.exe",
-                            execute = FALSE,
-                            execute_dir = tempdir(),
-                            dbg = TRUE) {
+set_github_user <- function(
+  git_username = whoami::username(),
+  git_fullname = whoami::fullname(),
+  git_email = NULL,
+  git_exe = "C:/Program Files/Git/bin/git.exe",
+  execute = FALSE,
+  execute_dir = tempdir(),
+  dbg = TRUE
+) {
+
   if (is.null(git_email)) {
+
     git_email <- sprintf(
       "%s@kompetenz-wasser.de",
-      tolower(stringr::str_replace(
-        git_fullname,
-        "\\s+",
-        "."
-      ))
+      tolower(stringr::str_replace(git_fullname, "\\s+", "."))
     )
   }
-
 
   git_exe <- git_check_if_windows(git_exe)
 
@@ -164,8 +163,11 @@ set_github_user <- function(git_username = whoami::username(),
   }
 
   if (execute == FALSE) {
+
     cmd_gitconfig
+
   } else {
+
     gitconfig_bat <- sprintf("set_github_user_%s.bat", git_username)
     gitconfig_bat_path <- file.path(execute_dir, gitconfig_bat)
     writeLines(cmd_gitconfig, gitconfig_bat)
