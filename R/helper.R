@@ -150,18 +150,13 @@ set_github_user <- function(git_username = whoami::username(),
 
   git_exe <- git_check_if_windows(git_exe)
 
+  set_global_config_command <- function(name, value) sprintf(
+    '"%s" config --global %s %s', git_exe, name, value
+  )
 
   cmd_gitconfig <- c(
-    sprintf(
-      '"%s" config --global user.name %s',
-      git_exe,
-      git_username
-    ),
-    sprintf(
-      '"%s" config --global user.email %s',
-      git_exe,
-      git_email
-    )
+    set_global_config_command("user.name", git_username),
+    set_global_config_command("user.email", git_email)
   )
 
   if (dbg) {
