@@ -17,15 +17,16 @@ Authors@R:
              email = "hauke.sonnenberg@kompetenz-wasser.de",
              comment = c(comment = "0000-0001-9134-2871")))
 Imports: 
-   stringr,
-   usethis,
-   yaml,
+   assertthat,
+   desc, 
    fs,
    httr,
-   desc, 
-   whoami,
+   kwb.utils,
+   stringr,
    travis,
-   assertthat
+   usethis,
+   whoami,
+   yaml
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -38,6 +39,7 @@ Suggests:
     rmarkdown,
     testthat
 Remotes: 
+    github::kwb-r/kwb.utils,
     github::ropenscilabs/travis
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
