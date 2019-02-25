@@ -106,9 +106,9 @@ git_check_if_windows <- function(git_exe) {
 
 #' Set Github User For GIT
 #'
-#' @param git_username Github username (default: whoami::username())
-#' @param git_fullname Github fullname (default: whoami::fullname())
-#' @param git_email (default: NULL), is then internally derived by calling
+#' @param git_username Github username (default: "kwb.pkgbuild::use_autopkgdown()")
+#' @param git_fullname Github fullname (default: "kwb.pkgbuild::use_autopkgdown()")
+#' @param git_email (default: `kwbr-bot@kompetenz-wasser.de`), is then internally derived by calling
 #' whoami::fullname() and assuming that Github "kompetenz-wasser.de" used as
 #' email on Github
 #' @param git_exe path git git executable (only used on Windows as it is not
@@ -120,7 +120,6 @@ git_check_if_windows <- function(git_exe) {
 #' @param dbg print debug messages (default: TRUE)
 #' @return sets globally user.name and user.email in Git
 #' @export
-#' @importFrom whoami username fullname
 #' @importFrom stringr str_replace
 set_github_user <- function(
   git_username = whoami::username(),
@@ -167,6 +166,37 @@ set_github_user <- function(
   kwb.utils::catAndRun(dbg = dbg, paste("Running:", file), {
     system(command = file)
   })
+}
+
+#' @noRd
+#' @keywords internal
+write_git_batch_and_execute <- function(cmd,
+                                        set_githubuser = TRUE,
+                                        bat_name = sprintf("%s.bat",
+                                                           basename(tempfile())),
+                                        dest_dir,
+                                        git_exe,
+                                        execute = TRUE,
+                                        dbg = TRUE, ...) {
+  if (set_githubuser) {
+    git_usermeta <- set_github_user(git_exe = git_exe, dbg = dbg, ...)
+
+    cmd <- c(git_usermeta,  cmd)
+  }
+
+
+  bat_path <- file.path(dest_dir, bat_name)
+
+  if(dbg) {
+    print(sprintf("Writing batch file: %s", bat_path))
+  }
+  writeLines(cmd, bat_path)
+  if(execute) {
+    if(dbg) {
+      print(sprintf("Running batch file: %s", bat_path))
+      system(bat_path)
+    }
+  }
 }
 
 #' Create Empty Branch From Github
@@ -245,6 +275,47 @@ create_empty_branch <- function(
       system(file)
     })
   }
+
+  git_exe <- git_check_if_windows(git_exe)
+
+
+  fs::dir_create(dest_dir)
+
+
+  cmd_checkout <- c(
+    sprintf('cd "%s"', dest_dir),
+    sprintf('"%s" clone https://github.com/%s/%s', git_exe, org, repo),
+    sprintf('"%s" checkout -b %s', git_exe, branch))
+
+  write_git_batch_and_execute(cmd_checkout, set_githubuser,
+                              bat_name = sprintf("add_%s_branch.bat",
+                                                 branch),
+                              dest_dir,
+                              git_exe,
+                              execute,
+                              dbg,
+                              ...)
+
+  checkout_path <- file.path(dest_dir, repo)
+  use_gitlab_ci_ghpages(dest_dir = checkout_path)
+
+  cmd_push <- c(
+    sprintf('cd "%s"', checkout_path),
+    sprintf('"%s" add %s', git_exe, ".gitlab-ci.yml"),
+    sprintf('"%s" commit -m "Add backup deploy config for GitLab"', git_exe),
+    sprintf('"%s" push origin %s', git_exe, branch))
+
+  write_git_batch_and_execute(cmd_push, set_githubuser,
+                              bat_name = sprintf("add_%s_branch.bat",
+                                                 branch),
+                              dest_dir,
+                              git_exe,
+                              execute,
+                              dbg,
+                              ...)
+
+
+
 }
 
 #' Create Empty gh-pages branch

@@ -1,7 +1,7 @@
 
 #' @keywords internal
 #' @noRd
-ignore_docs_folder <- function(ignore_pattern = "docs/.*", dbg = TRUE) {
+ignore_docs_folder <- function(ignore_pattern = "docs", dbg = TRUE) {
   # Put "docs" folder to .gitignore
   msg <- c(
     "",
@@ -47,7 +47,15 @@ use_autopkgdown <- function(repo = NULL,
     dbg,
     ...
   )
+  ### 4) Create .gitlab-ci.yml for "master" branch with "docs" folder
+  use_gitlab_ci_docs(dest_dir = file.path(dest_dir, repo))
 
-  # 4) Update .travis.yml
+  # 5) Update .travis.yml
   use_travis(auto_build_pkgdown = TRUE, dbg)
+
+  # 6) Delete .gitlab-ci.yml (if existing in "master" branch)
+  fs::file_delete(".gitlab-ci.yml")
+
+#  # 7) Delete "docs" folder (if existing in "master" branch)
+#  fs::dir_delete(path = "docs")
 }

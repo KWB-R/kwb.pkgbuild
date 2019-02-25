@@ -3,12 +3,12 @@
 #
 
 test_that("use_description() works", {
-  old_wd <- create_pkg_temp()
+
   aut <- list(name = "Michael Rustler",
               orcid = NULL,
-              url = "http://mrustl.de")
-  kwb.pkgbuild:::use_description(author = aut,
-                                 funder = "BMBF")
-  setwd(old_wd)
+              url = "https://mrustl.de")
+  withr::with_dir(create_pkg_temp(), {
+    kwb.pkgbuild:::use_description(author = aut,
+                                 funder = "BMBF")})
 })
 

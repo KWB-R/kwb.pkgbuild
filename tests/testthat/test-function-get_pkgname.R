@@ -6,15 +6,14 @@ test_that("get_pkgname() works", {
 
   kwb.pkgbuild:::get_pkgname("kwb.test")
 
-  old_wd <- create_pkg_temp()
-  kwb.pkgbuild:::get_pkgname()
-  setwd(old_wd)
-
   expect_error({
-    old_wd <- setwd(dir = tempdir())
-    tryCatch(kwb.pkgbuild:::get_pkgname(),
-     finally = setwd(old_wd))})
+    withr::with_dir(create_pkg_temp(), {
+      kwb.pkgbuild:::get_pkgname()})
+  })
 
-
+  withr::with_dir(create_pkg_temp(),{
+   usethis::proj_set(getwd())
+   kwb.pkgbuild::use_description()
+   kwb.pkgbuild:::get_pkgname()})
 })
 

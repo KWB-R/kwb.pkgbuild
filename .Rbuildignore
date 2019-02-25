@@ -9,3 +9,5 @@
 ^README\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+secrets.csv
+^R\\.add_author.R$

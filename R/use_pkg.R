@@ -1,7 +1,7 @@
 #' Wrapper function for preparing R package with KWB styling
 #' @param author author information in list format (default:
 #' list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-#' url = "http://mrustl.de"))
+#' url = "https://mrustl.de"))
 #' @param pkg package description in list format (default:\cr
 #' pkg = list(name = "kwb.umberto",\cr
 #' title = "R package supporting UMBERTO LCA at KWB",\cr
@@ -38,7 +38,7 @@
 use_pkg <- function(author = list(
                       name = "Michael Rustler",
                       orcid = "0000-0003-0647-7726",
-                      url = "http://mrustl.de"
+                      url = "https://mrustl.de"
                     ),
                     pkg = list(
                       name = "kwb.umberto",
@@ -68,7 +68,8 @@ use_pkg <- function(author = list(
     pkg,
     version,
     license,
-    copyright_holder_name = copyright_holder$name
+    copyright_holder_name = copyright_holder$name,
+    funder = funder
   )
 
 
@@ -85,16 +86,15 @@ use_pkg <- function(author = list(
   use_pkgdown(author, copyright_holder$name)
 
 
-  ### 4) Create .gitlab-ci.yml
-  fs::dir_create("docs")
-  use_gitlab_ci()
-
-  ### 5) Create .travis.yml
 
   if (auto_build_pkgdown) {
     use_autopkgdown(repo = pkg, org = user, dbg = dbg, ...)
   } else {
+    ### 4) Create .travis.yml
     use_travis()
+    ### 5) Create .gitlab-ci.yml for "master" branch with "docs" folder
+    fs::dir_create("docs")
+    use_gitlab_ci_docs()
   }
   ### 6) Create appveyor.yml
   use_appveyor()
@@ -103,7 +103,7 @@ use_pkg <- function(author = list(
   use_codecov()
 
   ### 8) Use index.Rmd (for pkgdown home:
-  ### see: http://pkgdown.r-lib.org/articles/pkgdown.html#home-page)
+  ### see: https://pkgdown.r-lib.org/articles/pkgdown.html#home-page)
   use_index_rmd(user, domain, stage)
 
   ### 9) Use README.md (for github page)

@@ -3,7 +3,7 @@
 #' @param news_txt text added to news (default: "* Added a 'NEWS.md' file to
 #' track changes to the package.")
 #' @param style_guide_url refer to tidyverse style website documenting how to
-#' write a good "NEWS.md"(default: "http://style.tidyverse.org/news.html")
+#' write a good "NEWS.md"(default: "https://style.tidyverse.org/news.html")
 #' @return writes "NEWS.md" (in case it is not existing)
 #' @importFrom fs file_exists
 #' @export

@@ -4,10 +4,8 @@
 
 test_that("use_badge_travis() works", {
 
-  expect_error(
-    kwb.pkgbuild:::use_badge_travis()
-    # argument "repo" is missing, with no default
-  )
+  kwb.pkgbuild:::use_badge_travis(repo = "kwb.umberto")
+
 
 })
 
