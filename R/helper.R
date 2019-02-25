@@ -10,27 +10,23 @@
 #'
 write_ignorepattern_to_file <- function(ignore_pattern, comment = NULL, file) {
 
-  if (fs::file_exists(file)) {
-
-    ignored_files <- readLines(file)
-
-    has_pattern <- any(grepl(ignore_pattern, ignored_files, fixed = TRUE))
-
-    if (! has_pattern) {
-
-      if (! is.null(comment)) {
-        ignore_pattern <- c(comment, ignore_pattern)
-      }
-
-      ignored_files <- append(x = ignored_files, values = ignore_pattern)
-
-      writeLines(text = ignored_files, con = file)
-    }
-
-  } else {
-
-    writeLines(text = ignore_pattern, con = file)
+  # If there is no file, write the pattern, prepended by the comment (if any)
+  # to the file and return
+  if (! fs::file_exists(file)) {
+    writeLines(c(comment, ignore_pattern), file)
+    return()
   }
+
+  # File exists, read the file
+  patterns <- readLines(file)
+
+  # Return if the ignore pattern is already contained
+  if (any(grepl(ignore_pattern, patterns, fixed = TRUE))) {
+    return()
+  }
+
+  # Add comment (if any) and pattern to the existing patterns in the file
+  writeLines(c(patterns, comment, ignore_pattern), file)
 }
 
 #' Write to .Rbuildignore
