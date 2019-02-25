@@ -68,7 +68,8 @@ use_pkg <- function(author = list(
     pkg,
     version,
     license,
-    copyright_holder_name = copyright_holder$name
+    copyright_holder_name = copyright_holder$name,
+    funder = funder
   )
 
 
