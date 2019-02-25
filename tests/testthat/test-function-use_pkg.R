@@ -3,10 +3,8 @@
 #
 
 test_that("use_pkg() works", {
-  old_wd <- create_pkg_temp()
-  pkg_dir <- getwd()
-  fs::file_delete(file.path(pkg_dir, "DESCRIPTION"))
-  kwb.pkgbuild:::use_pkg()
-  setwd(old_wd)
+  withr::with_dir(create_pkg_temp(),{
+  usethis::proj_set(getwd())
+  kwb.pkgbuild:::use_pkg()})
 })
 

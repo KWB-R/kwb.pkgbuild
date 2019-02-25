@@ -1,7 +1,7 @@
 #' pkgdown for KWB
 #'
 #' @param author list of author attributes (default: list(name = "Michael Rustler",
-#' url = "http://mrustl.de"))
+#' url = "https://mrustl.de"))
 #' @param copyright_holder_name name of copyright holder
 #' (default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")
 #' @return  performs usethis::use_pkgdown() and additionally writes _pkgdown.yml

@@ -4,10 +4,8 @@
 
 test_that("use_badge_codecov() works", {
 
-  expect_error(
-    kwb.pkgbuild:::use_badge_codecov()
-    # argument "repo" is missing, with no default
-  )
+     kwb.pkgbuild:::use_badge_codecov(repo = "kwb.umberto")
+
 
 })
 

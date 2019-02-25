@@ -1,0 +1,21 @@
+### Modified from template from https://bookdown.org/yihui/blogdown/gitlab-pages.html
+### https://raw.githubusercontent.com/rstudio/blogdown/88a05670a52c4f512c6ac9fbad0242a4d7ccde15/docs/03-deploy.Rmd
+
+image: debian:buster-slim
+
+before_script:
+  - apt-get update && apt-get -y install pandoc r-base r-cran-rodbc
+  - apt-get -y install libcurl4-openssl-dev libxml2-dev libssl-dev
+  - apt-get -y install libv8-dev libudunits2-dev libmagick++-dev
+  - R -e "install.packages(c('pkgdown','remotes'), repos='http://cran.rstudio.com')"
+  - R -e "remotes::install_github('<owner>/<repo>', dependencies = TRUE, upgrade = 'always')"
+
+pages:
+  script:
+    - R -e "pkgdown::build_site()"
+    - mv docs public
+  artifacts:
+    paths:
+      - public
+  only:
+  - master

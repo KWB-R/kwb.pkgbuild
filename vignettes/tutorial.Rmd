@@ -39,11 +39,13 @@ for (package in setdiff(c("remotes", "pkgdown"), installed_packages)) {
   install.packages(package, repos = "https://cloud.r-project.org")
 }
 
-# Install this package from our GitHub account
-if (! "kwb.pkgbuild" %in% installed_packages) {
-  
-  remotes::install_github("KWB-R/kwb.pkgbuild")
-}
+#Sys.setenv(GITHUB_PAT = "mysecret_access_token")
+install.packages("remotes", repos = "https://cloud.r-project.org")
+remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")
+
+# Install latest version of this package from our GitHub account
+remotes::install_github("KWB-R/kwb.pkgbuild")
+
 ```
 
 # 2 Configure and create your package
@@ -58,7 +60,7 @@ In the best case, your package will be under version control. We encourage you
 to create a GitHub repository on our [GitHub account](https://github.com/kwb-r)
 that represents the package. Having a package as a repository on GitHub has the
 advantage that it can be easily installed directly from there with no more than
-running `devtools::install_github("kwb-r/<package_name>")`. Once you have 
+running `remotes::install_github("kwb-r/<package_name>")`. Once you have 
 created the GitHub repository, 
 [clone](https://help.github.com/articles/cloning-a-repository/) it to a folder
 on your local machine. 
@@ -85,13 +87,14 @@ correct location.
 package <- "kwb.newpackage"
 
 # Set the path to your new package
-temp_pkg <- file.path(tempdir(), package)
+pkg_dir <- file.path(tempdir(), package)
+
+# Create directory for R package
+kwb.pkgbuild::create_pkg_dir(pkg_dir)
+
 
 # Create a default package structure
-usethis::create_package(path = temp_pkg,open = FALSE)
-
-# Delete the original DESCRIPTION file
-fs::file_delete(path = file.path(temp_pkg, "DESCRIPTION"))
+withr::with_dir(pkg_dir, {kwb.pkgbuild::use_pkg_skeleton(package)})
 ```
 
 ## 2.2 Parameterise your R package
@@ -133,7 +136,7 @@ In addition, this package stores the ORCIDs of KWB researchers of whom we know
 their ORCID. Once you have kwb.orcid installed, you can access these ORCIDs 
 with:
 
-```{r eval = FALSE}
+```{r eval = TRUE}
 kwb.orcid::get_kwb_orcids()
 ```
 

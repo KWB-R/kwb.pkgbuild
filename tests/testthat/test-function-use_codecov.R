@@ -3,10 +3,10 @@
 #
 
 test_that("use_codecov() works", {
-  old_wd <- create_pkg_temp()
+  withr::with_dir(create_pkg_temp(), {
+  usethis::proj_set(getwd())
+  kwb.pkgbuild::use_description()
   kwb.pkgbuild:::use_travis() ## required
   kwb.pkgbuild:::use_codecov()
-  kwb.pkgbuild:::use_codecov()
-  setwd(old_wd)
+ })
 })
-

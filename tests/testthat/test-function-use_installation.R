@@ -4,10 +4,14 @@
 
 test_that("use_installation() works", {
 
-  expect_error(
-    kwb.pkgbuild:::use_installation()
-    # argument "domain" is missing, with no default
-  )
+    kwb.pkgbuild:::use_installation(pkgname = "kwb.umberto",
+                                    user = "KWB-R",
+                                    domain = "github")
+
+  kwb.pkgbuild:::use_installation(pkgname = "kwb.umberto",
+                                  user = "KWB-R",
+                                  domain = "github",
+                                  output = "rmd")
 
 })
 

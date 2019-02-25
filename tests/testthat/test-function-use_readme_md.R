@@ -3,8 +3,10 @@
 #
 
 test_that("use_readme_md() works", {
-  old_wd <- create_pkg_temp()
-  kwb.pkgbuild:::use_readme_md()
-  setwd(old_wd)
+  withr::with_dir(create_pkg_temp(),{
+      usethis::proj_set(getwd())
+      kwb.pkgbuild::use_description()
+      kwb.pkgbuild:::use_readme_md()})
+
 })
 

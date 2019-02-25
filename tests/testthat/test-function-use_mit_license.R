@@ -3,10 +3,12 @@
 #
 
 test_that("use_mit_license() works", {
-  old_wd <- create_pkg_temp()
+  withr::with_dir(create_pkg_temp(), {
+  usethis::proj_set(getwd())
+  kwb.pkgbuild::use_description()
   cph <- list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
        start_year = 2018)
-  kwb.pkgbuild:::use_mit_license(copyright_holder = cph)
-  setwd(old_wd)
+  kwb.pkgbuild:::use_mit_license(copyright_holder = cph)})
+
 })
 
