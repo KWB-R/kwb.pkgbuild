@@ -45,6 +45,7 @@ Suggests:
     testthat,
     withr
 Remotes: 
+    github::kwb-r/kwb.orcid,
     github::kwb-r/kwb.utils,
     github::ropenscilabs/travis@d9acc42ed88c22c200d750c15793f304815adc6d
 RoxygenNote: 6.1.1
