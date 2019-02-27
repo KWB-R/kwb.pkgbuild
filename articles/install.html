@@ -94,7 +94,7 @@
       <h1>How to Install KWB-R Packages From GitHub</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2019-02-25</h4>
+            <h4 class="date">2019-02-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/master/vignettes/install.Rmd"><code>vignettes/install.Rmd</code></a></small>
       <div class="hidden name"><code>install.Rmd</code></div>
@@ -154,7 +154,8 @@
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="op">&gt;-</span><span class="st"> </span>Use <span class="st">`</span><span class="dt">usethis::browse_github_pat()</span><span class="st">`</span> to create a Personal Access Token.</a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="op">&gt;-</span><span class="st"> </span>Add <span class="st">`</span><span class="dt">GITHUB_PAT</span><span class="st">`</span> to your travis settings as an encrypted variable.</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="op">&gt;</span>Execution halted</a></code></pre></div>
-<p>In addition if you require <strong>private and public</strong> <a href="#1.1.2-Private-and-Public-KWB-R-Packages">see</a> KWB-R packages from GitHub but only provide a <code>GITHUB_PAT</code> with access to <strong>public</strong> (<a href="#1.1.1-Public-KWB-R-Packages">see</a>) KWB-R packages you might get a error message similar to the one below:</p>
+<p>In addition if you require <strong><a href="#private-and-public-kwb-r-packages">private and public</a></strong><br>
+KWB-R packages from GitHub but only provide a <code>GITHUB_PAT</code> with access to <strong><a href="#public-kwb-r-packages">public</a></strong> KWB-R packages you might get a error message similar to the one below:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"kwb-r/kwb.ogre"</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>Error<span class="op">:</span><span class="st"> </span>HTTP error <span class="fl">404.</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="op">&gt;</span><span class="st">  </span>Not Found</a></code></pre></div>
