@@ -14,9 +14,9 @@ get_pkgname <- function(pkgname = NULL) {
     return(pkgname)
   }
 
-  if (! file.exists("DESCRIPTION")) stop(
+  if (! file.exists("DESCRIPTION")) clean_stop(
     "No pkgname defined and no 'DESCRIPTION' file for deriving package name ",
-    "found", call. = FALSE
+    "found"
   )
 
   read_description()$name
@@ -38,9 +38,9 @@ git_check_if_windows <- function(git_exe) {
   }
 
   # .Platform$OS.type == "windows"
-  if (! file.exists(git_exe)) {
-    stop("GIT executable cannot be found: ", git_exe)
-  }
+  if (! file.exists(git_exe)) clean_stop(
+    "GIT executable cannot be found: ", git_exe
+  )
 
   git_exe
 }

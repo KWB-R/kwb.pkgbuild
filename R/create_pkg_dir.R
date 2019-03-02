@@ -10,7 +10,7 @@ check_pkg_dir_nested <- function(pkg_dir) {
     msg <- sprintf("Package skeleton for '%s' cannot be created, as it would be nested
 in subfolder '%s'.\n\nWorkaround: specify a different 'root_dir' in function use_pkg_skeleton()",
                    last_folders[2], pkg_dir)
-    stop(msg)
+    clean_stop(msg)
   } else {
     print(sprintf("%s is a valid 'root_dir' for pkg '%s'",
                   pkg_dir,
@@ -47,7 +47,7 @@ create_pkg_dir <- function(pkg_dir) {
      msg <- sprintf("%s cannot be created. It exits and contains %d files!",
                     pkg_dir,
                     n_files)
-     stop(msg)
+     clean_stop(msg)
    } else {
      msg <- sprintf("%s cannot be created. It exists but contains %d files!",
                     pkg_dir,
