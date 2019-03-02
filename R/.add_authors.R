@@ -1,5 +1,7 @@
 library(magrittr)
 
+# create_author_metadata_from_orcid --------------------------------------------
+
 #' Helper Function: Create Author Metadata From ORCIDs
 #' @param orcids named character vector with ORCIDs and names correspondig to
 #' to "given_name family name" (defaults: kwb.orcid::get_kwb_orcids())
@@ -10,26 +12,30 @@ library(magrittr)
 #' required by desc::desc_add_author()
 #' @export
 create_author_metadata_from_orcid <- function(
-  orcids = kwb.orcid::get_kwb_orcids()) {
+  orcids = kwb.orcid::get_kwb_orcids()
+)
+{
+  orc_ids <- orcids[order(orcids)]
+  orc_names <- names(orcids)
 
-orc_ids <- orcids[order(orcids)]
-orc_names <- names(orcids)
+  orc_names_matrix <- orc_names %>%
+    stringr::str_trim() %>%
+    stringr::str_split(pattern = "\\s+", simplify = TRUE, n = 2)
 
-orc_names_matrix <- orc_names %>%
-  stringr::str_trim() %>%
-  stringr::str_split(pattern = "\\s+", simplify = TRUE, n = 2)
-
-
-data.frame(given = orc_names_matrix[,1],
-           family = orc_names_matrix[,2],
-           email = sprintf("%s.%s@kompetenz-wasser.de",
-                          tolower(orc_names_matrix[,1]),
-                          tolower(orc_names_matrix[,2])),
-           orcid = orc_ids,
-           stringsAsFactors = FALSE,
-           row.names = NULL
-           )
+  kwb.utils::noFactorDataFrame(
+    given = orc_names_matrix[,1],
+    family = orc_names_matrix[,2],
+    email = sprintf(
+      "%s.%s@kompetenz-wasser.de",
+      tolower(orc_names_matrix[, 1]),
+      tolower(orc_names_matrix[, 2])
+    ),
+    orcid = orc_ids,
+    row.names = NULL
+  )
 }
+
+# convert_author_metadata_tolist -----------------------------------------------
 
 #' Convert Author Metadata To List
 #'
@@ -40,19 +46,16 @@ data.frame(given = orc_names_matrix[,1],
 #' @export
 #' @importFrom purrr transpose
 convert_author_metadata_tolist <- function(
-  author_metadata_df = create_author_metadata_from_orcid()) {
-
-list_names <- sprintf("%s_%s",
-                      author_metadata_df$family,
-                      author_metadata_df$given)
-
-
-setNames(purrr::transpose(author_metadata_df),
-         list_names)
+  author_metadata_df = create_author_metadata_from_orcid()
+)
+{
+  setNames(
+    object = purrr::transpose(author_metadata_df),
+    nm = paste0(author_metadata_df$family, "_", author_metadata_df$given)
+  )
 }
 
-
-
+# add_authors ------------------------------------------------------------------
 
 #' Use Authors
 #'
@@ -76,45 +79,46 @@ setNames(purrr::transpose(author_metadata_df),
 #' sel_author <- authors_list$Rustler_Michael
 #' add_authors(sel_author)
 #' }
-add_authors <- function(author_meta, role = "ctb", path = getwd()) {
-
-
-  if(length(unlist(author_meta))) {
-    df <- as.data.frame(author_meta)
+add_authors <- function(author_meta, role = "ctb", path = getwd())
+{
+  df <- if (length(unlist(author_meta))) {
+    as.data.frame(author_meta)
   } else if (is.list(author_meta)) {
-    df  <- author_meta %>%
+    author_meta %>%
       data.table::rbindlist() %>%
       as.data.frame()
   }
 
-
-  if(!"role" %in% names(df)) {
+  if (! "role" %in% names(df)) {
     df$role = role
   }
 
+  for (i in seq_len(nrow(df))) {
 
-  for(i in seq_len(nrow(df))) {
-    sel_author_meta <- df[i,]
+    sel_author_meta <- df[i, ]
 
-    if(sel_author_meta$orcid!="") {
-      sel_author_meta$comment <- c("comment" = sel_author_meta$orcid)
+    sel_author_meta$comment <- if(sel_author_meta$orcid!="") {
+      c("comment" = sel_author_meta$orcid)
     } else {
-      sel_auth_meta$comment <- ""
+      ""
     }
-    print(sprintf("Adding '%s, %s' (ORCID: %s, Email: %s) with role '%s' to DESCRIPTION",
-                  sel_author_meta$family,
-                  sel_author_meta$given,
-                  sel_author_meta$orcid,
-                  sel_author_meta$email,
-                  sel_author_meta$role))
-    desc::desc_add_author(given = sel_author_meta$given,
-                          family = sel_author_meta$family,
-                          email = sel_author_meta$email,
-                          role = sel_author_meta$role,
-                          comment = c("comment" = sel_author_meta$orcid),
-                          file = file.path(path, "DESCRIPTION"))
+
+    print(sprintf(
+      "Adding '%s, %s' (ORCID: %s, Email: %s) with role '%s' to DESCRIPTION",
+      sel_author_meta$family,
+      sel_author_meta$given,
+      sel_author_meta$orcid,
+      sel_author_meta$email,
+      sel_author_meta$role
+    ))
+
+    desc::desc_add_author(
+      given = sel_author_meta$given,
+      family = sel_author_meta$family,
+      email = sel_author_meta$email,
+      role = sel_author_meta$role,
+      comment = c("comment" = sel_author_meta$orcid),
+      file = file.path(path, "DESCRIPTION")
+    )
   }
 }
-
-
-
