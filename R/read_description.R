@@ -1,3 +1,5 @@
+# read_description -------------------------------------------------------------
+
 #' Helper function: read_description
 #'
 #' @param file path to DESCRIPTION file (default: DESCRIPTION)
@@ -6,22 +8,22 @@
 
 read_description <- function(file = "DESCRIPTION")
 {
-  if (file.exists(file)) {
+  if (! file.exists(file)) clean_stop(
+    sprintf("DESCIPTION file not found at: %s.\n", file.path(getwd(), file)),
+    "Please set working directory with function setwd() properly!"
+  )
 
-    description <- desc::desc(file)
-    desc_df <- description$get(keys = c("Package", "Title", "Description", "Version"))
-    names(desc_df) <- c("name", "title", "desc", "version")
-    pkg <- as.list(desc_df)
-    pkg$title <- gsub(pattern = "\n\\s+", "\n", pkg$title)
-    pkg$desc <- gsub(pattern = "\n\\s+", "\n", pkg$desc)
+  description <- desc::desc(file)
 
-    return(pkg)
+  pkg <- as.list(stats::setNames(
+    description$get(keys = c("Package", "Title", "Description", "Version")),
+    nm = c("name", "title", "desc", "version")
+  ))
 
-  } else {
+  remove_space_after_eol <- function(x) gsub("\n\\s+", "\n", x)
 
-    clean_stop(
-      sprintf("DESCIPTION file not found at: %s.\n", file.path(getwd(), file)),
-      "Please set working directory with function setwd() properly!"
-    )
-  }
+  pkg$title <- remove_space_after_eol(pkg$title)
+  pkg$desc <- remove_space_after_eol(pkg$desc)
+
+  pkg
 }
