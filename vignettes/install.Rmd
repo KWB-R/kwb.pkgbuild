@@ -89,9 +89,9 @@ remotes::install_github("kwb-r/kwb.ogre")
 >- Add `GITHUB_PAT` to your travis settings as an encrypted variable.
 >Execution halted
 ```
-In addition if you require **private and public** [see](#1.1.2-Private-and-Public-KWB-R-Packages) 
+In addition if you require **[private and public](#private-and-public-kwb-r-packages)**  
 KWB-R packages from GitHub but only provide a `GITHUB_PAT` with access to 
-**public** ([see](#1.1.1-Public-KWB-R-Packages)) KWB-R packages you might get a error 
+**[public](#public-kwb-r-packages)** KWB-R packages you might get a error 
 message similar to the one below: 
 
 ```{r api_error_message2, eval=FALSE}

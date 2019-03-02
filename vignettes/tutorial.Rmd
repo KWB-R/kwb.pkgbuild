@@ -182,7 +182,7 @@ https://www.tidyverse.org/lifecycle/
 [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 for all public R packages currently hosted on Github (see:
 http://kwb-r.github.io/status/) and lists KWB as copyright holder (see e.g.
-[here](https://kwb-r.github.io/kwb.pkgbuild/dev/authors.html))
+[here](https://kwb-r.github.io/kwb.pkgbuild/authors.html))
 
 - Creates `README` files (`README.Rmd` and `README.md`) for the above mentioned
 topics and
