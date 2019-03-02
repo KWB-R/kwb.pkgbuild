@@ -110,23 +110,14 @@ is_on_cran <- function(cran_link) {
 #' @importFrom httr GET status_code
 #' @return generates CRAN badge link
 #' @importFrom assertthat is.error
+#' @importFrom kwb.utils defaultIfNULL
 #' @export
 use_badge_cran <- function(pkgname = NULL) {
 
-  if(is.null(pkgname)) pkgname <- get_pkgname(pkgname)
+  pkgname <- kwb.utils::defaultIfNULL(pkgname, get_pkgname(pkgname))
 
-  cran_mirrors <- sprintf(
-    "https://%s",
-    c(
-      "cran.r-project.org",
-      "cran.rstudio.org"
-    )
-  )
-  cran_mirrors_link <- sprintf(
-    "%s/package=%s",
-    cran_mirrors,
-    pkgname
-  )
+  cran_mirrors <- sprintf("https://cran.%s.org", c("r-project", "rstudio"))
+  cran_mirrors_link <- sprintf("%s/package=%s", cran_mirrors, pkgname)
 
   res_link1 <- is_on_cran(cran_mirrors_link[1])
   res_link2 <- is_on_cran(cran_mirrors_link[2])
@@ -134,9 +125,7 @@ use_badge_cran <- function(pkgname = NULL) {
   is_no_error <- c(assertthat::is.error(res_link1),
                    assertthat::is.error(res_link2))
 
-
-
-  pkg_on_cran <- tryCatch(ifelse(!assertthat::is.error(res_link1),
+  pkg_on_cran <- tryCatch(ifelse(! assertthat::is.error(res_link1),
                                  res_link1,
                                  res_link2),
   error = function(e) {
