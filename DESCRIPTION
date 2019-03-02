@@ -1,8 +1,6 @@
 Package: kwb.pkgbuild
 Title: R package for standardised development at KWB
 Version: 0.0.0.9000
-Description: Helper functions for automating R package development at KWB
-   to a predefined style.
 Authors@R: 
     c(person(given = "Michael",
              family = "Rustler",
@@ -16,6 +14,11 @@ Authors@R:
              role = "ctb",
              email = "hauke.sonnenberg@kompetenz-wasser.de",
              comment = c(comment = "0000-0001-9134-2871")))
+Description: Helper functions for automating R package development at KWB
+   to a predefined style.
+License: MIT + file LICENSE
+URL: https://github.com/KWB-R/kwb.pkgbuild
+BugReports: https://github.com/KWB-R/kwb.pkgbuild/issues
 Imports: 
     assertthat,
     callr,
@@ -31,12 +34,6 @@ Imports:
     travis,
     usethis,
     yaml
-License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-ByteCompile: true
-URL: https://github.com/KWB-R/kwb.pkgbuild
-BugReports: https://github.com/KWB-R/kwb.pkgbuild/issues
 Suggests: 
     covr,
     kwb.orcid,
@@ -44,9 +41,13 @@ Suggests:
     rmarkdown,
     testthat,
     withr
+VignetteBuilder: 
+    knitr
 Remotes: 
     github::kwb-r/kwb.orcid,
     github::kwb-r/kwb.utils,
     github::ropenscilabs/travis@d9acc42ed88c22c200d750c15793f304815adc6d
+ByteCompile: true
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 6.1.1
-VignetteBuilder: knitr
