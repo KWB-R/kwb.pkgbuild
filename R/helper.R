@@ -9,29 +9,24 @@
 #' @importFrom fs file_exists
 #'
 write_ignorepattern_to_file <- function(ignore_pattern, comment = NULL, file) {
-  if (fs::file_exists(file)) {
-    ignored_files <- readLines(file)
 
-
-    has_pattern <- any(grepl(
-      x = ignored_files, pattern = ignore_pattern,
-      fixed = TRUE
-    ))
-
-    if (!has_pattern) {
-      if (!is.null(comment)) ignore_pattern <- c(comment, ignore_pattern)
-      ignored_files <- append(x = ignored_files, values = ignore_pattern)
-      writeLines(
-        text = ignored_files,
-        con = file
-      )
-    }
-  } else {
-    writeLines(
-      text = ignore_pattern,
-      con = file
-    )
+  # If there is no file, write the pattern, prepended by the comment (if any)
+  # to the file and return
+  if (! fs::file_exists(file)) {
+    writeLines(c(comment, ignore_pattern), file)
+    return()
   }
+
+  # File exists, read the file
+  patterns <- readLines(file)
+
+  # Return if the ignore pattern is already contained
+  if (any(grepl(ignore_pattern, patterns, fixed = TRUE))) {
+    return()
+  }
+
+  # Add comment (if any) and pattern to the existing patterns in the file
+  writeLines(c(patterns, comment, ignore_pattern), file)
 }
 
 #' Write to .Rbuildignore
@@ -44,10 +39,8 @@ write_ignorepattern_to_file <- function(ignore_pattern, comment = NULL, file) {
 #' @importFrom fs file_exists
 #'
 write_to_rbuildignore <- function(ignore_pattern, comment = NULL) {
-  write_ignorepattern_to_file(ignore_pattern,
-    comment,
-    file = ".Rbuildignore"
-  )
+
+  write_ignorepattern_to_file(ignore_pattern, comment, file = ".Rbuildignore")
 }
 
 #' Write to .gitignore
@@ -60,10 +53,8 @@ write_to_rbuildignore <- function(ignore_pattern, comment = NULL) {
 #' @importFrom fs file_exists
 #'
 write_to_gitignore <- function(ignore_pattern, comment = NULL) {
-  write_ignorepattern_to_file(ignore_pattern,
-    comment,
-    file = ".gitignore"
-  )
+
+  write_ignorepattern_to_file(ignore_pattern, comment, file = ".gitignore")
 }
 
 #' Helper Function: Get Package Name
@@ -76,18 +67,19 @@ write_to_gitignore <- function(ignore_pattern, comment = NULL) {
 #' @export
 
 get_pkgname <- function(pkgname = NULL) {
-  if (is.null(pkgname)) {
-    if (file.exists("DESCRIPTION")) {
-      as.character(desc::desc_get("Package"))
-    } else {
-      stop("No pkgname defined and no 'DESCRIPTION' file for deriving
-          package name found")
-    }
-  } else {
-    pkgname
-  }
-}
 
+  # Return the package name if it was given
+  if (! is.null(pkgname)) {
+    return(pkgname)
+  }
+
+  if (! file.exists("DESCRIPTION")) stop(
+    "No pkgname defined and no 'DESCRIPTION' file for deriving package name ",
+    "found", call. = FALSE
+  )
+
+  read_description()$name
+}
 
 #' Git Check if Windows
 #'
@@ -97,18 +89,20 @@ get_pkgname <- function(pkgname = NULL) {
 #' @noRd
 #'
 git_check_if_windows <- function(git_exe) {
-  if (.Platform$OS.type == "windows") {
-    if (!file.exists(git_exe)) {
-      stop(sprintf("GIT executable cannot be found: %s", git_exe))
-    }
-    git_exe <- git_exe
-  } else {
-    ### assume that "git" is globally defined
-    git_exe <- "git"
+
+  # For non-Windows systems, assume that "git" is installed and on the PATH
+  if (.Platform$OS.type != "windows") {
+
+    return("git")
   }
+
+  # .Platform$OS.type == "windows"
+  if (! file.exists(git_exe)) {
+    stop("GIT executable cannot be found: ", git_exe)
+  }
+
   git_exe
 }
-
 
 #' Set Github User For GIT
 #'
@@ -127,54 +121,51 @@ git_check_if_windows <- function(git_exe) {
 #' @return sets globally user.name and user.email in Git
 #' @export
 #' @importFrom stringr str_replace
-set_github_user <- function(git_username = "kwb.pkgbuild::use_autopkgdown()",
-                            git_fullname = "kwb.pkgbuild::use_autopkgdown()",
-                            git_email = "kwbr-bot@kompetenz-wasser.de",
-                            git_exe = "C:/Program Files/Git/bin/git.exe",
-                            execute = FALSE,
-                            execute_dir = tempdir(),
-                            dbg = TRUE) {
-  if (is.null(git_email)) {
-    git_email <- sprintf(
-      "%s@kompetenz-wasser.de",
-      tolower(stringr::str_replace(
-        git_fullname,
-        "\\s+",
-        "."
-      ))
-    )
-  }
+set_github_user <- function(
+  git_username = "kwb.pkgbuild::use_autopkgdown()",
+  git_fullname = "kwb.pkgbuild::use_autopkgdown()",
+  git_email = "kwbr-bot@kompetenz-wasser.de",
+  git_exe = "C:/Program Files/Git/bin/git.exe",
+  execute = FALSE,
+  execute_dir = tempdir(),
+  dbg = TRUE
+) {
 
+  if (is.null(git_email)) {
+
+    # Replace space with dot
+    dot_name <- stringr::str_replace(git_fullname, "\\s+", ".")
+
+    # Compose KWB e-mail address
+    git_email <- paste0(tolower(dot_name), "@kompetenz-wasser.de")
+  }
 
   git_exe <- git_check_if_windows(git_exe)
 
-
-  cmd_gitconfig <- c(
-    sprintf(
-      '"%s" config --global user.name %s',
-      git_exe,
-      git_username
-    ),
-    sprintf(
-      '"%s" config --global user.email %s',
-      git_exe,
-      git_email
-    )
+  set_global_config_command <- function(name, value) sprintf(
+    '"%s" config --global %s %s', git_exe, name, value
   )
 
-  if (dbg) {
-    print(sprintf("Setting GIT user:\n%s", cmd_gitconfig))
+  cmd_gitconfig <- c(
+    set_global_config_command("user.name", git_username),
+    set_global_config_command("user.email", git_email)
+  )
+
+  kwb.utils::catIf(dbg, paste0("Setting GIT user:\n", cmd_gitconfig))
+
+  # Do not execute but only return the command string if execute is FALSE
+  if (! execute) {
+    return(cmd_gitconfig)
   }
 
-  if (execute == FALSE) {
-    cmd_gitconfig
-  } else {
-    gitconfig_bat <- sprintf("set_github_user_%s.bat", git_username)
-    gitconfig_bat_path <- file.path(execute_dir, gitconfig_bat)
-    writeLines(cmd_gitconfig, gitconfig_bat)
-    if (dbg) print(sprintf("Running: %s", gitconfig_bat_path))
-    system(command = gitconfig_bat_path)
-  }
+  filename <- sprintf("set_github_user_%s.bat", git_username)
+  file <- file.path(execute_dir, filename)
+
+  writeLines(cmd_gitconfig, file)
+
+  kwb.utils::catAndRun(dbg = dbg, paste("Running:", file), {
+    system(command = file)
+  })
 }
 
 #' @noRd
@@ -227,26 +218,33 @@ write_git_batch_and_execute <- function(cmd,
 #' Github
 #' @export
 #' @importFrom  fs dir_create
-create_empty_branch <- function(repo = NULL,
-                                branch = NULL,
-                                org = "KWB-R",
-                                set_githubuser = TRUE,
-                                git_exe = "C:/Program Files/Git/bin/git.exe",
-                                dest_dir = tempdir(),
-                                execute = TRUE,
-                                dbg = TRUE,
-                                ...) {
+create_empty_branch <- function(
+  repo = NULL,
+  branch = NULL,
+  org = "KWB-R",
+  set_githubuser = TRUE,
+  git_exe = "C:/Program Files/Git/bin/git.exe",
+  dest_dir = tempdir(),
+  execute = TRUE,
+  dbg = TRUE,
+  ...
+) {
 
   if (is.null(repo)) {
-    stop("Specify the name of the repo to be checked out with parameter 'repo'")
+    stop(
+      "Specify the name of the repo to be checked out with parameter 'repo'",
+      call. = FALSE
+    )
   }
 
   if (is.null(branch)) {
-    stop("Specify the name of the branch to be created in parameter 'branch'")
+    stop(
+      "Specify the name of the branch to be created in parameter 'branch'",
+      call. = FALSE
+    )
   }
 
   git_exe <- git_check_if_windows(git_exe)
-
 
   fs::dir_create(dest_dir)
 
@@ -261,52 +259,21 @@ create_empty_branch <- function(repo = NULL,
     sprintf('"%s" checkout master', git_exe)
   )
 
-  write_git_batch_and_execute(cmd, set_githubuser,
-                              bat_name = sprintf("create_empty_%s_branch.bat",
-                                                 branch),
-                              dest_dir,
-                              git_exe,
-                              execute,
-                              dbg,
-                              ...)
-
-}
-
-#' Add Gitlabcito ghpages branch
-#'
-#' @param repo name of existing Github repository (default: NULL)
-#' @param branch name of branch to be created (default: "gh-pages)
-#' @param org repo owner (default: "KWB-R")
-#' @param set_githubuser should the Github user be set before executing the
-#' branch creation (default: TRUE). In this case set_github_user() is run
-#' @param git_exe path to GIT executable (default:
-#' "C:/Program Files/Git/bin/git.exe"), only required on "windows". On all other
-#' platforms it is assumed that "git" is sufficient!
-#' @param dest_dir directory where the the repo should be checked out (default:
-#' tempdir())
-#' @param execute should a batch file be run?
-#' @param dbg print debug messages (default: TRUE)
-#' @param ... additional arguments passed to set_github_user
-#' @return create empty branch (defined in 'branch') and push to org/repo on
-#' Github
-#' @export
-#' @importFrom  fs dir_create
-add_gitlabci_to_ghpages <- function(repo = NULL,
-                          branch = "gh-pages",
-                          org = "KWB-R",
-                          set_githubuser = TRUE,
-                          git_exe = "C:/Program Files/Git/bin/git.exe",
-                          dest_dir = tempdir(),
-                          execute = TRUE,
-                          dbg = TRUE,
-                          ...) {
-
-  if (is.null(repo)) {
-    stop("Specify the name of the repo to be checked out with parameter 'repo'")
+  if (set_githubuser) {
+    git_usermeta <- set_github_user(git_exe = git_exe, dbg = dbg, ...)
+    cmd <- c(git_usermeta, cmd)
   }
 
-  if (is.null(branch)) {
-    stop("Specify the name of the branch to be created in parameter 'branch'")
+  file <- file.path(dest_dir, sprintf("create_empty_%s_branch.bat", branch))
+
+  kwb.utils::catAndRun(dbg = dbg, paste("Writing batch file:", file), {
+    writeLines(cmd, file)
+  })
+
+  if (execute) {
+    kwb.utils::catAndRun(dbg = dbg, paste("Running batch file:", file), {
+      system(file)
+    })
   }
 
   git_exe <- git_check_if_windows(git_exe)
@@ -351,28 +318,24 @@ add_gitlabci_to_ghpages <- function(repo = NULL,
 
 }
 
-
 #' Create Empty gh-pages branch
 #'
 #' @inheritParams create_empty_branch
 #' @return create and push an empty gh-pages branch to org/repo
 #' @export
-create_empty_branch_ghpages <- function(repo = NULL,
-                                        org = "KWB-R",
-                                        set_githubuser = TRUE,
-                                        git_exe = "C:/Program Files/Git/bin/git.exe",
-                                        dest_dir = tempdir(),
-                                        execute = TRUE,
-                                        dbg = TRUE,
-                                        ...) {
-  create_empty_branch(repo,
-    branch = "gh-pages",
-    org,
-    set_githubuser,
-    git_exe,
-    dest_dir,
-    execute,
-    dbg,
-    ...
+create_empty_branch_ghpages <- function(
+  repo = NULL,
+  org = "KWB-R",
+  set_githubuser = TRUE,
+  git_exe = "C:/Program Files/Git/bin/git.exe",
+  dest_dir = tempdir(),
+  execute = TRUE,
+  dbg = TRUE,
+  ...
+) {
+
+  create_empty_branch(
+    repo, branch = "gh-pages", org, set_githubuser, git_exe, dest_dir, execute,
+    dbg,...
   )
 }
