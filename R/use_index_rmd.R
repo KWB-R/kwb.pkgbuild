@@ -1,3 +1,5 @@
+# use_index_rmd ----------------------------------------------------------------
+
 #' Use index.Rmd (used for pkgdown::build_home())
 #' @param user user name or organisation under which repository defined in\cr
 #' parameter "repo" is hosted (default: "KWB-R")\cr
@@ -11,27 +13,26 @@
 #' @importFrom desc desc
 
 use_index_rmd <- function(
-  user = "KWB-R",
-  domain = "github",
-  stage = "experimental") {
-
+  user = "KWB-R", domain = "github", stage = "experimental"
+)
+{
   pkg <- read_description()
 
-
-  index_rmd <- c(use_badge_appveyor(pkg$name, user,domain),
-                 use_badge_travis(pkg$name, user),
-                 use_badge_codecov(pkg$name, user, domain ),
-                 use_badge_lifecycle(stage),
-                 use_badge_cran(pkg$name),
-                 "",
-                 pkg$desc,
-                 "",
-                 use_installation(pkg$name, user, domain,output = "rmd"))
-
+  index_rmd <- c(
+    use_badge_appveyor(pkg$name, user,domain),
+    use_badge_travis(pkg$name, user),
+    use_badge_codecov(pkg$name, user, domain ),
+    use_badge_lifecycle(stage),
+    use_badge_cran(pkg$name),
+    "",
+    pkg$desc,
+    "",
+    use_installation(pkg$name, user, domain,output = "rmd")
+  )
 
   writeLines(index_rmd, "index.Rmd")
 
   write_to_rbuildignore(ignore_pattern = "^index\\.Rmd$")
 
-  return(index_rmd)
+  index_rmd
 }
