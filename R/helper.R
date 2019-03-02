@@ -1,3 +1,5 @@
+# get_pkgname ------------------------------------------------------------------
+
 #' Helper Function: Get Package Name
 #'
 #' @param pkgname either package name or NULL. In this
@@ -7,8 +9,8 @@
 #' @return package name
 #' @export
 
-get_pkgname <- function(pkgname = NULL) {
-
+get_pkgname <- function(pkgname = NULL)
+{
   # Return the package name if it was given
   if (! is.null(pkgname)) {
     return(pkgname)
@@ -22,6 +24,8 @@ get_pkgname <- function(pkgname = NULL) {
   read_description()$name
 }
 
+# git_check_if_windows ---------------------------------------------------------
+
 #' Git Check if Windows
 #'
 #' @param git_exe path to Git executable on windows
@@ -29,11 +33,10 @@ get_pkgname <- function(pkgname = NULL) {
 #' @keywords internal
 #' @noRd
 #'
-git_check_if_windows <- function(git_exe) {
-
+git_check_if_windows <- function(git_exe)
+{
   # For non-Windows systems, assume that "git" is installed and on the PATH
   if (.Platform$OS.type != "windows") {
-
     return("git")
   }
 
@@ -45,19 +48,23 @@ git_check_if_windows <- function(git_exe) {
   git_exe
 }
 
+# set_github_user --------------------------------------------------------------
+
 #' Set Github User For GIT
 #'
-#' @param git_username Github username (default: "kwb.pkgbuild::use_autopkgdown()")
-#' @param git_fullname Github fullname (default: "kwb.pkgbuild::use_autopkgdown()")
-#' @param git_email (default: `kwbr-bot@kompetenz-wasser.de`), is then internally derived by calling
-#' whoami::fullname() and assuming that Github "kompetenz-wasser.de" used as
-#' email on Github
+#' @param git_username Github username (default:
+#'   "kwb.pkgbuild::use_autopkgdown()")
+#' @param git_fullname Github fullname (default:
+#'   "kwb.pkgbuild::use_autopkgdown()")
+#' @param git_email (default: `kwbr-bot@kompetenz-wasser.de`), is then
+#'   internally derived by calling whoami::fullname() and assuming that Github
+#'   "kompetenz-wasser.de" used as email on Github
 #' @param git_exe path git git executable (only used on Windows as it is not
-#' installed in the local "environment"). On all other plattforms it is assumed
-#' that a call with "git" works
+#'   installed in the local "environment"). On all other plattforms it is
+#'   assumed that a call with "git" works
 #' @param execute should a batch file be run?
 #' @param execute_dir path to directory where batch script should be run in case
-#' that execute == TRUE (default: tempdir())
+#'   that execute == TRUE (default: tempdir())
 #' @param dbg print debug messages (default: TRUE)
 #' @return sets globally user.name and user.email in Git
 #' @export
@@ -70,8 +77,8 @@ set_github_user <- function(
   execute = FALSE,
   execute_dir = tempdir(),
   dbg = TRUE
-) {
-
+)
+{
   if (is.null(git_email)) {
 
     # Replace space with dot
@@ -109,33 +116,36 @@ set_github_user <- function(
   })
 }
 
+# write_git_batch_and_execute --------------------------------------------------
+
 #' @noRd
 #' @keywords internal
-write_git_batch_and_execute <- function(cmd,
-                                        set_githubuser = TRUE,
-                                        bat_name = sprintf("%s.bat",
-                                                           basename(tempfile())),
-                                        dest_dir,
-                                        git_exe,
-                                        execute = TRUE,
-                                        dbg = TRUE, ...) {
+write_git_batch_and_execute <- function(
+  cmd,
+  set_githubuser = TRUE,
+  bat_name = sprintf("%s.bat", basename(tempfile())),
+  dest_dir,
+  git_exe,
+  execute = TRUE,
+  dbg = TRUE,
+  ...
+)
+{
   if (set_githubuser) {
-    git_usermeta <- set_github_user(git_exe = git_exe, dbg = dbg, ...)
-
-    cmd <- c(git_usermeta,  cmd)
+    cmd <- c(set_github_user(git_exe = git_exe, dbg = dbg, ...), cmd)
   }
 
+  file <- file.path(dest_dir, bat_name)
 
-  bat_path <- file.path(dest_dir, bat_name)
+  kwb.utils::catAndRun(dbg = dbg, sprintf("Writing batch file: %s", file), {
+    writeLines(cmd, file)
+  })
 
-  if(dbg) {
-    print(sprintf("Writing batch file: %s", bat_path))
+  if (! execute) {
+    return()
   }
-  writeLines(cmd, bat_path)
-  if(execute) {
-    if(dbg) {
-      print(sprintf("Running batch file: %s", bat_path))
-      system(bat_path)
-    }
-  }
+
+  kwb.utils::catAndRun(dbg = dbg, sprintf("Running batch file: %s", file), {
+    expr = system(file)
+  })
 }
