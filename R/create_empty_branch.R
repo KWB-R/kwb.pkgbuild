@@ -14,11 +14,18 @@ create_empty_branch_ghpages <- function(
   execute = TRUE,
   dbg = TRUE,
   ...
-) {
-
+)
+{
   create_empty_branch(
-    repo, branch = "gh-pages", org, set_githubuser, git_exe, dest_dir, execute,
-    dbg,...
+    repo = repo,
+    branch = "gh-pages",
+    org = org,
+    set_githubuser = set_githubuser,
+    git_exe = git_exe,
+    dest_dir = dest_dir,
+    execute = execute,
+    dbg = dbg,
+    ...
   )
 }
 
@@ -53,21 +60,15 @@ create_empty_branch <- function(
   execute = TRUE,
   dbg = TRUE,
   ...
-) {
+)
+{
+  if (is.null(repo)) clean_stop(
+    "Specify the name of the repo to be checked out with parameter 'repo'"
+  )
 
-  if (is.null(repo)) {
-    stop(
-      "Specify the name of the repo to be checked out with parameter 'repo'",
-      call. = FALSE
-    )
-  }
-
-  if (is.null(branch)) {
-    stop(
-      "Specify the name of the branch to be created in parameter 'branch'",
-      call. = FALSE
-    )
-  }
+  if (is.null(branch)) clean_stop(
+    "Specify the name of the branch to be created in parameter 'branch'"
+  )
 
   git_exe <- git_check_if_windows(git_exe)
 
@@ -84,61 +85,70 @@ create_empty_branch <- function(
     sprintf('"%s" checkout master', git_exe)
   )
 
-  if (set_githubuser) {
-    git_usermeta <- set_github_user(git_exe = git_exe, dbg = dbg, ...)
-    cmd <- c(git_usermeta, cmd)
-  }
+  if (set_githubuser) cmd <- c(
+    set_github_user(git_exe = git_exe, dbg = dbg, ...), cmd
+  )
 
   file <- file.path(dest_dir, sprintf("create_empty_%s_branch.bat", branch))
 
-  kwb.utils::catAndRun(dbg = dbg, paste("Writing batch file:", file), {
-    writeLines(cmd, file)
-  })
+  kwb.utils::catAndRun(
+    dbg = dbg,
+    messageText = paste("Writing batch file:", file),
+    expr = writeLines(cmd, file)
+  )
 
-  if (execute) {
-    kwb.utils::catAndRun(dbg = dbg, paste("Running batch file:", file), {
-      system(file)
-    })
-  }
+  if (execute) kwb.utils::catAndRun(
+    dbg = dbg,
+    messageText = paste("Running batch file:", file),
+    expr = system(file)
+  )
 
   git_exe <- git_check_if_windows(git_exe)
 
-
   fs::dir_create(dest_dir)
-
 
   cmd_checkout <- c(
     sprintf('cd "%s"', dest_dir),
     sprintf('"%s" clone https://github.com/%s/%s', git_exe, org, repo),
-    sprintf('"%s" checkout -b %s', git_exe, branch))
+    sprintf('"%s" checkout -b %s', git_exe, branch)
+  )
 
-  write_git_batch_and_execute(cmd_checkout, set_githubuser,
-                              bat_name = sprintf("add_%s_branch.bat",
-                                                 branch),
-                              dest_dir,
-                              git_exe,
-                              execute,
-                              dbg,
-                              ...)
+  write_git_batch_and_execute(
+    cmd_checkout,
+    set_githubuser,
+    bat_name = sprintf("add_%s_branch.bat", branch),
+    dest_dir,
+    git_exe,
+    execute,
+    dbg,
+    ...
+  )
 
   checkout_path <- file.path(dest_dir, repo)
+
   use_gitlab_ci_ghpages(dest_dir = checkout_path)
 
   cmd_push <- c(
     sprintf('cd "%s"', checkout_path),
     sprintf('"%s" add %s', git_exe, ".gitlab-ci.yml"),
     sprintf('"%s" commit -m "Add backup deploy config for GitLab"', git_exe),
-    sprintf('"%s" push origin %s', git_exe, branch))
+    sprintf('"%s" push origin %s', git_exe, branch)
+  )
 
-  write_git_batch_and_execute(cmd_push, set_githubuser,
-                              bat_name = sprintf("add_%s_branch.bat",
-                                                 branch),
-                              dest_dir,
-                              git_exe,
-                              execute,
-                              dbg,
-                              ...)
+  write_git_batch_and_execute(
+    cmd_push,
+    set_githubuser,
+    bat_name = sprintf("add_%s_branch.bat", branch),
+    dest_dir,
+    git_exe,
+    execute,
+    dbg,
+    ...
+  )
+}
 
-
-
+# clean_stop -------------------------------------------------------------------
+clean_stop <- function(...)
+{
+  stop(..., call. = FALSE)
 }
