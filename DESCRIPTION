@@ -19,7 +19,7 @@ Description: Helper functions for automating R package development at KWB
 License: MIT + file LICENSE
 URL: https://github.com/KWB-R/kwb.pkgbuild
 BugReports: https://github.com/KWB-R/kwb.pkgbuild/issues
-Imports: 
+Imports:
     assertthat,
     callr,
     desc,
