@@ -13,13 +13,11 @@ copy_files_from_vignettes_dir_to_deploy_dir <- function(
   source_dir = ".", deploy_dir = "docs", pattern = "\\.json$", overwrite = TRUE
 )
 {
-  vig_dir <- file.path(source_dir, "vignettes")
+  from <- fs::dir_ls(file.path(source_dir, "vignettes"), regexp = pattern)
 
-  src_filepaths <- fs::dir_ls(vig_dir, regexp = pattern)
+  to <- file.path(deploy_dir, basename(from))
 
-  dest_filepaths <- file.path(deploy_dir, basename(src_filepaths))
-
-  fs::file_copy(src_filepaths, dest_filepaths, overwrite = overwrite)
+  fs::file_copy(from, to, overwrite = overwrite)
 }
 
 # deploy_site_github_with_extra_files ------------------------------------------
@@ -52,29 +50,42 @@ deploy_site_github_with_extra_files <- function(
   ssh_id = Sys.getenv("id_rsa", ""),
   repo_slug = Sys.getenv("TRAVIS_REPO_SLUG", ""),
   commit_message = pkgdown:::construct_commit_message(pkg),
-  verbose = TRUE, ...
+  verbose = TRUE,
+  ...
 )
 {
-  if (! nzchar(tarball)) clean_stop(
-    "No built tarball detected, please provide the location of one with `tarball`"
+  stop_if_missing <- function(x, ...) if (! nzchar(x)) clean_stop(...)
+
+  stop_if_missing(
+    tarball, "No built tarball detected, please provide the location of one ",
+    "with `tarball`"
   )
 
-  if (! nzchar(ssh_id)) clean_stop(
-    "No deploy key found, please setup with `travis::use_travis_deploy()`"
+  stop_if_missing(
+    ssh_id, "No deploy key found, please setup with ",
+    "`travis::use_travis_deploy()`"
   )
 
-  if (! nzchar(repo_slug)) clean_stop(
-    "No repo detected, please supply one with `repo_slug`"
+  stop_if_missing(
+    repo_slug, "No repo detected, please supply one with `repo_slug`"
   )
 
   pkgdown:::rule("Deploying site", line = 2)
+
   pkgdown:::rule("Installing package", line = 1)
+
   callr::rcmd("INSTALL", tarball, show = verbose, fail_on_status = TRUE)
+
   ssh_id_file <- "~/.ssh/id_rsa"
+
   pkgdown:::rule("Setting up SSH id", line = 1)
+
   pkgdown:::cat_line("Copying private key to: ", ssh_id_file)
+
   pkgdown:::write_lines(rawToChar(openssl::base64_decode(ssh_id)), ssh_id_file)
+
   pkgdown:::cat_line("Setting private key permissions to 0600")
+
   fs::file_chmod(ssh_id_file, "0600")
 
   deploy_local_with_extra_files(
