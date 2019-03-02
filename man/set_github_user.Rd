@@ -4,8 +4,9 @@
 \alias{set_github_user}
 \title{Set Github User For GIT}
 \usage{
-set_github_user(git_username = whoami::username(),
-  git_fullname = whoami::fullname(), git_email = NULL,
+set_github_user(git_username = "kwb.pkgbuild::use_autopkgdown()",
+  git_fullname = "kwb.pkgbuild::use_autopkgdown()",
+  git_email = "kwbr-bot@kompetenz-wasser.de",
   git_exe = "C:/Program Files/Git/bin/git.exe", execute = FALSE,
   execute_dir = tempdir(), dbg = TRUE)
 }
