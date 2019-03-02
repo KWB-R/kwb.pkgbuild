@@ -28,7 +28,7 @@ use_pkgdown <- function(
   }
 
   pkgdown_yaml <- yaml::as.yaml(list(
-    authors = authors_yaml,
+    authors = authors,
     template = list(params = list(bootswatch = "cerulean")),
     development = list(mode = "auto")
   ))
