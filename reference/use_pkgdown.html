@@ -140,21 +140,21 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>use_pkgdown</span>(<span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Michael Rustler"</span>, <span class='kw'>url</span> <span class='kw'>=</span>
-  <span class='st'>"http://mrustl.de"</span>), <span class='kw'>copyright_holder_name</span> <span class='kw'>=</span> <span class='fu'>kwb_string</span>())</pre>
+    <pre class="usage"><span class='fu'>use_pkgdown</span>(<span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='kwb_author.html'>kwb_author</a></span>(<span class='st'>"rustler"</span>),
+  <span class='kw'>copyright_holder_name</span> <span class='kw'>=</span> <span class='fu'>kwb_string</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>author</th>
-      <td><p>list of author attributes (default: list(name = "Michael Rustler",
-url = "https://mrustl.de"))</p></td>
+      <td><p>list of author attributes (default:
+kwb.pkgbuild:::kwb_author("rustler"))</p></td>
     </tr>
     <tr>
       <th>copyright_holder_name</th>
       <td><p>name of copyright holder
-(default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")</p></td>
+(default: kwb.pkgbuild:::kwb_string())</p></td>
     </tr>
     </table>
     

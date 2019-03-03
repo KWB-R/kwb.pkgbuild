@@ -140,17 +140,12 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>use_pkg</span>(<span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Michael Rustler"</span>, <span class='kw'>orcid</span> <span class='kw'>=</span>
-  <span class='st'>"0000-0003-0647-7726"</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://mrustl.de"</span>), <span class='kw'>pkg</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
-  <span class='st'>"kwb.umberto"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"R package supporting UMBERTO LCA at KWB"</span>, <span class='kw'>desc</span> <span class='kw'>=</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"Helper functions for data aggregation and visualisation"</span>,
-  <span class='st'>" of UMBERTO (https://www.ifu.com/umberto/) model output."</span>)),
-  <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"0.0.0.9000"</span>, <span class='kw'>license</span> <span class='kw'>=</span> <span class='st'>"MIT + file LICENSE"</span>,
-  <span class='kw'>copyright_holder</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
-  <span class='st'>"Kompetenzzentrum Wasser Berlin gGmbH (KWB)"</span>, <span class='kw'>start_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
-  <span class='kw'>funder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>user</span> <span class='kw'>=</span> <span class='st'>"KWB-R"</span>, <span class='kw'>domain</span> <span class='kw'>=</span> <span class='st'>"github"</span>,
-  <span class='kw'>stage</span> <span class='kw'>=</span> <span class='st'>"experimental"</span>, <span class='kw'>auto_build_pkgdown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>use_pkg</span>(<span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='kwb_author.html'>kwb_author</a></span>(<span class='st'>"rustler"</span>),
+  <span class='kw'>pkg</span> <span class='kw'>=</span> <span class='fu'><a href='kwb_package.html'>kwb_package</a></span>(<span class='st'>"kwb.umberto"</span>), <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"0.0.0.9000"</span>,
+  <span class='kw'>license</span> <span class='kw'>=</span> <span class='st'>"MIT + file LICENSE"</span>, <span class='kw'>copyright_holder</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
+  <span class='fu'>kwb_string</span>(), <span class='kw'>start_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>), <span class='kw'>funder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>user</span> <span class='kw'>=</span> <span class='st'>"KWB-R"</span>,
+  <span class='kw'>domain</span> <span class='kw'>=</span> <span class='st'>"github"</span>, <span class='kw'>stage</span> <span class='kw'>=</span> <span class='st'>"experimental"</span>,
+  <span class='kw'>auto_build_pkgdown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,16 +153,12 @@
     <tr>
       <th>author</th>
       <td><p>author information in list format (default:
-list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-url = "https://mrustl.de"))</p></td>
+kwb.pkgbuild:::kwb_author("rustler"))</p></td>
     </tr>
     <tr>
       <th>pkg</th>
-      <td><p>package description in list format (default:<br />
-pkg = list(name = "kwb.umberto",<br />
-title = "R package supporting UMBERTO LCA at KWB",<br />
-desc = "Helper functions for data aggregation and visualisation of<br />
-UMBERTO (https://www.ifu.com/umberto) model output"))</p></td>
+      <td><p>package description in list format (default:
+kwb.pkgbuild:::kwb_package("kwb.umberto"))</p></td>
     </tr>
     <tr>
       <th>version</th>
@@ -183,14 +174,13 @@ UMBERTO (https://www.ifu.com/umberto) model output"))</p></td>
       <th>copyright_holder</th>
       <td><p>list with name of copyright holder and additional
 start_year (e.g. "2017") of copyright protection. If not specified
-(start_year = NULL), the current year is used as year only!
-(default: "list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-start_year = NULL)")</p></td>
+(start_year = NULL), the current year is used as year only! (default:
+"list(name = kwb.pkgbuild:::kwb_string(), start_year = NULL)")</p></td>
     </tr>
     <tr>
       <th>funder</th>
-      <td><p>funder/funding agency of R package (default: NULL), e.g. project
-name (e.g. AQUANES)</p></td>
+      <td><p>funder/funding agency of R package (default: NULL), e.g.
+project name (e.g. AQUANES)</p></td>
     </tr>
     <tr>
       <th>user</th>
@@ -204,14 +194,15 @@ parameter "repo" is hosted (default: "KWB-R")</p></td>
     <tr>
       <th>stage</th>
       <td><p>badge declares the developmental stage of a package, according
-to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
-valid arguments are: "experimental", "maturing", "stable", "retired",
+to
+[https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
+ valid arguments are: "experimental", "maturing", "stable", "retired",
 "archived", "dormant", "questioning"), (default: "experiment")</p></td>
     </tr>
     <tr>
       <th>auto_build_pkgdown</th>
-      <td><p>prepare Travis for pkgdown::build_site()
-(default: FALSE), only possible if GITHUB repo already existing</p></td>
+      <td><p>prepare Travis for pkgdown::build_site() (default:
+FALSE), only possible if GITHUB repo already existing</p></td>
     </tr>
     <tr>
       <th>dbg</th>
@@ -227,7 +218,7 @@ if "auto_build_pkgdown" == TRUE)</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>writes DESCRIPTION file using usethis::use_description() with KWB
-style</p>
+  style</p>
     
 
   </div>

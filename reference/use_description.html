@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>use_description with KWB styling — use_description • kwb.pkgbuild</title>
+<title>Use DESCRIPTION with KWB styling — use_description • kwb.pkgbuild</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,9 +36,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="use_description with KWB styling — use_description" />
+<meta property="og:title" content="Use DESCRIPTION with KWB styling — use_description" />
 
-<meta property="og:description" content="use_description with KWB styling" />
+<meta property="og:description" content="Use DESCRIPTION with KWB styling" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -129,24 +129,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>use_description with KWB styling</h1>
+    <h1>Use DESCRIPTION with KWB styling</h1>
     <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/use_description.R'><code>R/use_description.R</code></a></small>
     <div class="hidden name"><code>use_description.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>use_description with KWB styling</p>
+    <p>Use DESCRIPTION with KWB styling</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>use_description</span>(<span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Michael Rustler"</span>, <span class='kw'>orcid</span> <span class='kw'>=</span>
-  <span class='st'>"0000-0003-0647-7726"</span>, <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://mrustl.de"</span>), <span class='kw'>pkg</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
-  <span class='st'>"kwb.umberto"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"R package supporting UMBERTO LCA at KWB"</span>, <span class='kw'>desc</span> <span class='kw'>=</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"Helper functions for data aggregation and visualisation"</span>,
-  <span class='st'>" of UMBERTO (https://www.ifu.com/umberto/) model output."</span>)),
-  <span class='kw'>version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>license</span> <span class='kw'>=</span> <span class='st'>"MIT + file LICENSE"</span>,
-  <span class='kw'>copyright_holder_name</span> <span class='kw'>=</span> <span class='st'>"Kompetenzzentrum Wasser Berlin gGmbH (KWB)"</span>,
+    <pre class="usage"><span class='fu'>use_description</span>(<span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='kwb_author.html'>kwb_author</a></span>(<span class='st'>"rustler"</span>),
+  <span class='kw'>pkg</span> <span class='kw'>=</span> <span class='fu'><a href='kwb_package.html'>kwb_package</a></span>(<span class='st'>"kwb.umberto"</span>), <span class='kw'>version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>license</span> <span class='kw'>=</span> <span class='st'>"MIT + file LICENSE"</span>, <span class='kw'>copyright_holder_name</span> <span class='kw'>=</span> <span class='fu'>kwb_string</span>(),
   <span class='kw'>funder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -155,16 +151,12 @@
     <tr>
       <th>author</th>
       <td><p>author information in list format (default:
-list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-url = "https://mrustl.de"))</p></td>
+kwb.pkgbuild:::kwb_author("rustler"))</p></td>
     </tr>
     <tr>
       <th>pkg</th>
-      <td><p>package description in list format (default:<br />
-pkg = list(name = "kwb.umberto",<br />
-title = "R package supporting UMBERTO LCA at KWB",<br />
-desc = "Helper functions for data aggregation and visualisation of<br />
-UMBERTO (https://www.ifu.com/umberto/) model output"))</p></td>
+      <td><p>package description in list format (default:
+kwb.pkgbuild:::kwb_package("kwb.umberto"))</p></td>
     </tr>
     <tr>
       <th>version</th>
@@ -177,20 +169,20 @@ number 0.0.0.9000 in case (version = NULL) of first release</p></td>
     </tr>
     <tr>
       <th>copyright_holder_name</th>
-      <td><p>name of copyright holder
-(default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")</p></td>
+      <td><p>name of copyright holder (default:
+kwb.pkgbuild:::kwb_string())</p></td>
     </tr>
     <tr>
       <th>funder</th>
-      <td><p>funder/funding agency of R package (default: NULL), e.g. project
-name (e.g. AQUANES)</p></td>
+      <td><p>funder/funding agency of R package (default: NULL), e.g.
+project name (e.g. AQUANES)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>writes DESCRIPTION file using usethis::use_description() with KWB
-style</p>
+  style</p>
     
 
   </div>

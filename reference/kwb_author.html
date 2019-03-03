@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create Empty Branch From Github — create_empty_branch • kwb.pkgbuild</title>
+<title>Get Information About KWB Author — kwb_author • kwb.pkgbuild</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,9 +36,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Create Empty Branch From Github — create_empty_branch" />
+<meta property="og:title" content="Get Information About KWB Author — kwb_author" />
 
-<meta property="og:description" content="Create Empty Branch From Github" />
+<meta property="og:description" content="Get Information About KWB Author" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -129,80 +129,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create Empty Branch From Github</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/create_empty_branch.R'><code>R/create_empty_branch.R</code></a></small>
-    <div class="hidden name"><code>create_empty_branch.Rd</code></div>
+    <h1>Get Information About KWB Author</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/helper.R'><code>R/helper.R</code></a></small>
+    <div class="hidden name"><code>kwb_author.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create Empty Branch From Github</p>
+    <p>Get Information About KWB Author</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>create_empty_branch</span>(<span class='kw'>repo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>branch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>org</span> <span class='kw'>=</span> <span class='st'>"KWB-R"</span>,
-  <span class='kw'>set_githubuser</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>git_exe</span> <span class='kw'>=</span> <span class='fu'>path_to_git</span>(),
-  <span class='kw'>dest_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='kw'>execute</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>repo</th>
-      <td><p>name of existing Github repository (default: NULL)</p></td>
-    </tr>
-    <tr>
-      <th>branch</th>
-      <td><p>name of branch to be created (default: NULL)</p></td>
-    </tr>
-    <tr>
-      <th>org</th>
-      <td><p>repo owner (default: "KWB-R")</p></td>
-    </tr>
-    <tr>
-      <th>set_githubuser</th>
-      <td><p>should the Github user be set before executing the
-branch creation (default: TRUE). In this case set_github_user() is run</p></td>
-    </tr>
-    <tr>
-      <th>git_exe</th>
-      <td><p>path to GIT executable (default:
-kwb.pkgbuild:::path_to_git()), only required on "windows". On all other
-platforms it is assumed that "git" is sufficient!</p></td>
-    </tr>
-    <tr>
-      <th>dest_dir</th>
-      <td><p>directory where the the repo should be checked out (default:
-tempdir())</p></td>
-    </tr>
-    <tr>
-      <th>execute</th>
-      <td><p>should a batch file be run?</p></td>
-    </tr>
-    <tr>
-      <th>dbg</th>
-      <td><p>print debug messages (default: TRUE)</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional arguments passed to set_github_user</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>create empty branch (defined in 'branch') and push to org/repo on
-Github</p>
-    
+    <pre class="usage"><span class='fu'>kwb_author</span>(<span class='no'>who</span>)</pre>
+        
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

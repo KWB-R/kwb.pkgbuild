@@ -130,7 +130,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create Empty gh-pages branch</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/helper.R'><code>R/helper.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/create_empty_branch.R'><code>R/create_empty_branch.R</code></a></small>
     <div class="hidden name"><code>create_empty_branch_ghpages.Rd</code></div>
     </div>
 
@@ -141,7 +141,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>create_empty_branch_ghpages</span>(<span class='kw'>repo</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>org</span> <span class='kw'>=</span> <span class='st'>"KWB-R"</span>,
-  <span class='kw'>set_githubuser</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>git_exe</span> <span class='kw'>=</span> <span class='st'>"C:/Program Files/Git/bin/git.exe"</span>,
+  <span class='kw'>set_githubuser</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>git_exe</span> <span class='kw'>=</span> <span class='fu'>path_to_git</span>(),
   <span class='kw'>dest_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(), <span class='kw'>execute</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -163,7 +163,7 @@ branch creation (default: TRUE). In this case set_github_user() is run</p></td>
     <tr>
       <th>git_exe</th>
       <td><p>path to GIT executable (default:
-"C:/Program Files/Git/bin/git.exe"), only required on "windows". On all other
+kwb.pkgbuild:::path_to_git()), only required on "windows". On all other
 platforms it is assumed that "git" is sufficient!</p></td>
     </tr>
     <tr>

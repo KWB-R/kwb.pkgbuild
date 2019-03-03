@@ -140,8 +140,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>use_mit_license</span>(<span class='kw'>copyright_holder</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span>
-  <span class='st'>"Kompetenzzentrum Wasser Berlin gGmbH (KWB)"</span>, <span class='kw'>start_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>))</pre>
+    <pre class="usage"><span class='fu'>use_mit_license</span>(<span class='kw'>copyright_holder</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'>kwb_string</span>(), <span class='kw'>start_year</span> <span class='kw'>=</span>
+  <span class='kw'>NULL</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,8 +151,7 @@
       <td><p>list with name of copyright holder and additional
 start_year (e.g. "2017") of copyright protection. If not specified
 (start_year = NULL), the current year is used as year only!
-(default: "list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-start_year = NULL)")</p></td>
+(default: "list(name = kwb.pkgbuild:::kwb_string(), start_year = NULL)")</p></td>
     </tr>
     </table>
     
