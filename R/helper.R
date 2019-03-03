@@ -54,6 +54,12 @@ kwb_string <- function()
   "Kompetenzzentrum Wasser Berlin gGmbH (KWB)"
 }
 
+# path_to_git ------------------------------------------------------------------
+path_to_git <- function()
+{
+  "C:/Program Files/Git/bin/git.exe"
+}
+
 # set_github_user --------------------------------------------------------------
 
 #' Set Github User For GIT
@@ -79,7 +85,7 @@ set_github_user <- function(
   git_username = "kwb.pkgbuild::use_autopkgdown()",
   git_fullname = "kwb.pkgbuild::use_autopkgdown()",
   git_email = "kwbr-bot@kompetenz-wasser.de",
-  git_exe = "C:/Program Files/Git/bin/git.exe",
+  git_exe = path_to_git(),
   execute = FALSE,
   execute_dir = tempdir(),
   dbg = TRUE

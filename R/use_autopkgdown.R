@@ -30,7 +30,7 @@ use_autopkgdown <- function(
   repo = NULL,
   org = "KWB-R",
   set_githubuser = TRUE,
-  git_exe = "C:/Program Files/Git/bin/git.exe",
+  git_exe = path_to_git(),
   dest_dir = tempdir(),
   execute = TRUE,
   dbg = TRUE,

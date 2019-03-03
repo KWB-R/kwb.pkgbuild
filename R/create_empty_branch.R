@@ -9,7 +9,7 @@ create_empty_branch_ghpages <- function(
   repo = NULL,
   org = "KWB-R",
   set_githubuser = TRUE,
-  git_exe = "C:/Program Files/Git/bin/git.exe",
+  git_exe = path_to_git(),
   dest_dir = tempdir(),
   execute = TRUE,
   dbg = TRUE,
@@ -39,8 +39,8 @@ create_empty_branch_ghpages <- function(
 #' @param set_githubuser should the Github user be set before executing the
 #' branch creation (default: TRUE). In this case set_github_user() is run
 #' @param git_exe path to GIT executable (default:
-#' "C:/Program Files/Git/bin/git.exe"), only required on "windows". On all other
-#' platforms it is assumed that "git" is sufficient!
+#'   kwb.pkgbuild:::path_to_git()), only required on "windows". On all other
+#'   platforms it is assumed that "git" is sufficient!
 #' @param dest_dir directory where the the repo should be checked out (default:
 #' tempdir())
 #' @param execute should a batch file be run?
@@ -55,7 +55,7 @@ create_empty_branch <- function(
   branch = NULL,
   org = "KWB-R",
   set_githubuser = TRUE,
-  git_exe = "C:/Program Files/Git/bin/git.exe",
+  git_exe = path_to_git(),
   dest_dir = tempdir(),
   execute = TRUE,
   dbg = TRUE,

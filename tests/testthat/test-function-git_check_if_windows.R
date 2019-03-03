@@ -7,8 +7,6 @@
 
 test_that("git_check_if_windows() works", {
 
-
-    kwb.pkgbuild:::git_check_if_windows("C:/Program Files/Git/bin/git.exe")
-
+  kwb.pkgbuild:::git_check_if_windows(path_to_git())
 })
 

@@ -5,7 +5,7 @@
 \title{Create Empty Branch From Github}
 \usage{
 create_empty_branch(repo = NULL, branch = NULL, org = "KWB-R",
-  set_githubuser = TRUE, git_exe = "C:/Program Files/Git/bin/git.exe",
+  set_githubuser = TRUE, git_exe = path_to_git(),
   dest_dir = tempdir(), execute = TRUE, dbg = TRUE, ...)
 }
 \arguments{
@@ -19,7 +19,7 @@ create_empty_branch(repo = NULL, branch = NULL, org = "KWB-R",
 branch creation (default: TRUE). In this case set_github_user() is run}
 
 \item{git_exe}{path to GIT executable (default:
-"C:/Program Files/Git/bin/git.exe"), only required on "windows". On all other
+kwb.pkgbuild:::path_to_git()), only required on "windows". On all other
 platforms it is assumed that "git" is sufficient!}
 
 \item{dest_dir}{directory where the the repo should be checked out (default:
