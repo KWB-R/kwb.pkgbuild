@@ -17,7 +17,7 @@ grammars <- list(
   travis = list(
     title = "Travis build Status",
     address = "https://travis-ci.org",
-    path_1 = "<user>/<pkgname>.svg?branch=<branch>",
+    path_1 = "<path_2>.svg?branch=<branch>",
     path_2 = "<user>/<pkgname>",
     params = ""
   ),
