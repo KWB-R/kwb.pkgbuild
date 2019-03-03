@@ -1,3 +1,9 @@
+# clean_stop -------------------------------------------------------------------
+clean_stop <- function(...)
+{
+  stop(..., call. = FALSE)
+}
+
 # get_pkgname ------------------------------------------------------------------
 
 #' Helper Function: Get Package Name
