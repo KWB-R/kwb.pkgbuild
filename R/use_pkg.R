@@ -2,13 +2,10 @@
 
 #' Wrapper function for preparing R package with KWB styling
 #'
-#' @param author author information in list format (default: list(name =
-#'   "Michael Rustler", orcid = "0000-0003-0647-7726", url =
-#'   "https://mrustl.de"))
-#' @param pkg package description in list format (default:\cr pkg = list(name =
-#'   "kwb.umberto",\cr title = "R package supporting UMBERTO LCA at KWB",\cr
-#'   desc = "Helper functions for data aggregation and visualisation of\cr
-#'   UMBERTO (https://www.ifu.com/umberto) model output"))
+#' @param author author information in list format (default:
+#'   kwb.pkgbuild:::kwb_author("rustler"))
+#' @param pkg package description in list format (default:
+#'   kwb.pkgbuild:::kwb_package("kwb.umberto"))
 #' @param version user defined version number (e.g. 0.1.0) or default
 #'   "0.0.0.9000" version number for initial development version (default:
 #'   "0.0.0.9000")
@@ -38,19 +35,8 @@
 #'   if "auto_build_pkgdown" == TRUE)
 #' @export
 use_pkg <- function(
-  author = list(
-    name = "Michael Rustler",
-    orcid = "0000-0003-0647-7726",
-    url = "https://mrustl.de"
-  ),
-  pkg = list(
-    name = "kwb.umberto",
-    title = "R package supporting UMBERTO LCA at KWB",
-    desc = paste0(
-      "Helper functions for data aggregation and visualisation",
-      " of UMBERTO (https://www.ifu.com/umberto/) model output."
-    )
-  ),
+  author = kwb_author("rustler"),
+  pkg = kwb_package("kwb.umberto"),
   version = "0.0.0.9000",
   license = "MIT + file LICENSE",
   copyright_holder = list(name = kwb_string(), start_year = NULL),

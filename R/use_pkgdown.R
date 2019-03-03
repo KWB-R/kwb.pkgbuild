@@ -1,7 +1,7 @@
 #' pkgdown for KWB
 #'
-#' @param author list of author attributes (default: list(name = "Michael Rustler",
-#' url = "https://mrustl.de"))
+#' @param author list of author attributes (default:
+#'   kwb.pkgbuild:::kwb_author("rustler"))
 #' @param copyright_holder_name name of copyright holder
 #' (default: kwb.pkgbuild:::kwb_string())
 #' @return  performs usethis::use_pkgdown() and additionally writes _pkgdown.yml
@@ -9,7 +9,7 @@
 #' @importFrom usethis use_pkgdown
 #' @export
 use_pkgdown <- function(
-  author = list(name = "Michael Rustler", url = "http://mrustl.de"),
+  author = kwb_author("rustler"),
   copyright_holder_name = kwb_string()
 )
 {

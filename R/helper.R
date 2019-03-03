@@ -54,6 +54,41 @@ git_check_if_windows <- function(git_exe)
   git_exe
 }
 
+# kwb_author -------------------------------------------------------------------
+
+#' Get Information About KWB Author
+#'
+#' @importFrom kwb.utils selectElements
+#' @keywords internal
+kwb_author <- function(who)
+{
+  kwb.utils::selectElements(elements = who, x = list(
+    rustler = list(
+      name = "Michael Rustler",
+      orcid = "0000-0003-0647-7726",
+      url = "https://mrustl.de"
+    )
+  ))
+}
+
+#' Get (Default) Information About KWB-R Package
+#'
+#' @importFrom kwb.utils selectElements
+#' @keywords internal
+kwb_package <- function(pkg)
+{
+  kwb.utils::selectElements(elements = pkg, x = list(
+    "kwb.umberto" = list(
+      name = "kwb.umberto",
+      title = "R package supporting UMBERTO LCA at KWB",
+      desc = paste0(
+        "Helper functions for data aggregation and visualisation",
+        " of UMBERTO (https://www.ifu.com/umberto/) model output."
+      )
+    )
+  ))
+}
+
 # kwb_string -------------------------------------------------------------------
 kwb_string <- function()
 {
