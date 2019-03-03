@@ -12,7 +12,7 @@ use_pkgdown(author = list(name = "Michael Rustler", url =
 url = "https://mrustl.de"))}
 
 \item{copyright_holder_name}{name of copyright holder
-(default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")}
+(default: kwb.pkgbuild:::kwb_string())}
 }
 \value{
 performs usethis::use_pkgdown() and additionally writes _pkgdown.yml

@@ -8,10 +8,10 @@ use_gitlab_ci_docs(dest_dir = getwd(),
   yml_vector = gitlab_ci_template_docs())
 }
 \arguments{
-\item{dest_dir}{directoy to write (default:
-getwd())}
+\item{dest_dir}{directoy to write (default: getwd())}
 
-\item{yml_vector}{a yml imported as string vector (default: gitlab_ci_template_docs())}
+\item{yml_vector}{a yml imported as string vector (default:
+gitlab_ci_template_docs())}
 }
 \value{
 writes .gitlab-ci.yml and adds it .Rbuildignore

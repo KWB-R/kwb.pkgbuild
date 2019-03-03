@@ -48,6 +48,12 @@ git_check_if_windows <- function(git_exe)
   git_exe
 }
 
+# kwb_string -------------------------------------------------------------------
+kwb_string <- function()
+{
+  "Kompetenzzentrum Wasser Berlin gGmbH (KWB)"
+}
+
 # set_github_user --------------------------------------------------------------
 
 #' Set Github User For GIT

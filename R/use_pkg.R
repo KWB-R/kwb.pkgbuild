@@ -16,8 +16,7 @@
 #' @param copyright_holder list with name of copyright holder and additional
 #'   start_year (e.g. "2017") of copyright protection. If not specified
 #'   (start_year = NULL), the current year is used as year only! (default:
-#'   "list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)", start_year =
-#'   NULL)")
+#'   "list(name = kwb.pkgbuild:::kwb_string(), start_year = NULL)")
 #' @param funder funder/funding agency of R package (default: NULL), e.g.
 #'   project name (e.g. AQUANES)
 #' @param user user name or organisation under which repository defined in
@@ -54,10 +53,7 @@ use_pkg <- function(
   ),
   version = "0.0.0.9000",
   license = "MIT + file LICENSE",
-  copyright_holder = list(
-    name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-    start_year = NULL
-  ),
+  copyright_holder = list(name = kwb_string(), start_year = NULL),
   funder = NULL,
   user = "KWB-R",
   domain = "github",

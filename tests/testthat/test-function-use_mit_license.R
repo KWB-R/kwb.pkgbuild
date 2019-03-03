@@ -6,9 +6,6 @@ test_that("use_mit_license() works", {
   withr::with_dir(create_pkg_temp(), {
   usethis::proj_set(getwd())
   kwb.pkgbuild::use_description()
-  cph <- list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-       start_year = 2018)
+  cph <- list(name = kwb.pkgbuild:::kwb_string(), start_year = 2018)
   kwb.pkgbuild:::use_mit_license(copyright_holder = cph)})
-
 })
-

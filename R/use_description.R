@@ -13,7 +13,7 @@
 #'   number 0.0.0.9000 in case (version = NULL) of first release
 #' @param license license (default: "MIT + file LICENSE")
 #' @param copyright_holder_name name of copyright holder (default:
-#'   "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")
+#'   kwb.pkgbuild:::kwb_string())
 #' @param funder funder/funding agency of R package (default: NULL), e.g.
 #'   project name (e.g. AQUANES)
 #' @return writes DESCRIPTION file using usethis::use_description() with KWB
@@ -38,7 +38,7 @@ use_description <- function(
   ),
   version = NULL,
   license = "MIT + file LICENSE",
-  copyright_holder_name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
+  copyright_holder_name = kwb_string(),
   funder = NULL
 )
 {

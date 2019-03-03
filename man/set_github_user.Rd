@@ -11,17 +11,19 @@ set_github_user(git_username = "kwb.pkgbuild::use_autopkgdown()",
   execute_dir = tempdir(), dbg = TRUE)
 }
 \arguments{
-\item{git_username}{Github username (default: "kwb.pkgbuild::use_autopkgdown()")}
+\item{git_username}{Github username (default:
+"kwb.pkgbuild::use_autopkgdown()")}
 
-\item{git_fullname}{Github fullname (default: "kwb.pkgbuild::use_autopkgdown()")}
+\item{git_fullname}{Github fullname (default:
+"kwb.pkgbuild::use_autopkgdown()")}
 
-\item{git_email}{(default: `kwbr-bot@kompetenz-wasser.de`), is then internally derived by calling
-whoami::fullname() and assuming that Github "kompetenz-wasser.de" used as
-email on Github}
+\item{git_email}{(default: `kwbr-bot@kompetenz-wasser.de`), is then
+internally derived by calling whoami::fullname() and assuming that Github
+"kompetenz-wasser.de" used as email on Github}
 
 \item{git_exe}{path git git executable (only used on Windows as it is not
-installed in the local "environment"). On all other plattforms it is assumed
-that a call with "git" works}
+installed in the local "environment"). On all other plattforms it is
+assumed that a call with "git" works}
 
 \item{execute}{should a batch file be run?}
 

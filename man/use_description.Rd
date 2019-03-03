@@ -2,7 +2,7 @@
 % Please edit documentation in R/use_description.R
 \name{use_description}
 \alias{use_description}
-\title{use_description with KWB styling}
+\title{Use DESCRIPTION with KWB styling}
 \usage{
 use_description(author = list(name = "Michael Rustler", orcid =
   "0000-0003-0647-7726", url = "https://mrustl.de"), pkg = list(name =
@@ -10,17 +10,15 @@ use_description(author = list(name = "Michael Rustler", orcid =
   paste0("Helper functions for data aggregation and visualisation",
   " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
   version = NULL, license = "MIT + file LICENSE",
-  copyright_holder_name = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-  funder = NULL)
+  copyright_holder_name = kwb_string(), funder = NULL)
 }
 \arguments{
-\item{author}{author information in list format (default:
-list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-url = "https://mrustl.de"))}
+\item{author}{author information in list format (default: list(name =
+"Michael Rustler", orcid = "0000-0003-0647-7726", url =
+"https://mrustl.de"))}
 
-\item{pkg}{package description in list format (default:\cr
-pkg = list(name = "kwb.umberto",\cr
-title = "R package supporting UMBERTO LCA at KWB",\cr
+\item{pkg}{package description in list format (default:\cr pkg = list(name =
+"kwb.umberto",\cr title = "R package supporting UMBERTO LCA at KWB",\cr
 desc = "Helper functions for data aggregation and visualisation of\cr
 UMBERTO (https://www.ifu.com/umberto/) model output"))}
 
@@ -29,16 +27,16 @@ number 0.0.0.9000 in case (version = NULL) of first release}
 
 \item{license}{license (default: "MIT + file LICENSE")}
 
-\item{copyright_holder_name}{name of copyright holder
-(default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")}
+\item{copyright_holder_name}{name of copyright holder (default:
+kwb.pkgbuild:::kwb_string())}
 
-\item{funder}{funder/funding agency of R package (default: NULL), e.g. project
-name (e.g. AQUANES)}
+\item{funder}{funder/funding agency of R package (default: NULL), e.g.
+project name (e.g. AQUANES)}
 }
 \value{
 writes DESCRIPTION file using usethis::use_description() with KWB
-style
+  style
 }
 \description{
-use_description with KWB styling
+Use DESCRIPTION with KWB styling
 }
