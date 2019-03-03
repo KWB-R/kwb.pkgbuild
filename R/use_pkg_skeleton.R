@@ -15,9 +15,9 @@
 #' withr::with_dir(pkg_dir, {use_pkg_skeleton(pkg_name)})
 use_pkg_skeleton <- function(pkg_name)
 {
-  if (is.null(pkg_name)) clean_stop(
-    "Please specify a 'pkg_name'"
-  )
+  if (is.null(pkg_name)) {
+    clean_stop("Please specify a 'pkg_name'")
+  }
 
   writeLines("", ".here")
 
@@ -30,11 +30,7 @@ use_pkg_skeleton <- function(pkg_name)
   if (usethis:::is_package()) {
 
     usethis::use_build_ignore(c(
-      rproj_file,
-      ".Rhistory",
-      ".RData",
-      ".Rproj.user" ,
-      ".here"
+      rproj_file, ".Rhistory", ".RData", ".Rproj.user" , ".here"
     ))
   }
 
