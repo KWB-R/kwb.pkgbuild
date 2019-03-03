@@ -171,7 +171,7 @@ use_badge_cran <- function(pkgname = NULL)
   is_no_error <- sapply(res_links, assertthat::is.error)
 
   pkg_on_cran <- tryCatch(
-    ifelse(! assertthat::is.error(res_link[1]), res_links[1], res_links[2]),
+    ifelse(! assertthat::is.error(res_links[1]), res_links[1], res_links[2]),
     error = function(e) {
       print("caught error")
       cat(sprintf(
