@@ -4,15 +4,14 @@
 \alias{use_mit_license}
 \title{Create MIT licence with KWB style}
 \usage{
-use_mit_license(copyright_holder = list(name =
-  "Kompetenzzentrum Wasser Berlin gGmbH (KWB)", start_year = NULL))
+use_mit_license(copyright_holder = list(name = kwb_string(), start_year =
+  NULL))
 }
 \arguments{
 \item{copyright_holder}{list with name of copyright holder and additional
 start_year (e.g. "2017") of copyright protection. If not specified
 (start_year = NULL), the current year is used as year only!
-(default: "list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-start_year = NULL)")}
+(default: "list(name = kwb.pkgbuild:::kwb_string(), start_year = NULL)")}
 }
 \value{
 creates MIT licence file

@@ -8,8 +8,9 @@ use_badge_lifecycle(stage = "experimental")
 }
 \arguments{
 \item{stage}{badge declares the developmental stage of a package, according
-to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
-valid arguments are: "experimental", "maturing", "stable", "retired",
+to
+[https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
+ valid arguments are: "experimental", "maturing", "stable", "retired",
 "archived", "dormant", "questioning"), (default: "experiment")}
 }
 \value{

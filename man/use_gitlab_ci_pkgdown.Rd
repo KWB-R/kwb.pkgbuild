@@ -8,13 +8,13 @@ use_gitlab_ci_pkgdown(dest_dir = getwd(),
   yml_vector = gitlab_ci_template_pkgdown())
 }
 \arguments{
-\item{dest_dir}{directoy to write (default:
-getwd())}
+\item{dest_dir}{directoy to write (default: getwd())}
 
-\item{yml_vector}{a yml imported as string vector (default: gitlab_ci_template_pkgdown(),
-where "<owner>/<repo>" is replaced with value from DESCRIPTION specified in
-field URL, e.g. https://github.com/KWB-R/kwb.pkgbuild" sets
-"KWB-R/kwb.pkgbuild" as "<owner>/<repo>")}
+\item{yml_vector}{a yml imported as string vector (default:
+gitlab_ci_template_pkgdown(), where "<owner>/<repo>" is replaced with value
+from DESCRIPTION specified in field URL, e.g.
+https://github.com/KWB-R/kwb.pkgbuild" sets "KWB-R/kwb.pkgbuild" as
+"<owner>/<repo>")}
 }
 \value{
 writes .gitlab-ci.yml

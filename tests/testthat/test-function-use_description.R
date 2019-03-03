@@ -4,11 +4,10 @@
 
 test_that("use_description() works", {
 
-  aut <- list(name = "Michael Rustler",
-              orcid = NULL,
-              url = "https://mrustl.de")
-  withr::with_dir(create_pkg_temp(), {
-    kwb.pkgbuild:::use_description(author = aut,
-                                 funder = "BMBF")})
-})
+  author <- kwb_author("rustler")
+  author["orcid"] <- list(NULL)
 
+  withr::with_dir(create_pkg_temp(), {
+    kwb.pkgbuild:::use_description(author = author, funder = "BMBF")
+  })
+})

@@ -8,10 +8,10 @@ use_gitlab_ci_blogdown(dest_dir = getwd(),
   yml_vector = gitlab_ci_template_blogdown())
 }
 \arguments{
-\item{dest_dir}{directoy to write (default:
-getwd())}
+\item{dest_dir}{directoy to write (default: getwd())}
 
-\item{yml_vector}{a yml imported as string vector (default: gitlab_ci_template_blogdown())}
+\item{yml_vector}{a yml imported as string vector (default:
+gitlab_ci_template_blogdown())}
 }
 \value{
 writes .gitlab-ci.yml

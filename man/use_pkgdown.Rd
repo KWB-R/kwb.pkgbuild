@@ -4,15 +4,15 @@
 \alias{use_pkgdown}
 \title{pkgdown for KWB}
 \usage{
-use_pkgdown(author = list(name = "Michael Rustler", url =
-  "http://mrustl.de"), copyright_holder_name = kwb_string())
+use_pkgdown(author = kwb_author("rustler"),
+  copyright_holder_name = kwb_string())
 }
 \arguments{
-\item{author}{list of author attributes (default: list(name = "Michael Rustler",
-url = "https://mrustl.de"))}
+\item{author}{list of author attributes (default:
+kwb.pkgbuild:::kwb_author("rustler"))}
 
 \item{copyright_holder_name}{name of copyright holder
-(default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")}
+(default: kwb.pkgbuild:::kwb_string())}
 }
 \value{
 performs usethis::use_pkgdown() and additionally writes _pkgdown.yml

@@ -1,15 +1,15 @@
 #' pkgdown for KWB
 #'
-#' @param author list of author attributes (default: list(name = "Michael Rustler",
-#' url = "https://mrustl.de"))
+#' @param author list of author attributes (default:
+#'   kwb.pkgbuild:::kwb_author("rustler"))
 #' @param copyright_holder_name name of copyright holder
-#' (default: "Kompetenzzentrum Wasser Berlin gGmbH (KWB)")
+#' (default: kwb.pkgbuild:::kwb_string())
 #' @return  performs usethis::use_pkgdown() and additionally writes _pkgdown.yml
 #' based on KWB styling
 #' @importFrom usethis use_pkgdown
 #' @export
 use_pkgdown <- function(
-  author = list(name = "Michael Rustler", url = "http://mrustl.de"),
+  author = kwb_author("rustler"),
   copyright_holder_name = kwb_string()
 )
 {
@@ -36,8 +36,4 @@ use_pkgdown <- function(
   writeLines(pkgdown_yaml, "_pkgdown.yml")
 
   write_to_rbuildignore("^_pkgdown\\.yml$")
-}
-
-kwb_string <- function() {
-  "Kompetenzzentrum Wasser Berlin gGmbH (KWB)"
 }

@@ -4,28 +4,19 @@
 \alias{use_pkg}
 \title{Wrapper function for preparing R package with KWB styling}
 \usage{
-use_pkg(author = list(name = "Michael Rustler", orcid =
-  "0000-0003-0647-7726", url = "https://mrustl.de"), pkg = list(name =
-  "kwb.umberto", title = "R package supporting UMBERTO LCA at KWB", desc =
-  paste0("Helper functions for data aggregation and visualisation",
-  " of UMBERTO (https://www.ifu.com/umberto/) model output.")),
-  version = "0.0.0.9000", license = "MIT + file LICENSE",
-  copyright_holder = list(name =
-  "Kompetenzzentrum Wasser Berlin gGmbH (KWB)", start_year = NULL),
-  funder = NULL, user = "KWB-R", domain = "github",
-  stage = "experimental", auto_build_pkgdown = FALSE, dbg = TRUE,
-  ...)
+use_pkg(author = kwb_author("rustler"),
+  pkg = kwb_package("kwb.umberto"), version = "0.0.0.9000",
+  license = "MIT + file LICENSE", copyright_holder = list(name =
+  kwb_string(), start_year = NULL), funder = NULL, user = "KWB-R",
+  domain = "github", stage = "experimental",
+  auto_build_pkgdown = FALSE, dbg = TRUE, ...)
 }
 \arguments{
 \item{author}{author information in list format (default:
-list(name = "Michael Rustler", orcid = "0000-0003-0647-7726",
-url = "https://mrustl.de"))}
+kwb.pkgbuild:::kwb_author("rustler"))}
 
-\item{pkg}{package description in list format (default:\cr
-pkg = list(name = "kwb.umberto",\cr
-title = "R package supporting UMBERTO LCA at KWB",\cr
-desc = "Helper functions for data aggregation and visualisation of\cr
-UMBERTO (https://www.ifu.com/umberto) model output"))}
+\item{pkg}{package description in list format (default:
+kwb.pkgbuild:::kwb_package("kwb.umberto"))}
 
 \item{version}{user defined version number (e.g. 0.1.0) or default
 "0.0.0.9000" version number for initial development version (default:
@@ -35,12 +26,11 @@ UMBERTO (https://www.ifu.com/umberto) model output"))}
 
 \item{copyright_holder}{list with name of copyright holder and additional
 start_year (e.g. "2017") of copyright protection. If not specified
-(start_year = NULL), the current year is used as year only!
-(default: "list(name ="Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-start_year = NULL)")}
+(start_year = NULL), the current year is used as year only! (default:
+"list(name = kwb.pkgbuild:::kwb_string(), start_year = NULL)")}
 
-\item{funder}{funder/funding agency of R package (default: NULL), e.g. project
-name (e.g. AQUANES)}
+\item{funder}{funder/funding agency of R package (default: NULL), e.g.
+project name (e.g. AQUANES)}
 
 \item{user}{user name or organisation under which repository defined in
 parameter "repo" is hosted (default: "KWB-R")}
@@ -48,12 +38,13 @@ parameter "repo" is hosted (default: "KWB-R")}
 \item{domain}{under which repository is hosted (default: "github")}
 
 \item{stage}{badge declares the developmental stage of a package, according
-to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
-valid arguments are: "experimental", "maturing", "stable", "retired",
+to
+[https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
+ valid arguments are: "experimental", "maturing", "stable", "retired",
 "archived", "dormant", "questioning"), (default: "experiment")}
 
-\item{auto_build_pkgdown}{prepare Travis for pkgdown::build_site()
-(default: FALSE), only possible if GITHUB repo already existing}
+\item{auto_build_pkgdown}{prepare Travis for pkgdown::build_site() (default:
+FALSE), only possible if GITHUB repo already existing}
 
 \item{dbg}{print debug messages (default: TRUE)}
 
@@ -62,7 +53,7 @@ if "auto_build_pkgdown" == TRUE)}
 }
 \value{
 writes DESCRIPTION file using usethis::use_description() with KWB
-style
+  style
 }
 \description{
 Wrapper function for preparing R package with KWB styling

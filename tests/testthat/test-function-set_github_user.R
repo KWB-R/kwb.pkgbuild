@@ -7,8 +7,11 @@
 
 test_that("set_github_user() works", {
 
-  kwb.pkgbuild:::set_github_user(git_username = "mrustl",
-                                 git_fullname = "Michael Rustler")
+  command <- kwb.pkgbuild:::set_github_user(
+    git_username = "mrustl",
+    git_fullname = "Michael Rustler"
+  )
 
+  expect_length(command, 2L)
+  expect_true(all(grepl("git.*config.*global.*user", command)))
 })
-

@@ -1,4 +1,7 @@
+# use_installation -------------------------------------------------------------
+
 #' Helper function: describe pkg installation in index.Rmd / README.md
+#'
 #' @param pkgname package name
 #' @param user user name or organisation under which repository defined in
 #' parameter "repo" is hosted
@@ -7,7 +10,8 @@
 #' (default: "md")
 use_installation <- function(pkgname, user, domain, output = "md")
 {
-  c("## Installation",
+  c(
+    "## Installation",
     "",
     if (tolower(output) == "rmd") {
       "```{r echo = TRUE, eval = FALSE}"
@@ -16,5 +20,6 @@ use_installation <- function(pkgname, user, domain, output = "md")
     },
     "#install.packages(\"remotes\", repos = \"https://cloud.r-project.org\")",
     sprintf("remotes::install_%s(\"%s/%s\")", domain, user, pkgname),
-    "```")
+    "```"
+  )
 }
