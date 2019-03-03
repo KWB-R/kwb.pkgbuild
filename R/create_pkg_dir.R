@@ -1,28 +1,3 @@
-# check_pkg_dir_nested ---------------------------------------------------------
-
-#' @noRd
-#' @keywords internal
-#' @importFrom stringr str_split
-#' @importFrom utils tail
-check_pkg_dir_nested <- function(pkg_dir)
-{
-  last_folders <- utils::tail(n = 2, as.character(
-    stringr::str_split(pkg_dir, pattern = "/", simplify = TRUE)
-  ))
-
-  if (last_folders[1] == last_folders[2]) clean_stop(
-    sprintf("Package skeleton for '%s' cannot be created, ", last_folders[2]),
-    sprintf("as it would be nested in subfolder '%s'.\n\n", pkg_dir),
-    "Workaround: specify a different 'root_dir' in function use_pkg_skeleton()"
-  )
-
-  message(sprintf(
-    "%s is a valid 'root_dir' for pkg '%s'", pkg_dir, last_folders[2]
-  ))
-
-  pkg_dir
-}
-
 # create_pkg_dir ---------------------------------------------------------------
 
 #' Create Package Directory
@@ -60,6 +35,31 @@ create_pkg_dir <- function(pkg_dir)
   ))
 
   warning(sprintf("%s cannot be created. It exists and is empty.", pkg_dir))
+
+  pkg_dir
+}
+
+# check_pkg_dir_nested ---------------------------------------------------------
+
+#' @noRd
+#' @keywords internal
+#' @importFrom stringr str_split
+#' @importFrom utils tail
+check_pkg_dir_nested <- function(pkg_dir)
+{
+  last_folders <- utils::tail(n = 2, as.character(
+    stringr::str_split(pkg_dir, pattern = "/", simplify = TRUE)
+  ))
+
+  if (last_folders[1] == last_folders[2]) clean_stop(
+    sprintf("Package skeleton for '%s' cannot be created, ", last_folders[2]),
+    sprintf("as it would be nested in subfolder '%s'.\n\n", pkg_dir),
+    "Workaround: specify a different 'root_dir' in function use_pkg_skeleton()"
+  )
+
+  message(sprintf(
+    "%s is a valid 'root_dir' for pkg '%s'", pkg_dir, last_folders[2]
+  ))
 
   pkg_dir
 }

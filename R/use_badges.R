@@ -1,47 +1,3 @@
-# grammars ---------------------------------------------------------------------
-
-grammars <- list(
-  general = list(
-    url = "[![<title>](<src>)](<href>)",
-    src = "<address>/<path_1><params>",
-    href = "<address>/<path_2>",
-    branch = "master"
-  ),
-  appveyor = list(
-    title = "Appveyor build Status",
-    address = "https://ci.appveyor.com",
-    path_1 = "api/projects/status/<domain>/<user>/<pkgname>",
-    path_2 = "project/<user>/<pkgname_dash>/branch/<branch>",
-    params = "?branch=<branch>&svg=true"
-  ),
-  travis = list(
-    title = "Travis build Status",
-    address = "https://travis-ci.org",
-    path_1 = "<path_2>.svg?branch=<branch>",
-    path_2 = "<user>/<pkgname>",
-    params = ""
-  ),
-  codecov = list(
-    title = "codecov",
-    address = "https://codecov.io",
-    path_1 = "<path_2>/branch/<branch>/graphs/badge.svg",
-    path_2 = "<domain>/<user>/<pkgname>",
-    params = ""
-  ),
-  lifecycle = list(
-    title = "Project Status",
-    src = "https://img.shields.io/badge/lifecycle-<stage>-<colour>.svg",
-    href = "https://www.tidyverse.org/lifecycle/#<stage>"
-  ),
-  cran = list(
-    title = "CRAN_Status_Badge",
-    src = "https://www.r-pkg.org/badges/version/<pkgname>"
-  ),
-  mirror = list(
-    url = "https://cran.<org>.org/package=<pkgname>"
-  )
-)
-
 # use_badge_appveyor -----------------------------------------------------------
 
 #' Badge appveyor
@@ -130,25 +86,6 @@ use_badge_lifecycle <- function(stage = "experimental")
   )
 }
 
-# is_on_cran -------------------------------------------------------------------
-
-#' Helper function for checking if docu on CRAN
-#' @keywords internal
-#' @noRd
-is_on_cran <- function(cran_link)
-{
-  try(httr::status_code(x = httr::GET(cran_link)) == 200, silent = TRUE)
-
-  # tryCatch(httr::status_code(x = httr::GET(cran_link)) == 200,
-  #   error = function(e) {
-  #     print("caught error")
-  #     cat(sprintf(
-  #       "Requesting %s failed with an error:\n%s",
-  #       cran_link, e
-  #     ))
-  #     "error"})
-}
-
 # use_badge_cran ---------------------------------------------------------------
 
 #' Badge CRAN
@@ -166,7 +103,7 @@ use_badge_cran <- function(pkgname = NULL)
     kwb.utils::resolve("url", grammars$mirror, org = org, pkgname = pkgname)
   })
 
-  res_links <- sapply(cran_mirrors_link, kwb.pkgbuild:::is_on_cran)
+  res_links <- sapply(cran_mirrors_link, is_on_cran)
 
   is_no_error <- sapply(res_links, assertthat::is.error)
 
@@ -189,4 +126,23 @@ use_badge_cran <- function(pkgname = NULL)
     grammars$cran,
     href = if (pkg_on_cran) cran_mirrors_link[is_no_error][1] else ""
   )
+}
+
+# is_on_cran -------------------------------------------------------------------
+
+#' Helper function for checking if docu on CRAN
+#' @keywords internal
+#' @noRd
+is_on_cran <- function(cran_link)
+{
+  try(httr::status_code(x = httr::GET(cran_link)) == 200, silent = TRUE)
+
+  # tryCatch(httr::status_code(x = httr::GET(cran_link)) == 200,
+  #   error = function(e) {
+  #     print("caught error")
+  #     cat(sprintf(
+  #       "Requesting %s failed with an error:\n%s",
+  #       cran_link, e
+  #     ))
+  #     "error"})
 }

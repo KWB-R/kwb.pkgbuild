@@ -1,25 +1,3 @@
-# copy_files_from_vignettes_dir_to_deploy_dir ----------------------------------
-
-#' Copy files from Vignettes Dir to Deploy idir
-#'
-#' @param source_dir default: "."
-#' @param deploy_dir default: "docs
-#' @param pattern file pattern to export (default: "\\.json$")
-#' @param overwrite should existing files be overwritten (default: TRUE)
-#' @return files matching pattern copied to deploy_dir
-#' @export
-#' @importFrom fs dir_ls file_copy
-copy_files_from_vignettes_dir_to_deploy_dir <- function(
-  source_dir = ".", deploy_dir = "docs", pattern = "\\.json$", overwrite = TRUE
-)
-{
-  from <- fs::dir_ls(file.path(source_dir, "vignettes"), regexp = pattern)
-
-  to <- file.path(deploy_dir, basename(from))
-
-  fs::file_copy(from, to, overwrite = overwrite)
-}
-
 # deploy_site_github_with_extra_files ------------------------------------------
 
 #' deploy_site_github_with_extra_files
@@ -150,4 +128,26 @@ deploy_local_with_extra_files <- function(
   pkgdown:::github_push(dest_dir, commit_message)
 
   invisible()
+}
+
+# copy_files_from_vignettes_dir_to_deploy_dir ----------------------------------
+
+#' Copy files from Vignettes Dir to Deploy idir
+#'
+#' @param source_dir default: "."
+#' @param deploy_dir default: "docs
+#' @param pattern file pattern to export (default: "\\.json$")
+#' @param overwrite should existing files be overwritten (default: TRUE)
+#' @return files matching pattern copied to deploy_dir
+#' @export
+#' @importFrom fs dir_ls file_copy
+copy_files_from_vignettes_dir_to_deploy_dir <- function(
+  source_dir = ".", deploy_dir = "docs", pattern = "\\.json$", overwrite = TRUE
+)
+{
+  from <- fs::dir_ls(file.path(source_dir, "vignettes"), regexp = pattern)
+
+  to <- file.path(deploy_dir, basename(from))
+
+  fs::file_copy(from, to, overwrite = overwrite)
 }
