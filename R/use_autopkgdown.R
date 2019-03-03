@@ -1,23 +1,3 @@
-# ignore_docs_folder -----------------------------------------------------------
-
-#' @keywords internal
-#' @noRd
-ignore_docs_folder <- function(ignore_pattern = "docs", dbg = TRUE)
-{
-  # Put "docs" folder to .gitignore
-  msg <- c(
-    "",
-    # Ignore "docs" folder as pkgdown::build_site() is run on Travis-CI',
-    '# and deploys the website to "gh-pages" branch'
-  )
-
-  kwb.utils::catAndRun(
-    dbg = dbg,
-    messageText = sprintf("Adding '%s' to .gitignore", ignore_pattern),
-    expr = write_to_gitignore(ignore_pattern, msg)
-  )
-}
-
 # use_autopkgdown --------------------------------------------------------------
 
 #' Use Auto Pkgdown
@@ -69,4 +49,24 @@ use_autopkgdown <- function(
 
   # Delete "docs" folder (if existing in "master" branch)
   #fs::dir_delete(path = "docs")
+}
+
+# ignore_docs_folder -----------------------------------------------------------
+
+#' @keywords internal
+#' @noRd
+ignore_docs_folder <- function(ignore_pattern = "docs", dbg = TRUE)
+{
+  # Put "docs" folder to .gitignore
+  msg <- c(
+    "",
+    # Ignore "docs" folder as pkgdown::build_site() is run on Travis-CI',
+    '# and deploys the website to "gh-pages" branch'
+  )
+
+  kwb.utils::catAndRun(
+    dbg = dbg,
+    messageText = sprintf("Adding '%s' to .gitignore", ignore_pattern),
+    expr = write_to_gitignore(ignore_pattern, msg)
+  )
 }

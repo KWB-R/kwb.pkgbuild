@@ -1,60 +1,5 @@
 library(magrittr)
 
-# create_author_metadata_from_orcid --------------------------------------------
-
-#' Helper Function: Create Author Metadata From ORCIDs
-#' @param orcids named character vector with ORCIDs and names correspondig to
-#' to "given_name family name" (defaults: kwb.orcid::get_kwb_orcids())
-#' @importFrom kwb.orcid get_kwb_orcids
-#' @importFrom stringr str_trim str_split
-#' @importFrom magrittr %>%
-#' @return data frame with required metadata for R package DESCRIPTION as
-#' required by desc::desc_add_author()
-#' @export
-create_author_metadata_from_orcid <- function(
-  orcids = kwb.orcid::get_kwb_orcids()
-)
-{
-  orc_ids <- orcids[order(orcids)]
-  orc_names <- names(orcids)
-
-  orc_names_matrix <- orc_names %>%
-    stringr::str_trim() %>%
-    stringr::str_split(pattern = "\\s+", simplify = TRUE, n = 2)
-
-  kwb.utils::noFactorDataFrame(
-    given = orc_names_matrix[,1],
-    family = orc_names_matrix[,2],
-    email = sprintf(
-      "%s.%s@kompetenz-wasser.de",
-      tolower(orc_names_matrix[, 1]),
-      tolower(orc_names_matrix[, 2])
-    ),
-    orcid = orc_ids,
-    row.names = NULL
-  )
-}
-
-# convert_author_metadata_tolist -----------------------------------------------
-
-#' Convert Author Metadata To List
-#'
-#' @param author_metadata_df data.frame as retrieved by
-#' create_author_metadata_from_orcid()
-#' @return transposed data.frame to list with "family_given" names for list
-#' subsetting
-#' @export
-#' @importFrom purrr transpose
-convert_author_metadata_tolist <- function(
-  author_metadata_df = create_author_metadata_from_orcid()
-)
-{
-  setNames(
-    object = purrr::transpose(author_metadata_df),
-    nm = paste0(author_metadata_df$family, "_", author_metadata_df$given)
-  )
-}
-
 # add_authors ------------------------------------------------------------------
 
 #' Use Authors
@@ -121,4 +66,59 @@ add_authors <- function(author_meta, role = "ctb", path = getwd())
       file = file.path(path, "DESCRIPTION")
     )
   }
+}
+
+# convert_author_metadata_tolist -----------------------------------------------
+
+#' Convert Author Metadata To List
+#'
+#' @param author_metadata_df data.frame as retrieved by
+#' create_author_metadata_from_orcid()
+#' @return transposed data.frame to list with "family_given" names for list
+#' subsetting
+#' @export
+#' @importFrom purrr transpose
+convert_author_metadata_tolist <- function(
+  author_metadata_df = create_author_metadata_from_orcid()
+)
+{
+  setNames(
+    object = purrr::transpose(author_metadata_df),
+    nm = paste0(author_metadata_df$family, "_", author_metadata_df$given)
+  )
+}
+
+# create_author_metadata_from_orcid --------------------------------------------
+
+#' Helper Function: Create Author Metadata From ORCIDs
+#' @param orcids named character vector with ORCIDs and names correspondig to
+#' to "given_name family name" (defaults: kwb.orcid::get_kwb_orcids())
+#' @importFrom kwb.orcid get_kwb_orcids
+#' @importFrom stringr str_trim str_split
+#' @importFrom magrittr %>%
+#' @return data frame with required metadata for R package DESCRIPTION as
+#' required by desc::desc_add_author()
+#' @export
+create_author_metadata_from_orcid <- function(
+  orcids = kwb.orcid::get_kwb_orcids()
+)
+{
+  orc_ids <- orcids[order(orcids)]
+  orc_names <- names(orcids)
+
+  orc_names_matrix <- orc_names %>%
+    stringr::str_trim() %>%
+    stringr::str_split(pattern = "\\s+", simplify = TRUE, n = 2)
+
+  kwb.utils::noFactorDataFrame(
+    given = orc_names_matrix[,1],
+    family = orc_names_matrix[,2],
+    email = sprintf(
+      "%s.%s@kompetenz-wasser.de",
+      tolower(orc_names_matrix[, 1]),
+      tolower(orc_names_matrix[, 2])
+    ),
+    orcid = orc_ids,
+    row.names = NULL
+  )
 }
