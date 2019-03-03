@@ -42,9 +42,9 @@ use_readme_md <- function(
     "",
     "## Documentation",
     "",
-    sprintf("Release: [%s](%s)", docu_release,docu_release),
+    sprintf("Release: [%s](%s)", docu_release, docu_release),
     "",
-    sprintf("Development: [%s](%s)", docu_dev,docu_dev)
+    sprintf("Development: [%s](%s)", docu_dev, docu_dev)
   )
 
   writeLines(readme_md, "README.md")

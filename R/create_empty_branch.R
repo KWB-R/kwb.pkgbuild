@@ -146,9 +146,3 @@ create_empty_branch <- function(
     ...
   )
 }
-
-# clean_stop -------------------------------------------------------------------
-clean_stop <- function(...)
-{
-  stop(..., call. = FALSE)
-}
