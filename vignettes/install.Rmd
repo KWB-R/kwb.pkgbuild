@@ -23,59 +23,81 @@ At our research institute, the Kompetezzentrum Wasser Berlin gGmbH (KWB), we
 process data using the programming language R. We organise the program code in
 R packages. We publish these packages on GitHub in order 
 
-- to simplify the installation of our packages,
-- to be visible to the research community,
-- to have a place where to host package documentation pages,
-- to be able to use issue tracking, e.g. for bug fixing,
-- to be able to use services such as continuous integration.
+* to simplify the installation of our packages,
+* to be visible to the research community,
+* to have a place where to host package documentation pages,
+* to be able to use issue tracking, e.g. for bug fixing,
+* to be able to use services such as continuous integration.
 
-# 1 GitHub Personal Access Token (GITHUB_PAT)
+Each R package is contained in its own GitHub repository. GitHub repositories
+are either 
 
-## 1.1 Create
+* public, i.e. accessible to everybody,
+* private, i.e. accessible only to members of the 
+[KWB-R](https://github.com/kwb-r) group.
 
-KWB-R researchers need to create a GitHub Personal Access Token (PAT) for themselves
-or their students at: 
+We keep packages that may contain confidential information private and make all 
+other packages public.
 
+# 1 GitHub Personal Access Token (PAT)
+
+In order 
+
+* not to be restricted in the number of accesses to the GitHub application 
+programming interface (API) and
+* to be able to access private GitHub repositories (see above),
+
+it is required that, whenever a GitHub repository is accessed, a so called
+personal access token (PAT) is passed to GitHub. As its name indicates, the 
+PAT is personal, i.e. it is explicitly assigned to one person. 
+
+You need to have a GitHub account and to be a member of the GitHub group
+[KWB-R](https://github.com/kwb-r) when you want to create a GitHub PAT for you 
+or one of your students.
+
+The following sections describe how to create, store and delete these Personal
+Acces Tokens.
+
+## 1.1 Create GitHub PAT
+
+Go to the following GitHub site to create a new personal access token (PAT):
 
 https://github.com/settings/tokens/new
 
-
-### 1.1.1 Public KWB-R packages
-
-In case only access to public KWB-R packages (see [https://kwb-r.github.io/status](https://kwb-r.github.io/status)) 
-is needed a `GITHUB_PAT` token with access to **public** repos only is sufficient (see below).
-
+In case that only public KWB-R packages are to be accessed (see
+[https://kwb-r.github.io/status](https://kwb-r.github.io/status) for a list) you
+should create a PAT that is restricted to **public** repositories only. You do
+so by checking the box "public_repo" as shown below: 
 
 ![](images/github_pat_public.jpg)
 
-
-### 1.1.1 Private and Public KWB-R Packages
-
-If also access to **private** KWB-R packages is required a **private** access token
-needs to be generated (see below).
+If access to private KWB-R packages is required as well, you need to create a
+token that provides access to **private** repositories. You do so by checking 
+the box "repo" as shown below:
 
 ![](images/github_pat_private.jpg)
 
+## 1.2 Store GitHub PAT in a Text File
 
-## 1.2 Copy 
-
-Subsequently copy the `GITHUB_PAT` into a text file together with its **token_name**.
-
+Copy the GitHub PAT that is shown on the Web page (the string starting with 
+`d51eb` in the picture below)...
 
 ![](images/github_pat_copy.jpg)
+... and paste it into a text file, together with its **token_name**. The content 
+of the text file, i.e. `github_personal_access_tokens.txt` may look like this:
 
+```
+student_token_for_private_kwb-r_repos: d51eb...
+```
 
-## 1.3 Delete 
+## 1.3 Delete GitHub PAT
 
-If the student using the `GITHUB_PAT` does not need the it anymore it should be 
-deleted as shown in the two screenshots below:
+If the person (e.g. student) using the GitHub PAT does not need it anymore, the
+access token should be deleted, i.e. deactivated as shown in the two screenshots below:
 
 ![](images/github_pat_delete1.jpg)
 
-
 ![](images/github_pat_delete2.jpg)
- 
-
 
 # 2 Installation 
 
@@ -171,9 +193,5 @@ install_kwb_github_packages <- function(pkgs_kwb,
 ### automatically! 
 pkgs_kwb <- c("kwb.ogre", "kwb.monitoring")
 
-
 install_kwb_github_packages(pkgs_kwb = pkgs_kwb)
-
 ```
-
-
