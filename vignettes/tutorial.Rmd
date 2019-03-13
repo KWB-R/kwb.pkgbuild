@@ -29,12 +29,15 @@ This package provides functions to:
 which fields are already set to "our" defaults. For example, the licence field
 will be set to the open source licence MIT. An additional LICENCE file will be 
 added that informs about KWB being the copyright holder of the package.
+* generate files that control the automatic generation of documentation files.
+* generate files that control continuous integration, i.e. the automatic
+building and testing of the package.
 
-# 1 Install required packages
+# 1 Install required R packages
 
 Before you can use the package kwb.pkgdown you need to 
 
-* install packages that kwb.pkgdown relies on (if not yet installed), from
+* install packages that kwb.pkgdown relies on from
 [The Comprehensive R Archive Network (CRAN)](https://cloud.r-project.org),
 * install kwb.pkddown from [GitHub](https://github.com/kwb-r/kwb.pkgdown).
 
@@ -66,10 +69,10 @@ communicate with the GitHub server. As it is best for users to get explicitly au
 (PAT) in the following. This token will then automatically be used whenever the
 GitHub server is accessed. Please see the [Installation vignette](install.html)
 first to learn how to get your personal GitHub PAT and use that token instead of
-the <placeholder> in the following command:
+`Put your Private Access Token here` in the following command:
 
 ```{r, eval = FALSE}
-Sys.setenv(GITHUB_PAT = "<your personal GitHub PAT>")
+Sys.setenv(GITHUB_PAT = "Put your Private Access Token here")
 ```
 
 Now, that the access token is set, you can use `install_github()` from the
