@@ -107,13 +107,15 @@
 <p>This package provides functions to:</p>
 <ul>
 <li>generate a <a href="http://r-pkgs.had.co.nz/description.html">DESCRIPTION</a> file in which fields are already set to “our” defaults. For example, the licence field will be set to the open source licence MIT. An additional LICENCE file will be added that informs about KWB being the copyright holder of the package.</li>
+<li>generate files that control the automatic generation of documentation files.</li>
+<li>generate files that control continuous integration, i.e. the automatic building and testing of the package.</li>
 </ul>
-<div id="install-required-packages" class="section level1">
+<div id="install-required-r-packages" class="section level1">
 <h1 class="hasAnchor">
-<a href="#install-required-packages" class="anchor"></a>1 Install required packages</h1>
+<a href="#install-required-r-packages" class="anchor"></a>1 Install required R packages</h1>
 <p>Before you can use the package kwb.pkgdown you need to</p>
 <ul>
-<li>install packages that kwb.pkgdown relies on (if not yet installed), from <a href="https://cloud.r-project.org">The Comprehensive R Archive Network (CRAN)</a>,</li>
+<li>install packages that kwb.pkgdown relies on from <a href="https://cloud.r-project.org">The Comprehensive R Archive Network (CRAN)</a>,</li>
 <li>install kwb.pkddown from <a href="https://github.com/kwb-r/kwb.pkgdown">GitHub</a>.</li>
 </ul>
 <p>Install required packages that are not yet available in your local R user library from CRAN:</p>
@@ -133,8 +135,8 @@
 <a class="sourceLine" id="cb1-14" data-line-number="14">  </a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(package, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
 <a class="sourceLine" id="cb1-16" data-line-number="16">}</a></code></pre></div>
-<p>The remotes package that should now be installed, allows to install packages directly from GitHub. Therefore, the functions from this package need to communicate with the GitHub server. As it is best for users to get explicitly authenticated by the GitHub server we will set a so called Private Access Token (PAT) in the following. This token will then automatically be used whenever the GitHub server is accessed. Please see the <a href="install.html">Installation vignette</a> first to learn how to get your personal GitHub PAT and use that token instead of the <placeholder> in the following command:</placeholder></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.setenv">Sys.setenv</a></span>(<span class="dt">GITHUB_PAT =</span> <span class="st">"&lt;your personal GitHub PAT&gt;"</span>)</a></code></pre></div>
+<p>The remotes package that should now be installed, allows to install packages directly from GitHub. Therefore, the functions from this package need to communicate with the GitHub server. As it is best for users to get explicitly authenticated by the GitHub server we will set a so called Private Access Token (PAT) in the following. This token will then automatically be used whenever the GitHub server is accessed. Please see the <a href="install.html">Installation vignette</a> first to learn how to get your personal GitHub PAT and use that token instead of <code>Put your Private Access Token here</code> in the following command:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.setenv">Sys.setenv</a></span>(<span class="dt">GITHUB_PAT =</span> <span class="st">"Put your Private Access Token here"</span>)</a></code></pre></div>
 <p>Now, that the access token is set, you can use <code>install_github()</code> from the remotes packages to install packages directly from GitHub. Let’s start by installing a fully working version of the remotes package itself (unfortunately, the current CRAN version as installed above contains a bug…):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc"</span>)</a></code></pre></div>
 <p>Finally we can install the latest version of this package from our GitHub account:</p>
@@ -169,13 +171,13 @@
 <a class="sourceLine" id="cb5-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># Create directory for R package</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">kwb.pkgbuild<span class="op">::</span><span class="kw">create_pkg_dir</span>(pkg_dir)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; /tmp/Rtmpm1XNMl/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [1] "/tmp/Rtmpm1XNMl/kwb.newpackage"</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; /tmp/RtmpF5J7Yl/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [1] "/tmp/RtmpF5J7Yl/kwb.newpackage"</span></a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb5-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co"># Create a default package structure</span></a>
 <a class="sourceLine" id="cb5-14" data-line-number="14">withr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(pkg_dir, {kwb.pkgbuild<span class="op">::</span><span class="kw">use_pkg_skeleton</span>(package)})</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; ✔ Setting active project to '/tmp/Rtmpm1XNMl/kwb.newpackage'</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpF5J7Yl/kwb.newpackage'</span></a>
 <a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; ✔ Writing 'kwb.newpackage.Rproj'</span></a>
 <a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; ✔ Adding '.Rproj.user' to '.gitignore'</span></a></code></pre></div>
 </div>
@@ -352,7 +354,7 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#install-required-packages">1 Install required packages</a></li>
+<li><a href="#install-required-r-packages">1 Install required R packages</a></li>
       <li>
 <a href="#configure-and-create-your-package">2 Configure and create your package</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#prepare-a-package-directory">2.1 Prepare a package directory</a></li>
