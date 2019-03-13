@@ -17,6 +17,18 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Introduction
+
+At our research institute, the Kompetezzentrum Wasser Berlin gGmbH (KWB), we
+process data using the programming language R. We organise the program code in
+R packages. We publish these packages on GitHub in order 
+
+- to simplify the installation of our packages,
+- to be visible to the research community,
+- to have a place where to host package documentation pages,
+- to be able to use issue tracking, e.g. for bug fixing,
+- to be able to use services such as continuous integration.
+
 # 1 GitHub Personal Access Token (GITHUB_PAT)
 
 ## 1.1 Create

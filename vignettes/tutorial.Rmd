@@ -1,10 +1,10 @@
 ---
-title: "KWB-R package from scratch"
-author: "Michael Rustler"
+title: "Create KWB-R Package from Scratch"
+author: "Michael Rustler, Hauke Sonnenberg"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{KWB-R package from scratch}
+  %\VignetteIndexEntry{Create KWB-R Package from Scratch}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,35 +17,75 @@ knitr::opts_chunk$set(
 )
 ```
 
-This tutorial explains how you can develop an R package that already follows a
-predefined default KWB package style. For example, a
-[DESCRIPTION](http://r-pkgs.had.co.nz/description.html) file will be generated
-for you. This file already contains some information that we want to have in all
-our packages, such as KWB being the copyright holder of the package.
+This tutorial explains how to setup an R package so that it complies with a
+default style. We would like to apply this default style to all KWB-packages
+that are hosted on our GitHub account KWB-R. The aim is to present all packages
+in a common manner (consistent DESCRIPTION and documentation) and to use the
+same services (continuous integration, code coverage) for all our packages. 
 
-# 1 Install required R packages
+This package provides functions to:
 
-First you need to install the following required R packages:
+* generate a [DESCRIPTION](http://r-pkgs.had.co.nz/description.html) file in 
+which fields are already set to "our" defaults. For example, the licence field
+will be set to the open source licence MIT. An additional LICENCE file will be 
+added that informs about KWB being the copyright holder of the package.
+
+# 1 Install required packages
+
+Before you can use the package kwb.pkgdown you need to 
+
+* install packages that kwb.pkgdown relies on (if not yet installed), from
+[The Comprehensive R Archive Network (CRAN)](https://cloud.r-project.org),
+* install kwb.pkddown from [GitHub](https://github.com/kwb-r/kwb.pkgdown).
+
+Install required packages that are not yet available in your local R user 
+library from CRAN:
 
 ```{r, eval = FALSE}
 # Get the names of already installed packages
 installed_packages <- rownames(installed.packages())
 
-# Install missing packages from "https://cloud.r-project.org"
-# - remotes: functions for installing an R package from Github
-# - pkgdown: functions for creating a package website
-for (package in setdiff(c("remotes", "pkgdown"), installed_packages)) {
+# Define the names of required packages:
+# - remotes: functions to install R packages from Github
+# - pkgdown: functions to create a package website
+required_packages <- c("remotes", "pkgdown")
+
+# Determine the packages that are not yet installed
+packages_to_install <- setdiff(required_packages, installed_packages)
+
+# Install the packages from CRAN
+for (package in packages_to_install) {
   
   install.packages(package, repos = "https://cloud.r-project.org")
 }
+```
 
-#Sys.setenv(GITHUB_PAT = "mysecret_access_token")
-install.packages("remotes", repos = "https://cloud.r-project.org")
+The remotes package that should now be installed, allows to install packages 
+directly from GitHub. Therefore, the functions from this package need to 
+communicate with the GitHub server. As it is best for users to get explicitly authenticated by the GitHub server we will set a so called Private Access Token
+(PAT) in the following. This token will then automatically be used whenever the
+GitHub server is accessed. Please see the [Installation vignette](install.html)
+first to learn how to get your personal GitHub PAT and use that token instead of
+the <placeholder> in the following command:
+
+```{r, eval = FALSE}
+Sys.setenv(GITHUB_PAT = "<your personal GitHub PAT>")
+```
+
+Now, that the access token is set, you can use `install_github()` from the
+remotes packages to install packages directly from GitHub. Let's start by 
+installing a fully working version of the remotes package itself (unfortunately,
+the current CRAN version as installed above contains a bug...): 
+
+```{r, eval = FALSE}
 remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")
+```
 
-# Install latest version of this package from our GitHub account
+Finally we can install the latest version of this package from our GitHub 
+account:
+
+```{r, eval = FALSE}
 remotes::install_github("KWB-R/kwb.pkgbuild")
-
 ```
 
 # 2 Configure and create your package
@@ -54,7 +94,7 @@ Secondly you need to personalise your R package by adapting a default template
 that we provide for KWB packages. This template is contained in the R package
 `kwb.pkgbuild`.
 
-## 2.0 Prepare a package directory
+## 2.1 Prepare a package directory
 
 In the best case, your package will be under version control. We encourage you 
 to create a GitHub repository on our [GitHub account](https://github.com/kwb-r)
@@ -80,7 +120,7 @@ For the steps described in the following, use the created package folder instead
 of `temp_pkg` so that your package template will be created direcly in the 
 correct location.
 
-## 2.1 Create empty R package
+## 2.2 Create empty R package
 
 ```{r}
 # Set the name for your new package
@@ -97,7 +137,7 @@ kwb.pkgbuild::create_pkg_dir(pkg_dir)
 withr::with_dir(pkg_dir, {kwb.pkgbuild::use_pkg_skeleton(package)})
 ```
 
-## 2.2 Parameterise your R package
+## 2.3 Parameterise your R package
 
 In the following, we present the commands required to setup and create your new
 package. We suggest that you write the corresponding code into a `.R` script
@@ -106,7 +146,7 @@ the script file into the `inst/extdata` folder of your package. This makes the
 creation of the package reproducible and can be used as a template for the
 creation of further packages.
 
-## 2.2.1 Author
+### Author
 
 Minimum requirement: the author needs at least to have a (full) name:
 
@@ -140,7 +180,7 @@ with:
 kwb.orcid::get_kwb_orcids()
 ```
 
-## 2.2.2 Package description
+### Package description
 
 The package description needs three entries
 
@@ -160,7 +200,7 @@ description <- list(
 )
 ```
 
-## 2.3 Create R package structure in KWB-R style 
+## 2.4 Create R package structure in KWB-R style 
 
 Running the following code not only creates an R package structure but also adds 
 some KWB-R specfic styling, e.g.: 
@@ -204,7 +244,7 @@ kwb.pkgbuild::use_pkg(
 )
 ```
 
-## 2.4 Add your R functions
+## 2.5 Add your R functions
 
 Add your R functions in the folder `R`/. By using `usethis::use_r` with the 
 parameter `name` = `function` an empty R script is already stored in the right 
