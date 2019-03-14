@@ -3,13 +3,12 @@
 #'
 #' Git Configuration
 #' @param key key (default: "--list")
-#' @param value value (default: NULL)
+#' @param value value (default: "")
 #' @param scope scope (default: c("local", "global"))
 #' @noRd
 #' @keywords internal
-git_config <- function(key = "--list", value = NULL, scope = c("local", "global"))
+git_config <- function(key = "--list", value = "", scope = c("local", "global"))
 {
-  if(is.null(value)) value <- ""
   sprintf("git config --%s %s %s", scope, key, value)
 }
 
@@ -23,15 +22,15 @@ git_config <- function(key = "--list", value = NULL, scope = c("local", "global"
 #' }
 git_check_config <- function()
 {
-  kwb.utils::catAndRun("Checking 'global' Git(Hub) config",
-                       expr = git_config(scope = "global"))
+  message("Checking 'global' Git(Hub) config:")
+  shell(git_config(scope = "global"))
 
-  kwb.utils::catAndRun("Checking 'local' Git(Hub) config",
-                       expr = git_config(scope = "local"))
+  message("Checking 'local' Git(Hub) config:")
+  shell(git_config(scope = "local"))
 }
 
 
-#' Git Setup User (Name and Passwort)
+#' Git Setup User (Name and Email)
 #'
 #' @param github_username username should be your GitHub username
 #' @param github_email email should be identical to email you registered with at
