@@ -2,10 +2,10 @@
 % Please edit documentation in R/git_config.R
 \name{git_setup_user}
 \alias{git_setup_user}
-\title{Git Setup User (Name and Passwort)}
+\title{Git Setup User (Name and Email)}
 \usage{
 git_setup_user(github_username, github_email, scope = c("local",
-  "global"))
+  "global"), git_exe = path_to_git())
 }
 \arguments{
 \item{github_username}{username should be your GitHub username}
@@ -14,12 +14,14 @@ git_setup_user(github_username, github_email, scope = c("local",
 GitHub (e.g. your.name(at)kompetenz-wasser.de)}
 
 \item{scope}{scope (default: c("local", "global"))}
+
+\item{git_exe}{path to git executable on Windows (default: path_to_git())}
 }
 \value{
 runs "git" to setup the Git(Hub) user
 }
 \description{
-Git Setup User (Name and Passwort)
+Git Setup User (Name and Email)
 }
 \examples{
 \dontrun{

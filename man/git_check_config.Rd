@@ -4,7 +4,10 @@
 \alias{git_check_config}
 \title{Git Check Configuration}
 \usage{
-git_check_config()
+git_check_config(git_exe = path_to_git())
+}
+\arguments{
+\item{git_exe}{path to git executable on Windows (default: path_to_git())}
 }
 \value{
 prints 'global' and 'local' Git configuration
