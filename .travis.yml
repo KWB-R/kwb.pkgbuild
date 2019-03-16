@@ -1,8 +1,7 @@
 language: r
 sudo: required
-cache: packages
 r_packages:
-- devtools
+- remotes
 - covr
 matrix:
   include:
@@ -11,7 +10,7 @@ matrix:
     after_success:
     - Rscript -e 'covr::codecov()'
     before_deploy:
-    - Rscript -e 'devtools::install_cran("pkgdown")'
+    - Rscript -e 'remotes::install_cran("pkgdown")'
     deploy:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
