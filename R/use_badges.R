@@ -92,7 +92,6 @@ use_badge_lifecycle <- function(stage = "experimental")
 #' @param pkgname name of R package (default: NULL)
 #' @importFrom httr GET status_code
 #' @return generates CRAN badge link
-#' @importFrom assertthat is.error
 #' @importFrom kwb.utils defaultIfNULL
 #' @export
 use_badge_cran <- function(pkgname = NULL)
