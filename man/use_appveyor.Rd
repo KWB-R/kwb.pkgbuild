@@ -2,13 +2,19 @@
 % Please edit documentation in R/use_appveyor.R
 \name{use_appveyor}
 \alias{use_appveyor}
-\title{Adds default .appveyor.yml}
+\title{Adds default appveyor.yml}
 \usage{
-use_appveyor()
+use_appveyor(dest_dir = getwd(), yml_vector = ci_appveyor_template())
+}
+\arguments{
+\item{dest_dir}{directoy to write (default: getwd())}
+
+\item{yml_vector}{a yml imported as string vector (default:
+ci_appveyor_template())}
 }
 \value{
-writes .appveyor.yml and adds it .Rbuildignore
+writes appveyor.yml and adds it .Rbuildignore
 }
 \description{
-Adds default .appveyor.yml
+Adds default appveyor.yml
 }

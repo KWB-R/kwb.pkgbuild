@@ -1,20 +1,47 @@
+# read_gitlab_ci_template ------------------------------------------------------
+
+#' @keywords internal
+#' @noRd
+ci_appveyor_template <- function()
+{
+  read_template("ci_appveyor.yml")
+}
+
+
+# write_gitlab_ci --------------------------------------------------------------
+
+#' @keywords internal
+#' @noRd
+write_ci_appveyor <- function(yml_vector, dest_dir = getwd(), ignore)
+{
+  message <- add_creation_metadata()
+
+  yml_vector <- c(message, yml_vector)
+
+  message(sprintf("Writing: %s/appveyor.yml", dest_dir))
+  writeLines(yml_vector, file.path(dest_dir, "appveyor.yml"))
+
+  if (ignore) {
+    write_to_rbuildignore(ignore_pattern = "^appveyor\\.yml$")
+  }
+}
+
+
+
+
 # use_appveyor ----------------------------------------------------------------
 
 # use_appveyor with KWB default style
-#' Adds default .appveyor.yml
-#' @importFrom utils download.file
-#' @return writes .appveyor.yml and adds it .Rbuildignore
+#' Adds default appveyor.yml
+#' @param dest_dir directoy to write (default: getwd())
+#' @param yml_vector a yml imported as string vector (default:
+#'   ci_appveyor_template())
+#' @return writes appveyor.yml and adds it .Rbuildignore
 #' @export
-
-use_appveyor <- function()
+#'
+use_appveyor <- function(
+dest_dir = getwd(), yml_vector = ci_appveyor_template()
+)
 {
-  # URL to appveyor.yml from tidyverse/readxl to be used as a template
-  url <- paste0(
-    "https://raw.githubusercontent.com/",
-    "tidyverse/readxl/5649e2643d25bb5b6353797fc48bbcbb0eb72f6d/appveyor.yml"
-  )
-
-  utils::download.file(url, destfile = "appveyor.yml")
-
-  write_to_rbuildignore(ignore_pattern = "^appveyor\\.yml$")
+  write_ci_appveyor(yml_vector, dest_dir = dest_dir, ignore = TRUE)
 }
