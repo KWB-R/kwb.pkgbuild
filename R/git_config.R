@@ -30,10 +30,14 @@ git_config <- function(key = "--list", value = "", scope = c("local", "global"),
 git_check_config <- function( git_exe = path_to_git())
 {
   message("Checking 'global' Git(Hub) config:")
-  shell(git_config(scope = "global", git_exe = git_exe))
+  writeLines(
+    system(git_config(scope = "global", git_exe = git_exe), intern = TRUE)
+  )
 
   message("Checking 'local' Git(Hub) config:")
-  shell(git_config(scope = "local", git_exe = git_exe))
+  writeLines(
+    system(git_config(scope = "local", git_exe = git_exe), intern = TRUE)
+  )
 }
 
 
@@ -52,18 +56,14 @@ git_check_config <- function( git_exe = path_to_git())
 #' git_setup_user("mrustl", "michael.rustler@@kompetenz-wasser.de")
 #' }
 #' @seealso <https://support.rstudio.com/hc/en-us/community/posts/115001143667-Author-Change-with-Git-in-RStudio>
-git_setup_user <- function(github_username,
-                           github_email,
-                           scope = c("local", "global"),
-                           git_exe = path_to_git())
+git_setup_user <- function(
+  github_username, github_email, scope = c("local", "global"),
+  git_exe = path_to_git())
 {
+  cmds <- c(
+    git_config(key = "user.name", value = github_username, scope, git_exe),
+    git_config(key = "user.email", value = github_email, scope, git_exe)
+  )
 
-
-cmds <- c(git_config(key = "user.name", value = github_username, scope, git_exe),
-          git_config(key = "user.email", value = github_email, scope, git_exe)
-          )
-
-kwb.utils::catAndRun("Setup Git(Hub) user",
-                     expr = sapply(cmds, shell))
+  kwb.utils::catAndRun("Setup Git(Hub) user", expr = sapply(cmds, system))
 }
-

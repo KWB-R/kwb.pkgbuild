@@ -1,8 +1,5 @@
-test_that("git_check_config() works", {
+test_that("git_setup_user() works", {
 
-  expect_error(
-    kwb.pkgbuild:::git_check_config()
-  )
+  kwb.pkgbuild:::git_setup_user("testuser", "test.user@doesnotmatter.eu")
 
 })
-
