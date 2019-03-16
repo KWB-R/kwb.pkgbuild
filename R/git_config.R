@@ -13,7 +13,7 @@ git_config <- function(key = "--list", value = "", scope = c("local", "global"),
 {
 
   git <- git_check_if_windows(git_exe)
-  sprintf('%s config --%s %s %s',
+  sprintf('"%s" config --%s %s %s',
           git_check_if_windows(git_exe),
           scope, key, value)
 }
