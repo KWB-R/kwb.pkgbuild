@@ -103,28 +103,17 @@ use_badge_cran <- function(pkgname = NULL)
     kwb.utils::resolve("url", grammars$mirror, org = org, pkgname = pkgname)
   })
 
-  res_links <- sapply(cran_mirrors_link, is_on_cran)
+  # Indices of cran links that exist
+  indices <- which(is_on_cran(cran_mirrors_link))
 
-  is_no_error <- sapply(res_links, assertthat::is.error)
-
-  pkg_on_cran <- tryCatch(
-    ifelse(! assertthat::is.error(res_links[1]), res_links[1], res_links[2]),
-    error = function(e) {
-      print("caught error")
-      cat(sprintf(
-        "Requesting %s and %s failed with an error:\n%s",
-        res_links[1],
-        res_links[2],
-        e
-      ))
-    }
-  )
+  href <- if (length(indices)) {
+    cran_mirrors_link[indices[1]]
+  } else {
+    ""
+  }
 
   kwb.utils::resolve(
-    "url",
-    grammars$general,
-    grammars$cran,
-    href = if (pkg_on_cran) cran_mirrors_link[is_no_error][1] else ""
+    "url", grammars$general, grammars$cran, pkgname = pkgname, href = href
   )
 }
 
@@ -135,14 +124,22 @@ use_badge_cran <- function(pkgname = NULL)
 #' @noRd
 is_on_cran <- function(cran_link)
 {
-  try(httr::status_code(x = httr::GET(cran_link)) == 200, silent = TRUE)
+  stopifnot(is.character(cran_link))
 
-  # tryCatch(httr::status_code(x = httr::GET(cran_link)) == 200,
-  #   error = function(e) {
-  #     print("caught error")
-  #     cat(sprintf(
-  #       "Requesting %s failed with an error:\n%s",
-  #       cran_link, e
-  #     ))
-  #     "error"})
+  # Call this function for all elements if there is more than one element
+  if (length(cran_link) > 1) {
+    return(sapply(cran_link, is_on_cran))
+  }
+
+  cran_link <- cran_link[1]
+
+  x <- try(httr::GET(cran_link), silent = TRUE)
+
+  errored <- inherits(x, "try-error")
+
+  if (errored) message(sprintf(
+    "Requesting %s failed with:\n%s", cran_link, attr(x, "condition")$message
+  ))
+
+  ! errored && httr::status_code(x) == 200
 }
