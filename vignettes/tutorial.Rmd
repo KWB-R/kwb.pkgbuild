@@ -118,6 +118,8 @@ You can let RStudio do the cloning for you. Therefore,
 default),
 * set "Create project as subdirectory of" to the folder in which you want to
 store your local copies of your github repositories, e.g. to `~/github-repos`.
+* click on "Create Project" to let RStudio copy the package repository from 
+GitHub onto your local machine.
 
 For the steps described in the following, use the created package folder instead 
 of `temp_pkg` so that your package template will be created direcly in the 
