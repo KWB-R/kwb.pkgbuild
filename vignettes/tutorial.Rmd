@@ -247,7 +247,7 @@ Running the following R function will create the R package with the `version` =
 `0.0.0.9000` and development stage `experimental` (defined [here](https://www.tidyverse.org/lifecycle/#experimental)).
 
 ```{r eval = FALSE}
-setwd(temp_pkg)
+setwd(pkg_dir)
 
 kwb.pkgbuild::use_pkg(
   author, 
