@@ -80,6 +80,7 @@ use_badge_lifecycle <- function(stage = "experimental")
 
   kwb.utils::resolve(
     "url",
+    grammars$general,
     grammars$lifecycle,
     stage = stage,
     colour = stages[[stage]]

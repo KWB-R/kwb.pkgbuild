@@ -33,10 +33,8 @@ use_installation <- function(pkgname, user, domain, output = "md")
     '  install.packages("remotes", repos = "https://cloud.r-project.org")',
     '}',
     '',
-    '### Temporary workaround on Windows to fix bug in CRAN version v2.0.2',
-    '### of "remotes" (see https://github.com/r-lib/remotes/issues/248)',
+    sprintf("# Install KWB package '%s' from GitHub", pkgname),
     '',
-    'remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")',
     sprintf("remotes::install_%s(\"%s/%s\")", domain, user, pkgname),
     "```"
   )

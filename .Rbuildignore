@@ -11,3 +11,4 @@
 ^\.Rproj\.user$
 secrets.csv
 ^R\\.add_author.R$
+^\.travis\.yml$

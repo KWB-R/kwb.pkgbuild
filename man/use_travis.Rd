@@ -4,13 +4,17 @@
 \alias{use_travis}
 \title{Adds default .travis.yml}
 \usage{
-use_travis(auto_build_pkgdown = FALSE, dbg = TRUE)
+use_travis(auto_build_pkgdown = FALSE, dbg = TRUE,
+  yml_vector = ci_travis_template())
 }
 \arguments{
 \item{auto_build_pkgdown}{prepare Travis for pkgdown::build_site()
 (default: FALSE)}
 
 \item{dbg}{print debug messages (default: TRUE)}
+
+\item{yml_vector}{a yml imported as string vector (default:
+ci_travis_template())}
 }
 \value{
 writes .travis.yml and adds it .Rbuildignore

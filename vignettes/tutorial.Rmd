@@ -118,23 +118,33 @@ You can let RStudio do the cloning for you. Therefore,
 default),
 * set "Create project as subdirectory of" to the folder in which you want to
 store your local copies of your github repositories, e.g. to `~/github-repos`.
+* click on "Create Project" to let RStudio copy the package repository from 
+GitHub onto your local machine.
 
-For the steps described in the following, use the created package folder instead 
-of `temp_pkg` so that your package template will be created direcly in the 
-correct location.
+For the steps described in the following, you need to provide the name of the
+package in a variable `package` and the path to the local directory to which 
+GitHub repositories are cloned in a variable `repo_dir`:
+
+```{r}
+# Set the name of your (!) new package
+package <- "kwb.newpackage"
+
+# Set the path to your (!) local folder to which GitHub repositories are cloned
+repo_dir <- "~/github-repos"
+```
+
+```{r include = FALSE}
+repo_dir <- tempdir()
+```
 
 ## 2.2 Create empty R package
 
 ```{r}
-# Set the name for your new package
-package <- "kwb.newpackage"
-
-# Set the path to your new package
-pkg_dir <- file.path(tempdir(), package)
+# Set the path to the package directory
+pkg_dir <- file.path(repo_dir, package)
 
 # Create directory for R package
 kwb.pkgbuild::create_pkg_dir(pkg_dir)
-
 
 # Create a default package structure
 withr::with_dir(pkg_dir, {kwb.pkgbuild::use_pkg_skeleton(package)})
@@ -237,7 +247,7 @@ Running the following R function will create the R package with the `version` =
 `0.0.0.9000` and development stage `experimental` (defined [here](https://www.tidyverse.org/lifecycle/#experimental)).
 
 ```{r eval = FALSE}
-setwd(temp_pkg)
+setwd(pkg_dir)
 
 kwb.pkgbuild::use_pkg(
   author, 
