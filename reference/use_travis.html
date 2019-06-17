@@ -140,7 +140,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>use_travis</span>(<span class='kw'>auto_build_pkgdown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>use_travis</span>(<span class='kw'>auto_build_pkgdown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>yml_vector</span> <span class='kw'>=</span> <span class='fu'>ci_travis_template</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +154,11 @@
     <tr>
       <th>dbg</th>
       <td><p>print debug messages (default: TRUE)</p></td>
+    </tr>
+    <tr>
+      <th>yml_vector</th>
+      <td><p>a yml imported as string vector (default:
+ci_travis_template())</p></td>
     </tr>
     </table>
     
