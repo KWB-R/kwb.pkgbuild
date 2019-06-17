@@ -1,14 +1,46 @@
+# read_travis_ci_template ------------------------------------------------------
+
+#' @keywords internal
+#' @noRd
+ci_travis_template <- function()
+{
+  read_template("ci_travis.yml")
+}
+
+# write_ci_travis --------------------------------------------------------------
+
+#' @keywords internal
+#' @noRd
+write_ci_travis <- function(yml_vector, dest_dir = getwd(), ignore)
+{
+  message <- add_creation_metadata()
+
+  yml_vector <- c(message, yml_vector)
+
+  message(sprintf("Writing: %s/.travis.yml", dest_dir))
+  writeLines(yml_vector, file.path(dest_dir, ".travis.yml"))
+
+  if (ignore) {
+    write_to_rbuildignore(ignore_pattern = "^\\.travis\\.yml$")
+  }
+}
+
+
+
 # use_travis -------------------------------------------------------------------
 
 #' Adds default .travis.yml
 #' @param auto_build_pkgdown  prepare Travis for pkgdown::build_site()
 #' (default: FALSE)
 #' @param dbg print debug messages (default: TRUE)
+#' @param yml_vector a yml imported as string vector (default:
+#' ci_travis_template())
 #' @return writes .travis.yml and adds it .Rbuildignore
 #' @importFrom yaml as.yaml write_yaml
 #' @export
 
-use_travis <- function(auto_build_pkgdown = FALSE, dbg = TRUE)
+use_travis <- function(auto_build_pkgdown = FALSE, dbg = TRUE,
+                       yml_vector = ci_travis_template())
 {
   travis_yml <- ".travis.yml"
 
@@ -21,38 +53,5 @@ use_travis <- function(auto_build_pkgdown = FALSE, dbg = TRUE)
     )
   }
 
-  release_list <- list(
-    r = "release",
-    after_success = list("Rscript -e 'covr::codecov()'")
-  )
-
-  if (auto_build_pkgdown) {
-
-    release_list$before_deploy <- list(
-      "Rscript -e 'remotes::install_cran(\"pkgdown\")'"
-    )
-
-    release_list$deploy <- list(
-      provider = "script",
-      script = "Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'",
-      skip_cleanup = "true"
-    )
-  }
-
-  include_list <- list(list(r = "devel"), release_list, list(r = "oldrel"))
-
-  travis_list <- list(
-    language = "r",
-    sudo = "required",
-    cache = "packages",
-    r_packages = c("remotes", "covr"),
-    matrix = list("include" = include_list)
-  )
-
-  kwb.utils::catIf(dbg, "Writing '.travis.yml':\n")
-  kwb.utils::catIf(dbg, yaml::as.yaml(travis_list), sep = "\n")
-
-  yaml::write_yaml(travis_list, travis_yml)
-
-  write_to_rbuildignore(ignore_pattern = "^.travis\\.yml$")
+  write_ci_travis(yml_vector, ignore = TRUE)
 }

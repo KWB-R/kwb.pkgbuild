@@ -8,7 +8,7 @@ ci_appveyor_template <- function()
 }
 
 
-# write_gitlab_ci --------------------------------------------------------------
+# write_ci_appveyor ------------------------------------------------------------
 
 #' @keywords internal
 #' @noRd
