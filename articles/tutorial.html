@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Create KWB-R Package from Scratch • kwb.pkgbuild</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Create KWB-R Package from Scratch">
@@ -40,7 +41,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -69,12 +70,12 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/KWB-R/kwb.pkgbuild">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -88,13 +89,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Create KWB-R Package from Scratch</h1>
                         <h4 class="author">Michael Rustler, Hauke Sonnenberg</h4>
             
-            <h4 class="date">2019-06-17</h4>
+            <h4 class="date">2019-09-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/master/vignettes/tutorial.Rmd"><code>vignettes/tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>tutorial.Rmd</code></div>
@@ -120,27 +122,27 @@
 </ul>
 <p>Install required packages that are not yet available in your local R user library from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Get the names of already installed packages</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">installed_packages &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/installed.packages">installed.packages</a></span>())</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">installed_packages &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>())</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Define the names of required packages:</span></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># - remotes: functions to install R packages from Github</span></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># - pkgdown: functions to create a package website</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">required_packages &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"remotes"</span>, <span class="st">"pkgdown"</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">required_packages &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"remotes"</span>, <span class="st">"pkgdown"</span>)</a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co"># Determine the packages that are not yet installed</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">packages_to_install &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sets">setdiff</a></span>(required_packages, installed_packages)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">packages_to_install &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span>(required_packages, installed_packages)</a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co"># Install the packages from CRAN</span></a>
 <a class="sourceLine" id="cb1-13" data-line-number="13"><span class="cf">for</span> (package <span class="cf">in</span> packages_to_install) {</a>
 <a class="sourceLine" id="cb1-14" data-line-number="14">  </a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(package, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">  <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(package, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
 <a class="sourceLine" id="cb1-16" data-line-number="16">}</a></code></pre></div>
 <p>The remotes package that should now be installed, allows to install packages directly from GitHub. Therefore, the functions from this package need to communicate with the GitHub server. As it is best for users to get explicitly authenticated by the GitHub server we will set a so called Private Access Token (PAT) in the following. This token will then automatically be used whenever the GitHub server is accessed. Please see the <a href="install.html">Installation vignette</a> first to learn how to get your personal GitHub PAT and use that token instead of <code>Put your Private Access Token here</code> in the following command:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.setenv">Sys.setenv</a></span>(<span class="dt">GITHUB_PAT =</span> <span class="st">"Put your Private Access Token here"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="dt">GITHUB_PAT =</span> <span class="st">"Put your Private Access Token here"</span>)</a></code></pre></div>
 <p>Now, that the access token is set, you can use <code>install_github()</code> from the remotes packages to install packages directly from GitHub. Let’s start by installing a fully working version of the remotes package itself (unfortunately, the current CRAN version as installed above contains a bug…):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc"</span>)</a></code></pre></div>
 <p>Finally we can install the latest version of this package from our GitHub account:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"KWB-R/kwb.pkgbuild"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"KWB-R/kwb.pkgbuild"</span>)</a></code></pre></div>
 </div>
 <div id="configure-and-create-your-package" class="section level1">
 <h1 class="hasAnchor">
@@ -149,7 +151,7 @@
 <div id="prepare-a-package-directory" class="section level2">
 <h2 class="hasAnchor">
 <a href="#prepare-a-package-directory" class="anchor"></a>2.1 Prepare a package directory</h2>
-<p>In the best case, your package will be under version control. We encourage you to create a GitHub repository on our <a href="https://github.com/kwb-r">GitHub account</a> that represents the package. Having a package as a repository on GitHub has the advantage that it can be easily installed directly from there with no more than running <code><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">remotes::install_github("kwb-r/&lt;package_name&gt;")</a></code>. Once you have created the GitHub repository, <a href="https://help.github.com/articles/cloning-a-repository/">clone</a> it to a folder on your local machine.</p>
+<p>In the best case, your package will be under version control. We encourage you to create a GitHub repository on our <a href="https://github.com/kwb-r">GitHub account</a> that represents the package. Having a package as a repository on GitHub has the advantage that it can be easily installed directly from there with no more than running <code><a href="https://rdrr.io/pkg/remotes/man/install_github.html">remotes::install_github("kwb-r/&lt;package_name&gt;")</a></code>. Once you have created the GitHub repository, <a href="https://help.github.com/articles/cloning-a-repository/">clone</a> it to a folder on your local machine.</p>
 <p>You can let RStudio do the cloning for you. Therefore,</p>
 <ul>
 <li>select “File &gt; New Project…” from the main menu,</li>
@@ -170,17 +172,17 @@
 <h2 class="hasAnchor">
 <a href="#create-empty-r-package" class="anchor"></a>2.2 Create empty R package</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># Set the path to the package directory</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">pkg_dir &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(repo_dir, package)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">pkg_dir &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(repo_dir, package)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># Create directory for R package</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5">kwb.pkgbuild<span class="op">::</span><span class="kw">create_pkg_dir</span>(pkg_dir)</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; /tmp/RtmpwnutTa/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; /tmp/RtmpPc6Mio/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; Warning: `recursive` is deprecated, please use `recurse` instead</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; [1] "/tmp/RtmpwnutTa/kwb.newpackage"</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; [1] "/tmp/RtmpPc6Mio/kwb.newpackage"</span></a>
 <a class="sourceLine" id="cb6-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co"># Create a default package structure</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">withr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/withr/topics/with_dir">with_dir</a></span>(pkg_dir, {kwb.pkgbuild<span class="op">::</span><span class="kw">use_pkg_skeleton</span>(package)})</a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpwnutTa/kwb.newpackage'</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">withr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/withr/man/with_dir.html">with_dir</a></span>(pkg_dir, {kwb.pkgbuild<span class="op">::</span><span class="kw">use_pkg_skeleton</span>(package)})</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; ✔ Setting active project to '/tmp/RtmpPc6Mio/kwb.newpackage'</span></a>
 <a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; ✔ Writing 'kwb.newpackage.Rproj'</span></a>
 <a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; ✔ Adding '.Rproj.user' to '.gitignore'</span></a></code></pre></div>
 </div>
@@ -192,9 +194,9 @@
 <h3 class="hasAnchor">
 <a href="#author" class="anchor"></a>Author</h3>
 <p>Minimum requirement: the author needs at least to have a (full) name:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">author &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">name =</span> <span class="st">"Max Mustermann"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">author &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">name =</span> <span class="st">"Max Mustermann"</span>)</a></code></pre></div>
 <p>You can add further information such as a personal website or the <a href="https://orcid.org/">ORCID</a> of the author:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">author &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">author &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="dt">name =</span> <span class="st">"Michael Rustler"</span>, </a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">orcid =</span> <span class="st">"0000-0003-0647-7726"</span>,</a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">url =</span> <span class="st">"http://mrustl.de"</span></a>
@@ -217,10 +219,10 @@
 <p>The package description needs three entries</p>
 <ul>
 <li><p><strong>name</strong>: name of the package</p></li>
-<li><p><strong>title</strong>: title of your R package (which is automatically converted to title case with the function <code><a href="https://www.rdocumentation.org/packages/tools/topics/toTitleCase">tools::toTitleCase()</a></code>)</p></li>
+<li><p><strong>title</strong>: title of your R package (which is automatically converted to title case with the function <code><a href="https://rdrr.io/r/tools/toTitleCase.html">tools::toTitleCase()</a></code>)</p></li>
 <li><p><strong>desc:</strong> package description. Should be at least one sentence long and needs to end with a period!</p></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">description &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">description &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="dt">name =</span> package, </a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="dt">title =</span> <span class="st">"My new KWB R package"</span>, </a>
 <a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="dt">desc  =</span> <span class="st">"My super cool new R package in KWB default styling."</span></a>
@@ -246,7 +248,7 @@
 <li><p>Prepares a KWB-R flavored documentation website template named <code>_packagedown.yml</code> needed by <a href="http://pkgdown.r-lib.org/" class="uri">http://pkgdown.r-lib.org/</a></p></li>
 </ul>
 <p>Running the following R function will create the R package with the <code>version</code> = <code>0.0.0.9000</code> and development stage <code>experimental</code> (defined <a href="https://www.tidyverse.org/lifecycle/#experimental">here</a>).</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/getwd">setwd</a></span>(pkg_dir)</a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span>(pkg_dir)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3">kwb.pkgbuild<span class="op">::</span><span class="kw">use_pkg</span>(</a>
 <a class="sourceLine" id="cb11-4" data-line-number="4">  author, </a>
@@ -289,9 +291,9 @@
 <a class="sourceLine" id="cb13-11" data-line-number="11">checking package dependencies ... ERROR</a>
 <a class="sourceLine" id="cb13-12" data-line-number="12">Namespace dependencies not required<span class="op">:</span><span class="st"> 'fs'</span> <span class="st">'httr'</span> <span class="st">'stringr'</span> <span class="st">'usethis'</span> <span class="st">'yaml'</span></a></code></pre></div>
 <p>This can be done using the function <code><a href="https://usethis.r-lib.org/reference/use_package.html">usethis::use_package()</a></code> as shown below:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">pkg_dependencies &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'fs'</span>, <span class="st">'httr'</span>, <span class="st">'stringr'</span>, <span class="st">'usethis'</span>, <span class="st">'yaml'</span>)</a>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">pkg_dependencies &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'fs'</span>, <span class="st">'httr'</span>, <span class="st">'stringr'</span>, <span class="st">'usethis'</span>, <span class="st">'yaml'</span>)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">sapply</a></span>(pkg_dependencies, usethis<span class="op">::</span>use_package)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(pkg_dependencies, usethis<span class="op">::</span>use_package)</a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5">✔ Adding <span class="st">'fs'</span> to Imports field <span class="cf">in</span> DESCRIPTION</a>
 <a class="sourceLine" id="cb14-6" data-line-number="6">● Refer to functions with <span class="st">`</span><span class="dt">fs::fun()</span><span class="st">`</span></a>
@@ -341,7 +343,7 @@
 <li>
 <p>prepares Travis-CI by:</p>
 <ul>
-<li><p>adding secret key with <code><a href="https://www.rdocumentation.org/packages/travis/topics/use_travis_deploy">travis::use_travis_deploy()</a></code></p></li>
+<li><p>adding secret key with <code><a href="https://rdrr.io/pkg/travis/man/use_travis_deploy.html">travis::use_travis_deploy()</a></code></p></li>
 <li><p>creating “.travis.yml” with <code><a href="../reference/use_travis.html">kwb.pkgbuild::use_travis(auto_build_pkgdown = TRUE)</a></code></p></li>
 <li><p>creating an empty “gh-pages” branch with <code><a href="../reference/create_empty_branch_ghpages.html">kwb.pkgbuild::create_empty_branch_ghpages()</a></code></p></li>
 </ul>
@@ -356,6 +358,7 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -385,13 +388,15 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://mrustl.de">Michael Rustler</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
