@@ -1,3 +1,7 @@
+# kwb.pkgbuild 0.1.0.9000 <small>unreleased</small>
+
+* current development version
+
 # [kwb.pkgbuild 0.1.0](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.0) <small>2019-09-04</small>
 
 * improved use in case of an existing R package (by reading information from 
