@@ -11,7 +11,5 @@ to a predefined style.
 
 ```r
 #install.packages("remotes", repos = "https://cloud.r-project.org")
-# Workaround for issue https://github.com/KWB-R/kwb.pkgbuild/issues/21 
-# Requires that R 64bit is used on Windoows
 remotes::install_github("kwb-r/kwb.pkgbuild", INSTALL_opts =  c('--no-multiarch'))
 ```
