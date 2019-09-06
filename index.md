@@ -3,6 +3,9 @@
 [![codecov](https://codecov.io/github/KWB-R/kwb.pkgbuild/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/kwb.pkgbuild)
 [![Project Status](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/kwb.pkgbuild)]()
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3387180.svg)](https://doi.org/10.5281/zenodo.3387180)
+
+
 
 Helper functions for automating R package development at KWB
 to a predefined style.

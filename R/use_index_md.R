@@ -1,6 +1,6 @@
-# use_index_rmd ----------------------------------------------------------------
+# use_index_md ----------------------------------------------------------------
 
-#' Use index.Rmd (used for pkgdown::build_home())
+#' Use index.md (used for pkgdown::build_home())
 #' @param user user name or organisation under which repository defined in\cr
 #' parameter "repo" is hosted (default: "KWB-R")\cr
 #' @param domain under which repository is hosted (default: "github")
@@ -12,13 +12,13 @@
 #' @export
 #' @importFrom desc desc
 
-use_index_rmd <- function(
+use_index_md <- function(
   user = "KWB-R", domain = "github", stage = "experimental"
 )
 {
   pkg <- read_description()
 
-  index_rmd <- c(
+  index_md <- c(
     use_badge_appveyor(pkg$name, user,domain),
     use_badge_travis(pkg$name, user),
     use_badge_codecov(pkg$name, user, domain ),
@@ -27,12 +27,12 @@ use_index_rmd <- function(
     "",
     pkg$desc,
     "",
-    use_installation(pkg$name, user, domain,output = "rmd")
+    use_installation(pkg$name, user, domain)
   )
 
-  writeLines(index_rmd, "index.Rmd")
+  writeLines(index_md, "index.md")
 
-  write_to_rbuildignore(ignore_pattern = "^index\\.Rmd$")
+  write_to_rbuildignore(ignore_pattern = "^index\\.md$")
 
-  index_rmd
+  index_md
 }
