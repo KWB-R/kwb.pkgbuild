@@ -27,7 +27,7 @@ use_index_md <- function(
     "",
     pkg$desc,
     "",
-    use_installation(pkg$name, user, domain,output = "md")
+    use_installation(pkg$name, user, domain)
   )
 
   writeLines(index_rmd, "index.md")
