@@ -30,7 +30,7 @@ use_index_md <- function(
     use_installation(pkg$name, user, domain)
   )
 
-  writeLines(index_rmd, "index.md")
+  writeLines(index_md, "index.md")
 
   write_to_rbuildignore(ignore_pattern = "^index\\.md$")
 
