@@ -83,7 +83,7 @@ use_pkg <- function(
 
   # Use index.Rmd (for pkgdown home:
   # see: https://pkgdown.r-lib.org/articles/pkgdown.html#home-page)
-  use_index_rmd(user, domain, stage)
+  use_index_md(user, domain, stage)
 
   # Use README.md (for github page)
   use_readme_md(user, domain, stage)
