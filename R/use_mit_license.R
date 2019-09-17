@@ -28,7 +28,7 @@ use_mit_license <- function(
 
     kwb.utils::catAndRun("Modifying start year in MIT LICENSE (CRAN version)",
                          expr = {
-                           writeLines(text = sprintf("YEAR: %s\nCOPYRIGHT HOLDER: %s\n",
+                           writeLines(text = sprintf("YEAR: %s\nCOPYRIGHT HOLDER: %s",
                                                      copyright_years,
                                                      copyright_holder$name),
                                       con = "LICENSE")
