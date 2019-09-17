@@ -163,7 +163,7 @@
     <pre class="examples"><div class='input'><span class='co'>## valid pkg folder</span>
 <span class='no'>pkg_name</span> <span class='kw'>&lt;-</span> <span class='st'>"pkgname"</span>
 <span class='no'>pkg_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>pkg_name</span>)
-<span class='no'>pkg_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_pkg_dir.html'>create_pkg_dir</a></span>(<span class='no'>pkg_dir</span>)</div><div class='output co'>#&gt; <span class='message'>/tmp/Rtmp5Flnh9/pkgname is a valid 'root_dir' for pkg 'pkgname'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: /tmp/Rtmp5Flnh9/pkgname cannot be created. It exists and is empty.</span></div><div class='input'><span class='kw pkg'>withr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/withr/man/with_dir.html'>with_dir</a></span>(<span class='no'>pkg_dir</span>, {<span class='fu'>use_pkg_skeleton</span>(<span class='no'>pkg_name</span>)})</div><div class='output co'>#&gt; ✔ Setting active project to '/tmp/Rtmp5Flnh9/pkgname'
+<span class='no'>pkg_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_pkg_dir.html'>create_pkg_dir</a></span>(<span class='no'>pkg_dir</span>)</div><div class='output co'>#&gt; <span class='message'>/tmp/RtmpkqJVyq/pkgname is a valid 'root_dir' for pkg 'pkgname'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: /tmp/RtmpkqJVyq/pkgname cannot be created. It exists and is empty.</span></div><div class='input'><span class='kw pkg'>withr</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/withr/man/with_dir.html'>with_dir</a></span>(<span class='no'>pkg_dir</span>, {<span class='fu'>use_pkg_skeleton</span>(<span class='no'>pkg_name</span>)})</div><div class='output co'>#&gt; ✔ Setting active project to '/tmp/RtmpkqJVyq/pkgname'
 #&gt; ✔ Writing 'pkgname.Rproj'
 #&gt; ✔ Adding '.Rproj.user' to '.gitignore'</div></pre>
   </div>
@@ -185,7 +185,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
