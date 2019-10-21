@@ -69,20 +69,28 @@ In case that only public KWB-R packages are to be accessed (see
 should create a PAT that is restricted to **public** repositories only. You do
 so by checking the box "public_repo" as shown below: 
 
-![](images/github_pat_public.jpg)
+```{r github_pat_public, echo = FALSE}
+knitr::include_graphics("images/github_pat_public.jpg")
+```
 
 If access to private KWB-R packages is required as well, you need to create a
 token that provides access to **private** repositories. You do so by checking 
 the box "repo" as shown below:
 
-![](images/github_pat_private.jpg)
+```{r github_pat_private, echo = FALSE}
+knitr::include_graphics("images/github_pat_private.jpg")
+```
+
 
 ## 1.2 Store GitHub PAT in a Text File
 
 Copy the GitHub PAT that is shown on the Web page (the string starting with 
 `d51eb` in the picture below)...
 
-![](images/github_pat_copy.jpg)
+```{r github_pat_copy, echo = FALSE}
+knitr::include_graphics("images/github_pat_copy.jpg")
+```
+
 ... and paste it into a text file, together with its **token_name**. The content 
 of the text file, i.e. `github_personal_access_tokens.txt` may look like this:
 
@@ -95,9 +103,14 @@ student_token_for_private_kwb-r_repos: d51eb...
 If the person (e.g. student) using the GitHub PAT does not need it anymore, the
 access token should be deleted, i.e. deactivated as shown in the two screenshots below:
 
-![](images/github_pat_delete1.jpg)
+```{r github_pat_delete1, echo = FALSE}
+knitr::include_graphics("images/github_pat_delete1.jpg")
+```
 
-![](images/github_pat_delete2.jpg)
+```{r github_pat_delete2, echo = FALSE}
+knitr::include_graphics("images/github_pat_delete2.jpg")
+```
+
 
 # 2 Installation 
 

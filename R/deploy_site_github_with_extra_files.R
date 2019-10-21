@@ -114,7 +114,7 @@ deploy_local_with_extra_files <- function(
   pkgdown:::github_clone(dest_dir, repo_slug)
 
   pkgdown::build_site(
-    ".", override = list(destination = dest_dir), document = FALSE,
+    ".", override = list(destination = dest_dir), devel = FALSE,
     preview = FALSE, ...
   )
 

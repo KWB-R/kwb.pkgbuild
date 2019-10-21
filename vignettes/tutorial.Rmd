@@ -276,7 +276,10 @@ If you have already defined a function you can add a [roxygen2](https://cran.r-p
 skeleton by using clicking on the `Insert Roxygen Skeleton` button in RStudio 
 as shown below. 
 
-![](images/add_roxygen.jpg)
+```{r add_roxygen, echo = FALSE}
+knitr::include_graphics("images/add_roxygen.jpg")
+```
+
 
 More information on documentation in R is provided here: 
 [http://r-pkgs.had.co.nz/man.html](http://r-pkgs.had.co.nz/man.html)
@@ -286,12 +289,17 @@ More information on documentation in R is provided here:
 Once you completed all the steps above go to the upper right panel in RStudio 
 and click on `Build` -> `More` -> `Configure build tools` as shown below. 
 
-![](images/build_check_01.jpg)
+```{r build_check_01, echo = FALSE}
+knitr::include_graphics("images/build_check_01.jpg")
+```
+
 
 Then click on `Configure` and a new window opens. Here you select everything 
 as shown below:
 
-![](images/build_check_02.jpg)
+```{r build_check_02, echo = FALSE}
+knitr::include_graphics("images/build_check_02.jpg")
+```
 
 After doing so accept the settings by two times clicking `Ok`. 
 
@@ -377,7 +385,10 @@ is available at:
 
 https://github.com/KWB-R/  `kwb.mycoolrpackage`  /settings
 
-![](images/package_documentation.jpg)
+```{r package_documentation, echo = FALSE}
+knitr::include_graphics("images/package_documentation.jpg")
+```
+
 
 
 ## 5.2 Automatically
