@@ -18,17 +18,18 @@ knitr::opts_chunk$set(
 ```
 
 This tutorial explains how to setup an R package so that it complies with a
-default style. We would like to apply this default style to all KWB-packages
-that are hosted on our GitHub account KWB-R. The aim is to present all packages
-in a common manner (consistent DESCRIPTION and documentation) and to use the
-same services (continuous integration, code coverage) for all our packages. 
+default style. We apply this default style to all KWB-packages that we host on
+our GitHub account [KWB-R](https://github.com/KWB-R). The aim is to present all
+packages in a common manner (consistent DESCRIPTION and documentation) and to
+use the same services (continuous integration, code coverage) for all our
+packages.
 
 This package provides functions to:
 
 * generate a [DESCRIPTION](http://r-pkgs.had.co.nz/description.html) file in 
 which fields are already set to "our" defaults. For example, the licence field
-will be set to the open source licence MIT. An additional LICENCE file will be 
-added that informs about KWB being the copyright holder of the package.
+is set to the open source licence MIT. An additional LICENCE file is added that
+informs about KWB being the copyright holder of the package.
 * generate files that control the automatic generation of documentation files.
 * generate files that control continuous integration, i.e. the automatic
 building and testing of the package.
@@ -37,55 +38,46 @@ building and testing of the package.
 
 Before you can use the package kwb.pkgdown you need to 
 
-* install packages that kwb.pkgdown relies on from
-[The Comprehensive R Archive Network (CRAN)](https://cloud.r-project.org),
-* install kwb.pkddown from [GitHub](https://github.com/kwb-r/kwb.pkgdown).
+* install packages that kwb.pkgdown relies on from the
+[Comprehensive R Archive Network (CRAN)](https://cloud.r-project.org),
+* install kwb.pkddown from [GitHub](https://github.com).
 
 Install required packages that are not yet available in your local R user 
 library from CRAN:
 
 ```{r, eval = FALSE}
-# Get the names of already installed packages
-installed_packages <- rownames(installed.packages())
-
 # Define the names of required packages:
 # - remotes: functions to install R packages from Github
 # - pkgdown: functions to create a package website
-required_packages <- c("remotes", "pkgdown")
+required <- c("remotes", "pkgdown")
+
+# Get the names of packages that are already installed
+installed <- rownames(installed.packages())
 
 # Determine the packages that are not yet installed
-packages_to_install <- setdiff(required_packages, installed_packages)
+packages <- setdiff(required, installed)
 
 # Install the packages from CRAN
-for (package in packages_to_install) {
+for (package in packages) {
   
   install.packages(package, repos = "https://cloud.r-project.org")
 }
 ```
 
-The remotes package that should now be installed, allows to install packages 
-directly from GitHub. Therefore, the functions from this package need to 
-communicate with the GitHub server. As it is best for users to get explicitly authenticated by the GitHub server we will set a so called Private Access Token
-(PAT) in the following. This token will then automatically be used whenever the
-GitHub server is accessed. Please see the [Installation vignette](install.html)
-first to learn how to get your personal GitHub PAT and use that token instead of
-`Put your Private Access Token here` in the following command:
+The remotes package should now be installed. It allows to install further R
+packages directly from GitHub. Therefore, the functions of the remotes package
+need to communicate with the GitHub server. To gain authenticated access to the
+GitHub server we set a so called Private Access Token (PAT) in the following.
+This token is then automatically used whenever the GitHub server is accessed.
+Please see the [Installation vignette](install.html) to learn how to get your
+personal GitHub PAT and use that token instead of `Put your Private Access Token here` in the following command:
 
 ```{r, eval = FALSE}
 Sys.setenv(GITHUB_PAT = "Put your Private Access Token here")
 ```
 
 Now, that the access token is set, you can use `install_github()` from the
-remotes packages to install packages directly from GitHub. Let's start by 
-installing a fully working version of the remotes package itself (unfortunately,
-the current CRAN version as installed above contains a bug...): 
-
-```{r, eval = FALSE}
-remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")
-```
-
-Finally we can install the latest version of this package from our GitHub 
-account:
+remotes packages to install the latest version of this package directly from our GitHub account:
 
 ```{r, eval = FALSE}
 remotes::install_github("KWB-R/kwb.pkgbuild")
@@ -93,14 +85,14 @@ remotes::install_github("KWB-R/kwb.pkgbuild")
 
 # 2 Configure and create your package
 
-Secondly you need to personalise your R package by adapting a default template
-that we provide for KWB packages. This template is contained in the R package
-`kwb.pkgbuild`.
+Secondly, personalise your R package by adapting a default template that we
+propose for KWB packages and that is contained in the R package `kwb.pkgbuild`.
 
 ## 2.1 Prepare a package directory
 
-In the best case, your package will be under version control. We encourage you 
-to create a GitHub repository on our [GitHub account](https://github.com/kwb-r)
+The source code of your package should be under version control. We encourage
+you to create a GitHub repository on our
+[GitHub account](https://github.com/kwb-r)
 that represents the package. Having a package as a repository on GitHub has the
 advantage that it can be easily installed directly from there with no more than
 running `remotes::install_github("kwb-r/<package_name>")`. Once you have 
