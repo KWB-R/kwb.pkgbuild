@@ -1,3 +1,78 @@
+# pkgdown functions (missing in pkgdown >= 1.5.0) ------------------------------------
+
+#' git
+#' @importFrom processx run
+#' @keywords internal
+git <- function(...) {
+  processx::run("git", c(...), echo_cmd = TRUE, echo = TRUE)
+}
+
+#' construct_commit_message
+#'
+#' @keywords internal
+construct_commit_message <- function(pkg, commit = Sys.getenv("TRAVIS_COMMIT")) {
+  pkg <- pkgdown::as_pkgdown(pkg)
+
+  sprintf("Built site for %s: %s@%s", pkg$package, pkg$version, substr(commit, 1, 7))
+}
+
+#' rule
+#' @importFrom cli cat_rule
+#' @keywords internal
+rule <- function (left, ...)
+{
+  cli::cat_rule(left = crayon::bold(left), ...)
+}
+
+#' github_clone
+#'
+#' @keywords internal
+#'
+github_clone <- function(dir, repo_slug) {
+  remote_url <- sprintf("git@github.com:%s.git", repo_slug)
+  rule("Cloning existing site", line = 1)
+  git("clone",
+      "--single-branch", "-b", "gh-pages",
+      "--depth", "1",
+      remote_url,
+      dir
+  )
+}
+
+
+#' github_push
+#'
+#' @importFrom withr with_dir
+#' @keywords internal
+#'
+github_push <- function(dir, commit_message) {
+  # force execution before changing working directory
+  force(commit_message)
+
+  rule("Commiting updated site", line = 1)
+
+  withr::with_dir(dir, {
+    git("add", "-A", ".")
+    git("commit", "--allow-empty", "-m", commit_message)
+
+    rule("Deploying to GitHub Pages", line = 1)
+    git("remote", "-v")
+    git("push", "--force", "origin", "HEAD:gh-pages")
+  })
+}
+
+git <- function(...) {
+  processx::run("git", c(...), echo_cmd = TRUE, echo = TRUE)
+}
+
+construct_commit_message <- function(pkg, commit = Sys.getenv("TRAVIS_COMMIT")) {
+  pkg <- as_pkgdown(pkg)
+
+  sprintf("Built site for %s: %s@%s", pkg$package, pkg$version, substr(commit, 1, 7))
+}
+
+
+
 # deploy_site_github_with_extra_files ------------------------------------------
 
 #' deploy_site_github_with_extra_files
@@ -48,15 +123,15 @@ deploy_site_github_with_extra_files <- function(
     repo_slug, "No repo detected, please supply one with `repo_slug`"
   )
 
-  pkgdown:::rule("Deploying site", line = 2)
+  rule("Deploying site", line = 2)
 
-  pkgdown:::rule("Installing package", line = 1)
+  rule("Installing package", line = 1)
 
   callr::rcmd("INSTALL", tarball, show = verbose, fail_on_status = TRUE)
 
   ssh_id_file <- "~/.ssh/id_rsa"
 
-  pkgdown:::rule("Setting up SSH id", line = 1)
+  rule("Setting up SSH id", line = 1)
 
   pkgdown:::cat_line("Copying private key to: ", ssh_id_file)
 
@@ -71,7 +146,7 @@ deploy_site_github_with_extra_files <- function(
     commit_message = commit_message, ...
   )
 
-  pkgdown:::rule("Deploy completed", line = 2)
+  rule("Deploy completed", line = 2)
 }
 
 # deploy_local_with_extra_files ------------------------------------------------

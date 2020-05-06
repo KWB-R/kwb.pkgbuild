@@ -1,3 +1,7 @@
+# [kwb.pkgbuild 0.1.3](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.3) <small>2020-05-04</small>
+
+* Add functions missing in pkgdown (>= 1.5.0) required for *deploy_site_github_with_extra_files()*
+
 # [kwb.pkgbuild 0.1.2](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.2) <small>2019-09-17</small>
 
 * Fixed MIT LICENSE creation for CRAN (#60)
