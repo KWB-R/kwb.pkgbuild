@@ -30,11 +30,13 @@ create_pkg_dir <- function(pkg_dir)
   # Directory exists
   n_files <- length(fs::dir_ls(pkg_dir))
 
-  if (n_files > 0) clean_stop(sprintf(
-    "%s cannot be created. It exits and contains %d files!", pkg_dir, n_files
-  ))
+  if (n_files > 0) {
+    clean_stop(sprintf(
+      "%s cannot be created. It exits and contains %d files!", pkg_dir, n_files
+    ))
+  }
 
-  warning(sprintf("%s cannot be created. It exists and is empty.", pkg_dir))
+  warning(sprintf("%s was not created as it already existed.", pkg_dir))
 
   pkg_dir
 }

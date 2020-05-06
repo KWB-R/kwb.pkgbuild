@@ -32,7 +32,6 @@ use_installation <- function(pkgname, user, domain)
     '}',
     '',
     sprintf("# Install KWB package '%s' from GitHub", pkgname),
-    '',
     sprintf("remotes::install_%s(\"%s/%s\")", domain, user, pkgname),
     "```"
   )
