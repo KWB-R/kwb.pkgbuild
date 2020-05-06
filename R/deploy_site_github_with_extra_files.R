@@ -1,8 +1,29 @@
-# pkgdown functions (missing in pkgdown >= 1.5.0) ------------------------------------
+# add function from usethis
+# https://github.com/r-lib/usethis/blob/ef2354ccf350ae98c549dc952230069704355c3c/R/browse.R#L78
+
+#' github_url_rx
+#' @keywords internal
+#' @noRd
+#'
+github_url_rx <- function() {
+  paste0(
+    "^",
+    "(?:https?://github.com/)",
+    "(?<owner>[^/]+)/",
+    "(?<repo>[^/#]+)",
+    "/?",
+    "(?<fragment>.*)",
+    "$"
+  )
+}
+
+# pkgdown functions (missing in pkgdown >= 1.5.0) ------------------------------
 
 #' git
 #' @importFrom processx run
 #' @keywords internal
+#' @noRd
+#'
 git <- function(...) {
   processx::run("git", c(...), echo_cmd = TRUE, echo = TRUE)
 }
@@ -10,6 +31,8 @@ git <- function(...) {
 #' construct_commit_message
 #'
 #' @keywords internal
+#' @noRd
+#'
 construct_commit_message <- function(pkg, commit = Sys.getenv("TRAVIS_COMMIT")) {
   pkg <- pkgdown::as_pkgdown(pkg)
 
@@ -18,7 +41,10 @@ construct_commit_message <- function(pkg, commit = Sys.getenv("TRAVIS_COMMIT")) 
 
 #' rule
 #' @importFrom cli cat_rule
+#' @importFrom crayon bold
 #' @keywords internal
+#' @noRd
+#'
 rule <- function (left, ...)
 {
   cli::cat_rule(left = crayon::bold(left), ...)
@@ -27,6 +53,7 @@ rule <- function (left, ...)
 #' github_clone
 #'
 #' @keywords internal
+#' @noRd
 #'
 github_clone <- function(dir, repo_slug) {
   remote_url <- sprintf("git@github.com:%s.git", repo_slug)
@@ -60,18 +87,6 @@ github_push <- function(dir, commit_message) {
     git("push", "--force", "origin", "HEAD:gh-pages")
   })
 }
-
-git <- function(...) {
-  processx::run("git", c(...), echo_cmd = TRUE, echo = TRUE)
-}
-
-construct_commit_message <- function(pkg, commit = Sys.getenv("TRAVIS_COMMIT")) {
-  pkg <- as_pkgdown(pkg)
-
-  sprintf("Built site for %s: %s@%s", pkg$package, pkg$version, substr(commit, 1, 7))
-}
-
-
 
 # deploy_site_github_with_extra_files ------------------------------------------
 
@@ -182,11 +197,11 @@ deploy_local_with_extra_files <- function(
   pkg <- pkgdown::as_pkgdown(pkg)
 
   if (is.null(repo_slug)) {
-    gh <- rematch2::re_match(pkg$github_url, pkgdown:::github_url_rx())
+    gh <- rematch2::re_match(pkg$github_url, github_url_rx())
     repo_slug <- paste0(gh$owner, "/", gh$repo)
   }
 
-  pkgdown:::github_clone(dest_dir, repo_slug)
+  github_clone(dest_dir, repo_slug)
 
   pkgdown::build_site(
     ".", override = list(destination = dest_dir), devel = FALSE,
@@ -200,7 +215,7 @@ deploy_local_with_extra_files <- function(
     overwrite = TRUE
   )
 
-  pkgdown:::github_push(dest_dir, commit_message)
+  github_push(dest_dir, commit_message)
 
   invisible()
 }

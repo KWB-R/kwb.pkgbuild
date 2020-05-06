@@ -22,6 +22,7 @@ BugReports: https://github.com/KWB-R/kwb.pkgbuild/issues
 Imports: 
     callr,
     cli,
+    crayon,
     desc,
     fs,
     httr,
@@ -41,8 +42,7 @@ Suggests:
     kwb.orcid,
     knitr,
     rmarkdown,
-    testthat,
-    withr
+    testthat
 VignetteBuilder: 
     knitr
 Remotes: 
