@@ -36,4 +36,6 @@ use_pkg_skeleton <- function(pkg_name)
 
   fs::dir_create("R")
   fs::dir_create("man")
+
+  write_to_rbuildignore(ignore_pattern = "^\\.here$")
 }

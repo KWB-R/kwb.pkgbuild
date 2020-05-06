@@ -1,3 +1,93 @@
+# add function from usethis
+# https://github.com/r-lib/usethis/blob/ef2354ccf350ae98c549dc952230069704355c3c/R/browse.R#L78
+
+#' github_url_rx
+#' @keywords internal
+#' @noRd
+#'
+github_url_rx <- function() {
+  paste0(
+    "^",
+    "(?:https?://github.com/)",
+    "(?<owner>[^/]+)/",
+    "(?<repo>[^/#]+)",
+    "/?",
+    "(?<fragment>.*)",
+    "$"
+  )
+}
+
+# pkgdown functions (missing in pkgdown >= 1.5.0) ------------------------------
+
+#' git
+#' @importFrom processx run
+#' @keywords internal
+#' @noRd
+#'
+git <- function(...) {
+  processx::run("git", c(...), echo_cmd = TRUE, echo = TRUE)
+}
+
+#' construct_commit_message
+#'
+#' @keywords internal
+#' @noRd
+#'
+construct_commit_message <- function(pkg, commit = Sys.getenv("TRAVIS_COMMIT")) {
+  pkg <- pkgdown::as_pkgdown(pkg)
+
+  sprintf("Built site for %s: %s@%s", pkg$package, pkg$version, substr(commit, 1, 7))
+}
+
+#' rule
+#' @importFrom cli cat_rule
+#' @importFrom crayon bold
+#' @keywords internal
+#' @noRd
+#'
+rule <- function (left, ...)
+{
+  cli::cat_rule(left = crayon::bold(left), ...)
+}
+
+#' github_clone
+#'
+#' @keywords internal
+#' @noRd
+#'
+github_clone <- function(dir, repo_slug) {
+  remote_url <- sprintf("git@github.com:%s.git", repo_slug)
+  rule("Cloning existing site", line = 1)
+  git("clone",
+      "--single-branch", "-b", "gh-pages",
+      "--depth", "1",
+      remote_url,
+      dir
+  )
+}
+
+
+#' github_push
+#'
+#' @importFrom withr with_dir
+#' @keywords internal
+#'
+github_push <- function(dir, commit_message) {
+  # force execution before changing working directory
+  force(commit_message)
+
+  rule("Commiting updated site", line = 1)
+
+  withr::with_dir(dir, {
+    git("add", "-A", ".")
+    git("commit", "--allow-empty", "-m", commit_message)
+
+    rule("Deploying to GitHub Pages", line = 1)
+    git("remote", "-v")
+    git("push", "--force", "origin", "HEAD:gh-pages")
+  })
+}
+
 # deploy_site_github_with_extra_files ------------------------------------------
 
 #' deploy_site_github_with_extra_files
@@ -48,15 +138,15 @@ deploy_site_github_with_extra_files <- function(
     repo_slug, "No repo detected, please supply one with `repo_slug`"
   )
 
-  pkgdown:::rule("Deploying site", line = 2)
+  rule("Deploying site", line = 2)
 
-  pkgdown:::rule("Installing package", line = 1)
+  rule("Installing package", line = 1)
 
   callr::rcmd("INSTALL", tarball, show = verbose, fail_on_status = TRUE)
 
   ssh_id_file <- "~/.ssh/id_rsa"
 
-  pkgdown:::rule("Setting up SSH id", line = 1)
+  rule("Setting up SSH id", line = 1)
 
   pkgdown:::cat_line("Copying private key to: ", ssh_id_file)
 
@@ -71,7 +161,7 @@ deploy_site_github_with_extra_files <- function(
     commit_message = commit_message, ...
   )
 
-  pkgdown:::rule("Deploy completed", line = 2)
+  rule("Deploy completed", line = 2)
 }
 
 # deploy_local_with_extra_files ------------------------------------------------
@@ -107,11 +197,11 @@ deploy_local_with_extra_files <- function(
   pkg <- pkgdown::as_pkgdown(pkg)
 
   if (is.null(repo_slug)) {
-    gh <- rematch2::re_match(pkg$github_url, pkgdown:::github_url_rx())
+    gh <- rematch2::re_match(pkg$github_url, github_url_rx())
     repo_slug <- paste0(gh$owner, "/", gh$repo)
   }
 
-  pkgdown:::github_clone(dest_dir, repo_slug)
+  github_clone(dest_dir, repo_slug)
 
   pkgdown::build_site(
     ".", override = list(destination = dest_dir), devel = FALSE,
@@ -125,7 +215,7 @@ deploy_local_with_extra_files <- function(
     overwrite = TRUE
   )
 
-  pkgdown:::github_push(dest_dir, commit_message)
+  github_push(dest_dir, commit_message)
 
   invisible()
 }
