@@ -23,7 +23,7 @@ create_pkg_dir <- function(pkg_dir)
 
   # If the directory does not exist, create it and return
   if (! fs::dir_exists(pkg_dir)) {
-    fs::dir_create(pkg_dir, recursive = TRUE)
+    fs::dir_create(pkg_dir, recurse = TRUE)
     return(pkg_dir)
   }
 
