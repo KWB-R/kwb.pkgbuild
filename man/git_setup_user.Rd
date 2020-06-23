@@ -4,8 +4,12 @@
 \alias{git_setup_user}
 \title{Git Setup User (Name and Email)}
 \usage{
-git_setup_user(github_username, github_email, scope = c("local",
-  "global"), git_exe = path_to_git())
+git_setup_user(
+  github_username,
+  github_email,
+  scope = c("local", "global"),
+  git_exe = path_to_git()
+)
 }
 \arguments{
 \item{github_username}{username should be your GitHub username}

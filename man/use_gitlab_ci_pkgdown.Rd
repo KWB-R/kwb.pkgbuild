@@ -4,8 +4,10 @@
 \alias{use_gitlab_ci_pkgdown}
 \title{Adds .gitlab-ci.yml}
 \usage{
-use_gitlab_ci_pkgdown(dest_dir = getwd(),
-  yml_vector = gitlab_ci_template_pkgdown())
+use_gitlab_ci_pkgdown(
+  dest_dir = getwd(),
+  yml_vector = gitlab_ci_template_pkgdown()
+)
 }
 \arguments{
 \item{dest_dir}{directoy to write (default: getwd())}

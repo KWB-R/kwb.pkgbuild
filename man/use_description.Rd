@@ -4,10 +4,14 @@
 \alias{use_description}
 \title{Use DESCRIPTION with KWB styling}
 \usage{
-use_description(author = kwb_author("rustler"),
-  pkg = kwb_package("kwb.umberto"), version = NULL,
-  license = "MIT + file LICENSE", copyright_holder_name = kwb_string(),
-  funder = NULL)
+use_description(
+  author = kwb_author("rustler"),
+  pkg = kwb_package("kwb.umberto"),
+  version = NULL,
+  license = "MIT + file LICENSE",
+  copyright_holder_name = kwb_string(),
+  funder = NULL
+)
 }
 \arguments{
 \item{author}{author information in list format (default:

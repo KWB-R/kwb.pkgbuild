@@ -1,6 +1,6 @@
 Package: kwb.pkgbuild
 Title: R package for standardised development at KWB
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: 
     c(person(given = "Michael",
              family = "Rustler",
@@ -36,7 +36,8 @@ Imports:
     travis,
     usethis,
     withr,
-    yaml
+    yaml,
+    magrittr
 Suggests: 
     covr,
     kwb.orcid,
@@ -48,8 +49,8 @@ VignetteBuilder:
 Remotes: 
     github::kwb-r/kwb.orcid,
     github::kwb-r/kwb.utils,
-    github::ropenscilabs/travis@d9acc42ed88c22c200d750c15793f304815adc6d
+    github::ropenscilabs/travis@f2dd9a3640b0cd8266b0a813c8eaf6bf3775c83d
 ByteCompile: true
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0

@@ -4,8 +4,7 @@
 \alias{use_index_md}
 \title{Use index.md (used for pkgdown::build_home())}
 \usage{
-use_index_md(user = "KWB-R", domain = "github",
-  stage = "experimental")
+use_index_md(user = "KWB-R", domain = "github", stage = "experimental")
 }
 \arguments{
 \item{user}{user name or organisation under which repository defined in\cr

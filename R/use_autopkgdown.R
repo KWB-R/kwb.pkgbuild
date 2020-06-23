@@ -25,7 +25,7 @@ use_autopkgdown <- function(
   ignore_docs_folder(dbg = dbg)
 
   # Add deploy key for Travis
-  travis::use_travis_deploy()
+  travis::use_travis_deploy(key_name_private = "id_rsa")
 
   # Create empty gh-pages branch
   create_empty_branch_ghpages(repo,
