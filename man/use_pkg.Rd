@@ -4,12 +4,20 @@
 \alias{use_pkg}
 \title{Wrapper function for preparing R package with KWB styling}
 \usage{
-use_pkg(author = kwb_author("rustler"),
-  pkg = kwb_package("kwb.umberto"), version = "0.0.0.9000",
-  license = "MIT + file LICENSE", copyright_holder = list(name =
-  kwb_string(), start_year = NULL), funder = NULL, user = "KWB-R",
-  domain = "github", stage = "experimental",
-  auto_build_pkgdown = FALSE, dbg = TRUE, ...)
+use_pkg(
+  author = kwb_author("rustler"),
+  pkg = kwb_package("kwb.umberto"),
+  version = "0.0.0.9000",
+  license = "MIT + file LICENSE",
+  copyright_holder = list(name = kwb_string(), start_year = NULL),
+  funder = NULL,
+  user = "KWB-R",
+  domain = "github",
+  stage = "experimental",
+  auto_build_pkgdown = FALSE,
+  dbg = TRUE,
+  ...
+)
 }
 \arguments{
 \item{author}{author information in list format (default:

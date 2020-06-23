@@ -395,7 +395,7 @@ wrapper function `kwb.pkgbuild::use_autopkgdown()`, which:
 
 - prepares Travis-CI by: 
 
-   + adding secret key with `travis::use_travis_deploy()`
+   + adding secret key with `travis::use_travis_deploy(key_name_private = "id_rsa")`
 
    + creating ".travis.yml" with `kwb.pkgbuild::use_travis(auto_build_pkgdown = TRUE)`
    

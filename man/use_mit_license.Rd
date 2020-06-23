@@ -4,8 +4,9 @@
 \alias{use_mit_license}
 \title{Create MIT licence with KWB style}
 \usage{
-use_mit_license(copyright_holder = list(name = kwb_string(), start_year =
-  NULL))
+use_mit_license(
+  copyright_holder = list(name = kwb_string(), start_year = NULL)
+)
 }
 \arguments{
 \item{copyright_holder}{list with name of copyright holder and additional

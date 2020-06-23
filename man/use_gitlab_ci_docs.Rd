@@ -4,8 +4,7 @@
 \alias{use_gitlab_ci_docs}
 \title{Adds .gitlab-ci.yml (if repo contains a "docs" subfolder)}
 \usage{
-use_gitlab_ci_docs(dest_dir = getwd(),
-  yml_vector = gitlab_ci_template_docs())
+use_gitlab_ci_docs(dest_dir = getwd(), yml_vector = gitlab_ci_template_docs())
 }
 \arguments{
 \item{dest_dir}{directoy to write (default: getwd())}

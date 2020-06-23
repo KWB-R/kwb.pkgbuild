@@ -4,9 +4,16 @@
 \alias{use_autopkgdown}
 \title{Use Auto Pkgdown}
 \usage{
-use_autopkgdown(repo = NULL, org = "KWB-R", set_githubuser = TRUE,
-  git_exe = path_to_git(), dest_dir = tempdir(), execute = TRUE,
-  dbg = TRUE, ...)
+use_autopkgdown(
+  repo = NULL,
+  org = "KWB-R",
+  set_githubuser = TRUE,
+  git_exe = path_to_git(),
+  dest_dir = tempdir(),
+  execute = TRUE,
+  dbg = TRUE,
+  ...
+)
 }
 \arguments{
 \item{repo}{name of existing Github repository (default: NULL)}

@@ -4,10 +4,15 @@
 \alias{set_github_user}
 \title{Set Github User For GIT}
 \usage{
-set_github_user(git_username = "kwb.pkgbuild::use_autopkgdown()",
+set_github_user(
+  git_username = "kwb.pkgbuild::use_autopkgdown()",
   git_fullname = "kwb.pkgbuild::use_autopkgdown()",
-  git_email = "kwbr-bot@kompetenz-wasser.de", git_exe = path_to_git(),
-  execute = FALSE, execute_dir = tempdir(), dbg = TRUE)
+  git_email = "kwbr-bot@kompetenz-wasser.de",
+  git_exe = path_to_git(),
+  execute = FALSE,
+  execute_dir = tempdir(),
+  dbg = TRUE
+)
 }
 \arguments{
 \item{git_username}{Github username (default:
