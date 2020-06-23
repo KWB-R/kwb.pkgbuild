@@ -4,9 +4,17 @@
 \alias{create_empty_branch}
 \title{Create Empty Branch From Github}
 \usage{
-create_empty_branch(repo = NULL, branch = NULL, org = "KWB-R",
-  set_githubuser = TRUE, git_exe = path_to_git(),
-  dest_dir = tempdir(), execute = TRUE, dbg = TRUE, ...)
+create_empty_branch(
+  repo = NULL,
+  branch = NULL,
+  org = "KWB-R",
+  set_githubuser = TRUE,
+  git_exe = path_to_git(),
+  dest_dir = tempdir(),
+  execute = TRUE,
+  dbg = TRUE,
+  ...
+)
 }
 \arguments{
 \item{repo}{name of existing Github repository (default: NULL)}

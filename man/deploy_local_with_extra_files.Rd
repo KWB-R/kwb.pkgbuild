@@ -4,9 +4,13 @@
 \alias{deploy_local_with_extra_files}
 \title{deploy_local_with_extra_files}
 \usage{
-deploy_local_with_extra_files(pkg = ".",
-  vignettes_file_pattern_to_copy = "\\\\.json$", repo_slug = NULL,
-  commit_message = pkgdown:::construct_commit_message(pkg), ...)
+deploy_local_with_extra_files(
+  pkg = ".",
+  vignettes_file_pattern_to_copy = "\\\\.json$",
+  repo_slug = NULL,
+  commit_message = pkgdown:::construct_commit_message(pkg),
+  ...
+)
 }
 \arguments{
 \item{pkg}{"."}

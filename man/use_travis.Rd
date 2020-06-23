@@ -4,8 +4,11 @@
 \alias{use_travis}
 \title{Adds default .travis.yml}
 \usage{
-use_travis(auto_build_pkgdown = FALSE, dbg = TRUE,
-  yml_vector = ci_travis_template())
+use_travis(
+  auto_build_pkgdown = FALSE,
+  dbg = TRUE,
+  yml_vector = ci_travis_template()
+)
 }
 \arguments{
 \item{auto_build_pkgdown}{prepare Travis for pkgdown::build_site()

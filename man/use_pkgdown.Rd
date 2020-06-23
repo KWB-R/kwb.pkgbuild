@@ -4,8 +4,10 @@
 \alias{use_pkgdown}
 \title{pkgdown for KWB}
 \usage{
-use_pkgdown(author = kwb_author("rustler"),
-  copyright_holder_name = kwb_string())
+use_pkgdown(
+  author = kwb_author("rustler"),
+  copyright_holder_name = kwb_string()
+)
 }
 \arguments{
 \item{author}{list of author attributes (default:

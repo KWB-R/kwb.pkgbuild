@@ -4,9 +4,16 @@
 \alias{create_empty_branch_ghpages}
 \title{Create Empty gh-pages branch}
 \usage{
-create_empty_branch_ghpages(repo = NULL, org = "KWB-R",
-  set_githubuser = TRUE, git_exe = path_to_git(),
-  dest_dir = tempdir(), execute = TRUE, dbg = TRUE, ...)
+create_empty_branch_ghpages(
+  repo = NULL,
+  org = "KWB-R",
+  set_githubuser = TRUE,
+  git_exe = path_to_git(),
+  dest_dir = tempdir(),
+  execute = TRUE,
+  dbg = TRUE,
+  ...
+)
 }
 \arguments{
 \item{repo}{name of existing Github repository (default: NULL)}

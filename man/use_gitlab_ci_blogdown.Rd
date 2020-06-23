@@ -4,8 +4,10 @@
 \alias{use_gitlab_ci_blogdown}
 \title{Adds .gitlab-ci.yml (if repo contains on root in a "gh-pages" branch)}
 \usage{
-use_gitlab_ci_blogdown(dest_dir = getwd(),
-  yml_vector = gitlab_ci_template_blogdown())
+use_gitlab_ci_blogdown(
+  dest_dir = getwd(),
+  yml_vector = gitlab_ci_template_blogdown()
+)
 }
 \arguments{
 \item{dest_dir}{directoy to write (default: getwd())}

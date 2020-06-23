@@ -4,8 +4,10 @@
 \alias{use_gitlab_ci_ghpages}
 \title{Adds .gitlab-ci.yml (which should be saved in root dir of "gh-pages" branch)}
 \usage{
-use_gitlab_ci_ghpages(dest_dir = getwd(),
-  yml_vector = gitlab_ci_template_ghpages())
+use_gitlab_ci_ghpages(
+  dest_dir = getwd(),
+  yml_vector = gitlab_ci_template_ghpages()
+)
 }
 \arguments{
 \item{dest_dir}{directoy to write (default:

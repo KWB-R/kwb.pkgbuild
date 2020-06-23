@@ -4,8 +4,12 @@
 \alias{copy_files_from_vignettes_dir_to_deploy_dir}
 \title{Copy files from Vignettes Dir to Deploy idir}
 \usage{
-copy_files_from_vignettes_dir_to_deploy_dir(source_dir = ".",
-  deploy_dir = "docs", pattern = "\\\\.json$", overwrite = TRUE)
+copy_files_from_vignettes_dir_to_deploy_dir(
+  source_dir = ".",
+  deploy_dir = "docs",
+  pattern = "\\\\.json$",
+  overwrite = TRUE
+)
 }
 \arguments{
 \item{source_dir}{default: "."}

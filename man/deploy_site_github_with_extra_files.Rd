@@ -4,13 +4,16 @@
 \alias{deploy_site_github_with_extra_files}
 \title{deploy_site_github_with_extra_files}
 \usage{
-deploy_site_github_with_extra_files(pkg = ".",
+deploy_site_github_with_extra_files(
+  pkg = ".",
   vignettes_file_pattern_to_copy = "\\\\.json$",
   tarball = Sys.getenv("PKG_TARBALL", ""),
   ssh_id = Sys.getenv("id_rsa", ""),
   repo_slug = Sys.getenv("TRAVIS_REPO_SLUG", ""),
   commit_message = pkgdown:::construct_commit_message(pkg),
-  verbose = TRUE, ...)
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{pkg}{"."}
