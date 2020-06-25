@@ -1,3 +1,7 @@
+# [kwb.pkgbuild 0.1.5](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.5) <small>2020-06-25</small>
+
+* Update Travis-CI badges after migrating KWB-R build from travis-ci.org to .com (#72) 
+
 # [kwb.pkgbuild 0.1.4](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.4) <small>2020-06-23</small>
 
 * Fix use_travis_deploy() to correctly generate key for using pkgdown on Travis to deploy to gh-pages (#70) 
