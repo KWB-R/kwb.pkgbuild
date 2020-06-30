@@ -7,11 +7,14 @@
 deploy_site_github_with_extra_files(
   pkg = ".",
   vignettes_file_pattern_to_copy = "\\\\.json$",
+  install = TRUE,
   tarball = Sys.getenv("PKG_TARBALL", ""),
   ssh_id = Sys.getenv("id_rsa", ""),
-  repo_slug = Sys.getenv("TRAVIS_REPO_SLUG", ""),
-  commit_message = pkgdown:::construct_commit_message(pkg),
+  commit_message = construct_commit_message(pkg),
+  clean = FALSE,
   verbose = TRUE,
+  host = "github.com",
+  repo_slug = Sys.getenv("TRAVIS_REPO_SLUG", ""),
   ...
 )
 }
@@ -21,17 +24,24 @@ deploy_site_github_with_extra_files(
 \item{vignettes_file_pattern_to_copy}{file patern for copying files from
 vignettes directory into deploy directory (default: "\\.json$")}
 
+\item{install}{Optionally, opt-out of automatic installation. This is
+necessary if the package you're documenting is a dependency of pkgdown}
+
 \item{tarball}{tarball Sys.getenv("PKG_TARBALL", "")}
 
 \item{ssh_id}{ssh_id Sys.getenv("id_rsa", "")}
 
-\item{repo_slug}{repo_slug Sys.getenv("TRAVIS_REPO_SLUG", "")}
+\item{commit_message}{commit_message (default: construct_commit_message(pkg))}
 
-\item{commit_message}{commit_message pkgdown:::construct_commit_message(pkg)}
+\item{clean}{Clean all files from old site (default: FALSE)}
 
-\item{verbose}{verbose (default: TRUE)}
+\item{verbose}{Print verbose output (default: TRUE)}
 
-\item{...}{additional arguments passed to deploy_local_with_extra_files()}
+\item{host}{The GitHub host url (default: "github.com")}
+
+\item{repo_slug}{The `user/repo` slug for the repository.}
+
+\item{...}{additional arguments passed to [deploy_to_branch_with_extra_files]}
 }
 \value{
 deploy pkgdown site including additional files in "vignettes" source

@@ -1,3 +1,9 @@
+# [kwb.pkgbuild 0.2.0](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.0) <small>2020-06-30</small>
+
+* Add function `deploy_to_branch_with_extra_files()` for using github-actions to 
+deploy to gh-pages (#73) 
+
+
 # [kwb.pkgbuild 0.1.5](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.5) <small>2020-06-25</small>
 
 * Update Travis-CI badges after migrating KWB-R build from travis-ci.org to .com (#72) 
