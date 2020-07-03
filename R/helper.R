@@ -208,7 +208,7 @@ write_git_batch_and_execute <- function(
 #' @noRd
 #' @keywords internal
 #' @importFrom sessioninfo package_info
-add_creation_metadata <- function(as_yaml = FALSE, line_sep = "\n")
+add_creation_metadata <- function(as_yaml = TRUE, line_sep = "\n")
 {
   function_call <- deparse(sys.calls()[[1L]])
 
