@@ -6,3 +6,4 @@ pages:
     - public
   only:
   - main
+  - master

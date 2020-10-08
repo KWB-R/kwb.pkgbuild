@@ -25,5 +25,6 @@ matrix:
       on:
         branch:
         - main
+        - master
         - dev
   - r: oldrel
