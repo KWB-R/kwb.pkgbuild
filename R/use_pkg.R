@@ -70,7 +70,7 @@ use_pkg <- function(
   } else {
     # Create .travis.yml
     use_travis()
-    # Create .gitlab-ci.yml for "master" branch with "docs" folder
+    # Create .gitlab-ci.yml for "main" branch with "docs" folder
     fs::dir_create("docs")
     use_gitlab_ci_docs()
   }

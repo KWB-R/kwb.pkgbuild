@@ -5,7 +5,7 @@ grammars <- list(
     url = "[![<title>](<src>)](<href>)",
     src = "<address>/<path_1><params>",
     href = "<address>/<path_2>",
-    branch = "master"
+    branch = "main"
   ),
   appveyor = list(
     title = "Appveyor build Status",

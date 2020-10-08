@@ -1,3 +1,9 @@
+# [kwb.pkgbuild 0.1.6](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.6) <small>2020-10-09</small>
+
+* Update default GitHub branch to `main` since 2020-10-01 (see: [Article](https://www.zdnet.com/article/github-to-replace-master-with-main-starting-next-month/))
+
+* `add_creation_metadata`: write creation metadata in yaml format as default 
+
 # [kwb.pkgbuild 0.1.5](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.5) <small>2020-06-25</small>
 
 * Update Travis-CI badges after migrating KWB-R build from travis-ci.org to .com (#72) 
