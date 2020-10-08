@@ -4,6 +4,8 @@
 
 * `add_creation_metadata`: write creation metadata in yaml format as default 
 
+* travis.yml template: add dependencies required for pkgdown (>= 1.6.1) installation
+
 # [kwb.pkgbuild 0.1.5](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.5) <small>2020-06-25</small>
 
 * Update Travis-CI badges after migrating KWB-R build from travis-ci.org to .com (#72) 
