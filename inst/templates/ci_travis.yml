@@ -1,6 +1,11 @@
 language: r
 pandoc_version: 2.7.3
 sudo: required
+addons:
+  apt:
+    packages:
+    - libharfbuzz-dev
+    - libfribidi-dev
 cache: packages
 r_packages:
 - remotes
