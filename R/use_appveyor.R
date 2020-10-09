@@ -1,4 +1,4 @@
-# read_gitlab_ci_template ------------------------------------------------------
+# ci_appveyor_template ---------------------------------------------------------
 
 #' @keywords internal
 #' @noRd
@@ -6,7 +6,6 @@ ci_appveyor_template <- function()
 {
   read_template("ci_appveyor.yml")
 }
-
 
 # write_ci_appveyor ------------------------------------------------------------
 
@@ -26,9 +25,6 @@ write_ci_appveyor <- function(yml_vector, dest_dir = getwd(), ignore)
   }
 }
 
-
-
-
 # use_appveyor ----------------------------------------------------------------
 
 # use_appveyor with KWB default style
@@ -40,7 +36,7 @@ write_ci_appveyor <- function(yml_vector, dest_dir = getwd(), ignore)
 #' @export
 #'
 use_appveyor <- function(
-dest_dir = getwd(), yml_vector = ci_appveyor_template()
+  dest_dir = getwd(), yml_vector = ci_appveyor_template()
 )
 {
   write_ci_appveyor(yml_vector, dest_dir = dest_dir, ignore = TRUE)

@@ -5,7 +5,7 @@ grammars <- list(
     url = "[![<title>](<src>)](<href>)",
     src = "<address>/<path_1><params>",
     href = "<address>/<path_2>",
-    branch = "master"
+    branch = "main"
   ),
   appveyor = list(
     title = "Appveyor build Status",
@@ -16,7 +16,7 @@ grammars <- list(
   ),
   travis = list(
     title = "Travis build Status",
-    address = "https://travis-ci.org",
+    address = "https://travis-ci.com",
     path_1 = "<path_2>.svg?branch=<branch>",
     path_2 = "<user>/<pkgname>",
     params = ""

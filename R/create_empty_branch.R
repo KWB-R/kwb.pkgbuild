@@ -82,7 +82,7 @@ create_empty_branch <- function(
     sprintf('"%s" rm -rf .', git_exe),
     sprintf('"%s" commit --allow-empty -m "Initial gh-pages commit"', git_exe),
     sprintf('"%s" push origin %s', git_exe, branch),
-    sprintf('"%s" checkout master', git_exe)
+    sprintf('"%s" checkout main', git_exe)
   )
 
   if (set_githubuser) cmd <- c(
