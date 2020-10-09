@@ -3,18 +3,23 @@
 ###   type: R-package
 ###   name: kwb.pkgbuild
 ###   version: 0.1.5
-###   installed-from: Github (kwb-r/kwb.pkgbuild@60ea604)
-###   installed-on: '2020-10-08'
+###   installed-from: Github (kwb-r/kwb.pkgbuild@d34caef)
+###   installed-on: '2020-10-09'
 ### generated-by:
 ###   user: mrustl
 ###   function-call: kwb.pkgbuild::use_travis()
-### generated-on: 2020-10-08 16:35:45
+### generated-on: 2020-10-09 08:24:34
 ################################################################################
 
 
 language: r
 pandoc_version: 2.7.3
 sudo: required
+addons:
+  apt:
+    packages:
+    - libharfbuzz-dev
+    - libfribidi-dev
 cache: packages
 r_packages:
 - remotes
@@ -34,5 +39,6 @@ matrix:
       on:
         branch:
         - main
+        - master
         - dev
   - r: oldrel
