@@ -24,14 +24,14 @@ grammars <- list(
   ghactions_rcmdcheck = list(
     title = "R-CMD-check",
     address = "https://github.com",
-    path_1 = "<path_2>/workflows/R-CMD-check/badge.svg",
+    path_1 = "<user>/<pkgname>/workflows/<title>/badge.svg",
     path_2 = "<user>/<pkgname>/actions?query=workflow%3A<title>",
     params = ""
   ),
   ghactions_pkgdown = list(
     title = "pkgdown",
     address = "https://github.com",
-    path_1 = "<path_2>/workflows/R-CMD-check/badge.svg",
+    path_1 = "<user>/<pkgname>/workflows/<title>/badge.svg",
     path_2 = "<user>/<pkgname>/actions?query=workflow%3A<title>",
     params = ""
   ),
