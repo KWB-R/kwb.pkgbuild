@@ -19,8 +19,7 @@ use_index_md <- function(
   pkg <- read_description()
 
   index_md <- c(
-    use_badge_appveyor(pkg$name, user,domain),
-    use_badge_travis(pkg$name, user),
+    use_badge_ghactions(pkg$name, user),
     use_badge_codecov(pkg$name, user, domain ),
     use_badge_lifecycle(stage),
     use_badge_cran(pkg$name),

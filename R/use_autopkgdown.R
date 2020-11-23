@@ -24,8 +24,6 @@ use_autopkgdown <- function(
   # Add "docs" folder to .gitignore
   ignore_docs_folder(dbg = dbg)
 
-  # Add deploy key for Travis
-  travis::use_travis_deploy(key_name_private = "id_rsa")
 
   # Create empty gh-pages branch
   create_empty_branch_ghpages(repo,
@@ -38,16 +36,16 @@ use_autopkgdown <- function(
     ...
   )
 
-  # Create .gitlab-ci.yml for "master" branch with "docs" folder
+  # Create .gitlab-ci.yml for "main" branch with "docs" folder
   use_gitlab_ci_docs(dest_dir = file.path(dest_dir, repo))
 
-  # Update .travis.yml
-  use_travis(auto_build_pkgdown = TRUE, dbg)
+  # Update Github Actions
+  use_ghactions()
 
-  # Delete .gitlab-ci.yml (if existing in "master" branch)
+  # Delete .gitlab-ci.yml (if existing in "main" branch)
   fs::file_delete(".gitlab-ci.yml")
 
-  # Delete "docs" folder (if existing in "master" branch)
+  # Delete "docs" folder (if existing in "main" branch)
   #fs::dir_delete(path = "docs")
 }
 
