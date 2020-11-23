@@ -30,8 +30,6 @@ write_ci_travis <- function(yml_vector, dest_dir = getwd(), ignore)
 # use_travis -------------------------------------------------------------------
 
 #' Adds default .travis.yml
-#' @param auto_build_pkgdown  prepare Travis for pkgdown::build_site()
-#' (default: FALSE)
 #' @param dbg print debug messages (default: TRUE)
 #' @param yml_vector a yml imported as string vector (default:
 #' ci_travis_template())
@@ -39,7 +37,7 @@ write_ci_travis <- function(yml_vector, dest_dir = getwd(), ignore)
 #' @importFrom yaml as.yaml write_yaml
 #' @export
 
-use_travis <- function(auto_build_pkgdown = FALSE, dbg = TRUE,
+use_travis <- function(dbg = TRUE,
                        yml_vector = ci_travis_template())
 {
   travis_yml <- ".travis.yml"

@@ -393,11 +393,10 @@ wrapper function `kwb.pkgbuild::use_autopkgdown()`, which:
 
 - sets "docs" folder to ".gitignore" (as these files are now build on Travis)
 
-- prepares Travis-CI by: 
+- prepares Github Actions by: 
 
-   + adding secret key with `travis::use_travis_deploy(key_name_private = "id_rsa")`
 
-   + creating ".travis.yml" with `kwb.pkgbuild::use_travis(auto_build_pkgdown = TRUE)`
+   + creating ".github/workflows/" with `kwb.pkgbuild::use_ghactions()`
    
    + creating an empty "gh-pages" branch with 
    `kwb.pkgbuild::create_empty_branch_ghpages()`
