@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.pkgbuild</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -147,20 +147,11 @@
     <p>Adds default .travis.yml</p>
     </div>
 
-    <pre class="usage"><span class='fu'>use_travis</span><span class='op'>(</span>
-  auto_build_pkgdown <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  dbg <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  yml_vector <span class='op'>=</span> <span class='fu'>ci_travis_template</span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>use_travis</span><span class='op'>(</span>dbg <span class='op'>=</span> <span class='cn'>TRUE</span>, yml_vector <span class='op'>=</span> <span class='fu'>ci_travis_template</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>auto_build_pkgdown</th>
-      <td><p>prepare Travis for pkgdown::build_site()
-(default: FALSE)</p></td>
-    </tr>
     <tr>
       <th>dbg</th>
       <td><p>print debug messages (default: TRUE)</p></td>
