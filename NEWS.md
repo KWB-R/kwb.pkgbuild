@@ -1,4 +1,4 @@
-# [kwb.pkgbuild 0.1.6](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.6) <small>2020-11-23</small>
+# [kwb.pkgbuild 0.1.6](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.6) <small>2020-11-24</small>
 
 * Add function `deploy_to_branch_with_extra_files()` for using github-actions to 
 deploy to gh-pages (#73) 
