@@ -1,3 +1,10 @@
+# [kwb.pkgbuild 0.1.6](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.6) <small>2020-11-24</small>
+
+* Add function `deploy_to_branch_with_extra_files()` for using github-actions to 
+deploy to gh-pages (#73) 
+
+* Use GitHub Actions as default CI (#78) and removed support for Travis and Appveyor
+
 # [kwb.pkgbuild 0.1.5](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.5) <small>2020-10-09</small>
 
 * Update default GitHub branch to `main` since 2020-10-01 (see: [Article](https://www.zdnet.com/article/github-to-replace-master-with-main-starting-next-month/))

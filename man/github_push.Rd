@@ -4,7 +4,7 @@
 \alias{github_push}
 \title{github_push}
 \usage{
-github_push(dir, commit_message)
+github_push(dir, commit_message, remote, branch)
 }
 \description{
 github_push

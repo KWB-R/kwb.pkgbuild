@@ -21,6 +21,20 @@ grammars <- list(
     path_2 = "<user>/<pkgname>",
     params = ""
   ),
+  ghactions_rcmdcheck = list(
+    title = "R-CMD-check",
+    address = "https://github.com",
+    path_1 = "<user>/<pkgname>/workflows/<title>/badge.svg",
+    path_2 = "<user>/<pkgname>/actions?query=workflow%3A<title>",
+    params = ""
+  ),
+  ghactions_pkgdown = list(
+    title = "pkgdown",
+    address = "https://github.com",
+    path_1 = "<user>/<pkgname>/workflows/<title>/badge.svg",
+    path_2 = "<user>/<pkgname>/actions?query=workflow%3A<title>",
+    params = ""
+  ),
   codecov = list(
     title = "codecov",
     address = "https://codecov.io",
