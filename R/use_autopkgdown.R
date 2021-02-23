@@ -39,9 +39,6 @@ use_autopkgdown <- function(
   # Create .gitlab-ci.yml for "main" branch with "docs" folder
   use_gitlab_ci_docs(dest_dir = file.path(dest_dir, repo))
 
-  # Update Github Actions
-  use_ghactions()
-
   # Delete .gitlab-ci.yml (if existing in "main" branch)
   fs::file_delete(".gitlab-ci.yml")
 
