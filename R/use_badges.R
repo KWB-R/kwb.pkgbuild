@@ -42,35 +42,74 @@ use_badge_travis <- function(repo = NULL, user = "KWB-R")
   )
 }
 
+# use_badge_ghactions_rcmdcheck ------------------------------------------------
+
+#' Badge Github Actions RCMD Check
+#' @param repo name of repository (default: NULL)
+#' @param user user name or organisation under which repository defined in
+#' parameter "repo" is hosted (default: KWB-R")
+#' @param branch default: NULL (i.e. use "default" branch) or user defined branch
+#' (e.g. "dev")
+#' @return generates travis badge link
+#' @export
+use_badge_ghactions_rcmdcheck <- function(repo = NULL, user = "KWB-R",
+                                          branch = NULL)
+{
+  kwb.utils::resolve(
+    "url",
+    grammars$general,
+    grammars$ghactions_rcmdcheck,
+    user = user,
+    pkgname = get_pkgname(repo),
+    params = ifelse(is.null(branch), "", sprintf("?branch=%s", branch))
+
+  )
+
+}
+
+#' Badge Github Actions Pkgdown
+#' @param repo name of repository (default: NULL)
+#' @param user user name or organisation under which repository defined in
+#' parameter "repo" is hosted (default: KWB-R")
+#' @param branch default: NULL (i.e. use "default" branch) or user defined branch
+#' (e.g. "dev")
+#' @return generates Github Actions Pkgdown badge link
+#' @export
+use_badge_ghactions_pkgdown <- function(repo = NULL, user = "KWB-R", branch = NULL)
+{
+  kwb.utils::resolve(
+    "url",
+    grammars$general,
+    grammars$ghactions_pkgdown,
+    user = user,
+    pkgname = get_pkgname(repo),
+    params = ifelse(is.null(branch), "", sprintf("?branch=%s", branch))
+  )
+
+}
+
 # use_badge_ghactions ----------------------------------------------------------
 
 #' Badge Github Actions
 #' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
 #' parameter "repo" is hosted (default: KWB-R")
-#' @return generates travis badge link
+#' @param branch default: NULL (i.e. use "default" branch) or user defined branch
+#' (e.g. "dev")
+#' @return generates Github Actions badges link
 #' @export
-use_badge_ghactions <- function(repo = NULL, user = "KWB-R")
+#' @importFrom clipr write_clip
+use_badge_ghactions <- function(repo = NULL, user = "KWB-R", branch = NULL)
 {
-  sprintf("%s\n%s",
-
-  kwb.utils::resolve(
-    "url",
-    grammars$general,
-    grammars$ghactions_rcmdcheck,
-    user = user,
-    pkgname = get_pkgname(repo)
-  ),
-  kwb.utils::resolve(
-    "url",
-    grammars$general,
-    grammars$ghactions_pkgdown,
-    user = user,
-    pkgname = get_pkgname(repo)
-  )
-  )
-
+  badge_md <- sprintf("%s\n%s",
+                      use_badge_ghactions_rcmdcheck(repo, user, branch),
+                      use_badge_ghactions_pkgdown(repo, user, branch)
+                      )
+  cat(badge_md)
+  message("Badges were also copied to clipboard (use STRG + V to insert!)")
+  clipr::write_clip(badge_md)
 }
+
 
 # use_badge_codecov ------------------------------------------------------------
 
