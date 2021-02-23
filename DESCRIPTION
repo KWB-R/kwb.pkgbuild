@@ -22,7 +22,6 @@ BugReports: https://github.com/KWB-R/kwb.pkgbuild/issues
 Imports: 
     callr,
     cli,
-    clipr,
     crayon,
     desc,
     fs,

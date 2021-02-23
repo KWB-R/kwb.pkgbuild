@@ -98,17 +98,13 @@ use_badge_ghactions_pkgdown <- function(repo = NULL, user = "KWB-R", branch = NU
 #' (e.g. "dev")
 #' @return generates Github Actions badges link
 #' @export
-#' @importFrom clipr write_clip
 use_badge_ghactions <- function(repo = NULL, user = "KWB-R", branch = NULL)
 {
-  badge_md <- sprintf("%s\n%s",
-                      use_badge_ghactions_rcmdcheck(repo, user, branch),
-                      use_badge_ghactions_pkgdown(repo, user, branch)
-                      )
-  cat(badge_md)
-  message("Badges were also copied to clipboard (use STRG + V to insert!)")
-  clipr::write_clip(badge_md, allow_non_interactive = TRUE)
-}
+  sprintf("%s\n%s",
+          use_badge_ghactions_rcmdcheck(repo, user, branch),
+          use_badge_ghactions_pkgdown(repo, user, branch)
+          )
+  }
 
 
 # use_badge_codecov ------------------------------------------------------------
