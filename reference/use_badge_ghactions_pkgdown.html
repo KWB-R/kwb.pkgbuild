@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Helper function: read_description — read_description • kwb.pkgbuild</title>
+<title>Badge Github Actions Pkgdown — use_badge_ghactions_pkgdown • kwb.pkgbuild</title>
 
 
 <!-- jquery -->
@@ -45,8 +45,8 @@
 
 
 
-<meta property="og:title" content="Helper function: read_description — read_description" />
-<meta property="og:description" content="Helper function: read_description" />
+<meta property="og:title" content="Badge Github Actions Pkgdown — use_badge_ghactions_pkgdown" />
+<meta property="og:description" content="Badge Github Actions Pkgdown" />
 
 
 
@@ -138,29 +138,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Helper function: read_description</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/read_description.R'><code>R/read_description.R</code></a></small>
-    <div class="hidden name"><code>read_description.Rd</code></div>
+    <h1>Badge Github Actions Pkgdown</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/use_badges.R'><code>R/use_badges.R</code></a></small>
+    <div class="hidden name"><code>use_badge_ghactions_pkgdown.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Helper function: read_description</p>
+    <p>Badge Github Actions Pkgdown</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_description</span><span class='op'>(</span>file <span class='op'>=</span> <span class='st'>"DESCRIPTION"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>use_badge_ghactions_pkgdown</span><span class='op'>(</span>repo <span class='op'>=</span> <span class='cn'>NULL</span>, user <span class='op'>=</span> <span class='st'>"KWB-R"</span>, branch <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>path to DESCRIPTION file (default: DESCRIPTION)</p></td>
+      <th>repo</th>
+      <td><p>name of repository (default: NULL)</p></td>
+    </tr>
+    <tr>
+      <th>user</th>
+      <td><p>user name or organisation under which repository defined in
+parameter "repo" is hosted (default: KWB-R")</p></td>
+    </tr>
+    <tr>
+      <th>branch</th>
+      <td><p>default: NULL (i.e. use "default" branch) or user defined branch
+(e.g. "dev")</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list with pkg "name", "title", "desc", "version"</p>
+    <p>generates Github Actions Pkgdown badge link</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
