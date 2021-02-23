@@ -16,7 +16,7 @@ use_mit_license <- function(
 {
   kwb.utils::catAndRun("Creating KWB MIT LICENSE/LICENSE.md files",
                        expr = {
-  usethis::use_mit_license(name = copyright_holder$name)})
+  usethis::use_mit_license(copyright_holder = copyright_holder$name)})
 
 
   copyright_years <- ifelse(!is.null(copyright_holder$start_year),
