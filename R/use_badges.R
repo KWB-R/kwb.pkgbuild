@@ -107,7 +107,7 @@ use_badge_ghactions <- function(repo = NULL, user = "KWB-R", branch = NULL)
                       )
   cat(badge_md)
   message("Badges were also copied to clipboard (use STRG + V to insert!)")
-  clipr::write_clip(badge_md)
+  clipr::write_clip(badge_md, allow_non_interactive = TRUE)
 }
 
 
