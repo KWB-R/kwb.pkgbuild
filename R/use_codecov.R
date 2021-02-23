@@ -6,7 +6,7 @@
 #' @export
 use_codecov <- function()
 {
-  usethis:::check_uses_travis()
+  usethis:::check_uses_github_actions()
   usethis:::use_dependency("covr", "Suggests")
 
   if (! usethis::use_template("codecov.yml", ignore = TRUE)) {

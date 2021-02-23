@@ -65,21 +65,16 @@ use_pkg <- function(
   # Create PKGDOWN YML
   use_pkgdown(author, copyright_holder$name)
 
-  if (auto_build_pkgdown) {
-    use_autopkgdown(repo = pkg, org = user, dbg = dbg, ...)
-  } else {
-    # Create .travis.yml
-    use_travis()
-    # Create .gitlab-ci.yml for "main" branch with "docs" folder
-    fs::dir_create("docs")
-    use_gitlab_ci_docs()
-  }
-
-  # Create appveyor.yml
-  use_appveyor()
+  # Update Github Actions
+  use_ghactions()
 
   # Use codecov
   use_codecov()
+
+  if(auto_build_pkgdown) {
+  # Use GH actions for automating pkgdown deploy to "gh-pages" branch
+    use_autopkgdown(repo = pkg, org = user, dbg = dbg, ...)
+  }
 
   # Use index.Rmd (for pkgdown home:
   # see: https://pkgdown.r-lib.org/articles/pkgdown.html#home-page)

@@ -19,6 +19,10 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
+      - name: Install system dependencies
+        if: runner.os == 'MacOS'
+        run: brew install harfbuzz fribidi
+        
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -36,6 +40,7 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
+          remotes::install_github("kwb-r/kwb.pkgbuild")
           install.packages("pkgdown", type = "binary")
         shell: Rscript {0}
 
@@ -46,4 +51,5 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+          Rscript -e 'kwb.pkgbuild::deploy_to_branch_with_extra_files()'
+

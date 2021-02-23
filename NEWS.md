@@ -1,3 +1,7 @@
+# [kwb.pkgbuild 0.1.7](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.7) <small>2021-02-23</small>
+
+* Improve re-usability of Github Actions badges  (for R package `kwb.pkgstatus`)
+
 # [kwb.pkgbuild 0.1.6](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.6) <small>2020-11-24</small>
 
 * Add function `deploy_to_branch_with_extra_files()` for using github-actions to 
