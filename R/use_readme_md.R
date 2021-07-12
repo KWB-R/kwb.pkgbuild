@@ -8,7 +8,7 @@
 #' to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
 #' valid arguments are: "experimental", "maturing", "stable", "retired",
 #' "archived", "dormant", "questioning"), (default: "experiment")
-#' @return generates travis badge link
+#' @return generates README.md
 #' @export
 #' @importFrom desc desc
 
@@ -32,6 +32,7 @@ use_readme_md <- function(
     use_badge_codecov(pkg$name, user, domain ),
     use_badge_lifecycle(stage),
     use_badge_cran(pkg$name),
+    use_badge_runiverse(pkg$name),
     "",
     sprintf("# %s", pkg$name),
     "",

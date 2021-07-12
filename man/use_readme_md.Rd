@@ -18,7 +18,7 @@ valid arguments are: "experimental", "maturing", "stable", "retired",
 "archived", "dormant", "questioning"), (default: "experiment")}
 }
 \value{
-generates travis badge link
+generates README.md
 }
 \description{
 Use README
