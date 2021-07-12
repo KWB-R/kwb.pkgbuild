@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.pkgbuild</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8</span>
       </span>
     </div>
 
@@ -96,7 +96,7 @@
       <h1 data-toc-skip>Create KWB-R Package from Scratch</h1>
                         <h4 class="author">Michael Rustler, Hauke Sonnenberg</h4>
             
-            <h4 class="date">2021-02-23</h4>
+            <h4 class="date">2021-07-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/master/vignettes/tutorial.Rmd"><code>vignettes/tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>tutorial.Rmd</code></div>
@@ -179,12 +179,12 @@
 
 <span class="co"># Create directory for R package</span>
 <span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/create_pkg_dir.html">create_pkg_dir</a></span><span class="op">(</span><span class="va">pkg_dir</span><span class="op">)</span>
-<span class="co">#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpi8EON0/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpi8EON0/kwb.newpackage"</span>
+<span class="co">#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpKGKYpn/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpKGKYpn/kwb.newpackage"</span>
 
 <span class="co"># Create a default package structure</span>
 <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_dir.html">with_dir</a></span><span class="op">(</span><span class="va">pkg_dir</span>, <span class="op">{</span><span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/use_pkg_skeleton.html">use_pkg_skeleton</a></span><span class="op">(</span><span class="va">package</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Setting active project to '/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpi8EON0/kwb.newpackage'</span>
+<span class="co">#&gt; ✔ Setting active project to '/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKGKYpn/kwb.newpackage'</span>
 <span class="co">#&gt; ✔ Writing 'kwb.newpackage.Rproj'</span>
 <span class="co">#&gt; ✔ Adding '.Rproj.user' to '.gitignore'</span>
 <span class="co">#&gt; NULL</span></code></pre></div>

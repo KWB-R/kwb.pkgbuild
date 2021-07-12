@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adds default .github/workflows/ — use_ghactions • kwb.pkgbuild</title>
+<title>Badge R-Universe — use_badge_runiverse • kwb.pkgbuild</title>
 
 
 <!-- jquery -->
@@ -45,8 +45,8 @@
 
 
 
-<meta property="og:title" content="Adds default .github/workflows/ — use_ghactions" />
-<meta property="og:description" content="Adds default .github/workflows/" />
+<meta property="og:title" content="Badge R-Universe — use_badge_runiverse" />
+<meta property="og:description" content="Badge R-Universe" />
 
 
 
@@ -138,21 +138,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Adds default .github/workflows/</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/use_github_ci.R'><code>R/use_github_ci.R</code></a></small>
-    <div class="hidden name"><code>use_ghactions.Rd</code></div>
+    <h1>Badge R-Universe</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.pkgbuild/blob/master/R/use_badges.R'><code>R/use_badges.R</code></a></small>
+    <div class="hidden name"><code>use_badge_runiverse.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Adds default .github/workflows/</p>
+    <p>Badge R-Universe</p>
     </div>
 
-    <pre class="usage"><span class='fu'>use_ghactions</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>use_badge_runiverse</span><span class='op'>(</span>repo <span class='op'>=</span> <span class='cn'>NULL</span>, user <span class='op'>=</span> <span class='st'>"KWB-R"</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>repo</th>
+      <td><p>name of repository (default: NULL)</p></td>
+    </tr>
+    <tr>
+      <th>user</th>
+      <td><p>user name or organisation under which repository defined in
+parameter "repo" is hosted (default: KWB-R")</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>writes .github/workflows/ and adds it .Rbuildignore</p>
+    <p>generates codecov badge link</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
