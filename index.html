@@ -99,9 +99,21 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
+<p>For details on how to install KWB-R packages checkout our <a href="https://kwb-r.github.io/kwb.pkgbuild/articles/install.html">installation tutorial</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#install.packages("remotes", repos = "https://cloud.r-project.org")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"kwb-r/kwb.pkgbuild"</span>, INSTALL_opts <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'--no-multiarch'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co">### Optionally: specify GitHub Personal Access Token (GITHUB_PAT)</span>
+<span class="co">### See here why this might be important for you:</span>
+<span class="co">### https://kwb-r.github.io/kwb.pkgbuild/articles/install.html#set-your-github_pat</span>
+
+<span class="co"># Sys.setenv(GITHUB_PAT = "mysecret_access_token")</span>
+
+<span class="co"># Install package "remotes" from CRAN</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org">"remotes"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span>, repos <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Install KWB package 'kwb.pkgbuild' from GitHub</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"KWB-R/kwb.pkgbuild"</span><span class="op">)</span></code></pre></div>
 </div>
 
   </div>
@@ -135,12 +147,12 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://ci.appveyor.com/project/KWB-R/kwb-pkgbuild/branch/master"><img src="https://ci.appveyor.com/api/projects/status/fpwyt36kp3wfd4x4/branch/master?svg=true" alt="Appveyor build Status"></a></li>
-<li><a href="https://travis-ci.com/KWB-R/kwb.pkgbuild"><img src="https://travis-ci.com/KWB-R/kwb.pkgbuild.svg?branch=master" alt="Travis build Status"></a></li>
-<li><a href="https://codecov.io/github/KWB-R/kwb.pkgbuild"><img src="https://codecov.io/github/KWB-R/kwb.pkgbuild/branch/master/graphs/badge.svg" alt="codecov"></a></li>
+<li><a href="https://github.com/KWB-R/kwb.pkgbuild/actions?query=workflow%3AR-CMD-check"><img src="https://github.com/KWB-R/kwb.pkgbuild/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/KWB-R/kwb.pkgbuild/actions?query=workflow%3Apkgdown"><img src="https://github.com/KWB-R/kwb.pkgbuild/workflows/pkgdown/badge.svg" alt="pkgdown"></a></li>
+<li><a href="https://codecov.io/github/KWB-R/kwb.pkgbuild"><img src="https://codecov.io/github/KWB-R/kwb.pkgbuild/branch/main/graphs/badge.svg" alt="codecov"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Project Status"></a></li>
 <li><a href=""><img src="https://www.r-pkg.org/badges/version/kwb.pkgbuild" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://kwb-r.r-universe.dev"><img src="https://kwb-r.r-universe.dev/badges/kwb.pkgbuilds" alt="R-Universe_Status_Badge"></a></li>
+<li><a href="https://kwb-r.r-universe.dev/"><img src="https://kwb-r.r-universe.dev/badges/kwb.pkgbuild" alt="R-Universe_Status_Badge"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.3387180"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3387180.svg" alt="DOI"></a></li>
 </ul>
 </div>

@@ -141,7 +141,7 @@
 <p>The remotes package should now be installed. It allows to install further R packages directly from GitHub. Therefore, the functions of the remotes package need to communicate with the GitHub server. To gain authenticated access to the GitHub server we set a so called Private Access Token (PAT) in the following. This token is then automatically used whenever the GitHub server is accessed. Please see the <a href="install.html">Installation vignette</a> to learn how to get your personal GitHub PAT and use that token instead of <code>Put your Private Access Token here</code> in the following command:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>GITHUB_PAT <span class="op">=</span> <span class="st">"Put your Private Access Token here"</span><span class="op">)</span></code></pre></div>
-<p>Now, that the access token is set, you can use <code>install_github()</code> from the remotes packages to install the latest version of this package directly from our GitHub account:</p>
+<p>Now, that the access token is set, you can use <code><a href="https://remotes.r-lib.org/reference/install_github.html">install_github()</a></code> from the remotes packages to install the latest version of this package directly from our GitHub account:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"KWB-R/kwb.pkgbuild"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -179,12 +179,12 @@
 
 <span class="co"># Create directory for R package</span>
 <span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/create_pkg_dir.html">create_pkg_dir</a></span><span class="op">(</span><span class="va">pkg_dir</span><span class="op">)</span>
-<span class="co">#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpKGKYpn/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpKGKYpn/kwb.newpackage"</span>
+<span class="co">#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpACGdfm/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpACGdfm/kwb.newpackage"</span>
 
 <span class="co"># Create a default package structure</span>
 <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_dir.html">with_dir</a></span><span class="op">(</span><span class="va">pkg_dir</span>, <span class="op">{</span><span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/use_pkg_skeleton.html">use_pkg_skeleton</a></span><span class="op">(</span><span class="va">package</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Setting active project to '/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKGKYpn/kwb.newpackage'</span>
+<span class="co">#&gt; ✔ Setting active project to '/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpACGdfm/kwb.newpackage'</span>
 <span class="co">#&gt; ✔ Writing 'kwb.newpackage.Rproj'</span>
 <span class="co">#&gt; ✔ Adding '.Rproj.user' to '.gitignore'</span>
 <span class="co">#&gt; NULL</span></code></pre></div>
