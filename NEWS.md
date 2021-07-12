@@ -1,6 +1,6 @@
 # [kwb.pkgbuild 0.1.8](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.8) <small>2021-07-13</small>
 
-* Add `use_badge_runiverse()` (for linking to [https://kwb-r.r-universe.dev])
+* Add `use_badge_runiverse()` (for linking to [https://kwb-r.r-universe.dev](https://kwb-r.r-universe.dev))
 if package is available and use for `index.md` and `README.md`
 
 # [kwb.pkgbuild 0.1.7](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.7) <small>2021-02-23</small>

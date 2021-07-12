@@ -1,14 +1,20 @@
 authors:
   Michael Rustler:
     href: https://mrustl.de
+  Hauke Sonnenberg:
+    href: https://github.com/hsonne
+  FAKIN:
+    href: https://www.kompetenz-wasser.de/en/project/fakin/
+    html: <img src='https://www.kompetenz-wasser.de/wp-content/uploads/2017/08/forschung-headerbild_fakin-2-1920x449.jpg'
+      height='24' />
   Kompetenzzentrum Wasser Berlin gGmbH (KWB):
-    href: http://www.kompetenz-wasser.de
+    href: https://www.kompetenz-wasser.de
     html: <img src='http://www.kompetenz-wasser.de/wp-content/uploads/2017/08/cropped-logo-kwb_klein-new.png'
       height='24' />
 template:
   params:
     bootswatch: cerulean
-    docsearch: 
+    docsearch:
       api_key: d114e26fe8901b7b424d949906e60102
       index_name: kwb_pkgbuild
 development:
