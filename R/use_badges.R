@@ -208,3 +208,23 @@ is_on_cran <- function(cran_link)
 
   ! errored && httr::status_code(x) == 200
 }
+
+
+# use_badge_runiverse ----------------------------------------------------------
+
+#' Badge R-Universe
+#' @param repo name of repository (default: NULL)
+#' @param user user name or organisation under which repository defined in
+#' parameter "repo" is hosted (default: KWB-R")
+#' @return generates codecov badge link
+#' @export
+use_badge_runiverse <- function(repo = NULL, user = "KWB-R")
+{
+  kwb.utils::resolve(
+    "url",
+    grammars$general,
+    grammars$runiverse,
+    user = tolower(user),
+    pkgname = get_pkgname(repo)
+  )
+}

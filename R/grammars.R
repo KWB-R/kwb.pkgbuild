@@ -53,5 +53,11 @@ grammars <- list(
   ),
   mirror = list(
     url = "https://cran.<org>.org/package=<pkgname>"
+  ),
+  runiverse = list(
+    url_runiverse = "r-universe.dev",
+    title = "R-Universe_Status_Badge",
+    src = "https://<user>.<url_runiverse>/badges/<pkgname>",
+    href = "https://<user>.<url_runiverse>/"
   )
 )

@@ -23,6 +23,7 @@ use_index_md <- function(
     use_badge_codecov(pkg$name, user, domain ),
     use_badge_lifecycle(stage),
     use_badge_cran(pkg$name),
+    use_badge_runiverse(pkg$name),
     "",
     pkg$desc,
     "",
