@@ -1,3 +1,12 @@
+# [kwb.pkgbuild 0.2.0](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.0) <small>2022-01-20</small>
+
+* Documentation website with `pkgdown (>= 2.0.2)` and new [KWB website](https://kompetenz-wasser.de):   - Design: now using `bootstrap5` and colors slightly adapted to KWB design. 
+  - URL to KWB logo was updated due to new website. 
+  - **Attention: URLs to projects (including logos) need to be corrected manually (for old `_pkgdown.yml` files**
+
+* Deleted functions for unused CIs `travis` and `appveyor`
+
+
 # [kwb.pkgbuild 0.1.9](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.1.9) <small>2021-09-10</small>
 
 * Fix `Rcmdcheck` workflow on GitHub Actions by explicitly adding default organisation `GITHUB_PAT`

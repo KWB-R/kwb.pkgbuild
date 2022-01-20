@@ -6,7 +6,10 @@
 \usage{
 use_pkgdown(
   author = kwb_author("rustler"),
-  copyright_holder_name = kwb_string()
+  copyright_holder_name = kwb_string(),
+  pkg = get_pkgname(),
+  user = "kwb-r",
+  domain = "github"
 )
 }
 \arguments{
@@ -15,6 +18,12 @@ kwb.pkgbuild:::kwb_author("rustler"))}
 
 \item{copyright_holder_name}{name of copyright holder
 (default: kwb.pkgbuild:::kwb_string())}
+
+\item{pkg}{name of KWB package (default: get_pkgname())}
+
+\item{user}{name of GitHub user/organisation (default: 'kwb-r')}
+
+\item{domain}{name of domain for webpage publishing (default: 'github')}
 }
 \value{
 performs usethis::use_pkgdown() and additionally writes _pkgdown.yml

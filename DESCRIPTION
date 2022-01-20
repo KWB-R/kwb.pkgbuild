@@ -1,6 +1,6 @@
 Package: kwb.pkgbuild
 Title: R package for standardised development at KWB
-Version: 0.1.9
+Version: 0.2.0
 Authors@R: 
     c(person(given = "Michael",
              family = "Rustler",
@@ -19,7 +19,7 @@ Authors@R:
 Description: Helper functions for automating R package development at KWB
     to a predefined style.
 License: MIT + file LICENSE
-URL: https://github.com/KWB-R/kwb.pkgbuild
+URL: https://kwb-r.github.io/kwb.pkgbuild, https://github.com/KWB-R/kwb.pkgbuild
 BugReports: https://github.com/KWB-R/kwb.pkgbuild/issues
 Imports: 
     callr,
@@ -36,7 +36,6 @@ Imports:
     rematch2,
     sessioninfo,
     stringr,
-    travis,
     usethis,
     withr,
     yaml
@@ -50,9 +49,8 @@ VignetteBuilder:
     knitr
 Remotes: 
     github::kwb-r/kwb.orcid,
-    github::kwb-r/kwb.utils,
-    github::ropenscilabs/travis@f2dd9a3640b0cd8266b0a813c8eaf6bf3775c83d
+    github::kwb-r/kwb.utils
 ByteCompile: true
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
