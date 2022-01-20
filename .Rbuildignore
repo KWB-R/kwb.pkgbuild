@@ -14,3 +14,4 @@ secrets.csv
 ^R\\.add_author.R$
 ^\.travis\.yml$
 ^\.github$
+^pkgdown$
