@@ -1,7 +1,15 @@
+# [kwb.pkgbuild 0.2.1](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.1) <small>2022-02-09</small>
+
+* Bugfix for correctly writing package documentation website URL to `_pkgdown.yml`
+
 # [kwb.pkgbuild 0.2.0](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.0) <small>2022-01-20</small>
 
-* Documentation website with `pkgdown (>= 2.0.2)` and new [KWB website](https://kompetenz-wasser.de):   - Design: now using `bootstrap5` and colors slightly adapted to KWB design. 
+* Documentation website with `pkgdown (>= 2.0.2)` and new [KWB website](https://kompetenz-wasser.de):   
+  
+  - Design: now using `bootstrap5` and colors slightly adapted to KWB design. 
+  
   - URL to KWB logo was updated due to new website. 
+  
   - **Attention: URLs to projects (including logos) need to be corrected manually (for old `_pkgdown.yml` files**
 
 * Deleted functions for unused CIs `travis` and `appveyor`

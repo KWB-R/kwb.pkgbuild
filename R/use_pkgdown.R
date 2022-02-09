@@ -24,10 +24,10 @@ use_pkgdown <- function(
 
   pkgdown_url <- ""
 
-  if(domain == "github" & !kwb.utils::isNaOrEmpty(pkg) & !kwb.utils::isNaOrEmpty(user)) {
+  if(domain == "github" & !kwb.utils::isNaOrEmpty(pkg$name) & !kwb.utils::isNaOrEmpty(user)) {
   pkgdown_url <- yaml::as.yaml(list(url = sprintf("https://%s.github.io/%s",
                                                   tolower(user),
-                                                  tolower(pkg)))
+                                                  tolower(pkg$name)))
   )
   }
 
