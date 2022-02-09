@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">kwb.pkgbuild</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
       <img src="" class="logo" alt=""><h1>Create KWB-R Package from Scratch</h1>
                         <h4 data-toc-skip class="author">Michael Rustler, Hauke Sonnenberg</h4>
             
-            <h4 data-toc-skip class="date">2022-01-20</h4>
+            <h4 data-toc-skip class="date">2022-02-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/HEAD/vignettes/tutorial.Rmd" class="external-link"><code>vignettes/tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>tutorial.Rmd</code></div>
@@ -156,12 +156,13 @@
 
 <span class="co"># Create directory for R package</span>
 <span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/create_pkg_dir.html">create_pkg_dir</a></span><span class="op">(</span><span class="va">pkg_dir</span><span class="op">)</span>
-<span class="co">#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpw7Ri8j/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpw7Ri8j/kwb.newpackage"</span>
+<span class="co">#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpbDiuMS/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpbDiuMS/kwb.newpackage"</span>
 
 <span class="co"># Create a default package structure</span>
 <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_dir.html" class="external-link">with_dir</a></span><span class="op">(</span><span class="va">pkg_dir</span>, <span class="op">{</span><span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/use_pkg_skeleton.html">use_pkg_skeleton</a></span><span class="op">(</span><span class="va">package</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #00BB00;">✔</span> Setting active project to <span style="color: #0000BB;">'/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw7Ri8j/kwb.newpackage'</span></span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> Setting active project to <span style="color: #0000BB;">'/private/var/folders/</span></span>
+<span class="co"><span style="color: #0000BB;">#&gt; 24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpbDiuMS/kwb.newpackage'</span></span>
 <span class="co">#&gt; <span style="color: #00BB00;">✔</span> Writing <span style="color: #0000BB;">'kwb.newpackage.Rproj'</span></span>
 <span class="co">#&gt; <span style="color: #00BB00;">✔</span> Adding <span style="color: #0000BB;">'.Rproj.user'</span> to <span style="color: #0000BB;">'.gitignore'</span></span>
 <span class="co">#&gt; NULL</span></code></pre></div>
