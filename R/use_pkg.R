@@ -63,7 +63,7 @@ use_pkg <- function(
   }
 
   # Create PKGDOWN YML
-  use_pkgdown(author, copyright_holder$name, pkg, user, domain)
+  use_pkgdown(author, copyright_holder$name, pkg$name, user, domain)
 
   # Update Github Actions
   use_ghactions()
