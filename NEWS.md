@@ -1,3 +1,8 @@
+# [kwb.pkgbuild 0.2.2](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.2) <small>2022-05-11</small>
+
+* GitHub actions: use `windows` as default operating system for `pkgdown` (for 
+building documentation website) and `test coverage` workflow instead of `macosx`
+
 # [kwb.pkgbuild 0.2.1](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.1) <small>2022-02-09</small>
 
 * Bugfix for correctly writing package documentation website URL to `_pkgdown.yml`
