@@ -4,12 +4,6 @@
     <loc>https://kwb-r.github.io/kwb.pkgdown/404.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/articles/index.html</loc>
   </url>
   <url>
@@ -25,10 +19,13 @@
     <loc>https://kwb-r.github.io/kwb.pkgdown/index.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/news/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgdown/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/add_gitlabci_to_ghpages.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgdown/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/kwb.pkgdown/news/index.html</loc>
   </url>
   <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/copy_files_from_vignettes_dir_to_deploy_dir.html</loc>
@@ -43,9 +40,6 @@
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/create_pkg_dir.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/deploy_local_with_extra_files.html</loc>
-  </url>
-  <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/deploy_site_github_with_extra_files.html</loc>
   </url>
   <url>
@@ -55,13 +49,13 @@
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/get_pkgname.html</loc>
   </url>
   <url>
+    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/github_push.html</loc>
+  </url>
+  <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/git_check_config.html</loc>
   </url>
   <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/git_setup_user.html</loc>
-  </url>
-  <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/github_push.html</loc>
   </url>
   <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/index.html</loc>
@@ -80,9 +74,6 @@
   </url>
   <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/set_github_user.html</loc>
-  </url>
-  <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_appveyor.html</loc>
   </url>
   <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_autopkgdown.html</loc>
@@ -124,9 +115,6 @@
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_ghactions.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_gitlab_ci.html</loc>
-  </url>
-  <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_gitlab_ci_blogdown.html</loc>
   </url>
   <url>
@@ -142,9 +130,6 @@
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_index_md.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_index_rmd.html</loc>
-  </url>
-  <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_installation.html</loc>
   </url>
   <url>
@@ -157,16 +142,13 @@
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_pkg.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_pkg_skeleton.html</loc>
-  </url>
-  <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_pkgdown.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_readme_md.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_pkg_skeleton.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_travis.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgdown/reference/use_readme_md.html</loc>
   </url>
   <url>
     <loc>https://kwb-r.github.io/kwb.pkgdown/reference/write_to_gitignore.html</loc>
