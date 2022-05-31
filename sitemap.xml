@@ -1,159 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/404.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/install.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/articles/install.html</loc>
   </url>
   <url>
-    <loc>/articles/tutorial.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/articles/tutorial.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/index.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/copy_files_from_vignettes_dir_to_deploy_dir.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/copy_files_from_vignettes_dir_to_deploy_dir.html</loc>
   </url>
   <url>
-    <loc>/reference/create_empty_branch.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/create_empty_branch.html</loc>
   </url>
   <url>
-    <loc>/reference/create_empty_branch_ghpages.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/create_empty_branch_ghpages.html</loc>
   </url>
   <url>
-    <loc>/reference/create_pkg_dir.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/create_pkg_dir.html</loc>
   </url>
   <url>
-    <loc>/reference/deploy_site_github_with_extra_files.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/deploy_site_github_with_extra_files.html</loc>
   </url>
   <url>
-    <loc>/reference/deploy_to_branch_with_extra_files.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/deploy_to_branch_with_extra_files.html</loc>
   </url>
   <url>
-    <loc>/reference/get_pkgname.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/get_pkgname.html</loc>
   </url>
   <url>
-    <loc>/reference/github_push.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/github_push.html</loc>
   </url>
   <url>
-    <loc>/reference/git_check_config.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/git_check_config.html</loc>
   </url>
   <url>
-    <loc>/reference/git_setup_user.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/git_setup_user.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/kwb_author.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/kwb_author.html</loc>
   </url>
   <url>
-    <loc>/reference/kwb_package.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/kwb_package.html</loc>
   </url>
   <url>
-    <loc>/reference/pipe.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>/reference/read_description.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/read_description.html</loc>
   </url>
   <url>
-    <loc>/reference/set_github_user.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/set_github_user.html</loc>
   </url>
   <url>
-    <loc>/reference/use_autopkgdown.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_autopkgdown.html</loc>
   </url>
   <url>
-    <loc>/reference/use_badge_appveyor.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_appveyor.html</loc>
   </url>
   <url>
-    <loc>/reference/use_badge_codecov.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_codecov.html</loc>
   </url>
   <url>
-    <loc>/reference/use_badge_cran.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_cran.html</loc>
   </url>
   <url>
-    <loc>/reference/use_badge_ghactions.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_ghactions.html</loc>
   </url>
   <url>
-    <loc>/reference/use_badge_ghactions_pkgdown.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_ghactions_pkgdown.html</loc>
   </url>
   <url>
-    <loc>/reference/use_badge_ghactions_rcmdcheck.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_ghactions_rcmdcheck.html</loc>
   </url>
   <url>
-    <loc>/reference/use_badge_lifecycle.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_lifecycle.html</loc>
   </url>
   <url>
-    <loc>/reference/use_badge_runiverse.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_runiverse.html</loc>
   </url>
   <url>
-    <loc>/reference/use_badge_travis.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_travis.html</loc>
   </url>
   <url>
-    <loc>/reference/use_codecov.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_codecov.html</loc>
   </url>
   <url>
-    <loc>/reference/use_description.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_description.html</loc>
   </url>
   <url>
-    <loc>/reference/use_ghactions.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_ghactions.html</loc>
   </url>
   <url>
-    <loc>/reference/use_gitlab_ci_blogdown.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_gitlab_ci_blogdown.html</loc>
   </url>
   <url>
-    <loc>/reference/use_gitlab_ci_docs.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_gitlab_ci_docs.html</loc>
   </url>
   <url>
-    <loc>/reference/use_gitlab_ci_ghpages.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_gitlab_ci_ghpages.html</loc>
   </url>
   <url>
-    <loc>/reference/use_gitlab_ci_pkgdown.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_gitlab_ci_pkgdown.html</loc>
   </url>
   <url>
-    <loc>/reference/use_index_md.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_index_md.html</loc>
   </url>
   <url>
-    <loc>/reference/use_installation.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_installation.html</loc>
   </url>
   <url>
-    <loc>/reference/use_mit_license.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_mit_license.html</loc>
   </url>
   <url>
-    <loc>/reference/use_news_md.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_news_md.html</loc>
   </url>
   <url>
-    <loc>/reference/use_pkg.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_pkg.html</loc>
   </url>
   <url>
-    <loc>/reference/use_pkgdown.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_pkgdown.html</loc>
   </url>
   <url>
-    <loc>/reference/use_pkg_skeleton.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_pkg_skeleton.html</loc>
   </url>
   <url>
-    <loc>/reference/use_readme_md.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/use_readme_md.html</loc>
   </url>
   <url>
-    <loc>/reference/write_to_gitignore.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/write_to_gitignore.html</loc>
   </url>
   <url>
-    <loc>/reference/write_to_rbuildignore.html</loc>
+    <loc>https://kwb-r.github.io/kwb.pkgbuild/reference/write_to_rbuildignore.html</loc>
   </url>
 </urlset>
