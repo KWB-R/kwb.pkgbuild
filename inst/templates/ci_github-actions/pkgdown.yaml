@@ -11,6 +11,7 @@ jobs:
   pkgdown:
     runs-on: windows-latest
     env:
+      CURL_SSL_BACKEND: "openssl"
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
