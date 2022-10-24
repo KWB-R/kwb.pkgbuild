@@ -1,3 +1,9 @@
+# [kwb.pkgbuild 0.2.3](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.3) <small>2022-10-24</small>
+
+* GitHub actions: fix continuous integration workflows (i.e. `pkgdown`, `Rcmdcheck`, 
+`test-coverage`)), which were broken after 2022-10-15 due to unavailable `master` 
+branch in upstream dependency [r-lib/actions](https://github.com/r-lib/actions).
+
 # [kwb.pkgbuild 0.2.2](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.2) <small>2022-05-11</small>
 
 * GitHub actions: use `windows` as default operating system for `pkgdown` (for 
