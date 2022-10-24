@@ -1,5 +1,4 @@
-url: https://kwb-r.github.io/kwb.pkgdown
-
+url: https://kwb-r.github.io/kwb.pkgbuild
 authors:
   Michael Rustler:
     href: https://mrustl.de
@@ -23,10 +22,6 @@ template:
     primary: "#007aff"
     border-radius: 0.5rem
     btn-border-radius: 0.25rem
-  params:
-    docsearch:
-      api_key: d114e26fe8901b7b424d949906e60102
-      index_name: kwb_pkgbuild
 development:
   mode: auto
 

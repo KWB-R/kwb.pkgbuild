@@ -1,3 +1,17 @@
+# [kwb.pkgbuild 0.2.3](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.3) <small>2022-10-24</small>
+
+* Fix GitHub action worfklows: 
+
+  - fix continuous integration workflows (i.e. `pkgdown`, `Rcmdcheck`, 
+  `test-coverage`)), which were broken after 2022-10-15 due to unavailable `master` 
+  branch in upstream dependency [r-lib/actions](https://github.com/r-lib/actions).
+
+  - fix [pkgdown](https://github.com/r-lib/pkgdown) GitHub actions workflow, which 
+  crashed during `build_news()` generation on `windows` due to an `recent change in Windows that has made it incompatible   with old openssl servers` (thanks to [@jeroen](https://github.com/KWB-R/kwb.geosalz/commit/925944151617d9b3b7f50008fafd29eb18ba1d65#commitcomment-87352971) for that hint!) and [@garborcsardi](https://github.com/r-lib/pkgdown/issues/2211#issuecomment-1281171018) 
+  for this workaround!). For full discussion on this issue (which might be 
+  fixed in an upcoming [pkgdown](https://github.com/r-lib/pkgdown) version 2.0.7)
+  see [pkgdown#2211](https://github.com/r-lib/pkgdown/issues/2211)
+
 # [kwb.pkgbuild 0.2.2](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.2) <small>2022-05-11</small>
 
 * GitHub actions: use `windows` as default operating system for `pkgdown` (for 
