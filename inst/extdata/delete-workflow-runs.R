@@ -1,78 +1,111 @@
 if (FALSE)
 {
-  token <- Sys.getenv("GITHUB_PAT")
+  run_info <- get_info_on_last_workflow_runs(
+    repo = "status",
+    per_page = 100L,
+    "name"
+  )
 
-  repo <- "wasserportal"
-  #workflow <- "R-CMD-check.yaml"
-  #workflow <- "pkgdown.yaml"
+  nrow(run_info)
 
-  # Get link to last page of runs  
-  url_link <- url_runs(repo, workflow) %>%
-    get_response(token) %>%
-    get_link_to_last()
-  
-  url_link
-  
-  urls_last_runs <- url_link %>%
-    get_response(token) %>%
-    httr::content("parsed") %>%
-    kwb.utils::selectElements("workflow_runs") %>% 
-    sapply(kwb.utils::selectElements, "url")
-  
-  urls_last_runs
-  
-  delete_runs(urls_last_runs, token)
+  range(run_info$run_started_at)
+
+  delete_runs(urls = run_info$url)
 }
 
 `%>%` <- magrittr::`%>%`
 
-# url_runs ---------------------------------------------------------------------
-url_runs <- function(repo, workflow)
+# get_info_on_last_workflow_runs -----------------------------------------------
+get_info_on_last_workflow_runs <- function(repo, per_page = 30L, ...)
 {
-  sprintf(
-    "https://api.github.com/repos/kwb-r/%s/actions/workflows/%s/runs",
-    repo,
-    workflow
+  result <- get_workflow_runs(repo)
+
+  page <- last_page(result$total_count, per_page)
+
+  result <- get_workflow_runs(repo, per_page = per_page, page = page)
+
+  x <- result$workflow_runs
+
+  stopifnot(length(x) <= per_page)
+
+  do.call(rbind, lapply(x, function(xx) {
+    as.data.frame(kwb.utils::selectElements(xx, c(
+      "url",
+      "run_started_at",
+      "status",
+      ...
+    )))
+  }))
+}
+
+# get_workflow_runs ------------------------------------------------------------
+get_workflow_runs <- function(repo, per_page = 30L, page = 1L)
+{
+  endpoints <- list(
+    runs = "<api>/repos/<owner>/<repo>/actions/runs?<runs_pars>",
+    runs_pars = "per_page=<per_page>&page=<page>",
+    api = "https://api.github.com",
+    owner = "KWB-R"
   )
+
+  # List workflow runs for a repository
+  response <- get_response(
+    url = kwb.utils::resolve(
+      "runs",
+      endpoints,
+      repo = repo,
+      per_page = per_page,
+      page = page
+    )
+  )
+
+  httr::content(response)
 }
 
 # get_response -----------------------------------------------------------------
-get_response <- function(url, token)
+get_response <- function(url, token = github_token(), ...)
 {
-  httr::GET(url, headers = list(
-    Authorization = paste("token", token)
-  ))
+  httr::GET(url, headers = create_header(token, ...))
 }
 
-# get_link_to_last -------------------------------------------------------------
-get_link_to_last <- function(response)
+# github_token -----------------------------------------------------------------
+github_token <- function()
 {
-  links <- response %>%
-    httr::headers() %>%
-    kwb.utils::selectElements("link") %>%
-    strsplit(",") %>%
-    `[[`(1L)
-  
-  link <- grep("rel=\"last\"", links, value = TRUE)
-  
-  gsub("^\\s*<|>;.*$", "", link)
+  Sys.getenv("GITHUB_PAT")
+}
+
+# create_header ----------------------------------------------------------------
+create_header <- function(token, ...)
+{
+  list(
+    Authorization = paste("token", token),
+    ...
+  )
+}
+
+# last_page --------------------------------------------------------------------
+last_page <- function(n_runs, per_page)
+{
+  ((n_runs - 1L) %/% per_page) + 1L
 }
 
 # delete_runs ------------------------------------------------------------------
-delete_runs <- function(urls, token)
+delete_runs <- function(urls, token = github_token())
 {
-  sapply(urls, function(url) {
-    
-    response <- kwb.utils::catAndRun(
-      paste("DELETE", url),
-      httr::DELETE(
-        url, 
-        httr::add_headers(
-          Authorization = paste0("token ", token)
-        )
-      )
+  invisible(sapply(seq_along(urls), function(i) {
+
+    url <- urls[i]
+
+    kwb.utils::catAndRun(
+      sprintf("Deleting %d/%d: %s ", i, length(urls), url),
+      expr = {
+        config <- do.call(httr::add_headers, create_header(token))
+        response <- httr::DELETE(url, config)
+        if (httr::status_code(response) != 204L) {
+          print(response)
+          stop("DELETE failed.")
+        }
+      }
     )
-    
-    httr::status_code(response)
-  })
+  }))
 }
