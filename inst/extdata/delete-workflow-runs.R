@@ -1,10 +1,13 @@
 if (FALSE)
 {
   run_info <- get_info_on_last_workflow_runs(
-    repo = "status",
-    per_page = 100L,
-    "name"
+    repo = "kwb.nextcloud",
+    per_page = 50L,
+    "name",
+    "conclusion"
   )
+
+  View(run_info)
 
   nrow(run_info)
 
@@ -58,6 +61,10 @@ get_workflow_runs <- function(repo, per_page = 30L, page = 1L)
       page = page
     )
   )
+
+  if (httr::status_code(response) == 403L) {
+    print(response)
+  }
 
   httr::content(response)
 }
