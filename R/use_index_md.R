@@ -13,26 +13,20 @@
 #' @importFrom desc desc
 
 use_index_md <- function(
-  user = "KWB-R", domain = "github", stage = "experimental"
+    user = "KWB-R",
+    domain = "github",
+    stage = "experimental"
 )
 {
-  pkg <- read_description()
-
-  index_md <- c(
-    use_badge_ghactions(pkg$name, user),
-    use_badge_codecov(pkg$name, user, domain ),
-    use_badge_lifecycle(stage),
-    use_badge_cran(pkg$name),
-    use_badge_runiverse(pkg$name),
-    "",
-    pkg$desc,
-    "",
-    use_installation(pkg$name, user, domain)
+  content <- get_markdown_for_index_or_readme(
+    is_readme = FALSE,
+    user = user,
+    domain = domain,
+    stage = stage
   )
 
-  writeLines(index_md, "index.md")
-
+  writeLines(content, "index.md")
   write_to_rbuildignore(ignore_pattern = "^index\\.md$")
 
-  index_md
+  content
 }

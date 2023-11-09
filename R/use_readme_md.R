@@ -13,41 +13,18 @@
 #' @importFrom desc desc
 
 use_readme_md <- function(
-  user = "KWB-R",
-  domain = "github",
-  stage = "experimental"
+    user = "KWB-R",
+    domain = "github",
+    stage = "experimental"
 )
 {
-  pkg <- read_description()
-
-  docu_release <- sprintf(
-    "https://%s.%s.io/%s",
-    tolower(user), tolower(domain), tolower(pkg$name)
+  content <- get_markdown_for_index_or_readme(
+    is_readme = TRUE,
+    user = user,
+    domain = domain,
+    stage = stage
   )
 
-  docu_dev <- sprintf("%s/dev", docu_release)
-
-  readme_md <- c(
-    use_badge_ghactions(pkg$name, user),
-    use_badge_codecov(pkg$name, user, domain ),
-    use_badge_lifecycle(stage),
-    use_badge_cran(pkg$name),
-    use_badge_runiverse(pkg$name),
-    "",
-    sprintf("# %s", pkg$name),
-    "",
-    pkg$desc,
-    "",
-    use_installation(pkg$name, user, domain),
-    "",
-    "## Documentation",
-    "",
-    sprintf("Release: [%s](%s)", docu_release, docu_release),
-    "",
-    sprintf("Development: [%s](%s)", docu_dev, docu_dev)
-  )
-
-  writeLines(readme_md, "README.md")
-
+  writeLines(content, "README.md")
   write_to_rbuildignore(ignore_pattern = "^README\\.md$")
 }
