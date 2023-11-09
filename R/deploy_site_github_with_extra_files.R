@@ -220,6 +220,7 @@ copy_files_from_vignettes_dir_to_deploy_dir <- function(
 #'   jekyll rendering.
 #' @param ... Additional arguments passed to pkgdown::build_site()
 #' @inheritParams deploy_site_github_with_extra_files
+#' @importFrom utils getFromNamespace
 #' @export
 deploy_to_branch_with_extra_files <- function(pkg = ".",
                              vignettes_file_pattern_to_copy = "\\.json",
@@ -258,7 +259,7 @@ deploy_to_branch_with_extra_files <- function(pkg = ".",
 
   if (clean) {
     rule("Cleaning files from old site", line = 1)
-    pkgdown:::clean_site(pkg)
+    pkgdown::clean_site(pkg)
   }
 
   pkgdown::build_site(pkg, devel = FALSE, preview = FALSE, install = FALSE, ...)
@@ -271,7 +272,7 @@ deploy_to_branch_with_extra_files <- function(pkg = ".",
   )
 
   if (github_pages) {
-    pkgdown:::build_github_pages(pkg)
+    utils::getFromNamespace("build_github_pages", "pkgdown")(pkg)
   }
 
   github_push(dest_dir, commit_message, remote, branch)
