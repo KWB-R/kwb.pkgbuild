@@ -127,7 +127,6 @@ github_push <- function(dir, commit_message) {
 #' folder to "gh-pages"
 #' @export
 #' @importFrom fs dir_create file_temp dir_delete file_chmod
-#' @importFrom rematch2 re_match
 #' @importFrom pkgdown build_site
 #' @importFrom callr rcmd
 #' @importFrom openssl base64_decode
