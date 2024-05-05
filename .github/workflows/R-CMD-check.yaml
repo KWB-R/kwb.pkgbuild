@@ -45,6 +45,7 @@ jobs:
       - name: Try to avoid issue with stringi installation from source
         if: runner.os == 'Windows'
         run: install.packages("stringi", type = "win.binary")
+        shell: Rscript {0}
 
       - name: Query dependencies
         run: |
