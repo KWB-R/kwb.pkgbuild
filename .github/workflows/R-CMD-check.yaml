@@ -42,9 +42,9 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Try to avoid issue with stringi installation from source
+      - name: Try to avoid issue with stringi installation further down
         if: runner.os == 'Windows'
-        run: install.packages("stringi", type = "win.binary")
+        run: install.packages("stringi")
         shell: Rscript {0}
 
       - name: Query dependencies
