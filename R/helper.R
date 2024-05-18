@@ -4,6 +4,16 @@ clean_stop <- function(...)
   stop(..., call. = FALSE)
 }
 
+# email_kwb --------------------------------------------------------------------
+email_kwb <- function(
+    given,
+    family,
+    full_name = paste0(given, family, sep = ".")
+)
+{
+  paste0(tolower(full_name), "@kompetenz-wasser.de")
+}
+
 # get_pkgname ------------------------------------------------------------------
 
 #' Helper Function: Get Package Name
@@ -121,7 +131,6 @@ path_to_git <- function()
 #' @param dbg print debug messages (default: TRUE)
 #' @return sets globally user.name and user.email in Git
 #' @export
-#' @importFrom stringr str_replace
 set_github_user <- function(
   git_username = "kwb.pkgbuild::use_autopkgdown()",
   git_fullname = "kwb.pkgbuild::use_autopkgdown()",
@@ -132,13 +141,9 @@ set_github_user <- function(
   dbg = TRUE
 )
 {
+  # Compose KWB e-mail address
   if (is.null(git_email)) {
-
-    # Replace space with dot
-    dot_name <- stringr::str_replace(git_fullname, "\\s+", ".")
-
-    # Compose KWB e-mail address
-    git_email <- paste0(tolower(dot_name), "@kompetenz-wasser.de")
+    git_email <- email_kwb(full_name = gsub("\\s+", ".", git_fullname))
   }
 
   git_exe <- git_check_if_windows(git_exe)

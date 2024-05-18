@@ -68,7 +68,6 @@ use_gitlab_ci_blogdown <- function(
 #'   https://github.com/KWB-R/kwb.pkgbuild" sets "KWB-R/kwb.pkgbuild" as
 #'   "<owner>/<repo>")
 #' @return writes .gitlab-ci.yml
-#' @importFrom stringr str_remove
 #' @importFrom desc desc_get
 #' @export
 
@@ -76,10 +75,8 @@ use_gitlab_ci_pkgdown <- function(
   dest_dir = getwd(), yml_vector = gitlab_ci_template_pkgdown()
 )
 {
-  repo <- stringr::str_remove(desc::desc_get("URL"), "^http(s)?://github.com/")
-
-  yml_vector <- stringr::str_replace(yml_vector, "<owner>/<repo>", repo)
-
+  owner_repo <- gsub("^http(s)?://github.com/", "", desc::desc_get("URL"))
+  yml_vector <- gsub("<owner>/<repo>", owner_repo, yml_vector)
   write_gitlab_ci(yml_vector, dest_dir = dest_dir, ignore = TRUE)
 }
 
