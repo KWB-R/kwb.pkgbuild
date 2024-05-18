@@ -258,7 +258,7 @@ deploy_to_branch_with_extra_files <- function(pkg = ".",
 
   if (clean) {
     rule("Cleaning files from old site", line = 1)
-    pkgdown:::clean_site(pkg)
+    pkgdown::clean_site(pkg)
   }
 
   pkgdown::build_site(pkg, devel = FALSE, preview = FALSE, install = FALSE, ...)
@@ -271,7 +271,7 @@ deploy_to_branch_with_extra_files <- function(pkg = ".",
   )
 
   if (github_pages) {
-    pkgdown:::build_github_pages(pkg)
+    getFromNamespace("build_github_pages", "pkgdown")(pkg)
   }
 
   github_push(dest_dir, commit_message, remote, branch)

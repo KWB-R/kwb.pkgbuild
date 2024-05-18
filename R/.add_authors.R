@@ -79,7 +79,7 @@ add_authors <- function(author_meta, role = "ctb", path = getwd())
 #' @export
 #' @importFrom purrr transpose
 convert_author_metadata_tolist <- function(
-  author_metadata_df = create_author_metadata_from_orcid()
+    author_metadata_df = create_author_metadata_from_orcid()
 )
 {
   setNames(
@@ -94,31 +94,24 @@ convert_author_metadata_tolist <- function(
 #' @param orcids named character vector with ORCIDs and names correspondig to
 #' to "given_name family name" (defaults: kwb.orcid::get_kwb_orcids())
 #' @importFrom kwb.orcid get_kwb_orcids
-#' @importFrom stringr str_trim str_split
-#' @importFrom magrittr %>%
+#' @importFrom kwb.utils extractSubstring setColumns
 #' @return data frame with required metadata for R package DESCRIPTION as
 #' required by desc::desc_add_author()
 #' @export
 create_author_metadata_from_orcid <- function(
-  orcids = kwb.orcid::get_kwb_orcids()
+    orcids = kwb.orcid::get_kwb_orcids()
 )
 {
-  orc_ids <- orcids[order(orcids)]
-  orc_names <- names(orcids)
+  orc_ids <- sort(orcids)
 
-  orc_names_matrix <- orc_names %>%
-    stringr::str_trim() %>%
-    stringr::str_split(pattern = "\\s+", simplify = TRUE, n = 2)
-
-  kwb.utils::noFactorDataFrame(
-    given = orc_names_matrix[,1],
-    family = orc_names_matrix[,2],
-    email = sprintf(
-      "%s.%s@kompetenz-wasser.de",
-      tolower(orc_names_matrix[, 1]),
-      tolower(orc_names_matrix[, 2])
-    ),
-    orcid = orc_ids,
-    row.names = NULL
-  )
+  names(orcids) %>%
+    kwb.utils::extractSubstring(
+      pattern = "^\\s*(\\S+)\\s+(\\S+)\\s*$",
+      index = c(given = 1L, family = 2L)
+    ) %>%
+    kwb.utils::setColumns(
+      email = email_kwb(.[["given"]], .[["family"]]),
+      orcid = orc_ids,
+      dbg = FALSE
+    )
 }
