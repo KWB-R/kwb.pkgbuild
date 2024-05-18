@@ -137,11 +137,10 @@ use_badge_codecov <- function(repo = NULL, user = "KWB-R", domain = "github")
 #'    valid arguments are: "experimental", "maturing", "stable", "retired",
 #'   "archived", "dormant", "questioning"), (default: "experiment")
 #' @return generates lifecycle badge link
-#' @importFrom utils getFromNamespace
 #' @export
 use_badge_lifecycle <- function(stage = "experimental")
 {
-  stages <- utils::getFromNamespace("stages", "usethis")
+  stages <- get_from_namespace("stages", "usethis")
   stage <- match.arg(tolower(stage), names(stages))
 
   kwb.utils::resolve(

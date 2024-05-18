@@ -7,7 +7,6 @@
 #' @importFrom usethis use_template use_git_ignore
 #' @importFrom fs dir_create file_create
 #' @importFrom desc desc_set
-#' @importFrom utils getFromNamespace
 #' @examples
 #' ## valid pkg folder
 #' pkg_name <- "pkgname"
@@ -28,8 +27,7 @@ use_pkg_skeleton <- function(pkg_name)
 
   usethis::use_git_ignore(".Rproj.user")
 
-  if (utils::getFromNamespace("is_package", "usethis")()) {
-
+  if (get_from_namespace("is_package", "usethis")()) {
     usethis::use_build_ignore(c(
       rproj_file,
       ".Rhistory",

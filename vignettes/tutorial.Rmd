@@ -59,7 +59,6 @@ packages <- setdiff(required, installed)
 
 # Install the packages from CRAN
 for (package in packages) {
-  
   install.packages(package, repos = "https://cloud.r-project.org")
 }
 ```
@@ -192,10 +191,10 @@ The package description needs three entries
 - **name**: name of the package
 
 - **title**: title of your R package (which is automatically converted to title 
-case with the function `tools::toTitleCase()`)
+  case with the function `tools::toTitleCase()`)
 
-- **desc:** package description. Should be at least one sentence long and 
-needs to end with a period!
+- **desc:** package description. Should be at least one sentence long and needs 
+  to end with a period!
 
 ```{r}
 description <- list(
@@ -301,7 +300,7 @@ possible problems (e.g. wrong documentation, missing package dependencies).
 In case of missing package dependencies as shown below these should be added to 
 the [DESCRIPTION](http://r-pkgs.had.co.nz/description.html) file.
 
-```{r eval = FALSE}
+```
 Namespace dependencies not required: 'fs' 'httr' 'stringr' 'usethis' 'yaml'
 See section 'The DESCRIPTION file' in the 'Writing R Extensions'
 manual.
@@ -318,7 +317,7 @@ Namespace dependencies not required: 'fs' 'httr' 'stringr' 'usethis' 'yaml'
 
 This can be done using the function `usethis::use_package()` as shown below: 
 
-```{r eval = FALSE}
+```
 pkg_dependencies <- c('fs', 'httr', 'stringr', 'usethis', 'yaml')
 
 sapply(pkg_dependencies, usethis::use_package)
@@ -338,7 +337,7 @@ sapply(pkg_dependencies, usethis::use_package)
 Subsequently you should re-click on the `Check` button again and it should
 finish without errors.
 
-```{r eval = FALSE}
+```
 R CMD check results
 0 errors | 0 warning  | 0 note 
 
@@ -351,7 +350,7 @@ Now you are ready for building your R package by clicking on the `Install and
 Restart` button. A successful installation should finish with `Done` as shown
 below:
 
-```{r eval = FALSE}
+```
 ** building package indices
 ** installing vignettes
 ** testing if installed package can be loaded
@@ -394,7 +393,6 @@ wrapper function `kwb.pkgbuild::use_autopkgdown()`, which:
 - sets "docs" folder to ".gitignore" (as these files are now build on Travis)
 
 - prepares Github Actions by: 
-
 
    + creating ".github/workflows/" with `kwb.pkgbuild::use_ghactions()`
    
