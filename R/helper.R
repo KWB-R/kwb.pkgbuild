@@ -14,6 +14,10 @@ email_kwb <- function(
   paste0(tolower(full_name), "@kompetenz-wasser.de")
 }
 
+# get_from_namespace -----------------------------------------------------------
+#' @importFrom utils getFromNamespace
+get_from_namespace <- utils::getFromNamespace
+
 # get_pkgname ------------------------------------------------------------------
 
 #' Helper Function: Get Package Name

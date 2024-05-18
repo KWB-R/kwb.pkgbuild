@@ -140,7 +140,7 @@ use_badge_codecov <- function(repo = NULL, user = "KWB-R", domain = "github")
 #' @export
 use_badge_lifecycle <- function(stage = "experimental")
 {
-  stages <- usethis:::stages
+  stages <- getFromNamespace("stages", "usethis")
   stage <- match.arg(tolower(stage), names(stages))
 
   kwb.utils::resolve(
