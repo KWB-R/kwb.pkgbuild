@@ -38,7 +38,7 @@ use_pkgdown <- function(
     authors <- c(authors, stats::setNames(nm = copyright_holder_name, list(list(
       href = "http://www.kompetenz-wasser.de",
       html = paste0(
-        "<img src='https://publications.kompetenz-wasser.de/img/KWB-Logo.svg'",
+        "<img src='https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg'",
         " alt='KWB' width='72' />")
     ))))
   }
