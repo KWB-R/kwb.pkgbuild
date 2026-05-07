@@ -11,6 +11,11 @@
 #' @param pkg name of KWB package (default: get_pkgname())
 #' @param user name of GitHub user/organisation (default: 'kwb-r')
 #' @param domain name of domain for webpage publishing (default: 'github')
+#' @param kwb_logo_url URL of the KWB logo image embedded in the copyright
+#'   holder's `pkgdown` author block (default:
+#'   `"https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg"`)
+#' @param kwb_logo_href URL the KWB logo links to (default:
+#'   `"https://www.kompetenz-wasser.de"`)
 #' @return invisibly; as a side effect writes `_pkgdown.yml` with KWB styling
 #'   and adds it to `.Rbuildignore`.
 #' @importFrom usethis use_pkgdown
@@ -21,7 +26,9 @@ use_pkgdown <- function(
   copyright_holder_name = kwb_string(),
   pkg = get_pkgname(),
   user = "kwb-r",
-  domain = "github"
+  domain = "github",
+  kwb_logo_url = "https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg",
+  kwb_logo_href = "https://www.kompetenz-wasser.de"
 )
 {
   usethis::use_pkgdown()
@@ -40,10 +47,11 @@ use_pkgdown <- function(
   if (copyright_holder_name == kwb_string()) {
 
     authors <- c(authors, stats::setNames(nm = copyright_holder_name, list(list(
-      href = "http://www.kompetenz-wasser.de",
-      html = paste0(
-        "<img src='https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg'",
-        " alt='KWB' width='72' />")
+      href = kwb_logo_href,
+      html = sprintf(
+        "<img src='%s' alt='KWB' width='72' />",
+        kwb_logo_url
+      )
     ))))
   }
 

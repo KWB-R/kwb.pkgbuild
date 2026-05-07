@@ -67,6 +67,12 @@
   - Fix typos (`releveant`, `directoy`, `aleady`, `DESCIPTION`,
     `(default: KWB-R")`, `file patern`) across roxygen blocks and Rd files.
 
+* `use_pkgdown()`: expose the KWB logo as parameters `kwb_logo_url`
+  (default: `https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg`)
+  and `kwb_logo_href` (default: `https://www.kompetenz-wasser.de`) so the
+  default logo URL is no longer hardcoded inside the function body and can
+  be overridden per package without forking the function.
+
 * Vignettes:
 
   - New vignette `vignette("github-actions", package = "kwb.pkgbuild")`

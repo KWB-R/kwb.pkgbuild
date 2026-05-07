@@ -9,7 +9,9 @@ use_pkgdown(
   copyright_holder_name = kwb_string(),
   pkg = get_pkgname(),
   user = "kwb-r",
-  domain = "github"
+  domain = "github",
+  kwb_logo_url = "https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg",
+  kwb_logo_href = "https://www.kompetenz-wasser.de"
 )
 }
 \arguments{
@@ -24,6 +26,13 @@ kwb.pkgbuild:::kwb_author("rustler"))}
 \item{user}{name of GitHub user/organisation (default: 'kwb-r')}
 
 \item{domain}{name of domain for webpage publishing (default: 'github')}
+
+\item{kwb_logo_url}{URL of the KWB logo image embedded in the copyright
+holder's \code{pkgdown} author block (default:
+\code{"https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg"})}
+
+\item{kwb_logo_href}{URL the KWB logo links to (default:
+\code{"https://www.kompetenz-wasser.de"})}
 }
 \value{
 invisibly; as a side effect writes \code{_pkgdown.yml} with KWB styling
