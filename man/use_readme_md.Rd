@@ -2,24 +2,27 @@
 % Please edit documentation in R/use_readme_md.R
 \name{use_readme_md}
 \alias{use_readme_md}
-\title{Use README}
+\title{Create KWB-styled \code{README.md}}
 \usage{
 use_readme_md(user = "KWB-R", domain = "github", stage = "experimental")
 }
 \arguments{
-\item{user}{user name or organisation under which repository defined in\cr
-parameter "repo" is hosted (default: "KWB-R")\cr}
+\item{user}{user name or organisation under which the repository is hosted
+(default: "KWB-R")}
 
-\item{domain}{under which repository is hosted (default: "github")}
+\item{domain}{under which the repository is hosted (default: "github")}
 
-\item{stage}{badge declares the developmental stage of a package, according
-to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
-valid arguments are: "experimental", "maturing", "stable", "retired",
-"archived", "dormant", "questioning"), (default: "experiment")}
+\item{stage}{badge declaring the developmental stage of the package
+according to
+\url{https://www.tidyverse.org/lifecycle/};
+valid values are "experimental", "maturing", "stable", "retired",
+"archived", "dormant", "questioning" (default: "experimental")}
 }
 \value{
-generates README.md
+writes \code{README.md} and adds it to \code{.Rbuildignore}
 }
 \description{
-Use README
+Generates a \code{README.md} with the KWB default badge set, the package
+description from \code{DESCRIPTION}, an installation snippet and links to the
+release and development documentation websites.
 }

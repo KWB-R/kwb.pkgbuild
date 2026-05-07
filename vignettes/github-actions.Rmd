@@ -1,0 +1,156 @@
+---
+title: "GitHub Actions for KWB-R Packages"
+author: "Michael Rustler, Hauke Sonnenberg"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{GitHub Actions for KWB-R Packages}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig_caption = FALSE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+`kwb.pkgbuild` ships a curated set of [GitHub
+Actions](https://github.com/features/actions) workflows that we use across
+all KWB-R packages. The workflows live as templates in
+`inst/templates/ci_github-actions/` (default workflows) and
+`inst/templates/ci_github-actions-claude/` (optional Claude Code
+integration), and are installed into a package's `.github/workflows/`
+directory by `use_ghactions()` / `use_pkg()`.
+
+This vignette explains what the workflows do, how to add or update them, and
+how to enable the optional Claude Code integration.
+
+# 1 Default workflows
+
+`kwb.pkgbuild::use_ghactions()` (also called from `kwb.pkgbuild::use_pkg()`)
+copies four workflows into `.github/workflows/`:
+
+| File                  | Purpose                                                                                                  |
+|:----------------------|:---------------------------------------------------------------------------------------------------------|
+| `R-CMD-check.yaml`    | Cross-platform `R CMD check` matrix (macOS, Ubuntu, Windows × `release`, `devel`, `oldrel-1`).           |
+| `pkgdown.yaml`        | Builds the `pkgdown` site and deploys it to the `gh-pages` branch on push to `main`/`master`/`dev`.      |
+| `test-coverage.yaml`  | Runs `covr::package_coverage()` and uploads the report to [codecov.io](https://codecov.io).              |
+| `pr-commands.yaml`    | Reacts to `/document` and `/style` comments on pull requests by running `roxygen2` / `styler` for you.    |
+
+All four use the official [`r-lib/actions`](https://github.com/r-lib/actions)
+v2 building blocks, which means dependency installation and caching are
+handled by `r-lib/actions/setup-r-dependencies@v2`.
+
+To install or refresh the default workflows in a package, run:
+
+```{r}
+# from the package root
+kwb.pkgbuild::use_ghactions()
+```
+
+# 2 Optional: Claude Code workflows
+
+If you want [Claude Code](https://docs.claude.com/en/docs/claude-code/) to
+review your pull requests and answer `@claude` mentions in issues / PR
+comments, set `claude = TRUE` when bootstrapping a new package:
+
+```{r}
+kwb.pkgbuild::use_pkg(
+  author      = author,
+  pkg         = description,
+  version     = "0.0.0.9000",
+  stage       = "experimental",
+  claude      = TRUE
+)
+```
+
+Or add the workflows to an existing package after the fact:
+
+```{r}
+kwb.pkgbuild::use_ghactions_claude()
+```
+
+This installs two additional workflow files:
+
+| File                       | Trigger                                                                                                     |
+|:---------------------------|:------------------------------------------------------------------------------------------------------------|
+| `claude.yaml`              | `issue_comment`, `pull_request_review_comment`, `pull_request_review`, `issues` — reacts to `@claude` mentions. |
+| `claude-code-review.yaml`  | `pull_request` (`opened`, `synchronize`) — automatic PR review.                                              |
+
+## 2.1 Required repository secret
+
+Both workflows authenticate via a GitHub Actions secret named
+`CLAUDE_CODE_OAUTH_TOKEN`. To create it:
+
+1. Open the repository on GitHub and go to
+   **Settings → Secrets and variables → Actions → New repository secret**.
+2. Set **Name** to `CLAUDE_CODE_OAUTH_TOKEN` and paste your Claude Code OAuth
+   token as **Value**.
+
+Without this secret the Claude jobs will fail at the
+`anthropics/claude-code-action@v1` step.
+
+## 2.2 What Claude does
+
+`claude.yaml` runs whenever someone mentions `@claude` in an issue body /
+title, an issue comment, a PR review or a PR review comment. Claude then
+opens a session with read access to issues / pull requests, plans, and
+posts a reply.
+
+`claude-code-review.yaml` runs on every newly opened or updated pull
+request. It reviews the diff with focus on:
+
+- code quality and R package best practices,
+- potential bugs or logic issues,
+- test coverage,
+- `roxygen2` documentation completeness,
+- consistency with the existing codebase.
+
+If your repository contains a `CLAUDE.md` file, Claude will use it as
+project-specific guidance.
+
+# 3 Updating workflows in existing packages
+
+The workflows in `inst/templates/ci_github-actions/` are the source of truth
+for KWB-R packages. When upstream actions are updated (e.g. a new version of
+`r-lib/actions`) we bump the templates here in `kwb.pkgbuild` and re-run
+`kwb.pkgbuild::use_ghactions()` in each package to refresh the local
+workflows.
+
+To check whether a package is using an outdated version, simply diff its
+`.github/workflows/` against the templates in the latest installed
+`kwb.pkgbuild`:
+
+```{r}
+template_dir <- system.file(
+  "templates/ci_github-actions",
+  package = "kwb.pkgbuild"
+)
+
+# from the package root
+list.files(".github/workflows", full.names = TRUE)
+list.files(template_dir,         full.names = TRUE)
+```
+
+# 4 Troubleshooting
+
+- **The pkgdown workflow doesn't deploy.** Make sure the `gh-pages` branch
+  exists and that **Settings → Pages → Source** points to it. The first
+  time a package is set up, run `kwb.pkgbuild::use_autopkgdown()` to create
+  the orphan branch.
+
+- **`R CMD check` fails on `oldrel-1`.** Either pin a `Depends: R (>= ...)`
+  in `DESCRIPTION` to the lowest R version you actually want to support, or
+  remove `oldrel-1` from the matrix in `R-CMD-check.yaml`.
+
+- **Claude jobs are skipped.** The `if:` clause requires `@claude` to appear
+  in the comment / review / issue body. The Claude review workflow only
+  runs on `pull_request`, not on `issue_comment` events.
+
+- **Codecov upload fails on forks.** Configure the `CODECOV_TOKEN`
+  repository secret. The workflow has `fail_ci_if_error` set conditionally
+  so PRs from forks won't break the build.

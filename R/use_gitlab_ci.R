@@ -2,7 +2,7 @@
 
 #' Adds .gitlab-ci.yml (if repo contains a "docs" subfolder)
 #'
-#' @param dest_dir directoy to write (default: getwd())
+#' @param dest_dir directory to write (default: getwd())
 #' @param yml_vector a yml imported as string vector (default:
 #'   gitlab_ci_template_docs())
 #' @return writes .gitlab-ci.yml and adds it .Rbuildignore
@@ -26,7 +26,7 @@ use_gitlab_ci_docs <- function(
 # use_gitlab_ci_ghpages---------------------------------------------------------
 
 #' Adds .gitlab-ci.yml (which should be saved in root dir of "gh-pages" branch)
-#' @param dest_dir directoy to write (default:
+#' @param dest_dir directory to write (default:
 #' getwd())
 #' @param yml_vector a yml imported as string vector (default: gitlab_ci_template_ghpages())
 #' @return writes .gitlab-ci.yml
@@ -43,7 +43,7 @@ use_gitlab_ci_ghpages <- function(
 # use_gitlab_ci_blogdown--------------------------------------------------------
 
 #' Adds .gitlab-ci.yml (if repo contains on root in a "gh-pages" branch)
-#' @param dest_dir directoy to write (default: getwd())
+#' @param dest_dir directory to write (default: getwd())
 #' @param yml_vector a yml imported as string vector (default:
 #'   gitlab_ci_template_blogdown())
 #' @return writes .gitlab-ci.yml
@@ -61,7 +61,7 @@ use_gitlab_ci_blogdown <- function(
 
 #' Adds .gitlab-ci.yml
 #'
-#' @param dest_dir directoy to write (default: getwd())
+#' @param dest_dir directory to write (default: getwd())
 #' @param yml_vector a yml imported as string vector (default:
 #'   gitlab_ci_template_pkgdown(), where "<owner>/<repo>" is replaced with value
 #'   from DESCRIPTION specified in field URL, e.g.

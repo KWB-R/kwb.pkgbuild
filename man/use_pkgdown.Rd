@@ -2,7 +2,7 @@
 % Please edit documentation in R/use_pkgdown.R
 \name{use_pkgdown}
 \alias{use_pkgdown}
-\title{pkgdown for KWB}
+\title{Set up \code{pkgdown} with KWB styling}
 \usage{
 use_pkgdown(
   author = kwb_author("rustler"),
@@ -26,9 +26,11 @@ kwb.pkgbuild:::kwb_author("rustler"))}
 \item{domain}{name of domain for webpage publishing (default: 'github')}
 }
 \value{
-performs usethis::use_pkgdown() and additionally writes _pkgdown.yml
-based on KWB styling
+invisibly; as a side effect writes \code{_pkgdown.yml} with KWB styling
+and adds it to \code{.Rbuildignore}.
 }
 \description{
-pkgdown for KWB
+Calls \code{usethis::use_pkgdown()} and additionally writes a \code{_pkgdown.yml}
+configured with KWB defaults (Bootstrap 5 + cerulean theme, KWB authors
+block, copyright holder logo).
 }

@@ -32,7 +32,7 @@ use_news_md <- function(
   if (fs::file_exists(news_md)) {
     warning(
       "No 'NEWS.md' created by kwb.pkgbuild::use_news_md(),\n",
-      "because 'NEWS.md' is aleady existing. Please delete it first!"
+      "because 'NEWS.md' already exists. Please delete it first!"
     )
   } else {
     writeLines(news_txt, con = "NEWS.md")

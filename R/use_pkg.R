@@ -33,7 +33,7 @@
 #'   workflows (claude.yaml, claude-code-review.yaml). Requires the repository
 #'   secret CLAUDE_CODE_OAUTH_TOKEN to be configured in GitHub. (default: FALSE)
 #' @param dbg print debug messages (default: TRUE)
-#' @param ... additional arguments passed to use_autopkgdown() (only releveant
+#' @param ... additional arguments passed to use_autopkgdown() (only relevant
 #'   if "auto_build_pkgdown" == TRUE)
 #' @export
 use_pkg <- function(

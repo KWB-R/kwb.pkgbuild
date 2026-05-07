@@ -61,7 +61,7 @@ secret CLAUDE_CODE_OAUTH_TOKEN to be configured in GitHub. (default: FALSE)}
 
 \item{dbg}{print debug messages (default: TRUE)}
 
-\item{...}{additional arguments passed to use_autopkgdown() (only releveant
+\item{...}{additional arguments passed to use_autopkgdown() (only relevant
 if "auto_build_pkgdown" == TRUE)}
 }
 \value{

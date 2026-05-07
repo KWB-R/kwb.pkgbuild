@@ -10,7 +10,7 @@ use_badge_appveyor(repo = NULL, user = "KWB-R", domain = "github")
 \item{repo}{name of repository (default: NULL)}
 
 \item{user}{user name or organisation under which repository defined in
-parameter "repo" is hosted (default: KWB-R")}
+parameter "repo" is hosted (default: "KWB-R")}
 
 \item{domain}{under which repository is hosted (default: "github")}
 }

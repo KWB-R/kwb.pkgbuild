@@ -2,24 +2,29 @@
 % Please edit documentation in R/use_index_md.R
 \name{use_index_md}
 \alias{use_index_md}
-\title{Use index.md (used for pkgdown::build_home())}
+\title{Create KWB-styled \code{index.md}}
 \usage{
 use_index_md(user = "KWB-R", domain = "github", stage = "experimental")
 }
 \arguments{
-\item{user}{user name or organisation under which repository defined in\cr
-parameter "repo" is hosted (default: "KWB-R")\cr}
+\item{user}{user name or organisation under which the repository is hosted
+(default: "KWB-R")}
 
-\item{domain}{under which repository is hosted (default: "github")}
+\item{domain}{under which the repository is hosted (default: "github")}
 
-\item{stage}{badge declares the developmental stage of a package, according
-to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
-valid arguments are: "experimental", "maturing", "stable", "retired",
-"archived", "dormant", "questioning"), (default: "experiment")}
+\item{stage}{badge declaring the developmental stage of the package
+according to
+\url{https://www.tidyverse.org/lifecycle/};
+valid values are "experimental", "maturing", "stable", "retired",
+"archived", "dormant", "questioning" (default: "experimental")}
 }
 \value{
-generates travis badge link
+writes \code{index.md} (used as \code{pkgdown} home) and adds the
+pattern to \code{.Rbuildignore}. Invisibly returns the character vector
+that was written.
 }
 \description{
-Use index.md (used for pkgdown::build_home())
+Generates an \code{index.md} (used by \code{pkgdown::build_home()}) with the
+KWB default badge set (GitHub Actions, codecov, lifecycle, CRAN, R-universe),
+the package description from \code{DESCRIPTION} and an installation snippet.
 }

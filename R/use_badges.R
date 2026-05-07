@@ -3,7 +3,7 @@
 #' Badge appveyor
 #' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
-#' parameter "repo" is hosted (default: KWB-R")
+#' parameter "repo" is hosted (default: "KWB-R")
 #' @param domain under which repository is hosted (default: "github")
 #'
 #' @return generates appveyor badge link
@@ -28,7 +28,7 @@ use_badge_appveyor <- function(repo = NULL, user = "KWB-R", domain = "github")
 #' Badge travis
 #' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
-#' parameter "repo" is hosted (default: KWB-R")
+#' parameter "repo" is hosted (default: "KWB-R")
 #' @return generates travis badge link
 #' @export
 use_badge_travis <- function(repo = NULL, user = "KWB-R")
@@ -47,10 +47,10 @@ use_badge_travis <- function(repo = NULL, user = "KWB-R")
 #' Badge Github Actions RCMD Check
 #' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
-#' parameter "repo" is hosted (default: KWB-R")
+#' parameter "repo" is hosted (default: "KWB-R")
 #' @param branch default: NULL (i.e. use "default" branch) or user defined branch
 #' (e.g. "dev")
-#' @return generates travis badge link
+#' @return generates GitHub Actions R-CMD-check badge markdown
 #' @export
 use_badge_ghactions_rcmdcheck <- function(repo = NULL, user = "KWB-R",
                                           branch = NULL)
@@ -70,7 +70,7 @@ use_badge_ghactions_rcmdcheck <- function(repo = NULL, user = "KWB-R",
 #' Badge Github Actions Pkgdown
 #' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
-#' parameter "repo" is hosted (default: KWB-R")
+#' parameter "repo" is hosted (default: "KWB-R")
 #' @param branch default: NULL (i.e. use "default" branch) or user defined branch
 #' (e.g. "dev")
 #' @return generates Github Actions Pkgdown badge link
@@ -93,7 +93,7 @@ use_badge_ghactions_pkgdown <- function(repo = NULL, user = "KWB-R", branch = NU
 #' Badge Github Actions
 #' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
-#' parameter "repo" is hosted (default: KWB-R")
+#' parameter "repo" is hosted (default: "KWB-R")
 #' @param branch default: NULL (i.e. use "default" branch) or user defined branch
 #' (e.g. "dev")
 #' @return generates Github Actions badges link
@@ -112,7 +112,7 @@ use_badge_ghactions <- function(repo = NULL, user = "KWB-R", branch = NULL)
 #' Badge codecov
 #' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
-#' parameter "repo" is hosted (default: KWB-R")
+#' parameter "repo" is hosted (default: "KWB-R")
 #' @param domain under which repository is hosted (default: "github")
 #' @return generates codecov badge link
 #' @export
@@ -215,8 +215,8 @@ is_on_cran <- function(cran_link)
 #' Badge R-Universe
 #' @param repo name of repository (default: NULL)
 #' @param user user name or organisation under which repository defined in
-#' parameter "repo" is hosted (default: KWB-R")
-#' @return generates codecov badge link
+#' parameter "repo" is hosted (default: "KWB-R")
+#' @return generates R-Universe badge markdown
 #' @export
 use_badge_runiverse <- function(repo = NULL, user = "KWB-R")
 {

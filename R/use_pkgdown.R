@@ -1,14 +1,18 @@
-#' pkgdown for KWB
+#' Set up `pkgdown` with KWB styling
+#'
+#' Calls `usethis::use_pkgdown()` and additionally writes a `_pkgdown.yml`
+#' configured with KWB defaults (Bootstrap 5 + cerulean theme, KWB authors
+#' block, copyright holder logo).
 #'
 #' @param author list of author attributes (default:
 #'   kwb.pkgbuild:::kwb_author("rustler"))
 #' @param copyright_holder_name name of copyright holder
-#' (default: kwb.pkgbuild:::kwb_string())
+#'   (default: kwb.pkgbuild:::kwb_string())
 #' @param pkg name of KWB package (default: get_pkgname())
 #' @param user name of GitHub user/organisation (default: 'kwb-r')
 #' @param domain name of domain for webpage publishing (default: 'github')
-#' @return  performs usethis::use_pkgdown() and additionally writes _pkgdown.yml
-#' based on KWB styling
+#' @return invisibly; as a side effect writes `_pkgdown.yml` with KWB styling
+#'   and adds it to `.Rbuildignore`.
 #' @importFrom usethis use_pkgdown
 #' @importFrom kwb.utils isNaOrEmpty
 #' @export

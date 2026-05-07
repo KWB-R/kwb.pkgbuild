@@ -22,9 +22,9 @@ get_from_namespace <- utils::getFromNamespace
 
 #' Helper Function: Get Package Name
 #'
-#' @param pkgname either package name or NULL. In this
-#' case the DESCRIPTION file in the current working
-#' directory is read and is package name ues (default: NULL)
+#' @param pkgname either package name or NULL. In the latter case the
+#'   DESCRIPTION file in the current working directory is read and the
+#'   package name from there is used (default: NULL)
 #'
 #' @return package name
 #' @export
@@ -70,10 +70,13 @@ git_check_if_windows <- function(git_exe)
 
 # kwb_author -------------------------------------------------------------------
 
-#' Get Information About KWB Author
+#' Get information about a KWB author
 #'
+#' @param who key in the author registry (currently only "rustler")
+#' @return list with elements `name`, `orcid`, `url`
 #' @importFrom kwb.utils selectElements
 #' @keywords internal
+#' @noRd
 kwb_author <- function(who)
 {
   kwb.utils::selectElements(elements = who, x = list(
@@ -85,10 +88,13 @@ kwb_author <- function(who)
   ))
 }
 
-#' Get (Default) Information About KWB-R Package
+#' Get (default) information about a KWB-R package
 #'
+#' @param pkg key in the package registry (currently only "kwb.umberto")
+#' @return list with elements `name`, `title`, `desc`
 #' @importFrom kwb.utils selectElements
 #' @keywords internal
+#' @noRd
 kwb_package <- function(pkg)
 {
   kwb.utils::selectElements(elements = pkg, x = list(

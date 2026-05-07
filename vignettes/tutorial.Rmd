@@ -36,11 +36,11 @@ building and testing of the package.
 
 # 1 Install required R packages
 
-Before you can use the package kwb.pkgdown you need to 
+Before you can use the package `kwb.pkgbuild` you need to
 
-* install packages that kwb.pkgdown relies on from the
-[Comprehensive R Archive Network (CRAN)](https://cloud.r-project.org),
-* install kwb.pkddown from [GitHub](https://github.com).
+* install the packages that `kwb.pkgbuild` relies on from the
+  [Comprehensive R Archive Network (CRAN)](https://cloud.r-project.org),
+* install `kwb.pkgbuild` from [GitHub](https://github.com).
 
 Install required packages that are not yet available in your local R user 
 library from CRAN:
@@ -204,49 +204,72 @@ description <- list(
 )
 ```
 
-## 2.4 Create R package structure in KWB-R style 
+## 2.4 Create R package structure in KWB-R style
 
-Running the following code not only creates an R package structure but also adds 
-some KWB-R specfic styling, e.g.: 
+Running the following code not only creates an R package structure but also
+adds some KWB-R specific styling, e.g.:
 
-- Adding configution files for: 
-    
-    + Continous integration on windows (https://appveyor.com) and linux
-    (https://travis-ci.org/KWB-R)
-    
-    + Code coverage in R package using the servive [codecov.io](codecov.io)
-    
-    + Backup of Github repositories on our mirrored KWB-R group on
-    [Gitlab](https://gitlab.com/KWB-R)
+- Configuration files for:
+
+    + Continuous integration via
+      [GitHub Actions](https://github.com/features/actions): the workflows
+      `R-CMD-check`, `pkgdown`, `pr-commands` and `test-coverage` are written
+      to `.github/workflows/` (see also the GitHub Actions vignette
+      `vignette("github-actions", package = "kwb.pkgbuild")`).
+
+    + Code coverage via [codecov.io](https://codecov.io)
+
+    + Backup of GitHub repositories on our mirrored KWB-R group on
+      [GitLab](https://gitlab.com/KWB-R)
 
 - Indicates the current lifecycle of the R package according to
-https://www.tidyverse.org/lifecycle/
+  https://www.tidyverse.org/lifecycle/
 
 - Uses by default the permissive
-[![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-for all public R packages currently hosted on Github (see:
-http://kwb-r.github.io/status/) and lists KWB as copyright holder (see e.g.
-[here](https://kwb-r.github.io/kwb.pkgbuild/authors.html))
+  [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  for all public R packages currently hosted on GitHub (see:
+  https://kwb-r.github.io/status/) and lists KWB as copyright holder (see e.g.
+  [here](https://kwb-r.github.io/kwb.pkgbuild/authors.html))
 
-- Creates `README` files (`README.Rmd` and `README.md`) for the above mentioned
-topics and
+- Creates `README.md` and `index.md` files for the above mentioned topics, and
 
-- Prepares a KWB-R flavored documentation website template named
-`_packagedown.yml` needed by http://pkgdown.r-lib.org/
+- Prepares a KWB-R flavoured documentation website template named
+  `_pkgdown.yml` (Bootstrap 5, KWB authors block) needed by
+  https://pkgdown.r-lib.org/
 
-Running the following R function will create the R package with the `version` = 
-`0.0.0.9000` and development stage `experimental` (defined [here](https://www.tidyverse.org/lifecycle/#experimental)).
+Running the following R function will create the R package with `version =
+"0.0.0.9000"` and development stage `experimental` (defined
+[here](https://www.tidyverse.org/lifecycle/#experimental)).
 
 ```{r eval = FALSE}
 setwd(pkg_dir)
 
 kwb.pkgbuild::use_pkg(
-  author, 
-  description, 
-  version = "0.0.0.9000", 
+  author,
+  description,
+  version = "0.0.0.9000",
   stage = "experimental"
 )
 ```
+
+If you also want the [Claude Code](https://docs.claude.com/en/docs/claude-code/)
+GitHub Actions workflows (for `@claude` mentions in issues / PR review
+comments and automatic PR review on `opened` / `synchronize`), set
+`claude = TRUE`:
+
+```{r eval = FALSE}
+kwb.pkgbuild::use_pkg(
+  author,
+  description,
+  version = "0.0.0.9000",
+  stage = "experimental",
+  claude = TRUE
+)
+```
+
+The two extra workflows expect a `CLAUDE_CODE_OAUTH_TOKEN` repository secret
+to be configured in GitHub. You can also add the Claude workflows to an
+existing package later on with `kwb.pkgbuild::use_ghactions_claude()`.
 
 ## 2.5 Add your R functions
 
@@ -384,28 +407,28 @@ knitr::include_graphics("images/package_documentation.jpg")
 
 ## 5.2 Automatically
 
-In case you have already a Github repo defined for your R package you can 
-also automate the process of updating the `pkgdown::build_site()` by with the 
-wrapper function `kwb.pkgbuild::use_autopkgdown()`, which: 
+If you already have a GitHub repository for your R package you can let the
+`pkgdown` workflow build and deploy the documentation site for you on every
+push. `kwb.pkgbuild::use_pkg()` already installs the workflow
+`.github/workflows/pkgdown.yaml`; the only one-off step that is left to do
+is creating the `gh-pages` branch and setting it as the GitHub Pages source.
 
-- creates a new branch "gh-pages" where the documentation site is deployed
+The wrapper function `kwb.pkgbuild::use_autopkgdown()` does exactly that:
 
-- sets "docs" folder to ".gitignore" (as these files are now build on Travis)
+- adds the `docs/` folder to `.gitignore` (since the site is built on
+  GitHub Actions and pushed to the `gh-pages` branch),
 
-- prepares Github Actions by: 
-
-   + creating ".github/workflows/" with `kwb.pkgbuild::use_ghactions()`
-   
-   + creating an empty "gh-pages" branch with 
-   `kwb.pkgbuild::create_empty_branch_ghpages()`
+- creates an empty `gh-pages` branch via
+  `kwb.pkgbuild::create_empty_branch_ghpages()`.
 
 ```{r eval = FALSE}
 kwb.pkgbuild::use_autopkgdown()
 ```
 
-Finally to need to go to: 
+Finally, go to
 
-https://github.com/KWB-R/  `kwb.mycoolrpackage`  /settings
+`https://github.com/KWB-R/<your-package>/settings/pages`
 
-and set the "source" for Github Pages to the branch "gh-pages". After each 
-successful Travis build the documentation website is now also updated!
+and set the GitHub Pages **Source** to the branch `gh-pages`. After every
+successful run of the `pkgdown` workflow the documentation website is now
+updated automatically.

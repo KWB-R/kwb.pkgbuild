@@ -45,6 +45,40 @@
     workflows expect a `CLAUDE_CODE_OAUTH_TOKEN` repository secret to be
     configured in GitHub.
 
+* Documentation cleanup:
+
+  - Remove dead duplicate definitions of `git()`, `construct_commit_message()`
+    and `github_push()` in `R/deploy_site_github_with_extra_files.R` (they
+    were silently overwritten by later definitions in the same file).
+
+  - Fix copy/paste errors in `@return` for `use_index_md()`,
+    `use_badge_ghactions_rcmdcheck()` and `use_badge_runiverse()` (which
+    referenced "travis" / "codecov" badges instead of the actual return
+    value).
+
+  - Mark internal helpers (`use_installation()`, `read_description()`,
+    `kwb_author()`, `kwb_package()`) with `@noRd` so they no longer create
+    public Rd entries.
+
+  - Rewrite the titles / descriptions for `use_pkgdown()`, `use_readme_md()`
+    and `use_index_md()` so the man pages describe what the function
+    actually does.
+
+  - Fix typos (`releveant`, `directoy`, `aleady`, `DESCIPTION`,
+    `(default: KWB-R")`, `file patern`) across roxygen blocks and Rd files.
+
+* Vignettes:
+
+  - New vignette `vignette("github-actions", package = "kwb.pkgbuild")`
+    describing the default workflows, the optional Claude Code integration,
+    the `CLAUDE_CODE_OAUTH_TOKEN` secret, and how to refresh workflows in
+    existing packages.
+
+  - Update `vignette("tutorial")`: replace stale Travis / AppVeyor
+    references with the GitHub Actions workflow set, document the new
+    `claude = TRUE` switch in `use_pkg()`, and fix the `kwb.pkgdown` /
+    `kwb.pkddown` typos.
+
 # [kwb.pkgbuild 0.2.3](https://github.com/KWB-R/kwb.pkgbuild/releases/tag/v0.2.3) <small>2022-10-24</small>
 
 * Fix GitHub action worfklows: 

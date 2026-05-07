@@ -10,13 +10,13 @@ use_badge_ghactions_rcmdcheck(repo = NULL, user = "KWB-R", branch = NULL)
 \item{repo}{name of repository (default: NULL)}
 
 \item{user}{user name or organisation under which repository defined in
-parameter "repo" is hosted (default: KWB-R")}
+parameter "repo" is hosted (default: "KWB-R")}
 
 \item{branch}{default: NULL (i.e. use "default" branch) or user defined branch
 (e.g. "dev")}
 }
 \value{
-generates travis badge link
+generates GitHub Actions R-CMD-check badge markdown
 }
 \description{
 Badge Github Actions RCMD Check
