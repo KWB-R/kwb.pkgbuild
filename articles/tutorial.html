@@ -8,8 +8,8 @@
 <title>Create KWB-R Package from Scratch • kwb.pkgbuild</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Create KWB-R Package from Scratch">
 </head>
 <body>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">kwb.pkgbuild</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,10 +30,11 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/install.html">How to Install KWB-R Packages From GitHub</a></li>
+<li><a class="dropdown-item" href="../articles/github-actions.html">GitHub Actions for KWB-R Packages</a></li>
+    <li><a class="dropdown-item" href="../articles/install.html">How to Install KWB-R Packages From GitHub</a></li>
     <li><a class="dropdown-item" href="../articles/tutorial.html">Create KWB-R Package from Scratch</a></li>
   </ul>
 </li>
@@ -61,9 +62,9 @@
                         <h4 data-toc-skip class="author">Michael
 Rustler, Hauke Sonnenberg</h4>
             
-            <h4 data-toc-skip class="date">2024-09-05</h4>
+            <h4 data-toc-skip class="date">2026-05-07</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/dev/vignettes/tutorial.Rmd" class="external-link"><code>vignettes/tutorial.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/master/vignettes/tutorial.Rmd" class="external-link"><code>vignettes/tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>tutorial.Rmd</code></div>
     </div>
 
@@ -90,11 +91,13 @@ automatic building and testing of the package.</li>
 <div class="section level2">
 <h2 id="install-required-r-packages">1 Install required R packages<a class="anchor" aria-label="anchor" href="#install-required-r-packages"></a>
 </h2>
-<p>Before you can use the package kwb.pkgdown you need to</p>
+<p>Before you can use the package <code>kwb.pkgbuild</code> you need
+to</p>
 <ul>
-<li>install packages that kwb.pkgdown relies on from the <a href="https://cloud.r-project.org" class="external-link">Comprehensive R Archive Network
-(CRAN)</a>,</li>
-<li>install kwb.pkddown from <a href="https://github.com" class="external-link">GitHub</a>.</li>
+<li>install the packages that <code>kwb.pkgbuild</code> relies on from
+the <a href="https://cloud.r-project.org" class="external-link">Comprehensive R Archive
+Network (CRAN)</a>,</li>
+<li>install <code>kwb.pkgbuild</code> from <a href="https://github.com" class="external-link">GitHub</a>.</li>
 </ul>
 <p>Install required packages that are not yet available in your local R
 user library from CRAN:</p>
@@ -126,10 +129,10 @@ command:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>GITHUB_PAT <span class="op">=</span> <span class="st">"Put your Private Access Token here"</span><span class="op">)</span></span></code></pre></div>
 <p>Now, that the access token is set, you can use
-<code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github()</a></code> from the remotes packages to install the
+<code>install_github()</code> from the remotes packages to install the
 latest version of this package directly from our GitHub account:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"KWB-R/kwb.pkgbuild"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"KWB-R/kwb.pkgbuild"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="configure-and-create-your-package">2 Configure and create your package<a class="anchor" aria-label="anchor" href="#configure-and-create-your-package"></a>
@@ -182,13 +185,12 @@ variable <code>repo_dir</code>:</p>
 <span></span>
 <span><span class="co"># Create directory for R package</span></span>
 <span><span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/create_pkg_dir.html">create_pkg_dir</a></span><span class="op">(</span><span class="va">pkg_dir</span><span class="op">)</span></span>
-<span><span class="co">#&gt; C:\Users\RUNNER~1\AppData\Local\Temp\Rtmp6NvPNq/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span></span>
-<span><span class="co">#&gt; [1] "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\Rtmp6NvPNq/kwb.newpackage"</span></span>
+<span><span class="co">#&gt; /tmp/RtmpsDPRB4/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpsDPRB4/kwb.newpackage"</span></span>
 <span></span>
 <span><span class="co"># Create a default package structure</span></span>
 <span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_dir.html" class="external-link">with_dir</a></span><span class="op">(</span><span class="va">pkg_dir</span>, <span class="op">{</span><span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/use_pkg_skeleton.html">use_pkg_skeleton</a></span><span class="op">(</span><span class="va">package</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Setting active project to</span></span>
-<span><span class="co">#&gt;   <span style="color: #0000BB;">"C:/Users/runneradmin/AppData/Local/Temp/Rtmp6NvPNq/kwb.newpackage"</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Setting active project to <span style="color: #0000BB;">"/tmp/RtmpsDPRB4/kwb.newpackage"</span>.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Writing <span style="color: #0000BB;">kwb.newpackage.Rproj</span>.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Adding <span style="color: #0000BB;">".Rproj.user"</span> to <span style="color: #0000BB;">.gitignore</span>.</span></span>
 <span><span class="co">#&gt; NULL</span></span></code></pre></div>
@@ -258,37 +260,57 @@ one sentence long and needs to end with a period!</p></li>
 <h3 id="create-r-package-structure-in-kwb-r-style">2.4 Create R package structure in KWB-R style<a class="anchor" aria-label="anchor" href="#create-r-package-structure-in-kwb-r-style"></a>
 </h3>
 <p>Running the following code not only creates an R package structure
-but also adds some KWB-R specfic styling, e.g.:</p>
+but also adds some KWB-R specific styling, e.g.:</p>
 <ul>
 <li>
-<p>Adding configution files for:</p>
+<p>Configuration files for:</p>
 <ul>
-<li><p>Continous integration on windows (<a href="https://appveyor.com" class="external-link uri">https://appveyor.com</a>) and linux (<a href="https://travis-ci.org/KWB-R" class="external-link uri">https://travis-ci.org/KWB-R</a>)</p></li>
-<li><p>Code coverage in R package using the servive <a href="codecov.io">codecov.io</a></p></li>
-<li><p>Backup of Github repositories on our mirrored KWB-R group on <a href="https://gitlab.com/KWB-R" class="external-link">Gitlab</a></p></li>
+<li><p>Continuous integration via <a href="https://github.com/features/actions" class="external-link">GitHub Actions</a>: the
+workflows <code>R-CMD-check</code>, <code>pkgdown</code>,
+<code>pr-commands</code> and <code>test-coverage</code> are written to
+<code>.github/workflows/</code> (see also the GitHub Actions vignette
+<code><a href="../articles/github-actions.html">vignette("github-actions", package = "kwb.pkgbuild")</a></code>).</p></li>
+<li><p>Code coverage via <a href="https://codecov.io" class="external-link">codecov.io</a></p></li>
+<li><p>Backup of GitHub repositories on our mirrored KWB-R group on <a href="https://gitlab.com/KWB-R" class="external-link">GitLab</a></p></li>
 </ul>
 </li>
 <li><p>Indicates the current lifecycle of the R package according to <a href="https://www.tidyverse.org/lifecycle/" class="external-link uri">https://www.tidyverse.org/lifecycle/</a></p></li>
-<li><p>Uses by default the permissive <a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT"></a> for all public R packages currently hosted on Github
-(see: <a href="http://kwb-r.github.io/status/" class="external-link uri">http://kwb-r.github.io/status/</a>) and lists KWB as
+<li><p>Uses by default the permissive <a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT"></a> for all public R packages currently hosted on GitHub
+(see: <a href="https://kwb-r.github.io/status/" class="external-link uri">https://kwb-r.github.io/status/</a>) and lists KWB as
 copyright holder (see e.g. <a href="https://kwb-r.github.io/kwb.pkgbuild/authors.html">here</a>)</p></li>
-<li><p>Creates <code>README</code> files (<code>README.Rmd</code> and
-<code>README.md</code>) for the above mentioned topics and</p></li>
-<li><p>Prepares a KWB-R flavored documentation website template named
-<code>_packagedown.yml</code> needed by <a href="http://pkgdown.r-lib.org/" class="external-link uri">http://pkgdown.r-lib.org/</a></p></li>
+<li><p>Creates <code>README.md</code> and <code>index.md</code> files
+for the above mentioned topics, and</p></li>
+<li><p>Prepares a KWB-R flavoured documentation website template named
+<code>_pkgdown.yml</code> (Bootstrap 5, KWB authors block) needed by <a href="https://pkgdown.r-lib.org/" class="external-link uri">https://pkgdown.r-lib.org/</a></p></li>
 </ul>
-<p>Running the following R function will create the R package with the
-<code>version</code> = <code>0.0.0.9000</code> and development stage
+<p>Running the following R function will create the R package with
+<code>version = "0.0.0.9000"</code> and development stage
 <code>experimental</code> (defined <a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link">here</a>).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">pkg_dir</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/use_pkg.html">use_pkg</a></span><span class="op">(</span></span>
-<span>  <span class="va">author</span>, </span>
-<span>  <span class="va">description</span>, </span>
-<span>  version <span class="op">=</span> <span class="st">"0.0.0.9000"</span>, </span>
+<span>  <span class="va">author</span>,</span>
+<span>  <span class="va">description</span>,</span>
+<span>  version <span class="op">=</span> <span class="st">"0.0.0.9000"</span>,</span>
 <span>  stage <span class="op">=</span> <span class="st">"experimental"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<p>If you also want the <a href="https://docs.claude.com/en/docs/claude-code/" class="external-link">Claude Code</a>
+GitHub Actions workflows (for <code>@claude</code> mentions in issues /
+PR review comments and automatic PR review on <code>opened</code> /
+<code>synchronize</code>), set <code>claude = TRUE</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/use_pkg.html">use_pkg</a></span><span class="op">(</span></span>
+<span>  <span class="va">author</span>,</span>
+<span>  <span class="va">description</span>,</span>
+<span>  version <span class="op">=</span> <span class="st">"0.0.0.9000"</span>,</span>
+<span>  stage <span class="op">=</span> <span class="st">"experimental"</span>,</span>
+<span>  claude <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The two extra workflows expect a <code>CLAUDE_CODE_OAUTH_TOKEN</code>
+repository secret to be configured in GitHub. You can also add the
+Claude workflows to an existing package later on with
+<code><a href="../reference/use_ghactions_claude.html">kwb.pkgbuild::use_ghactions_claude()</a></code>.</p>
 </div>
 <div class="section level3">
 <h3 id="add-your-r-functions">2.5 Add your R functions<a class="anchor" aria-label="anchor" href="#add-your-r-functions"></a>
@@ -297,7 +319,7 @@ copyright holder (see e.g. <a href="https://kwb-r.github.io/kwb.pkgbuild/authors
 <code><a href="https://usethis.r-lib.org/reference/use_r.html" class="external-link">usethis::use_r</a></code> with the parameter <code>name</code> =
 <code>function</code> an empty R script is already stored in the right
 folder <code>R/</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_r.html" class="external-link">use_r</a></span><span class="op">(</span><span class="st">"function"</span><span class="op">)</span></span></code></pre></div>
 <p>For writing your R code/functions please follow the tidyverse coding
 style (<a href="https://style.tidyverse.org/" class="external-link uri">https://style.tidyverse.org/</a>), which serves as our
@@ -386,7 +408,7 @@ In R CMD INSTALL</code></pre>
 create an documentation website for your R package. Running this command
 will store the website in the subfolder <code>docs</code> within your R
 package.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">build_site</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Once you upload your R package to Github this can be easily used as
 documentation page that you define in the settings page for your R
@@ -398,33 +420,30 @@ package which is available at:</p>
 <div class="section level3">
 <h3 id="automatically">5.2 Automatically<a class="anchor" aria-label="anchor" href="#automatically"></a>
 </h3>
-<p>In case you have already a Github repo defined for your R package you
-can also automate the process of updating the
-<code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> by with the wrapper function
-<code><a href="../reference/use_autopkgdown.html">kwb.pkgbuild::use_autopkgdown()</a></code>, which:</p>
+<p>If you already have a GitHub repository for your R package you can
+let the <code>pkgdown</code> workflow build and deploy the documentation
+site for you on every push. <code><a href="../reference/use_pkg.html">kwb.pkgbuild::use_pkg()</a></code> already
+installs the workflow <code>.github/workflows/pkgdown.yaml</code>; the
+only one-off step that is left to do is creating the
+<code>gh-pages</code> branch and setting it as the GitHub Pages
+source.</p>
+<p>The wrapper function <code><a href="../reference/use_autopkgdown.html">kwb.pkgbuild::use_autopkgdown()</a></code>
+does exactly that:</p>
 <ul>
-<li><p>creates a new branch “gh-pages” where the documentation site is
-deployed</p></li>
-<li><p>sets “docs” folder to “.gitignore” (as these files are now build
-on Travis)</p></li>
-<li>
-<p>prepares Github Actions by:</p>
-<ul>
-<li><p>creating “.github/workflows/” with
-<code><a href="../reference/use_ghactions.html">kwb.pkgbuild::use_ghactions()</a></code></p></li>
-<li><p>creating an empty “gh-pages” branch with
-<code><a href="../reference/create_empty_branch_ghpages.html">kwb.pkgbuild::create_empty_branch_ghpages()</a></code></p></li>
+<li><p>adds the <code>docs/</code> folder to <code>.gitignore</code>
+(since the site is built on GitHub Actions and pushed to the
+<code>gh-pages</code> branch),</p></li>
+<li><p>creates an empty <code>gh-pages</code> branch via
+<code><a href="../reference/create_empty_branch_ghpages.html">kwb.pkgbuild::create_empty_branch_ghpages()</a></code>.</p></li>
 </ul>
-</li>
-</ul>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">kwb.pkgbuild</span><span class="fu">::</span><span class="fu"><a href="../reference/use_autopkgdown.html">use_autopkgdown</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Finally to need to go to:</p>
-<p><a href="https://github.com/KWB-R/" class="external-link uri">https://github.com/KWB-R/</a>
-<code>kwb.mycoolrpackage</code> /settings</p>
-<p>and set the “source” for Github Pages to the branch “gh-pages”. After
-each successful Travis build the documentation website is now also
-updated!</p>
+<p>Finally, go to</p>
+<p><code>https://github.com/KWB-R/&lt;your-package&gt;/settings/pages</code></p>
+<p>and set the GitHub Pages <strong>Source</strong> to the branch
+<code>gh-pages</code>. After every successful run of the
+<code>pkgdown</code> workflow the documentation website is now updated
+automatically.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -438,7 +457,7 @@ updated!</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

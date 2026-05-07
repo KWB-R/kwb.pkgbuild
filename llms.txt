@@ -1,0 +1,158 @@
+Helper functions for automating R package development at KWB to a
+predefined style.
+
+## Installation
+
+For details on how to install KWB-R packages checkout our [installation
+tutorial](https://kwb-r.github.io/kwb.pkgbuild/articles/install.html).
+
+``` r
+
+### Optionally: specify GitHub Personal Access Token (GITHUB_PAT)
+### See here why this might be important for you:
+### https://kwb-r.github.io/kwb.pkgbuild/articles/install.html#set-your-github_pat
+
+# Sys.setenv(GITHUB_PAT = "mysecret_access_token")
+
+# Install package "remotes" from CRAN
+if (! require("remotes")) {
+  install.packages("remotes", repos = "https://cloud.r-project.org")
+}
+
+# Install KWB package 'kwb.pkgbuild' from GitHub
+remotes::install_github("KWB-R/kwb.pkgbuild")
+```
+
+# Package index
+
+## All functions
+
+- [`copy_files_from_vignettes_dir_to_deploy_dir()`](https://kwb-r.github.io/kwb.pkgbuild/reference/copy_files_from_vignettes_dir_to_deploy_dir.md)
+  : Copy files from Vignettes Dir to Deploy idir
+
+- [`create_empty_branch()`](https://kwb-r.github.io/kwb.pkgbuild/reference/create_empty_branch.md)
+  : Create Empty Branch From Github
+
+- [`create_empty_branch_ghpages()`](https://kwb-r.github.io/kwb.pkgbuild/reference/create_empty_branch_ghpages.md)
+  : Create Empty gh-pages branch
+
+- [`create_pkg_dir()`](https://kwb-r.github.io/kwb.pkgbuild/reference/create_pkg_dir.md)
+  : Create Package Directory
+
+- [`deploy_site_github_with_extra_files()`](https://kwb-r.github.io/kwb.pkgbuild/reference/deploy_site_github_with_extra_files.md)
+  : deploy_site_github_with_extra_files
+
+- [`deploy_to_branch_with_extra_files()`](https://kwb-r.github.io/kwb.pkgbuild/reference/deploy_to_branch_with_extra_files.md)
+  : Build and deploy a site locally with extra files
+
+- [`get_pkgname()`](https://kwb-r.github.io/kwb.pkgbuild/reference/get_pkgname.md)
+  : Helper Function: Get Package Name
+
+- [`git_check_config()`](https://kwb-r.github.io/kwb.pkgbuild/reference/git_check_config.md)
+  : Git Check Configuration
+
+- [`git_setup_user()`](https://kwb-r.github.io/kwb.pkgbuild/reference/git_setup_user.md)
+  : Git Setup User (Name and Email)
+
+- [`set_github_user()`](https://kwb-r.github.io/kwb.pkgbuild/reference/set_github_user.md)
+  : Set Github User For GIT
+
+- [`use_autopkgdown()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_autopkgdown.md)
+  : Use Auto Pkgdown
+
+- [`use_badge_appveyor()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_appveyor.md)
+  : Badge appveyor
+
+- [`use_badge_codecov()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_codecov.md)
+  : Badge codecov
+
+- [`use_badge_cran()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_cran.md)
+  : Badge CRAN
+
+- [`use_badge_ghactions()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_ghactions.md)
+  : Badge Github Actions
+
+- [`use_badge_ghactions_pkgdown()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_ghactions_pkgdown.md)
+  : Badge Github Actions Pkgdown
+
+- [`use_badge_ghactions_rcmdcheck()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_ghactions_rcmdcheck.md)
+  : Badge Github Actions RCMD Check
+
+- [`use_badge_lifecycle()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_lifecycle.md)
+  : Badge lifecycle
+
+- [`use_badge_runiverse()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_runiverse.md)
+  : Badge R-Universe
+
+- [`use_badge_travis()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_badge_travis.md)
+  : Badge travis
+
+- [`use_codecov()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_codecov.md)
+  : Adds codecov.yml
+
+- [`use_description()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_description.md)
+  : Use DESCRIPTION with KWB styling
+
+- [`use_ghactions()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_ghactions.md)
+  : Adds default .github/workflows/
+
+- [`use_ghactions_claude()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_ghactions_claude.md)
+  : Adds Claude Code workflows to .github/workflows/
+
+- [`use_gitlab_ci_blogdown()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_gitlab_ci_blogdown.md)
+  : Adds .gitlab-ci.yml (if repo contains on root in a "gh-pages"
+  branch)
+
+- [`use_gitlab_ci_docs()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_gitlab_ci_docs.md)
+  : Adds .gitlab-ci.yml (if repo contains a "docs" subfolder)
+
+- [`use_gitlab_ci_ghpages()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_gitlab_ci_ghpages.md)
+  : Adds .gitlab-ci.yml (which should be saved in root dir of "gh-pages"
+  branch)
+
+- [`use_gitlab_ci_pkgdown()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_gitlab_ci_pkgdown.md)
+  : Adds .gitlab-ci.yml
+
+- [`use_index_md()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_index_md.md)
+  :
+
+  Create KWB-styled `index.md`
+
+- [`use_mit_license()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_mit_license.md)
+  : Create MIT licence with KWB style
+
+- [`use_news_md()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_news_md.md)
+  : Create KWB-styled "NEWS.md"
+
+- [`use_pkg()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_pkg.md)
+  : Wrapper function for preparing R package with KWB styling
+
+- [`use_pkg_skeleton()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_pkg_skeleton.md)
+  : Use Package Skeleton
+
+- [`use_pkgdown()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_pkgdown.md)
+  :
+
+  Set up `pkgdown` with KWB styling
+
+- [`use_readme_md()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_readme_md.md)
+  :
+
+  Create KWB-styled `README.md`
+
+- [`write_to_gitignore()`](https://kwb-r.github.io/kwb.pkgbuild/reference/write_to_gitignore.md)
+  : Write to .gitignore
+
+- [`write_to_rbuildignore()`](https://kwb-r.github.io/kwb.pkgbuild/reference/write_to_rbuildignore.md)
+  : Write to .Rbuildignore
+
+# Articles
+
+### All vignettes
+
+- [GitHub Actions for KWB-R
+  Packages](https://kwb-r.github.io/kwb.pkgbuild/articles/github-actions.md):
+- [How to Install KWB-R Packages From
+  GitHub](https://kwb-r.github.io/kwb.pkgbuild/articles/install.md):
+- [Create KWB-R Package from
+  Scratch](https://kwb-r.github.io/kwb.pkgbuild/articles/tutorial.md):

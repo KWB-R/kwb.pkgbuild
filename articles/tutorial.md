@@ -1,0 +1,448 @@
+# Create KWB-R Package from Scratch
+
+This tutorial explains how to setup an R package so that it complies
+with a default style. We apply this default style to all KWB-packages
+that we host on our GitHub account [KWB-R](https://github.com/KWB-R).
+The aim is to present all packages in a common manner (consistent
+DESCRIPTION and documentation) and to use the same services (continuous
+integration, code coverage) for all our packages.
+
+This package provides functions to:
+
+- generate a [DESCRIPTION](http://r-pkgs.had.co.nz/description.md) file
+  in which fields are already set to “our” defaults. For example, the
+  licence field is set to the open source licence MIT. An additional
+  LICENCE file is added that informs about KWB being the copyright
+  holder of the package.
+- generate files that control the automatic generation of documentation
+  files.
+- generate files that control continuous integration, i.e. the automatic
+  building and testing of the package.
+
+## 1 Install required R packages
+
+Before you can use the package `kwb.pkgbuild` you need to
+
+- install the packages that `kwb.pkgbuild` relies on from the
+  [Comprehensive R Archive Network (CRAN)](https://cloud.r-project.org),
+- install `kwb.pkgbuild` from [GitHub](https://github.com).
+
+Install required packages that are not yet available in your local R
+user library from CRAN:
+
+``` r
+
+# Define the names of required packages:
+# - remotes: functions to install R packages from Github
+# - pkgdown: functions to create a package website
+required <- c("remotes", "pkgdown")
+
+# Get the names of packages that are already installed
+installed <- rownames(installed.packages())
+
+# Determine the packages that are not yet installed
+packages <- setdiff(required, installed)
+
+# Install the packages from CRAN
+for (package in packages) {
+  install.packages(package, repos = "https://cloud.r-project.org")
+}
+```
+
+The remotes package should now be installed. It allows to install
+further R packages directly from GitHub. Therefore, the functions of the
+remotes package need to communicate with the GitHub server. To gain
+authenticated access to the GitHub server we set a so called Private
+Access Token (PAT) in the following. This token is then automatically
+used whenever the GitHub server is accessed. Please see the
+[Installation
+vignette](https://kwb-r.github.io/kwb.pkgbuild/articles/install.md) to
+learn how to get your personal GitHub PAT and use that token instead of
+`Put your Private Access Token here` in the following command:
+
+``` r
+
+Sys.setenv(GITHUB_PAT = "Put your Private Access Token here")
+```
+
+Now, that the access token is set, you can use `install_github()` from
+the remotes packages to install the latest version of this package
+directly from our GitHub account:
+
+``` r
+
+remotes::install_github("KWB-R/kwb.pkgbuild")
+```
+
+## 2 Configure and create your package
+
+Secondly, personalise your R package by adapting a default template that
+we propose for KWB packages and that is contained in the R package
+`kwb.pkgbuild`.
+
+### 2.1 Prepare a package directory
+
+The source code of your package should be under version control. We
+encourage you to create a GitHub repository on our [GitHub
+account](https://github.com/kwb-r) that represents the package. Having a
+package as a repository on GitHub has the advantage that it can be
+easily installed directly from there with no more than running
+`remotes::install_github("kwb-r/<package_name>")`. Once you have created
+the GitHub repository,
+[clone](https://help.github.com/articles/cloning-a-repository/) it to a
+folder on your local machine.
+
+You can let RStudio do the cloning for you. Therefore,
+
+- select “File \> New Project…” from the main menu,
+- select “Version Control \> Git”,
+- set “Repository URL” to your new repository, such as
+  `https://github.com/kwb-r/<package_name>`,
+- set “Project directory name” to your `<package_name>` (this should be
+  the default),
+- set “Create project as subdirectory of” to the folder in which you
+  want to store your local copies of your github repositories, e.g. to
+  `~/github-repos`.
+- click on “Create Project” to let RStudio copy the package repository
+  from GitHub onto your local machine.
+
+For the steps described in the following, you need to provide the name
+of the package in a variable `package` and the path to the local
+directory to which GitHub repositories are cloned in a variable
+`repo_dir`:
+
+``` r
+
+# Set the name of your (!) new package
+package <- "kwb.newpackage"
+
+# Set the path to your (!) local folder to which GitHub repositories are cloned
+repo_dir <- "~/github-repos"
+```
+
+### 2.2 Create empty R package
+
+``` r
+
+# Set the path to the package directory
+pkg_dir <- file.path(repo_dir, package)
+
+# Create directory for R package
+kwb.pkgbuild::create_pkg_dir(pkg_dir)
+#> /tmp/RtmpsDPRB4/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'
+#> [1] "/tmp/RtmpsDPRB4/kwb.newpackage"
+
+# Create a default package structure
+withr::with_dir(pkg_dir, {kwb.pkgbuild::use_pkg_skeleton(package)})
+#> ✔ Setting active project to "/tmp/RtmpsDPRB4/kwb.newpackage".
+#> ✔ Writing kwb.newpackage.Rproj.
+#> ✔ Adding ".Rproj.user" to .gitignore.
+#> NULL
+```
+
+### 2.3 Parameterise your R package
+
+In the following, we present the commands required to setup and create
+your new package. We suggest that you write the corresponding code into
+a `.R` script file (e.g. `setup_package.R`). Once the package is
+created, we suggest to put the script file into the `inst/extdata`
+folder of your package. This makes the creation of the package
+reproducible and can be used as a template for the creation of further
+packages.
+
+#### Author
+
+Minimum requirement: the author needs at least to have a (full) name:
+
+``` r
+
+author <- list(name = "Max Mustermann")
+```
+
+You can add further information such as a personal website or the
+[ORCID](https://orcid.org/) of the author:
+
+``` r
+
+author <- list(
+  name = "Michael Rustler", 
+  orcid = "0000-0003-0647-7726",
+  url = "http://mrustl.de"
+)
+```
+
+The ORCID uniquely identifies the author of a web ressource and thus
+allows to find different works of one and the same author on the web.
+
+If you do not know your ORCID, have a look at our package
+[kwb.orcid](https://github.com/kwb-r/kwb.orcid). It allows to search
+ORCIDs by name, once you have created an account at
+[orcid.org](https://orcid.org/).
+
+In addition, this package stores the ORCIDs of KWB researchers of whom
+we know their ORCID. Once you have kwb.orcid installed, you can access
+these ORCIDs with:
+
+``` r
+
+kwb.orcid::get_kwb_orcids()
+#>     Andreas Matzinger    Christoph Sprenger          Daniel Wicke 
+#> "0000-0001-5483-4594" "0000-0002-0178-6645" "0000-0002-5722-5433" 
+#>      Hauke Sonnenberg       Michael Rustler       Nicolas Caradot 
+#> "0000-0001-9134-2871" "0000-0003-0647-7726" "0000-0002-5252-4880" 
+#>         Wolfgang Seis 
+#> "0000-0002-7436-8575"
+```
+
+#### Package description
+
+The package description needs three entries
+
+- **name**: name of the package
+
+- **title**: title of your R package (which is automatically converted
+  to title case with the function
+  [`tools::toTitleCase()`](https://rdrr.io/r/tools/toTitleCase.html))
+
+- **desc:** package description. Should be at least one sentence long
+  and needs to end with a period!
+
+``` r
+
+description <- list(
+  name = package, 
+  title = "My new KWB R package", 
+  desc  = "My super cool new R package in KWB default styling."
+)
+```
+
+### 2.4 Create R package structure in KWB-R style
+
+Running the following code not only creates an R package structure but
+also adds some KWB-R specific styling, e.g.:
+
+- Configuration files for:
+
+  - Continuous integration via [GitHub
+    Actions](https://github.com/features/actions): the workflows
+    `R-CMD-check`, `pkgdown`, `pr-commands` and `test-coverage` are
+    written to `.github/workflows/` (see also the GitHub Actions
+    vignette
+    [`vignette("github-actions", package = "kwb.pkgbuild")`](https://kwb-r.github.io/kwb.pkgbuild/articles/github-actions.md)).
+
+  - Code coverage via [codecov.io](https://codecov.io)
+
+  - Backup of GitHub repositories on our mirrored KWB-R group on
+    [GitLab](https://gitlab.com/KWB-R)
+
+- Indicates the current lifecycle of the R package according to
+  <https://www.tidyverse.org/lifecycle/>
+
+- Uses by default the permissive
+  [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  for all public R packages currently hosted on GitHub (see:
+  <https://kwb-r.github.io/status/>) and lists KWB as copyright holder
+  (see e.g. [here](https://kwb-r.github.io/kwb.pkgbuild/authors.html))
+
+- Creates `README.md` and `index.md` files for the above mentioned
+  topics, and
+
+- Prepares a KWB-R flavoured documentation website template named
+  `_pkgdown.yml` (Bootstrap 5, KWB authors block) needed by
+  <https://pkgdown.r-lib.org/>
+
+Running the following R function will create the R package with
+`version = "0.0.0.9000"` and development stage `experimental` (defined
+[here](https://www.tidyverse.org/lifecycle/#experimental)).
+
+``` r
+
+setwd(pkg_dir)
+
+kwb.pkgbuild::use_pkg(
+  author,
+  description,
+  version = "0.0.0.9000",
+  stage = "experimental"
+)
+```
+
+If you also want the [Claude
+Code](https://docs.claude.com/en/docs/claude-code/) GitHub Actions
+workflows (for `@claude` mentions in issues / PR review comments and
+automatic PR review on `opened` / `synchronize`), set `claude = TRUE`:
+
+``` r
+
+kwb.pkgbuild::use_pkg(
+  author,
+  description,
+  version = "0.0.0.9000",
+  stage = "experimental",
+  claude = TRUE
+)
+```
+
+The two extra workflows expect a `CLAUDE_CODE_OAUTH_TOKEN` repository
+secret to be configured in GitHub. You can also add the Claude workflows
+to an existing package later on with
+[`kwb.pkgbuild::use_ghactions_claude()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_ghactions_claude.md).
+
+### 2.5 Add your R functions
+
+Add your R functions in the folder `R`/. By using
+[`usethis::use_r`](https://usethis.r-lib.org/reference/use_r.html) with
+the parameter `name` = `function` an empty R script is already stored in
+the right folder `R/`.
+
+``` r
+
+usethis::use_r("function")
+```
+
+For writing your R code/functions please follow the tidyverse coding
+style (<https://style.tidyverse.org/>), which serves as our default
+KWB-R style.
+
+Now you just need to fill it with content (i.e. your functions) and
+document it using
+[roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html).
+If you have already defined a function you can add a
+[roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html)
+skeleton by using clicking on the `Insert Roxygen Skeleton` button in
+RStudio as shown below.
+
+![](images/add_roxygen.jpg)
+
+More information on documentation in R is provided here:
+[http://r-pkgs.had.co.nz/man.html](http://r-pkgs.had.co.nz/man.md)
+
+## 3 Check your package
+
+Once you completed all the steps above go to the upper right panel in
+RStudio and click on `Build` -\> `More` -\> `Configure build tools` as
+shown below.
+
+![](images/build_check_01.jpg)
+
+Then click on `Configure` and a new window opens. Here you select
+everything as shown below:
+
+![](images/build_check_02.jpg)
+
+After doing so accept the settings by two times clicking `Ok`.
+
+Subsequently click the `Check` button so that your package is
+cross-checked for possible problems (e.g. wrong documentation, missing
+package dependencies).
+
+In case of missing package dependencies as shown below these should be
+added to the [DESCRIPTION](http://r-pkgs.had.co.nz/description.md) file.
+
+    Namespace dependencies not required: 'fs' 'httr' 'stringr' 'usethis' 'yaml'
+    See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+    manual.
+    * DONE
+    Status: 1 ERROR
+
+    See
+      'C:/Users/myname/Documents/RProjects/kwb.pkgbuild.Rcheck/00check.log'
+    for details.
+
+    checking package dependencies ... ERROR
+    Namespace dependencies not required: 'fs' 'httr' 'stringr' 'usethis' 'yaml'
+
+This can be done using the function
+[`usethis::use_package()`](https://usethis.r-lib.org/reference/use_package.html)
+as shown below:
+
+    pkg_dependencies <- c('fs', 'httr', 'stringr', 'usethis', 'yaml')
+
+    sapply(pkg_dependencies, usethis::use_package)
+
+    ✔ Adding 'fs' to Imports field in DESCRIPTION
+    ● Refer to functions with `fs::fun()`
+    ✔ Adding 'httr' to Imports field in DESCRIPTION
+    ● Refer to functions with `httr::fun()`
+    ✔ Adding 'stringr' to Imports field in DESCRIPTION
+    ● Refer to functions with `stringr::fun()`
+    ✔ Adding 'usethis' to Imports field in DESCRIPTION
+    ● Refer to functions with `usethis::fun()`
+    ✔ Adding 'yaml' to Imports field in DESCRIPTION
+    ● Refer to functions with `yaml::fun()`
+
+Subsequently you should re-click on the `Check` button again and it
+should finish without errors.
+
+    R CMD check results
+    0 errors | 0 warning  | 0 note 
+
+    R CMD check succeeded
+
+## 4 Build your package
+
+Now you are ready for building your R package by clicking on the
+`Install and Restart` button. A successful installation should finish
+with `Done` as shown below:
+
+    ** building package indices
+    ** installing vignettes
+    ** testing if installed package can be loaded
+    * DONE (kwb.pkgbuild)
+    In R CMD INSTALL
+
+## 5 Document your package
+
+### 5.1 Manually
+
+Finally you should run
+[`pkgdown::build_site()`](https://pkgdown.r-lib.org/reference/build_site.html)
+in order to create an documentation website for your R package. Running
+this command will store the website in the subfolder `docs` within your
+R package.
+
+``` r
+
+pkgdown::build_site()
+```
+
+Once you upload your R package to Github this can be easily used as
+documentation page that you define in the settings page for your R
+package which is available at:
+
+<https://github.com/KWB-R/> `kwb.mycoolrpackage` /settings
+
+![](images/package_documentation.jpg)
+
+### 5.2 Automatically
+
+If you already have a GitHub repository for your R package you can let
+the `pkgdown` workflow build and deploy the documentation site for you
+on every push.
+[`kwb.pkgbuild::use_pkg()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_pkg.md)
+already installs the workflow `.github/workflows/pkgdown.yaml`; the only
+one-off step that is left to do is creating the `gh-pages` branch and
+setting it as the GitHub Pages source.
+
+The wrapper function
+[`kwb.pkgbuild::use_autopkgdown()`](https://kwb-r.github.io/kwb.pkgbuild/reference/use_autopkgdown.md)
+does exactly that:
+
+- adds the `docs/` folder to `.gitignore` (since the site is built on
+  GitHub Actions and pushed to the `gh-pages` branch),
+
+- creates an empty `gh-pages` branch via
+  [`kwb.pkgbuild::create_empty_branch_ghpages()`](https://kwb-r.github.io/kwb.pkgbuild/reference/create_empty_branch_ghpages.md).
+
+``` r
+
+kwb.pkgbuild::use_autopkgdown()
+```
+
+Finally, go to
+
+`https://github.com/KWB-R/<your-package>/settings/pages`
+
+and set the GitHub Pages **Source** to the branch `gh-pages`. After
+every successful run of the `pkgdown` workflow the documentation website
+is now updated automatically.
