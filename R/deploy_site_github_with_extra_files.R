@@ -35,26 +35,6 @@ github_url_rx <- function() {
 
 # pkgdown functions (missing in pkgdown >= 1.5.0) ------------------------------
 
-#' git
-#' @importFrom processx run
-#' @keywords internal
-#' @noRd
-#'
-git <- function(...) {
-  processx::run("git", c(...), echo_cmd = TRUE, echo = TRUE)
-}
-
-#' construct_commit_message
-#'
-#' @keywords internal
-#' @noRd
-#'
-construct_commit_message <- function(pkg, commit = Sys.getenv("TRAVIS_COMMIT")) {
-  pkg <- pkgdown::as_pkgdown(pkg)
-
-  sprintf("Built site for %s: %s@%s", pkg$package, pkg$version, substr(commit, 1, 7))
-}
-
 #' rule
 #' @importFrom cli cat_rule
 #' @importFrom crayon bold
@@ -83,27 +63,6 @@ github_clone <- function(dir, repo_slug) {
 }
 
 
-#' github_push
-#'
-#' @importFrom withr with_dir
-#' @keywords internal
-#'
-github_push <- function(dir, commit_message) {
-  # force execution before changing working directory
-  force(commit_message)
-
-  rule("Commiting updated site", line = 1)
-
-  withr::with_dir(dir, {
-    git("add", "-A", ".")
-    git("commit", "--allow-empty", "-m", commit_message)
-
-    rule("Deploying to GitHub Pages", line = 1)
-    git("remote", "-v")
-    git("push", "--force", "origin", "HEAD:gh-pages")
-  })
-}
-
 # deploy_site_github_with_extra_files ------------------------------------------
 
 #' deploy_site_github_with_extra_files
@@ -111,7 +70,7 @@ github_push <- function(dir, commit_message) {
 #' @description for details see pkgdown::deploy_site_github(), only parameter
 #' vignettes_file_pattern_to_copy added
 #' @param pkg "."
-#' @param vignettes_file_pattern_to_copy  file patern for copying files from
+#' @param vignettes_file_pattern_to_copy  file pattern for copying files from
 #' vignettes directory into deploy directory (default: "\\.json$")
 #' @param install Optionally, opt-out of automatic installation. This is
 #'   necessary if the package you're documenting is a dependency of pkgdown
@@ -211,7 +170,7 @@ copy_files_from_vignettes_dir_to_deploy_dir <- function(
 #' Assumes that you're in a git clone of the project, and the package is
 #' already installed.
 #' @param pkg "."
-#' @param vignettes_file_pattern_to_copy  file patern for copying files from
+#' @param vignettes_file_pattern_to_copy  file pattern for copying files from
 #' vignettes directory into deploy directory (default: "\\.json$")
 #' @param branch The git branch to deploy to
 #' @param remote The git remote to deploy to
@@ -258,7 +217,7 @@ deploy_to_branch_with_extra_files <- function(pkg = ".",
 
   if (clean) {
     rule("Cleaning files from old site", line = 1)
-    pkgdown:::clean_site(pkg)
+    pkgdown::clean_site(pkg)
   }
 
   pkgdown::build_site(pkg, devel = FALSE, preview = FALSE, install = FALSE, ...)
@@ -271,7 +230,7 @@ deploy_to_branch_with_extra_files <- function(pkg = ".",
   )
 
   if (github_pages) {
-    pkgdown:::build_github_pages(pkg)
+    getFromNamespace("build_github_pages", "pkgdown")(pkg)
   }
 
   github_push(dest_dir, commit_message, remote, branch)

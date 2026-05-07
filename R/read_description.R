@@ -1,15 +1,17 @@
 # read_description -------------------------------------------------------------
 
-#' Helper function: read_description
+#' Helper: read selected fields from a `DESCRIPTION` file
 #'
-#' @param file path to DESCRIPTION file (default: DESCRIPTION)
+#' @param file path to DESCRIPTION file (default: "DESCRIPTION")
 #' @importFrom desc desc
-#' @return list with pkg "name", "title", "desc", "version"
+#' @return list with elements `name`, `title`, `desc`, `version`
+#' @keywords internal
+#' @noRd
 
 read_description <- function(file = "DESCRIPTION")
 {
   if (! file.exists(file)) clean_stop(
-    sprintf("DESCIPTION file not found at: %s.\n", file.path(getwd(), file)),
+    sprintf("DESCRIPTION file not found at: %s.\n", file.path(getwd(), file)),
     "Please set working directory with function setwd() properly!"
   )
 

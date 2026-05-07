@@ -26,12 +26,14 @@
 #'   "archived", "dormant", "questioning"), (default: "experiment")
 #' @return writes DESCRIPTION file using usethis::use_description() with KWB
 #'   style
-#' @importFrom stringr str_detect
 #' @importFrom fs dir_create
 #' @param auto_build_pkgdown  prepare Travis for pkgdown::build_site() (default:
 #'   FALSE), only possible if GITHUB repo already existing
+#' @param claude if TRUE, additionally adds the Claude Code GitHub Actions
+#'   workflows (claude.yaml, claude-code-review.yaml). Requires the repository
+#'   secret CLAUDE_CODE_OAUTH_TOKEN to be configured in GitHub. (default: FALSE)
 #' @param dbg print debug messages (default: TRUE)
-#' @param ... additional arguments passed to use_autopkgdown() (only releveant
+#' @param ... additional arguments passed to use_autopkgdown() (only relevant
 #'   if "auto_build_pkgdown" == TRUE)
 #' @export
 use_pkg <- function(
@@ -45,6 +47,7 @@ use_pkg <- function(
   domain = "github",
   stage = "experimental",
   auto_build_pkgdown = FALSE,
+  claude = FALSE,
   dbg = TRUE,
   ...
 )
@@ -55,10 +58,8 @@ use_pkg <- function(
     copyright_holder_name = copyright_holder$name, funder = funder
   )
 
-  # Create MIT LICENSE file
-  mit_licence <- stringr::str_detect(string = license, pattern = "MIT")
-
-  if (mit_licence) {
+  # Create MIT LICENSE file if applicable
+  if (grepl("MIT", license)) {
     use_mit_license(copyright_holder)
   }
 
@@ -66,7 +67,7 @@ use_pkg <- function(
   use_pkgdown(author, copyright_holder$name, pkg$name, user, domain)
 
   # Update Github Actions
-  use_ghactions()
+  use_ghactions(claude = claude)
 
   # Use codecov
   use_codecov()

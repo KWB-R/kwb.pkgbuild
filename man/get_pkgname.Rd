@@ -7,9 +7,9 @@
 get_pkgname(pkgname = NULL)
 }
 \arguments{
-\item{pkgname}{either package name or NULL. In this
-case the DESCRIPTION file in the current working
-directory is read and is package name ues (default: NULL)}
+\item{pkgname}{either package name or NULL. In the latter case the
+DESCRIPTION file in the current working directory is read and the
+package name from there is used (default: NULL)}
 }
 \value{
 package name

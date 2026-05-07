@@ -45,22 +45,21 @@ create_pkg_dir <- function(pkg_dir)
 
 #' @noRd
 #' @keywords internal
-#' @importFrom stringr str_split
-#' @importFrom utils tail
 check_pkg_dir_nested <- function(pkg_dir)
 {
-  last_folders <- utils::tail(n = 2, as.character(
-    stringr::str_split(pkg_dir, pattern = "/", simplify = TRUE)
-  ))
+  leaf_folder <- basename(pkg_dir)
+  parent_folder <- basename(dirname(pkg_dir))
 
-  if (last_folders[1] == last_folders[2]) clean_stop(
-    sprintf("Package skeleton for '%s' cannot be created, ", last_folders[2]),
+  if (parent_folder == leaf_folder) clean_stop(
+    sprintf("Package skeleton for '%s' cannot be created, ", leaf_folder),
     sprintf("as it would be nested in subfolder '%s'.\n\n", pkg_dir),
     "Workaround: specify a different 'root_dir' in function use_pkg_skeleton()"
   )
 
   message(sprintf(
-    "%s is a valid 'root_dir' for pkg '%s'", pkg_dir, last_folders[2]
+    "%s is a valid 'root_dir' for pkg '%s'",
+    pkg_dir,
+    leaf_folder
   ))
 
   pkg_dir

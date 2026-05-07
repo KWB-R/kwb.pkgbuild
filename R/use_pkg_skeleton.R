@@ -27,8 +27,7 @@ use_pkg_skeleton <- function(pkg_name)
 
   usethis::use_git_ignore(".Rproj.user")
 
-  if (usethis:::is_package()) {
-
+  if (getFromNamespace("is_package", "usethis")()) {
     usethis::use_build_ignore(c(
       rproj_file, ".Rhistory", ".RData", ".Rproj.user" , ".here"
     ))

@@ -1,14 +1,20 @@
 # use_readme_md ----------------------------------------------------------------
 
-#' Use README
-#' @param user user name or organisation under which repository defined in\cr
-#' parameter "repo" is hosted (default: "KWB-R")\cr
-#' @param domain under which repository is hosted (default: "github")
-#' @param stage badge declares the developmental stage of a package, according
-#' to [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/),
-#' valid arguments are: "experimental", "maturing", "stable", "retired",
-#' "archived", "dormant", "questioning"), (default: "experiment")
-#' @return generates README.md
+#' Create KWB-styled `README.md`
+#'
+#' Generates a `README.md` with the KWB default badge set, the package
+#' description from `DESCRIPTION`, an installation snippet and links to the
+#' release and development documentation websites.
+#'
+#' @param user user name or organisation under which the repository is hosted
+#'   (default: "KWB-R")
+#' @param domain under which the repository is hosted (default: "github")
+#' @param stage badge declaring the developmental stage of the package
+#'   according to
+#'   [https://www.tidyverse.org/lifecycle/](https://www.tidyverse.org/lifecycle/);
+#'   valid values are "experimental", "maturing", "stable", "retired",
+#'   "archived", "dormant", "questioning" (default: "experimental")
+#' @return writes `README.md` and adds it to `.Rbuildignore`
 #' @export
 #' @importFrom desc desc
 

@@ -10,10 +10,10 @@ use_badge_runiverse(repo = NULL, user = "KWB-R")
 \item{repo}{name of repository (default: NULL)}
 
 \item{user}{user name or organisation under which repository defined in
-parameter "repo" is hosted (default: KWB-R")}
+parameter "repo" is hosted (default: "KWB-R")}
 }
 \value{
-generates codecov badge link
+generates R-Universe badge markdown
 }
 \description{
 Badge R-Universe

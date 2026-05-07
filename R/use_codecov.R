@@ -6,8 +6,8 @@
 #' @export
 use_codecov <- function()
 {
-  usethis:::check_uses_github_actions()
-  usethis:::use_dependency("covr", "Suggests")
+  getFromNamespace("check_uses_github_actions", "usethis")()
+  getFromNamespace("use_dependency", "usethis")("covr", "Suggests")
 
   if (! usethis::use_template("codecov.yml", ignore = TRUE)) {
     return(invisible(FALSE))

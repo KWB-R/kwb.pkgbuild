@@ -15,6 +15,7 @@ use_pkg(
   domain = "github",
   stage = "experimental",
   auto_build_pkgdown = FALSE,
+  claude = FALSE,
   dbg = TRUE,
   ...
 )
@@ -54,9 +55,13 @@ to
 \item{auto_build_pkgdown}{prepare Travis for pkgdown::build_site() (default:
 FALSE), only possible if GITHUB repo already existing}
 
+\item{claude}{if TRUE, additionally adds the Claude Code GitHub Actions
+workflows (claude.yaml, claude-code-review.yaml). Requires the repository
+secret CLAUDE_CODE_OAUTH_TOKEN to be configured in GitHub. (default: FALSE)}
+
 \item{dbg}{print debug messages (default: TRUE)}
 
-\item{...}{additional arguments passed to use_autopkgdown() (only releveant
+\item{...}{additional arguments passed to use_autopkgdown() (only relevant
 if "auto_build_pkgdown" == TRUE)}
 }
 \value{

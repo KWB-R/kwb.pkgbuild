@@ -4,11 +4,20 @@
 \alias{use_ghactions}
 \title{Adds default .github/workflows/}
 \usage{
-use_ghactions()
+use_ghactions(claude = FALSE)
+}
+\arguments{
+\item{claude}{if \code{TRUE}, additionally copies the Claude Code workflows
+(\code{claude.yaml} and \code{claude-code-review.yaml}) into \code{.github/workflows/}.
+Defaults to \code{FALSE}.}
 }
 \value{
-writes .github/workflows/ and adds it .Rbuildignore
+writes \code{.github/workflows/} and adds it to \code{.Rbuildignore}
 }
 \description{
-Adds default .github/workflows/
+Copies the default GitHub Actions workflows (R-CMD-check, pkgdown,
+pr-commands, test-coverage) into \code{.github/workflows/}. Optionally adds the
+Claude Code workflows (\code{claude.yaml}, \code{claude-code-review.yaml}) when
+\code{claude = TRUE}. Those workflows require a \code{CLAUDE_CODE_OAUTH_TOKEN}
+repository secret to be configured in GitHub.
 }

@@ -1,11 +1,13 @@
 # use_installation -------------------------------------------------------------
 
-#' Helper function: describe pkg installation in index.Rmd / README.md
+#' Helper: describe pkg installation in index.md / README.md
 #'
 #' @param pkgname package name
-#' @param user user name or organisation under which repository defined in
-#' parameter "repo" is hosted
-#' @param domain under which repository is hosted
+#' @param user user/organisation hosting the repository
+#' @param domain under which repository is hosted (e.g. "github")
+#' @return character vector with markdown lines for the installation section
+#' @keywords internal
+#' @noRd
 use_installation <- function(pkgname, user, domain)
 {
   url_tutorial_install <-

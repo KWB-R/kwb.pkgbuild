@@ -16,7 +16,6 @@
 #' @return writes DESCRIPTION file using usethis::use_description() with KWB
 #'   style
 #' @importFrom usethis use_description
-#' @importFrom stringr str_split
 #' @importFrom tools toTitleCase
 #' @export
 use_description <- function(
@@ -37,13 +36,11 @@ use_description <- function(
 
   pkg$title <- tools::toTitleCase(pkg$title)
 
-  full_name <- stringr::str_split(string = author$name,pattern = "\\s+")[[1]]
-  author_name <- full_name[1]
-  author_surname <- full_name[2]
+  full_name <- strsplit(author$name, "\\s+")[[1L]]
+  author_name <- full_name[1L]
+  author_surname <- full_name[2L]
 
-  author_email <- sprintf(
-    '%s.%s@kompetenz-wasser.de', tolower(author_name), tolower(author_surname)
-  )
+  author_email <- email_kwb(given = author_name, family = author_surname)
 
   author_comment <- if (is.null(author$orcid)) {
     "NULL"

@@ -4,13 +4,27 @@ clean_stop <- function(...)
   stop(..., call. = FALSE)
 }
 
+# email_kwb --------------------------------------------------------------------
+email_kwb <- function(
+    given,
+    family,
+    full_name = paste0(given, family, sep = ".")
+)
+{
+  paste0(tolower(full_name), "@kompetenz-wasser.de")
+}
+
+# get_from_namespace -----------------------------------------------------------
+#' @importFrom utils getFromNamespace
+get_from_namespace <- utils::getFromNamespace
+
 # get_pkgname ------------------------------------------------------------------
 
 #' Helper Function: Get Package Name
 #'
-#' @param pkgname either package name or NULL. In this
-#' case the DESCRIPTION file in the current working
-#' directory is read and is package name ues (default: NULL)
+#' @param pkgname either package name or NULL. In the latter case the
+#'   DESCRIPTION file in the current working directory is read and the
+#'   package name from there is used (default: NULL)
 #'
 #' @return package name
 #' @export
@@ -56,10 +70,13 @@ git_check_if_windows <- function(git_exe)
 
 # kwb_author -------------------------------------------------------------------
 
-#' Get Information About KWB Author
+#' Get information about a KWB author
 #'
+#' @param who key in the author registry (currently only "rustler")
+#' @return list with elements `name`, `orcid`, `url`
 #' @importFrom kwb.utils selectElements
 #' @keywords internal
+#' @noRd
 kwb_author <- function(who)
 {
   kwb.utils::selectElements(elements = who, x = list(
@@ -71,10 +88,13 @@ kwb_author <- function(who)
   ))
 }
 
-#' Get (Default) Information About KWB-R Package
+#' Get (default) information about a KWB-R package
 #'
+#' @param pkg key in the package registry (currently only "kwb.umberto")
+#' @return list with elements `name`, `title`, `desc`
 #' @importFrom kwb.utils selectElements
 #' @keywords internal
+#' @noRd
 kwb_package <- function(pkg)
 {
   kwb.utils::selectElements(elements = pkg, x = list(
@@ -121,7 +141,6 @@ path_to_git <- function()
 #' @param dbg print debug messages (default: TRUE)
 #' @return sets globally user.name and user.email in Git
 #' @export
-#' @importFrom stringr str_replace
 set_github_user <- function(
   git_username = "kwb.pkgbuild::use_autopkgdown()",
   git_fullname = "kwb.pkgbuild::use_autopkgdown()",
@@ -132,13 +151,9 @@ set_github_user <- function(
   dbg = TRUE
 )
 {
+  # Compose KWB e-mail address
   if (is.null(git_email)) {
-
-    # Replace space with dot
-    dot_name <- stringr::str_replace(git_fullname, "\\s+", ".")
-
-    # Compose KWB e-mail address
-    git_email <- paste0(tolower(dot_name), "@kompetenz-wasser.de")
+    git_email <- email_kwb(full_name = gsub("\\s+", ".", git_fullname))
   }
 
   git_exe <- git_check_if_windows(git_exe)

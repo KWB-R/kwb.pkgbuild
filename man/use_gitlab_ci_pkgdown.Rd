@@ -10,7 +10,7 @@ use_gitlab_ci_pkgdown(
 )
 }
 \arguments{
-\item{dest_dir}{directoy to write (default: getwd())}
+\item{dest_dir}{directory to write (default: getwd())}
 
 \item{yml_vector}{a yml imported as string vector (default:
 gitlab_ci_template_pkgdown(), where "<owner>/<repo>" is replaced with value

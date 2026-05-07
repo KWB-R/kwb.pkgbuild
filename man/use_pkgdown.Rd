@@ -2,14 +2,16 @@
 % Please edit documentation in R/use_pkgdown.R
 \name{use_pkgdown}
 \alias{use_pkgdown}
-\title{pkgdown for KWB}
+\title{Set up \code{pkgdown} with KWB styling}
 \usage{
 use_pkgdown(
   author = kwb_author("rustler"),
   copyright_holder_name = kwb_string(),
   pkg = get_pkgname(),
   user = "kwb-r",
-  domain = "github"
+  domain = "github",
+  kwb_logo_url = "https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg",
+  kwb_logo_href = "https://www.kompetenz-wasser.de"
 )
 }
 \arguments{
@@ -24,11 +26,20 @@ kwb.pkgbuild:::kwb_author("rustler"))}
 \item{user}{name of GitHub user/organisation (default: 'kwb-r')}
 
 \item{domain}{name of domain for webpage publishing (default: 'github')}
+
+\item{kwb_logo_url}{URL of the KWB logo image embedded in the copyright
+holder's \code{pkgdown} author block (default:
+\code{"https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg"})}
+
+\item{kwb_logo_href}{URL the KWB logo links to (default:
+\code{"https://www.kompetenz-wasser.de"})}
 }
 \value{
-performs usethis::use_pkgdown() and additionally writes _pkgdown.yml
-based on KWB styling
+invisibly; as a side effect writes \code{_pkgdown.yml} with KWB styling
+and adds it to \code{.Rbuildignore}.
 }
 \description{
-pkgdown for KWB
+Calls \code{usethis::use_pkgdown()} and additionally writes a \code{_pkgdown.yml}
+configured with KWB defaults (Bootstrap 5 + cerulean theme, KWB authors
+block, copyright holder logo).
 }
