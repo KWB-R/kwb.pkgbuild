@@ -35,7 +35,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/dev/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/KWB-R/kwb.pkgbuild/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
@@ -44,7 +44,7 @@
 <a class="anchor" aria-label="anchor" href="#kwbpkgbuild-030-2026-05-07"></a></h2>
 <ul><li>
 <p>Modernise GitHub Actions workflows (both in <code>.github/workflows/</code> of this repo and the templates in <code>inst/templates/ci_github-actions/</code>) so that they run on current GitHub-hosted runners again:</p>
-<ul><li><p>Bump action versions: <code>actions/checkout@v4</code>, <code>actions/upload-artifact@v4</code>, <code>codecov/codecov-action@v4</code>, and replace the deprecated <code>r-lib/actions@master</code> references with <code>r-lib/actions@v2</code>.</p></li>
+<ul><li><p>Bump action versions: <code>actions/checkout@v5</code>, <code>actions/upload-artifact@v4</code>, <code>codecov/codecov-action@v5</code>, <code>JamesIves/github-pages-deploy-action@v4.7.3</code>, and replace the deprecated <code>r-lib/actions@master</code> references with <code>r-lib/actions@v2</code>. The <code>@v5</code> / <code>@v4.7.3</code> bumps run on Node.js 24 and avoid the GitHub deprecation warning for Node.js 20 actions (forced default June 2026, removed September 2026, see <a href="https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/" class="external-link uri">https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/</a>).</p></li>
 <li><p>Switch from the retired <code>ubuntu-20.04</code> runner to <code>ubuntu-latest</code> and rename the matrix entry <code>oldrel</code> to <code>oldrel-1</code>.</p></li>
 <li><p>Replace the archived <code>r-hub/sysreqs</code> step with <code>r-lib/actions/setup-r-dependencies@v2</code>, which also handles dependency caching out of the box.</p></li>
 <li><p>Fix a stale <code>if: runner.os == 'Linux (no, try without!)'</code> condition that silently disabled the Linux system-dependency step.</p></li>

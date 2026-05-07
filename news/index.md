@@ -6,10 +6,14 @@
   this repo and the templates in `inst/templates/ci_github-actions/`) so
   that they run on current GitHub-hosted runners again:
 
-  - Bump action versions: `actions/checkout@v4`,
-    `actions/upload-artifact@v4`, `codecov/codecov-action@v4`, and
-    replace the deprecated `r-lib/actions@master` references with
-    `r-lib/actions@v2`.
+  - Bump action versions: `actions/checkout@v5`,
+    `actions/upload-artifact@v4`, `codecov/codecov-action@v5`,
+    `JamesIves/github-pages-deploy-action@v4.7.3`, and replace the
+    deprecated `r-lib/actions@master` references with
+    `r-lib/actions@v2`. The `@v5` / `@v4.7.3` bumps run on Node.js 24
+    and avoid the GitHub deprecation warning for Node.js 20 actions
+    (forced default June 2026, removed September 2026, see
+    <https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/>).
 
   - Switch from the retired `ubuntu-20.04` runner to `ubuntu-latest` and
     rename the matrix entry `oldrel` to `oldrel-1`.
