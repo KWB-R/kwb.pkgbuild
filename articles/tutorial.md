@@ -129,12 +129,12 @@ pkg_dir <- file.path(repo_dir, package)
 
 # Create directory for R package
 kwb.pkgbuild::create_pkg_dir(pkg_dir)
-#> /tmp/RtmpsDPRB4/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'
-#> [1] "/tmp/RtmpsDPRB4/kwb.newpackage"
+#> /tmp/RtmpPKIQmN/kwb.newpackage is a valid 'root_dir' for pkg 'kwb.newpackage'
+#> [1] "/tmp/RtmpPKIQmN/kwb.newpackage"
 
 # Create a default package structure
 withr::with_dir(pkg_dir, {kwb.pkgbuild::use_pkg_skeleton(package)})
-#> ✔ Setting active project to "/tmp/RtmpsDPRB4/kwb.newpackage".
+#> ✔ Setting active project to "/tmp/RtmpPKIQmN/kwb.newpackage".
 #> ✔ Writing kwb.newpackage.Rproj.
 #> ✔ Adding ".Rproj.user" to .gitignore.
 #> NULL
