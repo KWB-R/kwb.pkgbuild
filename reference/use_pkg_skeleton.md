@@ -25,10 +25,10 @@ creates pkg skeleton in current working directory
 pkg_name <- "pkgname"
 pkg_dir <- file.path(tempdir(), pkg_name)
 pkg_dir <- create_pkg_dir(pkg_dir)
-#> /tmp/RtmpoO8fCx/pkgname is a valid 'root_dir' for pkg 'pkgname'
-#> Warning: /tmp/RtmpoO8fCx/pkgname was not created as it already existed.
+#> /tmp/RtmpJ4eRB7/pkgname is a valid 'root_dir' for pkg 'pkgname'
+#> Warning: /tmp/RtmpJ4eRB7/pkgname was not created as it already existed.
 withr::with_dir(pkg_dir, {use_pkg_skeleton(pkg_name)})
-#> ✔ Setting active project to "/tmp/RtmpoO8fCx/pkgname".
+#> ✔ Setting active project to "/tmp/RtmpJ4eRB7/pkgname".
 #> ✔ Writing pkgname.Rproj.
 #> ✔ Adding ".Rproj.user" to .gitignore.
 #> NULL

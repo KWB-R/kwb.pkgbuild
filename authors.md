@@ -18,7 +18,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/KWB-R/kwb.pkgbuild/blob/dev/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/KWB-R/kwb.pkgbuild/blob/v0.3.0/DESCRIPTION)
 
 Rustler M, Sonnenberg H (2026). *kwb.pkgbuild: R package for
 standardised development at KWB*. R package version 0.3.0,

@@ -30,6 +30,6 @@ create_pkg_dir(pkg_dir)
 ## valid pkg folder
 pkg_dir <- file.path(tempdir(), "pkgname")
 create_pkg_dir(pkg_dir)
-#> /tmp/RtmpoO8fCx/pkgname is a valid 'root_dir' for pkg 'pkgname'
-#> [1] "/tmp/RtmpoO8fCx/pkgname"
+#> /tmp/RtmpJ4eRB7/pkgname is a valid 'root_dir' for pkg 'pkgname'
+#> [1] "/tmp/RtmpJ4eRB7/pkgname"
 ```
